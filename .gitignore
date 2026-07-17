@@ -1,0 +1,8 @@
+state/
+*.ck3
+*.zip
+*.tmp
+node_modules/
+.DS_Store
+scripts/rakaly
+scripts/rakaly-cli

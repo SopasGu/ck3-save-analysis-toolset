@@ -1,0 +1,12 @@
+{
+  "name": "ck3-save-analysis-toolset",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check scripts/lib/ck3-save-analysis.mjs && node --check scripts/lib/ck3-screenshots.mjs && node --check scripts/ck3-save-ingest && node --check scripts/ck3-save-report"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

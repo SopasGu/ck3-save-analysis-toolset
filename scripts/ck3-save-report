@@ -1,0 +1,774 @@
+#!/usr/bin/env node
+import {
+  buildChronicle,
+  characterSummary,
+  diffSnapshots,
+  extractBrief,
+  extractPoliticalGraph,
+  extractScout,
+  extractSnapshot,
+  getCharacter,
+  getPlayedCharacterId,
+  resolveCultureName,
+  resolveFaithName,
+  resolveProvinceLabel,
+  readManifestOrJson,
+  summarizeProvince,
+  summarizeTitle,
+} from './lib/ck3-save-analysis.mjs';
+import { loadIndex as loadScreenshotIndex, loadAnalysis as loadScreenshotAnalysis, gameTimeAssociation, mergeAnalysis } from './lib/ck3-screenshots.mjs';
+import fs from 'node:fs';
+import path from 'node:path';
+
+const DEFAULT_INDEX = path.resolve('state/screenshots/index.json');
+const DEFAULT_ANALYSIS = path.resolve('state/screenshots/analysis.json');
+
+function loadScreenshotIndexOrDefault() {
+  const idx = loadScreenshotIndex(DEFAULT_INDEX);
+  if (!idx && fs.existsSync('state/screenshots/index.json')) {
+    return JSON.parse(fs.readFileSync('state/screenshots/index.json', 'utf8'));
+  }
+  return idx;
+}
+
+function loadScreenshotAnalysisOrDefault() {
+  return loadScreenshotAnalysis(DEFAULT_ANALYSIS);
+}
+
+function listAllManifests() {
+  if (!fs.existsSync('state/rakaly-cli/output/ingest')) return [];
+  const files = fs.readdirSync('state/rakaly-cli/output/ingest').filter((n) => n.endsWith('.manifest.json'));
+  return files.map((n) => JSON.parse(fs.readFileSync(path.join('state/rakaly-cli/output/ingest', n), 'utf8')));
+}
+
+const [command, ...args] = process.argv.slice(2);
+
+if (!command || command === '--help' || command === '-h') {
+  printHelp();
+  process.exit(command ? 0 : 2);
+}
+
+try {
+  if (command === 'snapshot') {
+    const { snapshot, json } = loadSnapshot(args[0]);
+    if (args.includes('--json')) console.log(JSON.stringify(snapshot, null, 2));
+    else printSnapshot(snapshot, json);
+  } else if (command === 'patrons') {
+    const { snapshot, json } = loadSnapshot(args[0]);
+    if (args.includes('--json')) console.log(JSON.stringify({ contracts: snapshot.contracts, patrons: snapshot.patrons }, null, 2));
+    else printPatrons(snapshot, json);
+  } else if (command === 'diff') {
+    const oldInput = args[0];
+    const newInput = args[1];
+    if (!oldInput || !newInput) throw new Error('diff requires OLD_JSON and NEW_JSON');
+    const oldSnapshot = loadSnapshot(oldInput).snapshot;
+    const newSnapshot = loadSnapshot(newInput).snapshot;
+    const diff = diffSnapshots(oldSnapshot, newSnapshot);
+    if (args.includes('--json')) console.log(JSON.stringify(diff, null, 2));
+    else printDiff(diff, oldSnapshot, newSnapshot);
+  } else if (command === 'timeline') {
+    const inputs = args.filter((arg) => arg !== '--json');
+    if (!inputs.length) throw new Error('timeline requires one or more JSON save artifacts or manifests');
+    const timeline = buildTimeline(inputs);
+    if (args.includes('--json')) console.log(JSON.stringify(timeline, null, 2));
+    else printTimeline(timeline);
+  } else if (command === 'resolve') {
+    const input = args[0];
+    const ids = args.slice(1).filter((arg) => arg !== '--json');
+    if (!input || !ids.length) throw new Error('resolve requires a save artifact/manifest and one or more IDs');
+    const { save, jsonPath } = readManifestOrJson(input);
+    const results = ids.map((id) => resolveId(save, id));
+    if (args.includes('--json')) console.log(JSON.stringify(results, null, 2));
+    else printResolve(results, jsonPath);
+  } else if (command === 'graph') {
+    const input = args[0];
+    if (!input) throw new Error('graph requires a save artifact or manifest path');
+    const { save, jsonPath } = readManifestOrJson(input);
+    const playerId = getPlayedCharacterId(save);
+    const graph = extractPoliticalGraph(save, playerId);
+    if (args.includes('--json')) console.log(JSON.stringify(graph, null, 2));
+    else printGraph(graph, jsonPath);
+  } else if (command === 'brief') {
+    const input = args[0];
+    if (!input) throw new Error('brief requires a save artifact or manifest path');
+    const { save, jsonPath } = readManifestOrJson(input);
+    const playerId = getPlayedCharacterId(save);
+    const brief = extractBrief(save, playerId);
+    if (args.includes('--json')) console.log(JSON.stringify(brief, null, 2));
+    else printBrief(brief, jsonPath);
+  } else if (command === 'scout') {
+    const input = args[0];
+    if (!input) throw new Error('scout requires a save artifact or manifest path');
+    const targets = parseScoutTargets(args.slice(1));
+    const { save, jsonPath } = readManifestOrJson(input);
+    const playerId = getPlayedCharacterId(save);
+    const scout = extractScout(save, playerId, { targets });
+    if (args.includes('--json')) console.log(JSON.stringify(scout, null, 2));
+    else printScout(scout, jsonPath, targets);
+  } else if (command === 'screenshots') {
+    const input = args[0];
+    if (!input) throw new Error('screenshots requires a save artifact or manifest path');
+    const { manifest, manifestPath } = loadSaveManifest(input);
+    const idx = loadScreenshotIndexOrDefault();
+    const analysis = loadScreenshotAnalysisOrDefault();
+    const baseEntries = mergeAnalysis(idx?.entries ?? [], analysis);
+    const allManifests = listAllManifests();
+    const sortedSavesByDate = [...allManifests]
+      .filter((m) => m.date)
+      .map((m) => ({ manifestPath: m.manifestPath ?? null, date: m.date, sourcePath: m.sourcePath, sourceMtimeMs: m.sourceMtimeMs }))
+      .sort((a, b) => compareCk3Dates(a.date, b.date));
+    const hereD = manifest?.date ?? null;
+    const hereMs = manifest?.sourceMtimeMs ?? -1;
+    const prevMs = (() => {
+      if (!manifest?.sourcePath) return -1;
+      const same = allManifests
+        .filter((m) => m.sourcePath === manifest.sourcePath && m.sourceMtimeMs < hereMs)
+        .sort((a, b) => b.sourceMtimeMs - a.sourceMtimeMs);
+      return same[0]?.sourceMtimeMs ?? -1;
+    })();
+    let preSaveD = null;
+    // Most recent save with date strictly before this save's in-game date,
+    // regardless of source .ck3 file. The campaign timeline is global.
+    for (const s of sortedSavesByDate) {
+      if (compareCk3Dates(s.date, hereD) < 0 && (!preSaveD || compareCk3Dates(s.date, preSaveD) > 0)) {
+        preSaveD = s.date;
+      }
+    }
+    const filtered = baseEntries.filter((e) => {
+      const inGame = e.inGameDate;
+      if (inGame && hereD) {
+        const okHere = compareCk3Dates(inGame, hereD) <= 0;
+        const okPre = !preSaveD || compareCk3Dates(inGame, preSaveD) > 0;
+        return okHere && okPre;
+      }
+      const t = e.takenAtMs ?? e.statMtimeMs;
+      return t > prevMs && t <= hereMs;
+    });
+    const tagged = gameTimeAssociation(filtered, sortedSavesByDate.filter((s) => s.manifestPath));
+    tagged.sort((a, b) => compareCk3Dates(a.inGameDate ?? '0.0.0', b.inGameDate ?? '0.0.0') || (a.takenAtMs - b.takenAtMs));
+    if (args.includes('--json')) console.log(JSON.stringify({ saveManifest: manifestPath, saveDate: manifest?.date ?? null, count: tagged.length, entries: tagged }, null, 2));
+    else printScreenshots(tagged, idx, manifest, manifestPath, analysis);
+  } else if (command === 'chronicle') {
+    const inputs = args.filter((arg) => arg !== '--json');
+    if (!inputs.length) throw new Error('chronicle requires one or more JSON save artifacts or manifests');
+    const chronicle = buildChronicle(inputs);
+    if (args.includes('--json')) console.log(JSON.stringify(chronicle, null, 2));
+    else printChronicle(chronicle);
+  } else {
+    throw new Error(`Unknown command: ${command}`);
+  }
+} catch (error) {
+  console.error(error.message);
+  process.exit(1);
+}
+
+function loadSnapshot(input) {
+  if (!input) throw new Error('A JSON save artifact or manifest path is required');
+  const { save, jsonPath, manifest } = readManifestOrJson(input);
+  return { snapshot: extractSnapshot(save), json: jsonPath, manifest, input };
+}
+
+function parseScoutTargets(args) {
+  const targets = [];
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+    if (arg === '--json') continue;
+    if (arg === '--target' || arg === '-t') {
+      const target = args[index + 1];
+      if (!target || target.startsWith('--')) throw new Error(`${arg} requires a target value`);
+      targets.push(target);
+      index += 1;
+      continue;
+    }
+    targets.push(arg);
+  }
+  return targets;
+}
+
+function buildTimeline(inputs) {
+  const checkpoints = inputs
+    .map((input) => {
+      const loaded = loadSnapshot(input);
+      return {
+        input,
+        json: loaded.json,
+        sourcePath: loaded.manifest?.sourcePath ?? loaded.json,
+        sourceMtimeIso: loaded.manifest?.sourceMtimeIso ?? null,
+        snapshot: loaded.snapshot,
+      };
+    })
+    .sort((a, b) => compareCk3Dates(a.snapshot.date, b.snapshot.date) || String(a.sourcePath).localeCompare(String(b.sourcePath)));
+
+  const deduped = [];
+  const seen = new Set();
+  for (const checkpoint of checkpoints) {
+    const key = `${checkpoint.snapshot.date}:${checkpoint.snapshot.player.id}:${checkpoint.snapshot.player.gold}:${checkpoint.snapshot.camp.power}:${checkpoint.snapshot.camp.strength}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    deduped.push(checkpoint);
+  }
+
+  const deltas = [];
+  for (let index = 1; index < deduped.length; index += 1) {
+    deltas.push({
+      fromIndex: index - 1,
+      toIndex: index,
+      diff: diffSnapshots(deduped[index - 1].snapshot, deduped[index].snapshot),
+    });
+  }
+
+  return { checkpoints: deduped, deltas };
+}
+
+function printSnapshot(snapshot, jsonPath) {
+  const p = snapshot.player;
+  const c = snapshot.camp;
+  console.log(`# CK3 Snapshot`);
+  console.log(`Source: ${jsonPath}`);
+  console.log(`Date: ${snapshot.date}`);
+  console.log(`Player: ${p.name} (#${p.id}), age ${p.age ?? '?'}, ${p.cultureName ?? `culture ${p.culture ?? '?'}`}, ${p.faithName ?? `faith ${p.faith ?? '?'}`}`);
+  console.log(`Location: ${p.locationLabel ?? `province ${p.location ?? '?'}`}`);
+  if (p.primaryTitle) console.log(`Primary title: ${formatTitle(p.primaryTitle)}`);
+  console.log(`Resources: ${fmt(p.gold)} gold, ${fmt(p.prestige)} prestige, ${fmt(p.piety)} piety, ${fmt(p.influence)} influence`);
+  console.log(`Focus: ${p.focus ?? 'unknown'}`);
+  console.log(`Perks: ${p.perks.length ? p.perks.join(', ') : 'none'}`);
+  console.log(`Camp: ${c.government ?? 'unknown'}, strength ${fmt(c.strength)}, power ${fmt(c.power)}, at-peace penalty ${fmt(c.atPeacePenalty)}`);
+  console.log(`Laws: ${c.laws.join(', ') || 'none'}`);
+  if (c.purpose) {
+    console.log(`Camp purpose: ${c.purpose.label} (${c.purpose.id})`);
+    console.log(`Purpose weights: ${c.purpose.contractWeights.join('; ')}`);
+  }
+  console.log(`Succession: ${c.succession.map((id) => formatCharacter(snapshot.entourage.find((char) => char.id === id) ?? { id, name: `#${id}` })).join(' -> ') || 'none'}`);
+  console.log(`Contracts: ${snapshot.contracts.length}`);
+  console.log(`Patron/contact relations: ${snapshot.patrons.relations.length}`);
+  console.log(`Contract opinions: ${snapshot.patrons.contractOpinions.length}`);
+
+  if (snapshot.entourage.length) {
+    console.log(`\n## Entourage`);
+    for (const member of snapshot.entourage) {
+      const rank = member.successionRank ? `heir #${member.successionRank}` : 'camp';
+      console.log(`- ${formatCharacter(member)} (${rank}) ${member.cultureName ?? `culture ${member.culture ?? '?'}`}, ${member.faithName ?? `faith ${member.faith ?? '?'}`}, skills ${member.skillsTotal ?? '?'}`);
+    }
+  }
+
+  const counterEntries = Object.entries(snapshot.counters);
+  if (counterEntries.length) {
+    console.log(`\n## Counters`);
+    for (const [key, value] of counterEntries) console.log(`- ${key}: ${value}`);
+  }
+}
+
+function printPatrons(snapshot, jsonPath) {
+  console.log(`# CK3 Contract And Patron Sheet`);
+  console.log(`Source: ${jsonPath}`);
+  console.log(`Date: ${snapshot.date}`);
+  console.log(`Player: ${snapshot.player.name} (#${snapshot.player.id})`);
+  console.log(`Location: ${snapshot.player.locationLabel ?? `province ${snapshot.player.location ?? '?'}`}`);
+
+  console.log(`\n## Current Contracts`);
+  if (!snapshot.contracts.length) console.log('- none');
+  for (const contract of snapshot.contracts) {
+    const employer = contract.employerCharacter ? `, employer ${formatCharacter(contract.employerCharacter)}` : '';
+    const location = contract.locationLabel ? `, at ${contract.locationLabel}` : '';
+    console.log(`- ${contract.name} [${contract.status ?? 'unknown'}], type ${contract.type ?? '?'}, tier ${contract.tier ?? '?'}${employer}${location}`);
+  }
+
+  console.log(`\n## Live Hooks And Contact Cooldowns`);
+  if (!snapshot.patrons.relations.length) console.log('- none');
+  for (const relation of snapshot.patrons.relations) {
+    for (const hook of relation.hooks) {
+      console.log(`- ${formatCharacter(relation.other)}: ${hook.type ?? 'hook'} expires ${hook.expirationDate ?? '?'}`);
+    }
+    for (const cooldown of relation.cooldowns) {
+      console.log(`- ${formatCharacter(relation.other)}: cooldown ${cooldown.interaction} until ${cooldown.until}`);
+    }
+  }
+
+  console.log(`\n## Contact Favor Interpretation`);
+  if (!snapshot.patrons.contactFavors.length) console.log('- none');
+  for (const favor of snapshot.patrons.contactFavors) {
+    console.log(`- ${formatCharacter(favor.target)}: ${formatContactFavorState(favor.state)}`);
+    for (const hook of favor.availableHooks) {
+      const label = hook.mechanics?.label ? `${hook.mechanics.label} / ` : '';
+      const expiry = hook.expirationDate ? `, expires ${hook.expirationDate}` : '';
+      console.log(`  hook: ${label}${hook.type ?? 'hook'}${expiry}`);
+    }
+    for (const cooldown of favor.cooldowns) {
+      console.log(`  cooldown: ${cooldown.interaction} until ${cooldown.until}`);
+    }
+    if (favor.usedOpinion) {
+      const likely = favor.usedOpinion.likelyRequests.length
+        ? favor.usedOpinion.likelyRequests.map((option) => option.label).join(' or ')
+        : 'unknown request';
+      console.log(`  used-favor opinion: ${favor.usedOpinion.modifier} ${signed(favor.usedOpinion.value)}; likely ${likely}`);
+    }
+    const knownOptions = favor.requestOptions
+      .filter((option) => option.availableByKnownRules !== false)
+      .map((option) => {
+        const caveat = option.availableByKnownRules === null || option.caveat ? '*' : '';
+        return `${option.label}${caveat}`;
+      });
+    console.log(`  request options by known rules: ${knownOptions.join(', ') || 'none'}`);
+    const blocked = favor.requestOptions.filter((option) => option.availableByKnownRules === false);
+    for (const option of blocked) console.log(`  blocked: ${option.label} (${option.blocker})`);
+    if (favor.requestOptions.some((option) => option.availableByKnownRules === null || option.caveat)) {
+      console.log(`  * some checks require live game state not fully serialized in this report`);
+    }
+  }
+
+  console.log(`\n## Contract And Contact Opinions`);
+  if (!snapshot.patrons.contractOpinions.length) console.log('- none');
+  for (const opinion of snapshot.patrons.contractOpinions) {
+    console.log(`- ${formatCharacter(opinion.owner)} -> ${formatCharacter(opinion.target)}: ${opinion.modifier} (${fmt(opinion.value)}) from ${opinion.startDate ?? '?'} to ${opinion.expirationDate ?? '?'}`);
+  }
+}
+
+function printDiff(diff, oldSnapshot, newSnapshot) {
+  console.log(`# CK3 Save Diff`);
+  console.log(`From: ${diff.from}`);
+  console.log(`To: ${diff.to}`);
+  console.log(`Player: ${oldSnapshot.player.name} (#${oldSnapshot.player.id}) -> ${newSnapshot.player.name} (#${newSnapshot.player.id})`);
+
+  console.log(`\n## Resources`);
+  for (const [name, value] of Object.entries(diff.resources)) {
+    console.log(`- ${name}: ${fmt(value.from)} -> ${fmt(value.to)} (${signed(value.delta)})`);
+  }
+
+  console.log(`\n## Camp`);
+  console.log(`- strength: ${fmt(diff.camp.strength.from)} -> ${fmt(diff.camp.strength.to)} (${signed(diff.camp.strength.delta)})`);
+  console.log(`- power: ${fmt(diff.camp.power.from)} -> ${fmt(diff.camp.power.to)} (${signed(diff.camp.power.delta)})`);
+  console.log(`- at-peace penalty: ${fmt(diff.camp.atPeacePenalty.from)} -> ${fmt(diff.camp.atPeacePenalty.to)} (${signed(diff.camp.atPeacePenalty.delta)})`);
+  if (diff.camp.lawsAdded.length) console.log(`- laws added: ${diff.camp.lawsAdded.join(', ')}`);
+  if (diff.camp.lawsRemoved.length) console.log(`- laws removed: ${diff.camp.lawsRemoved.join(', ')}`);
+
+  console.log(`\n## Perks`);
+  console.log(`- added: ${diff.perks.added.join(', ') || 'none'}`);
+  console.log(`- removed: ${diff.perks.removed.join(', ') || 'none'}`);
+
+  console.log(`\n## Contracts`);
+  console.log(`- added: ${diff.contracts.added.map((contract) => contract.name).join(', ') || 'none'}`);
+  console.log(`- removed: ${diff.contracts.removed.map((contract) => contract.name).join(', ') || 'none'}`);
+  console.log(`- status changed: ${diff.contracts.statusChanged.map((change) => `${change.from.name}: ${change.from.status} -> ${change.to.status}`).join(', ') || 'none'}`);
+
+  console.log(`\n## Patron Signals`);
+  console.log(`- added: ${diff.patronSignals.added.join(', ') || 'none'}`);
+  console.log(`- removed: ${diff.patronSignals.removed.join(', ') || 'none'}`);
+}
+
+function printTimeline(timeline) {
+  console.log(`# CK3 Timeline`);
+  console.log(`Checkpoints: ${timeline.checkpoints.length}`);
+
+  console.log(`\n## Checkpoints`);
+  for (const [index, checkpoint] of timeline.checkpoints.entries()) {
+    const snapshot = checkpoint.snapshot;
+    const contracts = snapshot.contracts.map((contract) => `${contract.name} [${contract.status ?? '?'}]`).join('; ') || 'none';
+    const hooks = snapshot.patrons.relations.flatMap((relation) => [
+      ...relation.hooks.map((hook) => `${relation.other.name}: ${hook.type}`),
+      ...relation.cooldowns.map((cooldown) => `${relation.other.name}: ${cooldown.interaction} cooldown`),
+    ]).join('; ') || 'none';
+
+    console.log(`- ${index + 1}. ${snapshot.date}: ${snapshot.player.name} (#${snapshot.player.id})`);
+    console.log(`  Place: ${snapshot.player.locationLabel ?? `province ${snapshot.player.location ?? '?'}`}`);
+    console.log(`  Identity: ${snapshot.player.cultureName ?? `culture ${snapshot.player.culture ?? '?'}`}, ${snapshot.player.faithName ?? `faith ${snapshot.player.faith ?? '?'}`}`);
+    console.log(`  Resources: ${fmt(snapshot.player.gold)} gold, ${fmt(snapshot.player.prestige)} prestige, ${fmt(snapshot.player.piety)} piety`);
+    console.log(`  Camp: strength ${fmt(snapshot.camp.strength)}, power ${fmt(snapshot.camp.power)}, laws ${snapshot.camp.laws.join(', ') || 'none'}`);
+    console.log(`  Perks: ${snapshot.player.perks.join(', ') || 'none'}`);
+    console.log(`  Contracts: ${contracts}`);
+    console.log(`  Patron signals: ${hooks}`);
+  }
+
+  if (!timeline.deltas.length) return;
+
+  console.log(`\n## Changes`);
+  for (const { diff } of timeline.deltas) {
+    const notable = [];
+    notable.push(`gold ${signed(diff.resources.gold.delta)}`);
+    notable.push(`prestige ${signed(diff.resources.prestige.delta)}`);
+    notable.push(`piety ${signed(diff.resources.piety.delta)}`);
+    notable.push(`strength ${signed(diff.camp.strength.delta)}`);
+    notable.push(`power ${signed(diff.camp.power.delta)}`);
+    if (diff.perks.added.length) notable.push(`new perks: ${diff.perks.added.join(', ')}`);
+    if (diff.camp.lawsAdded.length || diff.camp.lawsRemoved.length) {
+      notable.push(`laws +${diff.camp.lawsAdded.join(', ') || 'none'} / -${diff.camp.lawsRemoved.join(', ') || 'none'}`);
+    }
+    if (diff.succession.changed) notable.push(`succession changed`);
+    if (diff.contracts.added.length) notable.push(`contracts added: ${diff.contracts.added.map((contract) => contract.name).join(', ')}`);
+    if (diff.contracts.removed.length) notable.push(`contracts removed: ${diff.contracts.removed.map((contract) => contract.name).join(', ')}`);
+    if (diff.contracts.statusChanged.length) {
+      notable.push(`contract status: ${diff.contracts.statusChanged.map((change) => `${change.from.name} ${change.from.status} -> ${change.to.status}`).join(', ')}`);
+    }
+    if (diff.patronSignals.added.length) notable.push(`patron signals added: ${diff.patronSignals.added.join(', ')}`);
+    if (diff.patronSignals.removed.length) notable.push(`patron signals removed: ${diff.patronSignals.removed.join(', ')}`);
+
+    console.log(`- ${diff.from} -> ${diff.to}: ${notable.join('; ')}`);
+  }
+}
+
+function resolveId(save, idText) {
+  const id = Number(idText.replace(/^(char|character|title|province|culture|faith):/, ''));
+  const forcedType = idText.includes(':') ? idText.split(':')[0] : null;
+  const matches = [];
+
+  if ((!forcedType || ['char', 'character'].includes(forcedType)) && getCharacter(save, id)) {
+    matches.push({ type: 'character', value: characterSummary(save, id) });
+  }
+  if ((!forcedType || forcedType === 'title') && summarizeTitle(save, id) && !summarizeTitle(save, id).missing) {
+    matches.push({ type: 'title', value: summarizeTitle(save, id) });
+  }
+  if ((!forcedType || forcedType === 'province') && save.provinces?.[String(id)]) {
+    matches.push({
+      type: 'province',
+      value: {
+        id,
+        label: resolveProvinceLabel(save, id),
+        ...summarizeProvince(save, id),
+      },
+    });
+  }
+  if ((!forcedType || forcedType === 'culture') && resolveCultureName(save, id)) {
+    matches.push({ type: 'culture', value: { id, name: resolveCultureName(save, id) } });
+  }
+  if ((!forcedType || forcedType === 'faith') && resolveFaithName(save, id)) {
+    matches.push({ type: 'faith', value: { id, name: resolveFaithName(save, id) } });
+  }
+
+  return { input: idText, id, matches };
+}
+
+function printResolve(results, jsonPath) {
+  console.log(`# CK3 Resolver`);
+  console.log(`Source: ${jsonPath}`);
+  for (const result of results) {
+    console.log(`\n## ${result.input}`);
+    if (!result.matches.length) {
+      console.log('- no match');
+      continue;
+    }
+    for (const match of result.matches) {
+      if (match.type === 'character') {
+        const value = match.value;
+        console.log(`- character: ${formatCharacter(value)}, ${value.cultureName ?? `culture ${value.culture ?? '?'}`}, ${value.faithName ?? `faith ${value.faith ?? '?'}`}, at ${value.locationLabel ?? `province ${value.location ?? '?'}`}`);
+        if (value.primaryTitle) console.log(`  primary title: ${formatTitle(value.primaryTitle)}`);
+      } else if (match.type === 'title') {
+        console.log(`- title: ${formatTitle(match.value)} key ${match.value.key ?? '?'}`);
+      } else if (match.type === 'province') {
+        const value = match.value;
+        console.log(`- province: ${value.label}`);
+        if (value.county) console.log(`  county: ${formatTitle(value.county)}`);
+        if (value.duchy) console.log(`  duchy: ${formatTitle(value.duchy)}`);
+        if (value.kingdom) console.log(`  kingdom: ${formatTitle(value.kingdom)}`);
+        if (value.empire) console.log(`  empire: ${formatTitle(value.empire)}`);
+      } else if (match.type === 'culture') {
+        console.log(`- culture: ${match.value.name} (#${match.value.id})`);
+      } else if (match.type === 'faith') {
+        console.log(`- faith: ${match.value.name} (#${match.value.id})`);
+      }
+    }
+  }
+}
+
+function printGraph(graph, jsonPath) {
+  console.log(`# CK3 Regional Political Graph`);
+  console.log(`Source: ${jsonPath}`);
+  console.log(`Date: ${graph.date}`);
+  console.log(`Player: person:${graph.player}`);
+  console.log(`People: ${graph.people.length}, places: ${graph.places.length}, edges: ${graph.edges.length}`);
+
+  console.log(`\n## Important People`);
+  for (const person of graph.people) {
+    const where = person.location ? `, at ${person.location}` : '';
+    const title = person.primaryTitle ? ` (${person.primaryTitle})` : '';
+    const culture = person.culture ?? '?';
+    const faith = person.faith ?? '?';
+    console.log(`- ${person.name} (#${person.id})${title}, ${culture}, ${faith}${where}`);
+    console.log(`  roles: ${person.roles.join(', ')}`);
+  }
+
+  console.log(`\n## Important Places`);
+  if (!graph.places.length) console.log('- none');
+  for (const place of graph.places) {
+    console.log(`- ${place.label}: ${place.reasons.join(', ')}`);
+  }
+
+  console.log(`\n## Edges`);
+  if (!graph.edges.length) console.log('- none');
+  const byKind = new Map();
+  for (const edge of graph.edges) {
+    if (!byKind.has(edge.kind)) byKind.set(edge.kind, []);
+    byKind.get(edge.kind).push(edge);
+  }
+  const kindOrder = [...byKind.keys()].sort();
+  for (const kind of kindOrder) {
+    console.log(`\n### ${kind}`);
+    for (const edge of byKind.get(kind)) {
+      const label = edge.label ? ` (${edge.label})` : '';
+      console.log(`- ${edge.from} -> ${edge.to}${label}`);
+    }
+  }
+}
+
+function printBrief(brief, jsonPath) {
+  console.log(`# CK3 Advisor Brief`);
+  console.log(`Source: ${jsonPath}`);
+  console.log(`Date: ${brief.date}`);
+  console.log(`Player: person:${brief.player}`);
+  console.log(`Location: ${brief.location?.label ?? 'unknown'}`);
+
+  console.log(`\n## Travel Opportunities`);
+  if (!brief.travelOpportunities.length) console.log('- none');
+  for (const op of brief.travelOpportunities) {
+    const proximity = op.proximity ? ` [${op.proximity}]` : '';
+    const employer = op.employerName ? ` for ${op.employerName}` : '';
+    const where = op.locationLabel ? ` at ${op.locationLabel}` : '';
+    console.log(`- ${op.name} [${op.status ?? '?'}] tier ${op.tier ?? '?'}${employer}${where}${proximity}`);
+  }
+
+  console.log(`\n## Available Favors`);
+  if (!brief.availableFavors.length) console.log('- none');
+  for (const favor of brief.availableFavors) {
+    const expiry = favor.expires ? ` (expires ${favor.expires})` : '';
+    console.log(`- ${favor.targetName}: ${favor.hookType ?? 'hook'}${expiry}`);
+  }
+
+  console.log(`\n## Contact Requests`);
+  if (!brief.contactFavors.length) console.log('- none');
+  for (const favor of brief.contactFavors) {
+    const status = formatContactFavorState(favor.state);
+    console.log(`- ${favor.target.name}#${favor.target.id}: ${status}`);
+    const usable = favor.requestOptions
+      .filter((option) => option.availableByKnownRules !== false)
+      .map((option) => option.availableByKnownRules === null || option.caveat ? `${option.label}*` : option.label);
+    console.log(`  options: ${usable.join(', ') || 'none'}`);
+    if (favor.usedOpinion?.likelyRequests?.length) {
+      console.log(`  last use likely: ${favor.usedOpinion.likelyRequests.map((option) => option.label).join(' or ')}`);
+    }
+  }
+
+  console.log(`\n## Pending Cooldowns`);
+  if (!brief.pendingCooldowns.length) console.log('- none');
+  for (const cooldown of brief.pendingCooldowns) {
+    console.log(`- ${cooldown.targetName}: ${cooldown.interaction} until ${cooldown.until}`);
+  }
+
+  console.log(`\n## Standing With Contacts`);
+  if (!brief.standingWith.length) console.log('- none');
+  for (const entry of brief.standingWith) {
+    const title = entry.primaryTitle ? ` (${entry.primaryTitle})` : '';
+    const where = entry.location ? ` @ ${entry.location}` : '';
+    console.log(`- ${entry.name}#${entry.id}${title}${where}: net ${signed(entry.netValue)}`);
+    for (const op of entry.opinions) {
+      const arrow = op.direction === 'to_them' ? '->' : '<-';
+      console.log(`    ${arrow} ${op.modifier} ${signed(op.value)}${op.expires ? ` (until ${op.expires})` : ''}`);
+    }
+  }
+
+  console.log(`\n## Nearby Rulers`);
+  if (!brief.nearbyRulers.length) console.log('- none');
+  for (const ruler of brief.nearbyRulers) {
+    const tag = ruler.isPlayer ? ' (you)' : '';
+    const titles = ruler.titles.map((t) => `${t.layer} ${t.title}`).join(', ');
+    console.log(`- ${ruler.holderName}#${ruler.holderId}${tag}: ${titles}`);
+  }
+}
+
+function printScout(scout, jsonPath, targets = []) {
+  const state = scout.currentState;
+  console.log(`# CK3 Scout`);
+  console.log(`Source: ${jsonPath}`);
+  console.log(`Date: ${scout.date}`);
+  console.log(`Player: ${scout.player.name} (#${scout.player.id})`);
+  console.log(`Location: ${state.location ?? 'unknown'}`);
+  if (targets.length) console.log(`Targets: ${targets.join(', ')}`);
+
+  console.log(`\n## Recommendations`);
+  if (!scout.recommendations.length) console.log('- none');
+  for (const rec of scout.recommendations) {
+    console.log(`- P${rec.priority}: ${rec.title}`);
+    if (rec.mechanic) console.log(`  mechanic: ${rec.mechanic}`);
+    for (const evidence of rec.evidence ?? []) console.log(`  evidence: ${evidence}`);
+  }
+
+  console.log(`\n## Current Strategic State`);
+  console.log(`- Camp: ${state.government ?? 'unknown'}${state.campPurpose ? `, ${state.campPurpose.label}` : ''}`);
+  console.log(`- Focus: ${state.focus ?? 'unknown'}`);
+  console.log(`- Resources: ${fmt(state.resources.gold)} gold, ${fmt(state.resources.prestige)} prestige, ${fmt(state.resources.piety)} piety, ${fmt(state.resources.influence)} influence`);
+  console.log(`- Current contracts are local board: ${state.currentContractsAreLocalBoard ? 'yes' : 'no'}`);
+  console.log(`- ${state.campRelocationNote}`);
+
+  console.log(`\n## POI And Fame Gates`);
+  const gates = scout.poiGates;
+  console.log(`- POIs visited: ${gates.poiVisited}`);
+  console.log(`- Travel provinces traversed: ${gates.travelProvincesTraversed ?? 'unknown'}`);
+  console.log(`- Seasoned Visitor: ${gates.seasonedVisitor.met ? 'met' : `${gates.seasonedVisitor.missingPoi} POIs short`}`);
+  const advanced = gates.travelsDecisionAdvancedGate;
+  console.log(`- Advanced travel decision: ${advanced.knownCriteriaMet}/2 known criteria met; ${advanced.missingPoi} POIs short of ${advanced.requiredPoi}; cost ${advanced.cost.prestige} prestige / ${advanced.cost.gold} gold`);
+  console.log(`- Can afford known cost: ${advanced.canAffordKnownCost === null ? 'unknown' : advanced.canAffordKnownCost ? 'yes' : 'no'}`);
+  for (const criterion of advanced.criteria) {
+    const status = criterion.met === null ? 'unknown' : criterion.met ? 'met' : 'not met';
+    console.log(`  - ${criterion.label}: ${status}${criterion.note ? ` (${criterion.note})` : ''}`);
+  }
+
+  console.log(`\n## Province Scouts`);
+  if (!scout.provinceScouts.length) console.log('- none');
+  for (const province of scout.provinceScouts.slice().sort((a, b) => b.score - a.score)) {
+    const disease = province.clearOfActiveEpidemic ? 'clear' : 'epidemic risk';
+    console.log(`- ${province.label}: score ${fmt(province.score)}, ${disease}`);
+    for (const reason of province.reasons) console.log(`  - ${reason}`);
+  }
+
+  console.log(`\n## Ruler Scouts`);
+  if (!scout.rulerProfiles.length) console.log('- none');
+  for (const ruler of scout.rulerProfiles.slice(0, 12)) {
+    const title = ruler.primaryTitle?.name ? `, ${ruler.primaryTitle.name}` : '';
+    const war = ruler.warState?.atWar ? ', at war' : '';
+    console.log(`- ${ruler.name} (#${ruler.id})${title}: score ${fmt(ruler.score)}, ${fmt(ruler.gold)} gold, income ${fmt(ruler.income)}${war}`);
+    console.log(`  use: ${ruler.strategicUse.join('; ')}`);
+    if (ruler.opinionsWithPlayer.length) {
+      console.log(`  opinions: ${ruler.opinionsWithPlayer.map((op) => `${op.modifier ?? 'opinion'} ${signed(op.value)}`).join('; ')}`);
+    }
+    if (ruler.hooksWithPlayer.length) {
+      console.log(`  hooks: ${ruler.hooksWithPlayer.map((hook) => `${hook.hookType ?? 'hook'} (${hook.mechanic.label})`).join('; ')}`);
+    }
+  }
+
+  console.log(`\n## Hook Guardrails`);
+  if (!scout.hookGuardrails.length) console.log('- none');
+  for (const hook of scout.hookGuardrails) {
+    const contact = hook.mechanic.isContactFavor ? 'RtP contact favor' : 'ordinary hook';
+    console.log(`- ${hook.hookType ?? 'hook'}: ${contact}; ${hook.holder.name} holds on ${hook.target.name}${hook.expirationDate ? ` until ${hook.expirationDate}` : ''}`);
+  }
+
+  console.log(`\n## Contracts`);
+  if (!scout.contracts.length) console.log('- none');
+  for (const contract of scout.contracts) {
+    const employer = contract.employerName ? ` for ${contract.employerName}` : '';
+    const where = contract.locationLabel ? ` at ${contract.locationLabel}` : '';
+    console.log(`- ${contract.name} [${contract.status ?? '?'}] tier ${contract.tier ?? '?'}${employer}${where}`);
+  }
+
+  console.log(`\n## Caveats`);
+  for (const caveat of scout.caveats) console.log(`- ${caveat}`);
+}
+
+function formatContactFavorState(state) {
+  return {
+    available_hook: 'available hook, usable for auto-accepted Make a Request',
+    cooldown: 'request already used; cooldown active',
+    spent_or_recently_used: 'recently used favor/opinion trace',
+  }[state] ?? state;
+}
+
+function printChronicle(chronicle) {
+  console.log(`# CK3 Chronicle`);
+  console.log(`Player: person:${chronicle.player}`);
+  console.log(`From: ${chronicle.from} to ${chronicle.to} (${chronicle.checkpoints} checkpoints)`);
+  console.log('');
+  for (const paragraph of chronicle.paragraphs) console.log(paragraph);
+}
+
+function formatCharacter(character) {
+  return `${character.name} (#${character.id})`;
+}
+
+function formatTitle(title) {
+  if (!title) return 'none';
+  const holder = title.holderName ? `, held by ${title.holderName} (#${title.holder})` : '';
+  return `${title.name ?? title.key ?? `#${title.id}`} (#${title.id ?? '?'})${holder}`;
+}
+
+function fmt(value) {
+  return typeof value === 'number' ? Number(value.toFixed(3)).toString() : String(value ?? '?');
+}
+
+function signed(value) {
+  if (typeof value !== 'number') return '?';
+  return value > 0 ? `+${fmt(value)}` : fmt(value);
+}
+
+function compareCk3Dates(a, b) {
+  const aParts = parseCk3Date(a);
+  const bParts = parseCk3Date(b);
+  for (let index = 0; index < 3; index += 1) {
+    if (aParts[index] !== bParts[index]) return aParts[index] - bParts[index];
+  }
+  return 0;
+}
+
+function parseCk3Date(date) {
+  if (typeof date !== 'string') return [0, 0, 0];
+  const [year, month, day] = date.split('.').map((part) => Number(part));
+  return [year || 0, month || 0, day || 0];
+}
+
+function printHelp() {
+  console.log(`Usage:
+  scripts/ck3-save-report snapshot <save.json|manifest.json> [--json]
+  scripts/ck3-save-report patrons <save.json|manifest.json> [--json]
+  scripts/ck3-save-report diff <old.json|old.manifest.json> <new.json|new.manifest.json> [--json]
+  scripts/ck3-save-report timeline <save-or-manifest>... [--json]
+  scripts/ck3-save-report resolve <save.json|manifest.json> <id>... [--json]
+  scripts/ck3-save-report graph <save.json|manifest.json> [--json]
+  scripts/ck3-save-report brief <save.json|manifest.json> [--json]
+  scripts/ck3-save-report scout <save.json|manifest.json> [target...] [--json]
+  scripts/ck3-save-report screenshots <save.json|manifest.json> [--json]
+  scripts/ck3-save-report chronicle <save-or-manifest>... [--json]
+
+Reports are generated from Rakaly JSON artifacts, preferably produced by scripts/ck3-save-ingest.
+The 'screenshots' report lists Steam screenshots archived in state/screenshots/, keyed to the
+most recent save at or before the screenshot's wall-clock timestamp.`);
+}
+
+function loadSaveManifest(input) {
+  const resolved = path.resolve(input);
+  const stat = fs.statSync(resolved, { throwIfNoEntry: false });
+  if (!stat) throw new Error(`not found: ${resolved}`);
+  if (stat.isFile() && resolved.endsWith('.manifest.json')) {
+    const data = JSON.parse(fs.readFileSync(resolved, 'utf8'));
+    return { manifest: data, manifestPath: resolved };
+  }
+  // fallback: ask readManifestOrJson to load and synthesize from source path
+  const m = readManifestOrJson(resolved);
+  return { manifest: { sourcePath: resolved.replace(/\.json$/, ''), date: m.save?.date ?? null }, manifestPath: resolved };
+}
+
+function prevManifestFor(manifestPath, allManifests) {
+  // Find the prior manifest (by source mtime) whose source is the same .ck3 file and mtime < this one.
+  const here = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+  const sameSource = allManifests
+    .filter((m) => m.sourcePath === here.sourcePath && m.sourceMtimeMs < here.sourceMtimeMs)
+    .sort((a, b) => b.sourceMtimeMs - a.sourceMtimeMs);
+  return { here, prev: sameSource[0] ?? null };
+}
+
+function listManifests() {
+  if (!fs.existsSync('state/rakaly-cli/output/ingest')) return [];
+  const files = fs.readdirSync('state/rakaly-cli/output/ingest').filter((n) => n.endsWith('.manifest.json'));
+  return files.map((n) => JSON.parse(fs.readFileSync(path.join('state/rakaly-cli/output/ingest', n), 'utf8')));
+}
+
+function printScreenshots(entries, idx, manifest, manifestPath, analysis) {
+  console.log(`# CK3 Screenshots`);
+  console.log(`Save manifest: ${manifestPath}`);
+  console.log(`Save in-game date: ${manifest?.date ?? '?'}`);
+  if (idx?.generatedAt) console.log(`Index generated: ${idx.generatedAt}`);
+  if (analysis?.generatedAt) console.log(`Analysis generated: ${analysis.generatedAt} (${analysis.model ?? 'unknown model'})`);
+  console.log(`Associated screenshots: ${entries.length}`);
+  console.log('');
+  if (!entries.length) {
+    console.log('(none for this save). Run scripts/ck3-save-ingest --list-screenshots to see what is on disk, or --screenshots-sync to rebuild the index.');
+    return;
+  }
+  for (const e of entries) {
+    const localFile = e.archivePath ?? e.path;
+    console.log(`- ${e.filename}`);
+    if (e.inGameDate) console.log(`    in-game date: ${e.inGameDate}`);
+    if (e.eventSummary) console.log(`    event: ${e.eventSummary}`);
+    if (e.location && e.location !== 'unknown') console.log(`    location: ${e.location}`);
+    if (e.player && e.player !== 'unknown') console.log(`    player: ${e.player}`);
+    console.log(`    wall-clock: ${e.takenAtIso} (Steam timestamp)`);
+    console.log(`    wall-clock associated save in-game date: ${e.associatedDate ?? '?'}`);
+    if (e.gameTimeAssociated) console.log(`    game-time associated save manifest: ${e.gameTimeAssociated} (${e.gameTimeAssociatedDate}) via ${e.gameTimeAssociatedType}`);
+    console.log(`    archive: ${localFile}`);
+  }
+}
