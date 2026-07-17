@@ -9,6 +9,7 @@ Local Crusader Kings III save-analysis helpers for parsed Rakaly JSON saves.
 - `scripts/lib/ck3-save-analysis.mjs` contains the shared CK3 extraction logic.
 - `scripts/lib/ck3-screenshots.mjs` indexes Steam screenshots and associates them with save windows.
 - `docs/ck3-save-analysis.md` documents usage and report scope.
+- `docs/ck3-evidence-graph-plan.md` defines the first-principles plan for deriving an evidence graph from Rakaly JSON before adding CK3 mechanics.
 - `skills/` contains OpenClaw skill notes for using the tooling in future sessions.
 
 ## Requirements

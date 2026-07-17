@@ -1,5 +1,7 @@
 # CK3 Knowledge Graph / LLM Wiki Handoff
 
+> **Implementation status:** This document preserves the original concept and motivation. The authoritative first-principles implementation sequence is now [CK3 Evidence Graph Plan](ck3-evidence-graph-plan.md). Where the documents differ, the evidence-graph plan controls the initial graph work.
+
 ## Goal
 
 Build a general CK3 knowledge layer from parsed save data.
