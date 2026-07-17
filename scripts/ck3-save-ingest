@@ -1,0 +1,244 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import { spawnSync } from 'node:child_process';
+import { readSaveJson } from './lib/ck3-save-analysis.mjs';
+import {
+  discoverScreenshots,
+  indexWithSaves,
+  writeIndex,
+  copyScreenshotsIntoArchive,
+} from './lib/ck3-screenshots.mjs';
+
+const ROOT_DIR = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const CK3_DIR = path.join(process.env.HOME, '.local/share/Paradox Interactive/Crusader Kings III');
+const DEFAULT_OUT_DIR = path.join(ROOT_DIR, 'state/rakaly-cli/output/ingest');
+const DEFAULT_SCREENSHOTS_DIR = path.join(ROOT_DIR, 'state/screenshots');
+const DEFAULT_INDEX = path.join(DEFAULT_SCREENSHOTS_DIR, 'index.json');
+const RAKALY = path.join(ROOT_DIR, 'scripts/ck3-rakaly');
+
+const args = parseArgs(process.argv.slice(2));
+
+if (args.help) {
+  printHelp();
+  process.exit(0);
+}
+
+const saves = discoverSaves(CK3_DIR);
+
+if (args.list) {
+  for (const save of saves) {
+    console.log(`${save.mtimeIso}\t${save.size}\t${save.path}`);
+  }
+  process.exit(0);
+}
+
+if (args.listScreenshots) {
+  const shots = discoverScreenshots();
+  for (const shot of shots) {
+    console.log(`${shot.takenAtIso}\t${shot.size}\t${shot.path}`);
+  }
+  process.exit(0);
+}
+
+fs.mkdirSync(args.outDir, { recursive: true });
+
+let ingested = [];
+if (args.all) {
+  ingested = saves.map((save) => ingestSave(save.path, args));
+  console.log(JSON.stringify(ingested, null, 2));
+} else if (args.source) {
+  const sourcePath = path.resolve(args.source);
+  if (!fs.existsSync(sourcePath)) {
+    console.error(`CK3 save not found: ${sourcePath}`);
+    process.exit(1);
+  }
+  ingested = [ingestSave(sourcePath, args)];
+  console.log(JSON.stringify(ingested, null, 2));
+} else if (!args.screenshotsOnly) {
+  const sourcePath = saves[0]?.path;
+  if (!sourcePath || !fs.existsSync(sourcePath)) {
+    console.error(`CK3 save not found: ${sourcePath ?? '(none discovered)'}`);
+    process.exit(1);
+  }
+  ingested = [ingestSave(sourcePath, args)];
+  console.log(JSON.stringify(ingested, null, 2));
+}
+
+if (args.screenshotsSync || args.all) {
+  const shots = discoverScreenshots();
+  const archived = copyScreenshotsIntoArchive(shots, args.screenshotsDir);
+  // Build manifests index from any *.manifest.json in the ingest dir
+  const manifestPaths = fs.existsSync(args.outDir)
+    ? fs.readdirSync(args.outDir).filter((n) => n.endsWith('.manifest.json')).map((n) => path.join(args.outDir, n))
+    : [];
+  const manifestRecords = manifestPaths.map((manifestPath) => {
+    const data = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    return {
+      path: data.sourcePath,
+      manifestPath,
+      jsonPath: data.jsonPath,
+      mtimeMs: data.sourceMtimeMs,
+      mtimeIso: data.sourceMtimeIso,
+      date: data.date ?? null,
+    };
+  });
+  const indexed = indexWithSaves(archived, manifestRecords);
+  writeIndex(indexed, args.index);
+  console.error(`Indexed ${indexed.screenshotCount} screenshots -> ${args.index}`);
+}
+
+function parseArgs(rawArgs) {
+  const parsed = {
+    source: null,
+    outDir: DEFAULT_OUT_DIR,
+    pretty: false,
+    list: false,
+    all: false,
+    help: false,
+    screenshotsSync: false,
+    listScreenshots: false,
+    screenshotsOnly: false,
+    screenshotsDir: DEFAULT_SCREENSHOTS_DIR,
+    index: DEFAULT_INDEX,
+  };
+
+  for (let index = 0; index < rawArgs.length; index += 1) {
+    const arg = rawArgs[index];
+    if (arg === '--source') parsed.source = rawArgs[++index];
+    else if (arg === '--out-dir') parsed.outDir = path.resolve(rawArgs[++index]);
+    else if (arg === '--pretty') parsed.pretty = true;
+    else if (arg === '--list') parsed.list = true;
+    else if (arg === '--all') parsed.all = true;
+    else if (arg === '--list-screenshots') parsed.listScreenshots = true;
+    else if (arg === '--screenshots-sync') parsed.screenshotsSync = true;
+    else if (arg === '--screenshots-only') parsed.screenshotsOnly = true;
+    else if (arg === '--screenshots-dir') parsed.screenshotsDir = path.resolve(rawArgs[++index]);
+    else if (arg === '--index') parsed.index = path.resolve(rawArgs[++index]);
+    else if (arg === '--help' || arg === '-h') parsed.help = true;
+    else {
+      console.error(`Unknown argument: ${arg}`);
+      printHelp();
+      process.exit(2);
+    }
+  }
+
+  return parsed;
+}
+
+function ingestSave(sourcePath, options) {
+  const timestamp = localTimestamp();
+  const sourceStat = fs.statSync(sourcePath);
+  const baseName = sanitize(path.basename(sourcePath, path.extname(sourcePath)));
+  const jsonPath = path.join(options.outDir, `${baseName}_${timestamp}.json`);
+  const manifestPath = path.join(options.outDir, `${baseName}_${timestamp}.manifest.json`);
+
+  const fd = fs.openSync(jsonPath, 'w');
+  try {
+    const rakalyArgs = ['json', sourcePath];
+    if (options.pretty) rakalyArgs.push('--pretty');
+    const result = spawnSync(RAKALY, rakalyArgs, { stdio: ['ignore', fd, 'inherit'] });
+    if (result.error) throw result.error;
+    if (result.status !== 0) process.exit(result.status ?? 1);
+  } finally {
+    fs.closeSync(fd);
+  }
+
+  const save = readSaveJson(jsonPath);
+  const manifest = {
+    schemaVersion: 1,
+    ingestedAt: new Date().toISOString(),
+    sourcePath,
+    sourceMtimeMs: sourceStat.mtimeMs,
+    sourceMtimeIso: sourceStat.mtime.toISOString(),
+    sourceSize: sourceStat.size,
+    jsonPath,
+    jsonSize: fs.statSync(jsonPath).size,
+    date: save.date ?? null,
+    playedCharacter: save.played_character?.character ?? null,
+    playthroughId: save.playthrough_id ?? null,
+    allDiscoveredSaves: saves.map((saveFile) => ({
+      path: saveFile.path,
+      mtimeIso: saveFile.mtimeIso,
+      size: saveFile.size,
+    })),
+  };
+
+  fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
+  return { jsonPath, manifestPath, date: manifest.date, playedCharacter: manifest.playedCharacter };
+}
+
+function discoverSaves(ck3Dir) {
+  const candidates = [
+    path.join(ck3Dir, 'last_save.ck3'),
+    path.join(ck3Dir, 'save games'),
+  ];
+  const files = [];
+
+  for (const candidate of candidates) {
+    if (!fs.existsSync(candidate)) continue;
+    const stat = fs.statSync(candidate);
+    if (stat.isFile() && candidate.endsWith('.ck3')) {
+      files.push(fileRecord(candidate, stat));
+    } else if (stat.isDirectory()) {
+      for (const entry of fs.readdirSync(candidate)) {
+        const fullPath = path.join(candidate, entry);
+        if (!entry.endsWith('.ck3')) continue;
+        files.push(fileRecord(fullPath, fs.statSync(fullPath)));
+      }
+    }
+  }
+
+  return files.sort((a, b) => b.mtimeMs - a.mtimeMs);
+}
+
+function fileRecord(filePath, stat) {
+  return {
+    path: filePath,
+    size: stat.size,
+    mtimeMs: stat.mtimeMs,
+    mtimeIso: stat.mtime.toISOString(),
+  };
+}
+
+function localTimestamp() {
+  const now = new Date();
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/Los_Angeles',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+  }).formatToParts(now);
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${values.year}-${values.month}-${values.day}_${values.hour}${values.minute}${values.second}`;
+}
+
+function sanitize(value) {
+  return value.replace(/[^A-Za-z0-9_.-]+/g, '_').replace(/^_+|_+$/g, '') || 'save';
+}
+
+function printHelp() {
+  console.log(`Usage: scripts/ck3-save-ingest [--source PATH] [--out-dir DIR] [--pretty] [--list] [--all]
+                [--list-screenshots] [--screenshots-sync] [--screenshots-only]
+                [--screenshots-dir DIR] [--index PATH]
+
+Discovers the newest CK3 save by mtime, parses it with Rakaly, and writes:
+  <basename>_<timestamp>.json
+  <basename>_<timestamp>.manifest.json
+
+The manifest records source path, mtime, size, parsed save date, and played character.
+
+Use --all to ingest every discovered live CK3 checkpoint.
+
+Screenshots:
+  --list-screenshots         print discovered Steam screenshots (CK3 only)
+  --screenshots-sync         archive screenshots and rebuild state/screenshots/index.json
+  --screenshots-only         run only screenshot sync (skip save ingest)
+  --screenshots-dir DIR      archive destination (default: state/screenshots)
+  --index PATH               manifest index path (default: state/screenshots/index.json)
+When used with --all, screenshots are archived and indexed automatically.`);
+}

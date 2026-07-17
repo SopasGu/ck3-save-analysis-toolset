@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+OUT_DIR="$ROOT_DIR/state/rakaly-cli/output"
+MELTED_PATH="${1:-$OUT_DIR/last_save_melted.ck3}"
+JSON_PATH="${2:-$OUT_DIR/last_save.json}"
+
+mkdir -p "$OUT_DIR"
+
+if [[ ! -f "$MELTED_PATH" ]]; then
+  MELTED_PATH="$("$ROOT_DIR/scripts/ck3-melt-last-save")"
+fi
+
+"$ROOT_DIR/scripts/ck3-rakaly" json "$MELTED_PATH" -f utf-8 --pretty >"$JSON_PATH"
+printf '%s\n' "$JSON_PATH"

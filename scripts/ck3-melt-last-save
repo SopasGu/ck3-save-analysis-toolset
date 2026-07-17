@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+CK3_DIR="$HOME/.local/share/Paradox Interactive/Crusader Kings III"
+DEFAULT_INPUT="$CK3_DIR/last_save.ck3"
+OUT_DIR="$ROOT_DIR/state/rakaly-cli/output"
+
+INPUT="${1:-$DEFAULT_INPUT}"
+OUTPUT="${2:-}"
+
+if [[ ! -f "$INPUT" ]]; then
+  printf 'CK3 save not found: %s\n' "$INPUT" >&2
+  exit 1
+fi
+
+mkdir -p "$OUT_DIR"
+
+if [[ -z "$OUTPUT" ]]; then
+  base_name="$(basename "$INPUT" .ck3)"
+  OUTPUT="$OUT_DIR/${base_name}_melted.ck3"
+fi
+
+"$ROOT_DIR/scripts/ck3-rakaly" melt --format ck3 -o "$OUTPUT" "$INPUT"
+printf '%s\n' "$OUTPUT"
