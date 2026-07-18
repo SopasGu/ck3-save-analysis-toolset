@@ -2,6 +2,8 @@
 import {
   buildMediaWikiRegistryEntry,
   buildMediaWikiTopicRegistryEntry,
+  buildMechanicsContentPage,
+  extractMediaWikiMechanicsNotes,
   selectMediaWikiTopicGroup,
   sourceIdForMediaWikiPage,
   summarizeMediaWikiLinks,
@@ -186,6 +188,97 @@ function testTopicGroupSelection() {
   ok('topic group selector classifies pages deterministically');
 }
 
+function testMechanicsContentExtraction() {
+  const wikitext = `{{Version|1.19}}
+[[File:Example.png|thumb|A picture]]
+A character refers to an individual person in Crusader Kings III. Characters have an opinion of each other and belong to dynasties, faiths, cultures, houses and governments.
+
+== Skills ==
+Each character has five skills: diplomacy, martial, stewardship, intrigue and learning. These skills affect rulership, schemes, war, income and council performance.
+* [[Prowess]] represents personal combat ability and affects duels, knights and battlefield survival.
+
+== Relations ==
+Characters can have relations such as friends, rivals, lovers, spouses, children and parents. These relationships drive events, inheritance, diplomacy and murder plots.<ref>ignored</ref>
+
+== Costs ==
+Accolades cost 100-200 {{iconify|Prestige}}, require 8 {{iconify|Prowess}}, and give {{green|+15}} {{iconify|Opinion}} with their liege.
+`;
+  const sections = extractMediaWikiMechanicsNotes(wikitext, {
+    maxSections: 4,
+    maxNotesPerSection: 3,
+  });
+  const allNotes = sections.flatMap((section) => section.notes).join('\n');
+  if (!allNotes.includes('Characters have an opinion of each other')) {
+    fail('content extractor keeps lead mechanics text', JSON.stringify(sections, null, 2));
+    return;
+  }
+  if (!allNotes.includes('Prowess represents personal combat ability')) {
+    fail('content extractor keeps linked bullet mechanics text', JSON.stringify(sections, null, 2));
+    return;
+  }
+  if (allNotes.includes('Version') || allNotes.includes('File:') || allNotes.includes('<ref>')) {
+    fail('content extractor strips templates/files/refs', JSON.stringify(sections, null, 2));
+    return;
+  }
+  if (!allNotes.includes('100-200 Prestige') || !allNotes.includes('+15 Opinion')) {
+    fail('content extractor preserves simple icon/value template text', JSON.stringify(sections, null, 2));
+    return;
+  }
+  ok('content extractor produces bounded mechanics notes from wikitext');
+}
+
+function testMechanicsContentPage() {
+  const source = fixtureSource({
+    sourceId: 'source:ck3-paradoxwikis-com:characters',
+    page: {
+      title: 'Characters',
+      pageId: 10,
+      canonicalUrl: 'https://ck3.paradoxwikis.com/Characters',
+      revisionId: 456,
+      parentRevisionId: 455,
+      revisionTimestamp: '2026-04-01T00:00:00Z',
+      revisionSha1: 'abc456',
+      oldidUrl: 'https://ck3.paradoxwikis.com/Characters?oldid=456',
+      length: 8000,
+    },
+  });
+  const page = buildMechanicsContentPage({
+    source,
+    content: {
+      wikitextSha256: 'deadbeef',
+      sections: [
+        {
+          title: 'Overview',
+          level: 1,
+          anchor: 'overview',
+          notes: ['Characters are the actors that hold titles, relations, claims and attributes.'],
+        },
+      ],
+    },
+    topic: 'Characters',
+    topicGroup: 'characterSystems',
+    linkedTopics: [{ title: 'Traits', slug: 'traits' }],
+    generatedAt: '2026-07-18T00:00:00Z',
+  });
+  if (!page.includes('pageType: mechanics_content')) {
+    fail('mechanics content page declares content page type', page);
+    return;
+  }
+  if (!page.includes('Creative Commons Attribution-ShareAlike 3.0')) {
+    fail('mechanics content page includes license attribution', page);
+    return;
+  }
+  if (!page.includes('Characters are the actors that hold titles')) {
+    fail('mechanics content page carries mechanics content notes', page);
+    return;
+  }
+  if (!page.includes('[[mechanics-content/traits|Traits]]')) {
+    fail('mechanics content page links related mechanics topics', page);
+    return;
+  }
+  ok('mechanics content page carries cited article-derived notes');
+}
+
 console.log('ck3-mediawiki-source self-test');
 console.log('==============================');
 
@@ -194,6 +287,8 @@ testSummaryGroups();
 testRegistryEntryScopeAndCitation();
 testTopicPageSummaryAndEntry();
 testTopicGroupSelection();
+testMechanicsContentExtraction();
+testMechanicsContentPage();
 
 if (failed > 0) {
   console.error(`\n${failed} test(s) failed`);

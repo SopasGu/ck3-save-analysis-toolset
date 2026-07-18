@@ -18,6 +18,7 @@ This directory is the durable Markdown wiki for the CK3 evidence graph project. 
 - `pages/fields/*.md` - generalized field pages.
 - `pages/identity-domains/*.md` - generalized identity-domain pages.
 - `pages/mechanics/*.md` - documentation-anchored mechanics_concept pages.
+- `mechanics-content/*.md` - content-bearing mechanics notes derived from revision-pinned CK3 Wiki articles. Use these for game-rules context; the source registry is provenance, not the readable mechanics layer.
 - `advisor/*.md` - curated advisor models that connect mechanics concepts, graph IDs, source IDs, and current-save inspection workflows.
 
 ## Frontmatter Rules
@@ -34,11 +35,11 @@ Integrate new structural evidence or documentation by regenerating the machine-r
 
 Answer from wiki pages only when the answer cites graph IDs, claim IDs, or source IDs. If a useful synthesis emerges, file it as a durable wiki page or claim update instead of leaving it only in chat.
 
-For player-advice questions, start in `advisor/index.md`. Generated graph-node pages are provenance appendices, not the primary reasoning surface. The answer should combine a relevant advisor model, CK3 mechanics citations, and ephemeral save facts from the current analysis.
+For player-advice questions, start in `advisor/index.md`, then traverse into `mechanics-content/` for game-rules context and `pages/` for graph provenance. Generated graph-node pages are appendices, not the primary reasoning surface. The answer should combine a relevant advisor model, CK3 mechanics citations, and ephemeral save facts from the current analysis.
 
 ### lint
 
-Run `npm run wiki:lint` before handoff. Lint must catch broken wikilinks, orphan graph pages, stale or superseded claim references, missing graph IDs, missing provenance, and any campaign-character page.
+Run `npm run wiki:lint` and `npm run wiki:content:lint` before handoff. Lint must catch broken wikilinks, orphan graph pages, stale or superseded claim references, missing graph IDs, missing provenance, and any campaign-character page.
 
 ## Boundaries
 

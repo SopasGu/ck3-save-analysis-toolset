@@ -102,6 +102,7 @@ export async function fetchMediaWikiPageSections({ client, title }) {
   const data = await client.get({
     action: 'parse',
     page: title,
+    redirects: '1',
     prop: 'sections',
     format: 'json',
     formatversion: '2',
@@ -116,6 +117,141 @@ export async function fetchMediaWikiPageSections({ client, title }) {
     }))
     .filter((section) => section.line.length > 0)
     .sort((a, b) => Number(a.index) - Number(b.index));
+}
+
+export async function fetchMediaWikiPageContentSource({
+  apiUrl = DEFAULT_CK3_WIKI_API,
+  title,
+  source = null,
+  cacheDir,
+  userAgent = DEFAULT_USER_AGENT,
+  minDelayMs = DEFAULT_MIN_DELAY_MS,
+} = {}) {
+  if (!title && !source) throw new Error('title or source is required');
+  const client = new MediaWikiClient({ apiUrl, cacheDir, userAgent, minDelayMs });
+  const pageSource = source ?? await fetchMediaWikiPageSource({
+    apiUrl,
+    title,
+    cacheDir,
+    userAgent,
+    minDelayMs,
+    fetchSections: true,
+  });
+  const parseParams = {
+    action: 'parse',
+    prop: 'wikitext|sections',
+    redirects: '1',
+    format: 'json',
+    formatversion: '2',
+  };
+  if (pageSource.page.revisionId) {
+    parseParams.oldid = String(pageSource.page.revisionId);
+  } else {
+    parseParams.page = pageSource.page.title;
+  }
+  const parsed = await client.get(parseParams);
+  const wikitext = parsed.parse?.wikitext;
+  if (typeof wikitext !== 'string') {
+    throw new Error(`MediaWiki content response did not include wikitext for ${title}`);
+  }
+  return {
+    schemaVersion: 1,
+    source: pageSource,
+    content: {
+      pageTitle: parsed.parse?.title ?? pageSource.page.title,
+      pageId: parsed.parse?.pageid ?? pageSource.page.pageId,
+      revisionId: pageSource.page.revisionId,
+      wikitextSha256: hash(wikitext),
+      sections: extractMediaWikiMechanicsNotes(wikitext),
+    },
+  };
+}
+
+export function extractMediaWikiMechanicsNotes(wikitext, options = {}) {
+  const maxSections = options.maxSections ?? 18;
+  const maxNotesPerSection = options.maxNotesPerSection ?? 5;
+  const sectionBlocks = splitWikitextSections(wikitext);
+  const sections = [];
+  for (const block of sectionBlocks) {
+    const notes = extractNotesFromSection(block.body, maxNotesPerSection);
+    if (notes.length === 0) continue;
+    sections.push({
+      title: block.title,
+      level: block.level,
+      anchor: slug(block.title).replace(/-/g, '_'),
+      notes,
+    });
+    if (sections.length >= maxSections) break;
+  }
+  return sections;
+}
+
+export function buildMechanicsContentPage({
+  source,
+  content,
+  topic,
+  topicGroup,
+  linkedTopics = [],
+  generatedAt = new Date().toISOString(),
+} = {}) {
+  if (!source) throw new Error('source is required');
+  if (!content) throw new Error('content is required');
+  const title = topic ?? source.page.title;
+  const slugTitle = slug(title);
+  const sourceId = source.sourceId;
+  const oldidUrl = source.page.oldidUrl;
+  const sections = content.sections ?? [];
+  const outbound = linkedTopics.slice(0, 20);
+  const lines = [
+    '---',
+    'pageType: mechanics_content',
+    `title: ${JSON.stringify(title)}`,
+    `topicGroup: ${JSON.stringify(topicGroup ?? null)}`,
+    `sourceId: ${JSON.stringify(sourceId)}`,
+    `sourceRevisionId: ${JSON.stringify(source.page.revisionId)}`,
+    `sourceOldidUrl: ${JSON.stringify(oldidUrl)}`,
+    `license: ${JSON.stringify('CC BY-SA 3.0')}`,
+    `generatedAt: ${JSON.stringify(generatedAt)}`,
+    `contentHash: ${JSON.stringify(content.wikitextSha256)}`,
+    '---',
+    '',
+    `# ${title}`,
+    '',
+    '## Source And Attribution',
+    '',
+    `- Source: \`${sourceId}\``,
+    `- Revision: <${oldidUrl}>`,
+    '- License: Creative Commons Attribution-ShareAlike 3.0 (`https://creativecommons.org/licenses/by-sa/3.0/`)',
+    '- Scope: official CK3 Wiki mechanics documentation; all DLC is assumed active for this project unless a cited source says otherwise.',
+    '- Content basis: bounded section notes derived from revision-pinned wiki text. This page is not a full copy of the source article.',
+    '',
+    '## Advisor Use',
+    '',
+    `Use this page when a question needs CK3 mechanics context for ${title}. Combine these mechanics notes with current-save evidence paths and advisor models before giving player advice.`,
+    '',
+    '## Mechanics Notes',
+    '',
+  ];
+  for (const section of sections) {
+    lines.push(`### ${section.title}`, '');
+    for (const note of section.notes) {
+      lines.push(`- ${note}`);
+    }
+    lines.push('');
+  }
+  if (outbound.length > 0) {
+    lines.push('## Related Wiki Topics', '');
+    for (const link of outbound) {
+      lines.push(`- [[mechanics-content/${link.slug}|${link.title}]]`);
+    }
+    lines.push('');
+  }
+  lines.push('## Machine Reference', '');
+  lines.push(`- Mechanics content slug: \`${slugTitle}\``);
+  lines.push(`- Source title: \`${source.page.title}\``);
+  lines.push(`- Source page length: \`${source.page.length ?? 'unknown'}\``);
+  lines.push('');
+  return lines.join('\n');
 }
 
 export function summarizeMediaWikiLinks(source) {
@@ -414,6 +550,169 @@ export function selectMediaWikiTopicGroup(title) {
   return null;
 }
 
+function splitWikitextSections(wikitext) {
+  const lines = String(wikitext).replace(/\r\n/g, '\n').split('\n');
+  const sections = [{ title: 'Overview', level: 1, body: [] }];
+  for (const line of lines) {
+    const heading = line.match(/^(={2,6})\s*(.*?)\s*\1\s*$/);
+    if (heading) {
+      sections.push({
+        title: cleanInlineWikitext(heading[2]).trim() || 'Untitled',
+        level: heading[1].length,
+        body: [],
+      });
+      continue;
+    }
+    sections[sections.length - 1].body.push(line);
+  }
+  return sections.map((section) => ({
+    ...section,
+    body: section.body.join('\n'),
+  }));
+}
+
+function extractNotesFromSection(body, maxNotes) {
+  const normalized = stripBlockWikitext(body)
+    .split('\n')
+    .map((line) => cleanInlineWikitext(line).trim())
+    .filter((line) => shouldKeepContentLine(line));
+  const blocks = [];
+  let paragraph = [];
+  for (const line of normalized) {
+    const bullet = line.match(/^[-*#;:]+\s*(.+)$/);
+    if (bullet) {
+      flushParagraph(blocks, paragraph);
+      paragraph = [];
+      blocks.push(bullet[1].trim());
+      continue;
+    }
+    paragraph.push(line);
+  }
+  flushParagraph(blocks, paragraph);
+  return blocks
+    .map((block) => block.replace(/\s+/g, ' ').trim())
+    .filter((block) => block.length >= 45)
+    .filter((block, idx, all) => all.indexOf(block) === idx)
+    .slice(0, maxNotes)
+    .map((block) => truncateSentence(block, 420));
+}
+
+function flushParagraph(blocks, paragraph) {
+  if (paragraph.length === 0) return;
+  blocks.push(paragraph.join(' '));
+}
+
+function stripBlockWikitext(value) {
+  let text = String(value);
+  text = text.replace(/<!--[\s\S]*?-->/g, '\n');
+  text = text.replace(/<ref\b[^>]*>[\s\S]*?<\/ref>/gi, '');
+  text = text.replace(/<ref\b[^/]*\/>/gi, '');
+  text = text.replace(/\{\|[\s\S]*?\|\}/g, '\n');
+  text = text.replace(/\[\[(?:File|Image|Category):[^\]]+\]\]/gi, '\n');
+  text = renderSimpleTemplates(text);
+  text = removeBalanced(text, '{{', '}}');
+  return text;
+}
+
+function renderSimpleTemplates(text) {
+  let current = String(text);
+  for (let pass = 0; pass < 6; pass++) {
+    const next = current.replace(/\{\{([^{}]+)\}\}/g, (_match, body) => renderTemplate(body));
+    if (next === current) break;
+    current = next;
+  }
+  return current;
+}
+
+function renderTemplate(body) {
+  const parts = String(body)
+    .split('|')
+    .map((part) => cleanInlineWikitext(part).trim())
+    .filter(Boolean);
+  if (parts.length === 0) return '';
+  const name = parts[0].toLowerCase().replace(/[_\s]+/g, ' ');
+  const args = parts.slice(1).filter((part) => !/^[a-z0-9 _-]+\s*=/.test(part));
+  const ignored = new Set([
+    'version',
+    'sversion',
+    'expansion',
+    'main',
+    'see also',
+    'clear',
+    'mechanics navbox',
+  ]);
+  if (ignored.has(name)) return '';
+  if (name === 'icon' || name === 'iconify') return args[0] ?? '';
+  if (name === 'green' || name === 'red' || name === 'yellow') return args[0] ?? '';
+  if (name === 'ruby' || name === 'hover box' || name === 'tooltip') return args[0] ?? args[1] ?? '';
+  if (name === 'plainlist' || name === 'unbulleted list') return args.join('; ');
+  if (args.length === 0) return '';
+  return args.find((arg) => /[a-zA-Z0-9]/.test(arg)) ?? '';
+}
+
+function cleanInlineWikitext(value) {
+  let text = String(value);
+  text = text.replace(/'''?/g, '');
+  text = text.replace(/\[\[([^|\]]+)\|([^\]]+)\]\]/g, '$2');
+  text = text.replace(/\[\[([^\]]+)\]\]/g, '$1');
+  text = text.replace(/\[https?:\/\/[^\s\]]+\s+([^\]]+)\]/g, '$1');
+  text = text.replace(/\[https?:\/\/[^\s\]]+\]/g, '');
+  text = text.replace(/<[^>]+>/g, '');
+  text = decodeBasicEntities(text);
+  return text.replace(/\s+/g, ' ');
+}
+
+function shouldKeepContentLine(line) {
+  if (!line) return false;
+  if (/^(__TOC__|__NOTOC__)$/i.test(line)) return false;
+  if (/^[-*#;:]*\s*$/.test(line)) return false;
+  if (/^\s*[|!{}]/.test(line)) return false;
+  if (/^Retrieved from /i.test(line)) return false;
+  if (/^This article (has been verified|is timeless)/i.test(line)) return false;
+  if (/^\w+\s*=\s*/.test(line)) return false;
+  return true;
+}
+
+function removeBalanced(text, open, close) {
+  let result = '';
+  let depth = 0;
+  for (let i = 0; i < text.length; i++) {
+    if (text.startsWith(open, i)) {
+      depth++;
+      i += open.length - 1;
+      continue;
+    }
+    if (depth > 0 && text.startsWith(close, i)) {
+      depth--;
+      i += close.length - 1;
+      continue;
+    }
+    if (depth === 0) result += text[i];
+  }
+  return result;
+}
+
+function decodeBasicEntities(value) {
+  return String(value)
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
+}
+
+function truncateSentence(value, limit) {
+  if (value.length <= limit) return value;
+  const clipped = value.slice(0, limit + 1);
+  const sentenceEnd = Math.max(clipped.lastIndexOf('.'), clipped.lastIndexOf(';'), clipped.lastIndexOf(':'));
+  if (sentenceEnd >= Math.floor(limit * 0.55)) {
+    return clipped.slice(0, sentenceEnd + 1);
+  }
+  const space = clipped.lastIndexOf(' ');
+  return `${clipped.slice(0, space > 0 ? space : limit).trim()}...`;
+}
+
 class MediaWikiClient {
   constructor({ apiUrl, cacheDir, userAgent, minDelayMs }) {
     this.apiUrl = apiUrl;
@@ -452,14 +751,26 @@ class MediaWikiClient {
       return JSON.parse(fs.readFileSync(cachePath, 'utf8'));
     }
     await this.waitForRateLimit();
-    const response = await fetch(url, {
-      headers: {
-        'User-Agent': this.userAgent,
-        'Api-User-Agent': this.userAgent,
-        Accept: 'application/json',
-        'Accept-Encoding': 'gzip',
-      },
-    });
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 30000);
+    let response;
+    try {
+      response = await fetch(url, {
+        signal: controller.signal,
+        headers: {
+          'User-Agent': this.userAgent,
+          'Api-User-Agent': this.userAgent,
+          Accept: 'application/json',
+        },
+      });
+    } catch (err) {
+      if (err.name === 'AbortError') {
+        throw new Error(`MediaWiki request timed out after 30000ms: ${url.href}`);
+      }
+      throw err;
+    } finally {
+      clearTimeout(timeout);
+    }
     if (response.status === 429 || response.status === 503) {
       const retryAfter = parseInt(response.headers.get('retry-after') ?? '5', 10);
       await sleep(Math.max(retryAfter, 5) * 1000);

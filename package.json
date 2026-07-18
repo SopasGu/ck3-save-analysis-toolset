@@ -31,7 +31,9 @@
     "wiki": "node scripts/ck3-wiki-kernel generate --graph knowledge/schema/graph.json --claims knowledge/claims/claims.json --out knowledge/wiki",
     "wiki:lint": "node scripts/ck3-wiki-kernel lint --wiki knowledge/wiki --graph knowledge/schema/graph.json --claims knowledge/claims/claims.json",
     "wiki:source": "node scripts/ck3-wiki-source",
-    "check:all": "npm run check && npm run lint:content && npm run test:fixtures && npm run test:mediawiki && npm run test:claims && npm run test:wiki && npm run test:advisor && npm run wiki:lint && npm run test:sources && npm run test:discover && npm run test:shapes && npm run test:collections && npm run test:references && npm run test:schema && npm run test:schema-diff"
+    "wiki:content": "node scripts/ck3-wiki-source content-pages --seed knowledge/sources/ck3-wiki-topic-pages.seed.json",
+    "wiki:content:lint": "node scripts/ck3-content-lint --quiet knowledge/wiki/mechanics-content",
+    "check:all": "npm run check && npm run lint:content && npm run test:fixtures && npm run test:mediawiki && npm run test:claims && npm run test:wiki && npm run test:advisor && npm run wiki:lint && npm run wiki:content:lint && npm run test:sources && npm run test:discover && npm run test:shapes && npm run test:collections && npm run test:references && npm run test:schema && npm run test:schema-diff"
   },
   "engines": {
     "node": ">=18"

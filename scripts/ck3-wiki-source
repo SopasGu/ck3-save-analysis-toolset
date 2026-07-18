@@ -7,6 +7,8 @@ import {
   DEFAULT_USER_AGENT,
   buildMediaWikiRegistryEntry,
   buildMediaWikiTopicRegistryEntry,
+  buildMechanicsContentPage,
+  fetchMediaWikiPageContentSource,
   fetchMediaWikiPageSource,
   selectMediaWikiTopicGroup,
 } from './lib/ck3-mediawiki-source.mjs';
@@ -20,15 +22,18 @@ const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
 const DEFAULT_CACHE = path.join(ROOT, 'state/mediawiki-cache/ck3.paradoxwikis.com');
 const DEFAULT_REGISTRY = path.join(ROOT, 'knowledge/sources/registry.json');
 const DEFAULT_PAGE_OUT_DIR = path.join(ROOT, 'knowledge/sources/ck3-wiki-pages');
+const DEFAULT_CONTENT_OUT_DIR = path.join(ROOT, 'knowledge/wiki/mechanics-content');
 
 function printHelp() {
   console.log(`Usage:
   ck3-wiki-source fetch-page --title TITLE [options]
   ck3-wiki-source fetch-pages --seed PATH [options]
+  ck3-wiki-source content-pages --seed PATH [options]
 
 Fetch and summarize CK3 Wiki MediaWiki pages as documentation sources. Requests
-are serial, cached, and default to a conservative delay. Only metadata and
-section anchor titles are stored; lead paragraph text is never committed.
+are serial, cached, and default to a conservative delay. Source summaries store
+metadata and section anchors. The content-pages command writes bounded,
+attributed mechanics notes derived from revision-pinned wiki text.
 
 Options:
   --api-url URL          MediaWiki API endpoint (default: CK3 Paradox Wiki)
@@ -42,6 +47,8 @@ Options:
   --min-delay-ms N       Minimum delay between uncached requests (default: ${DEFAULT_MIN_DELAY_MS})
   --user-agent TEXT      Explicit User-Agent / Api-User-Agent
   --pages-dir PATH       Where to write per-page summaries (default: knowledge/sources/ck3-wiki-pages)
+  --content-dir PATH     Where to write mechanics notes (default: knowledge/wiki/mechanics-content)
+  --limit N              Limit seed entries processed; useful for smoke tests
   --quiet                Suppress progress on stderr
 
 ` +
@@ -65,8 +72,10 @@ function parseArgs(argv) {
     seed: null,
     skipExisting: false,
     pagesDir: DEFAULT_PAGE_OUT_DIR,
+    contentDir: DEFAULT_CONTENT_OUT_DIR,
+    limit: null,
   };
-  for (let i = 0; i < argv.length; i++) {
+  for (let i = 1; i < argv.length; i++) {
     const a = argv[i];
     switch (a) {
       case '--title':
@@ -104,6 +113,12 @@ function parseArgs(argv) {
         break;
       case '--pages-dir':
         args.pagesDir = argv[++i];
+        break;
+      case '--content-dir':
+        args.contentDir = argv[++i];
+        break;
+      case '--limit':
+        args.limit = parseInt(argv[++i], 10);
         break;
       case '--skip-existing':
         args.skipExisting = true;
@@ -270,6 +285,126 @@ async function fetchAndRegisterSeed(args) {
   }
 }
 
+async function buildContentPages(args) {
+  if (!args.seed) {
+    console.error('content-pages requires --seed');
+    process.exit(2);
+  }
+  if (!fs.existsSync(args.seed)) {
+    console.error(`Seed file not found: ${args.seed}`);
+    process.exit(2);
+  }
+  const seedRaw = JSON.parse(fs.readFileSync(args.seed, 'utf8'));
+  const seedEntries = Array.isArray(seedRaw) ? seedRaw : (Array.isArray(seedRaw?.topics) ? seedRaw.topics : null);
+  if (!seedEntries) {
+    console.error('Seed file must contain a JSON array or an object with a "topics" array of { topic, title, topicGroup? }');
+    process.exit(2);
+  }
+  const selectedEntries = Number.isFinite(args.limit) ? seedEntries.slice(0, args.limit) : seedEntries;
+  const topicByTitle = new Map(seedEntries.map((entry) => [entry.title ?? entry.topic, entry]));
+  fs.mkdirSync(args.contentDir, { recursive: true });
+  const generatedAt = new Date().toISOString();
+  const pages = [];
+  const summary = {
+    seedCount: seedEntries.length,
+    processed: selectedEntries.length,
+    written: 0,
+    failed: 0,
+    outDir: args.contentDir,
+    pages: [],
+  };
+  for (let i = 0; i < selectedEntries.length; i++) {
+    const entry = selectedEntries[i];
+    const title = entry.title ?? entry.topic ?? null;
+    if (!title) {
+      summary.failed++;
+      console.error(`Seed entry ${i} missing title`);
+      continue;
+    }
+    try {
+      const pageSummaryPath = path.join(args.pagesDir, `${slugify(title)}.json`);
+      const existingSource = fs.existsSync(pageSummaryPath)
+        ? JSON.parse(fs.readFileSync(pageSummaryPath, 'utf8')).source
+        : null;
+      const sourceContent = await fetchMediaWikiPageContentSource({
+        apiUrl: args.apiUrl,
+        title,
+        source: existingSource,
+        cacheDir: args.cacheDir,
+        userAgent: args.userAgent,
+        minDelayMs: args.minDelayMs,
+      });
+      const sourceLinks = sourceContent.source.links ?? [];
+      const linkedTopics = sourceLinks
+        .filter((link) => topicByTitle.has(link.title))
+        .map((link) => ({
+          title: link.title,
+          slug: slugify(link.title),
+        }))
+        .sort((a, b) => a.title.localeCompare(b.title));
+      const markdown = buildMechanicsContentPage({
+        source: sourceContent.source,
+        content: sourceContent.content,
+        topic: entry.topic ?? title,
+        topicGroup: entry.topicGroup ?? selectMediaWikiTopicGroup(title),
+        linkedTopics,
+        generatedAt,
+      });
+      const pageFile = path.join(args.contentDir, `${slugify(title)}.md`);
+      fs.writeFileSync(pageFile, markdown);
+      const sectionCount = sourceContent.content.sections.length;
+      const noteCount = sourceContent.content.sections.reduce((sum, section) => sum + section.notes.length, 0);
+      pages.push({
+        title,
+        slug: slugify(title),
+        sourceId: sourceContent.source.sourceId,
+        sectionCount,
+        noteCount,
+      });
+      summary.written++;
+      summary.pages.push({ title, sectionCount, noteCount, file: path.relative(ROOT, pageFile) });
+      if (!args.quiet) {
+        process.stderr.write(`[${i + 1}/${selectedEntries.length}] wrote ${title} (${sectionCount} sections, ${noteCount} notes)\n`);
+      }
+    } catch (err) {
+      summary.failed++;
+      console.error(`[${i + 1}/${selectedEntries.length}] failed ${title}: ${err.message}`);
+    }
+  }
+  writeContentIndex(args.contentDir, pages, generatedAt);
+  if (args.out) {
+    fs.mkdirSync(path.dirname(path.resolve(args.out)), { recursive: true });
+    fs.writeFileSync(args.out, JSON.stringify(summary, null, 2) + '\n');
+  } else {
+    process.stdout.write(JSON.stringify(summary, null, 2) + '\n');
+  }
+  if (summary.failed > 0) process.exit(1);
+}
+
+function writeContentIndex(contentDir, pages, generatedAt) {
+  const lines = [
+    '---',
+    'pageType: mechanics_content_index',
+    `generatedAt: ${JSON.stringify(generatedAt)}`,
+    'license: "CC BY-SA 3.0"',
+    '---',
+    '',
+    '# CK3 Mechanics Content',
+    '',
+    'This directory contains bounded, attributed mechanics notes derived from revision-pinned CK3 Wiki pages. It exists so advisor workflows can traverse actual game-mechanics content instead of stopping at source metadata.',
+    '',
+    'Source pages are from the CK3 Wiki and are licensed under Creative Commons Attribution-ShareAlike 3.0: `https://creativecommons.org/licenses/by-sa/3.0/`.',
+    '',
+    '## Pages',
+    '',
+  ];
+  for (const page of pages.sort((a, b) => a.title.localeCompare(b.title))) {
+    lines.push(`- [[mechanics-content/${page.slug}|${page.title}]] - \`${page.sourceId}\` (${page.noteCount} notes)`);
+  }
+  lines.push('');
+  fs.writeFileSync(path.join(contentDir, 'index.md'), lines.join('\n'));
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   if (args.subcommand === 'fetch-page') {
@@ -278,6 +413,10 @@ async function main() {
   }
   if (args.subcommand === 'fetch-pages') {
     await fetchAndRegisterSeed(args);
+    return;
+  }
+  if (args.subcommand === 'content-pages') {
+    await buildContentPages(args);
     return;
   }
   printHelp();

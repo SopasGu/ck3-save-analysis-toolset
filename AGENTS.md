@@ -50,9 +50,11 @@ Useful Task 12 inputs now available:
 - All Task 0-10 artifacts above plus Task 11:
 - `knowledge/sources/ck3-wiki-topic-pages.seed.json` - deterministic 48-page documentation seed
 - `knowledge/sources/ck3-wiki-pages/<slug>.json` - 48 per-page documentation summaries (metadata + section anchors only)
+- `knowledge/wiki/mechanics-content/` - 48 content-bearing CK3 mechanics pages derived from revision-pinned Paradox Wiki article text, with CC BY-SA 3.0 attribution
 - `knowledge/claims/proposed-documentation-claims.json` - 48 documentation-anchored proposed claims
 - `knowledge/schema/mechanics-concepts.json` - operator-curated mechanics_concept table (48 concepts)
 - `scripts/ck3-documentation-claims` - operator-curated proposed-claims CLI
+- `npm run wiki:content` - regenerates mechanics-content pages from the CK3 Wiki seed using the cache-first MediaWiki adapter
 - Updated `knowledge/wiki/pages/mechanics/` directory (48 mechanics_concept pages)
 - `knowledge/wiki/advisor/` - curated advisor models for player-facing synthesis; start here for any chat/advice workflow
 - `scripts/test-advisor-kernel` - validates advisor pages carry graph IDs, source IDs, and inspection sections

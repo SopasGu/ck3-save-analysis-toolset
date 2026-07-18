@@ -646,19 +646,20 @@ Tasks are dependency-ordered. A worker may complete one task at a time, but must
 
 1. Define source adapters for official documentation, patch notes, developer diaries, and installed game definitions/localization.
 2. Register each source with canonical URL/path, hash, dates, game-version scope, DLC scope, and redistribution notes.
-3. Store citations and compliant summaries; do not copy entire copyrighted documents unless permitted.
+3. Store citations and compliant, attributed mechanics summaries; do not copy entire copyrighted documents unless permitted.
 4. Extract proposed claims and link them to relevant graph IDs.
 5. Compare new claims with existing save evidence and claims.
 6. Record support, contradiction, supersession, or context dependence.
 7. Update affected wiki pages, index, and ingest log.
 8. Add lint checks for uncited mechanics claims and missing version scope.
 
-**Outputs:** documentation adapters, registered sources, claims, updated wiki pages, lint rules.
+**Outputs:** documentation adapters, registered sources, claims, content-bearing mechanics wiki pages, updated advisor/wiki pages, lint rules.
 
 **Acceptance checks:**
 
 - a documentation claim can be traced to its source section
 - documentation does not create instance graph facts
+- mechanics wiki pages contain article-derived CK3 mechanics notes, not just page metadata
 - newer patch documentation can supersede an older scoped claim without deleting history
 - conflicting observed behavior is shown rather than overwritten
 
