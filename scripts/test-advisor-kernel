@@ -1,0 +1,147 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const ADVISOR_DIR = path.join(ROOT, 'knowledge/wiki/advisor');
+const graph = JSON.parse(fs.readFileSync(path.join(ROOT, 'knowledge/schema/graph.json'), 'utf8'));
+const sources = JSON.parse(fs.readFileSync(path.join(ROOT, 'knowledge/sources/registry.json'), 'utf8'));
+const graphIds = new Set((graph.nodes ?? []).map((node) => node.id));
+const sourceIds = new Set((sources.sources ?? []).map((source) => source.sourceId));
+
+let failed = 0;
+
+function ok(label) {
+  console.log(`OK    ${label}`);
+}
+
+function fail(label, detail) {
+  console.error(`FAIL  ${label}`);
+  if (detail) console.error(detail);
+  failed++;
+}
+
+function read(rel) {
+  return fs.readFileSync(path.join(ADVISOR_DIR, rel), 'utf8');
+}
+
+function advisorPages() {
+  return fs.readdirSync(ADVISOR_DIR)
+    .filter((name) => name.endsWith('.md') && name !== 'index.md')
+    .sort();
+}
+
+function frontmatter(content) {
+  const end = content.indexOf('\n---\n', 4);
+  if (!content.startsWith('---\n') || end === -1) return {};
+  const out = {};
+  let key = null;
+  for (const line of content.slice(4, end).split('\n')) {
+    const list = /^  - "?(.*?)"?$/.exec(line);
+    if (list && key) {
+      if (!Array.isArray(out[key])) out[key] = [];
+      out[key].push(list[1]);
+      continue;
+    }
+    const kv = /^([A-Za-z0-9_-]+):(?:\s*(.*))?$/.exec(line);
+    if (!kv) continue;
+    key = kv[1];
+    out[key] = kv[2] ? kv[2].replace(/^"|"$/g, '') : [];
+  }
+  return out;
+}
+
+function testIndexLinksAllModels() {
+  const index = read('index.md');
+  const pages = advisorPages();
+  for (const page of pages) {
+    const slug = page.replace(/\.md$/, '');
+    if (!index.includes(`[[advisor/${slug}|`)) {
+      fail('advisor index links every model page', `${page} missing from index`);
+      return;
+    }
+  }
+  if (!index.includes('Generated graph-node pages are useful provenance appendices')) {
+    fail('advisor index explains generated graph pages are appendices');
+    return;
+  }
+  ok('advisor index links every model and sets generated-page boundary');
+}
+
+function testModelPagesCarryEvidence() {
+  for (const page of advisorPages()) {
+    const content = read(page);
+    const fm = frontmatter(content);
+    for (const key of ['mechanicsConceptIds', 'graphIds', 'sourceIds']) {
+      if (!Array.isArray(fm[key]) || fm[key].length === 0) {
+        fail('advisor model pages carry mechanics, graph, and source IDs', `${page} missing ${key}`);
+        return;
+      }
+    }
+    for (const heading of ['## Mechanics Context', '## Save Evidence To Inspect', '## Advisor Inspection', '## Advice Pattern']) {
+      if (!content.includes(heading)) {
+        fail('advisor model pages contain required reasoning sections', `${page} missing ${heading}`);
+        return;
+      }
+    }
+    for (const id of fm.mechanicsConceptIds) {
+      if (!graphIds.has(id)) {
+        fail('advisor mechanics concept IDs exist in graph', `${page}: ${id}`);
+        return;
+      }
+    }
+    for (const id of fm.graphIds) {
+      if (!graphIds.has(id)) {
+        fail('advisor graph IDs exist in graph', `${page}: ${id}`);
+        return;
+      }
+    }
+    for (const id of fm.sourceIds) {
+      if (!sourceIds.has(id)) {
+        fail('advisor source IDs exist in registry', `${page}: ${id}`);
+        return;
+      }
+    }
+  }
+  ok('advisor model pages carry evidence IDs and required reasoning sections');
+}
+
+function testNoCampaignFacts() {
+  const combined = advisorPages().map(read).join('\n');
+  const forbidden = [
+    /\bNino\b/i,
+    /\bGregorios\b/i,
+    /\bMartino\b/i,
+    /\b\d{4,}\.\d{1,2}\.\d{1,2}\b/,
+    /state\/rakaly-cli/i,
+  ];
+  for (const re of forbidden) {
+    const match = combined.match(re);
+    if (match) {
+      fail('advisor model pages avoid campaign-specific facts', `matched ${re}: ${match[0]}`);
+      return;
+    }
+  }
+  ok('advisor model pages avoid campaign-specific facts');
+}
+
+function testNamedGoalIsAdvisor() {
+  const index = read('index.md');
+  if (!index.includes('user-facing synthesis layer') || !index.includes('ephemeral facts from the currently analyzed save')) {
+    fail('advisor kernel states the actual product goal');
+    return;
+  }
+  ok('advisor kernel states the expert-advisor product goal');
+}
+
+testIndexLinksAllModels();
+testModelPagesCarryEvidence();
+testNoCampaignFacts();
+testNamedGoalIsAdvisor();
+
+if (failed > 0) {
+  console.error(`\n${failed} advisor-kernel test(s) failed`);
+  process.exit(1);
+}
+
+console.log('\nAll advisor-kernel tests passed');

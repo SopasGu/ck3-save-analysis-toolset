@@ -97,7 +97,20 @@ The machine-readable schema graph underpins the wiki. The wiki does not replace 
 
 Paradox documentation, patch notes, developer diaries, and installed game files may explain or constrain the meaning of save structures. They must be cited and version-scoped. They must never be represented as if their claims were directly observed in a save.
 
-### 2.8 Storage stays tool-neutral initially
+### 2.8 The advisor kernel is the primary user-facing surface
+
+Generated graph-node pages are provenance appendices. They are not expected to read like an expert CK3 guide by themselves.
+
+The intended product is an expert advisor that combines:
+
+1. current-save facts from ephemeral analysis
+2. durable graph IDs and source paths that explain where those facts came from
+3. mechanics context from versioned CK3 documentation and reviewed local rules
+4. curated advisor models that tell an LLM what to inspect, why it matters, and how to explain uncertainty
+
+Durable wiki pages under `knowledge/wiki/advisor/` define those advisor models. They may describe workflows and reasoning patterns, but they must not preserve campaign-specific facts.
+
+### 2.9 Storage stays tool-neutral initially
 
 The canonical durable interchange is plain JSON plus Markdown. SQLite, DuckDB, RDF, Graphify, Obsidian, or a graph database may be added as derived adapters when a real query or visualization requirement justifies them.
 
@@ -655,14 +668,17 @@ Tasks are dependency-ordered. A worker may complete one task at a time, but must
 
 **Dependencies:** Tasks 6 and 9; stronger validation after Task 11.
 
+**Advisor-kernel requirement:** Task 12 must serve player questions, not merely emit another raw JSON artifact. The query interface should route a question to one or more `knowledge/wiki/advisor/` models, inspect the current save through durable graph IDs or existing report adapters, and return advice with mechanics citations plus source-path provenance.
+
 **Work:**
 
 1. Load an arbitrary compatible Rakaly JSON file.
 2. Match its structures to durable graph record types and fields.
 3. Instantiate an optional temporary instance graph under ignored state.
 4. Apply semantic rules and report unsupported or version-mismatched structures.
-5. Expose a query interface that returns results with source paths and rule provenance.
+5. Expose a query interface that returns advisor-oriented results with source paths, graph IDs, mechanics citations, and rule provenance.
 6. Ensure generated instance artifacts can be deleted and regenerated without changing durable knowledge.
+7. Add a small advisor-routing layer that maps common question domains to `knowledge/wiki/advisor/` pages and current-save inspections.
 
 **Outputs:** instance analyzer, ephemeral graph format, query command, compatibility report.
 
@@ -670,6 +686,7 @@ Tasks are dependency-ordered. A worker may complete one task at a time, but must
 
 - analyzing a new save does not modify `knowledge/` unless an explicit reviewed schema-ingest operation is requested
 - results cite exact source paths and semantic rules
+- advisor answers cite at least one advisor model, one mechanics source ID, and one current-save evidence path/report field
 - unknown structures are reported rather than ignored
 - deleting `state/instance-graphs/` does not lose durable knowledge
 

@@ -54,8 +54,12 @@ Useful Task 12 inputs now available:
 - `knowledge/schema/mechanics-concepts.json` - operator-curated mechanics_concept table (48 concepts)
 - `scripts/ck3-documentation-claims` - operator-curated proposed-claims CLI
 - Updated `knowledge/wiki/pages/mechanics/` directory (48 mechanics_concept pages)
+- `knowledge/wiki/advisor/` - curated advisor models for player-facing synthesis; start here for any chat/advice workflow
+- `scripts/test-advisor-kernel` - validates advisor pages carry graph IDs, source IDs, and inspection sections
 
 Before beginning Task 12, run `npm run check:all` and inspect the Task 12 plan section.
+
+Task 12 must make the current-save analyzer useful for an expert-advisor conversation. Do not treat generated graph-node pages as the primary answer surface; use `knowledge/wiki/advisor/index.md` to route questions into concept models, then ground the answer in ephemeral save facts and citations.
 
 ## Commands
 
