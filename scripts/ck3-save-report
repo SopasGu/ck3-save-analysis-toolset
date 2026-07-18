@@ -16,6 +16,7 @@ import {
   summarizeProvince,
   summarizeTitle,
 } from './lib/ck3-save-analysis.mjs';
+import { buildBriefConsumerContext } from './lib/ck3-report-consumers.mjs';
 import { loadIndex as loadScreenshotIndex, loadAnalysis as loadScreenshotAnalysis, gameTimeAssociation, mergeAnalysis } from './lib/ck3-screenshots.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -89,13 +90,20 @@ try {
     if (args.includes('--json')) console.log(JSON.stringify(graph, null, 2));
     else printGraph(graph, jsonPath);
   } else if (command === 'brief') {
-    const input = args[0];
+    const input = firstPositional(args);
     if (!input) throw new Error('brief requires a save artifact or manifest path');
     const { save, jsonPath } = readManifestOrJson(input);
     const playerId = getPlayedCharacterId(save);
     const brief = extractBrief(save, playerId);
-    if (args.includes('--json')) console.log(JSON.stringify(brief, null, 2));
-    else printBrief(brief, jsonPath);
+    const advisorContext = args.includes('--advisor-context') || args.includes('--consumer-context')
+      ? buildBriefConsumerContext(input)
+      : null;
+    if (args.includes('--json')) {
+      console.log(JSON.stringify(advisorContext ? { brief, advisorConsumerContext: advisorContext } : brief, null, 2));
+    } else {
+      printBrief(brief, jsonPath);
+      if (advisorContext) printBriefConsumerContext(advisorContext);
+    }
   } else if (command === 'scout') {
     const input = args[0];
     if (!input) throw new Error('scout requires a save artifact or manifest path');
@@ -183,6 +191,18 @@ function parseScoutTargets(args) {
     targets.push(arg);
   }
   return targets;
+}
+
+function firstPositional(args) {
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+    if (arg.startsWith('--')) {
+      if (arg === '--target' || arg === '-t') index += 1;
+      continue;
+    }
+    return arg;
+  }
+  return null;
 }
 
 function buildTimeline(inputs) {
@@ -572,6 +592,27 @@ function printBrief(brief, jsonPath) {
   }
 }
 
+function printBriefConsumerContext(context) {
+  console.log(`\n## Advisor Consumer Context`);
+  console.log(`- Layer: ${context.epistemicLayer}`);
+  console.log(`- Advisor model: ${context.route.advisorId} (${context.route.advisorPath})`);
+  console.log(`- Graph IDs: ${context.advisorModel.graphIds.join(', ') || 'none'}`);
+  console.log(`- Mechanics sources: ${context.advisorModel.sourceIds.join(', ') || 'none'}`);
+  console.log(`- Preserved baseline fields: ${context.comparison.changedFields.length ? 'no' : 'yes'}`);
+  if (context.comparison.discrepancies.length) {
+    console.log(`- Discrepancies:`);
+    for (const discrepancy of context.comparison.discrepancies) {
+      console.log(`  - ${discrepancy.category}: ${discrepancy.summary}`);
+    }
+  } else {
+    console.log(`- Discrepancies: none`);
+  }
+  console.log(`- Save evidence:`);
+  for (const evidence of context.reportGrounding.currentSaveEvidence) {
+    console.log(`  - ${evidence.reportField} -> ${evidence.savePath}`);
+  }
+}
+
 function printScout(scout, jsonPath, targets = []) {
   const state = scout.currentState;
   console.log(`# CK3 Scout`);
@@ -709,7 +750,7 @@ function printHelp() {
   scripts/ck3-save-report timeline <save-or-manifest>... [--json]
   scripts/ck3-save-report resolve <save.json|manifest.json> <id>... [--json]
   scripts/ck3-save-report graph <save.json|manifest.json> [--json]
-  scripts/ck3-save-report brief <save.json|manifest.json> [--json]
+  scripts/ck3-save-report brief <save.json|manifest.json> [--json] [--advisor-context]
   scripts/ck3-save-report scout <save.json|manifest.json> [target...] [--json]
   scripts/ck3-save-report screenshots <save.json|manifest.json> [--json]
   scripts/ck3-save-report chronicle <save-or-manifest>... [--json]

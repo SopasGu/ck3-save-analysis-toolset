@@ -1,0 +1,180 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { execFileSync } from 'node:child_process';
+
+let failed = 0;
+
+function ok(label) {
+  console.log(`OK    ${label}`);
+}
+
+function fail(label, detail) {
+  console.error(`FAIL  ${label}`);
+  if (detail) console.error(detail);
+  failed++;
+}
+
+function syntheticSave() {
+  return {
+    date: '872.5.18',
+    played_character: { character: 101 },
+    living: {
+      '101': {
+        first_name: 'Test Adventurer',
+        birth: '850.1.1',
+        culture: 1,
+        faith: 2,
+        skill: [4, 9, 5, 6, 3, 12],
+        trait: ['brave', 'adventurer'],
+        alive_data: {
+          location: { location: 1001 },
+          gold: { value: 42 },
+          prestige: { currency: 88 },
+          piety: { currency: 15 },
+          influence: { currency: 0 },
+          perk: ['stalwart_leader_perk'],
+        },
+        landed_data: {
+          government: 'landless_adventurer_government',
+          laws: ['camp_purpose_mercenaries'],
+          succession: [102],
+          domain: [],
+        },
+      },
+      '102': {
+        first_name: 'Follower',
+        birth: '855.1.1',
+        culture: 1,
+        faith: 2,
+        skill: [2, 3, 4, 5, 6, 7],
+        court_data: { employer: 101 },
+        alive_data: {},
+        landed_data: {},
+      },
+      '201': {
+        first_name: 'Patron',
+        birth: '830.1.1',
+        culture: 1,
+        faith: 2,
+        skill: [8, 8, 8, 8, 8, 8],
+        alive_data: { gold: { value: 150 }, location: { location: 1002 } },
+        landed_data: { government: 'feudal_government', domain: [301] },
+      },
+    },
+    culture_manager: { cultures: { '1': { name: 'Test Culture' } } },
+    religion: { faiths: { '2': { tag: 'test_faith' } } },
+    landed_titles: {
+      landed_titles: {
+        '301': { key: 'c_test', holder: 201, title_name_data: { name: 'Test County' }, capital: 1002 },
+      },
+    },
+    provinces: {
+      '1001': { holding: { type: 'castle_holding' } },
+      '1002': { holding: { type: 'castle_holding' } },
+    },
+    task_contracts: {
+      database: {
+        c1: {
+          owner: 101,
+          name: 'Guard the Caravan',
+          type: 'task_contract_prowess',
+          status: 'available',
+          tier: 2,
+          location: 1002,
+          employer: 201,
+        },
+      },
+    },
+    relations: {
+      active_relations: [
+        {
+          first: 101,
+          second: 201,
+          active_hook_0: { type: 'contact_list_weak_hook', expiration_date: '873.1.1' },
+        },
+      ],
+    },
+    opinions: { active_opinions: [] },
+  };
+}
+
+function withTempSave(fn) {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'ck3-report-consumers-'));
+  const savePath = path.join(dir, 'save.json');
+  fs.writeFileSync(savePath, JSON.stringify(syntheticSave(), null, 2));
+  try {
+    fn(savePath);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+}
+
+function runReport(args) {
+  return execFileSync(process.execPath, ['scripts/ck3-save-report', ...args], { encoding: 'utf8' });
+}
+
+function testBriefJsonParity() {
+  withTempSave((savePath) => {
+    const legacy = JSON.parse(runReport(['brief', savePath, '--json']));
+    const migrated = JSON.parse(runReport(['brief', savePath, '--json', '--advisor-context']));
+    if (JSON.stringify(legacy) !== JSON.stringify(migrated.brief)) {
+      fail('brief consumer context preserves baseline brief JSON', JSON.stringify({ legacy, migrated: migrated.brief }, null, 2));
+      return;
+    }
+    ok('brief consumer context preserves baseline brief JSON');
+  });
+}
+
+function testBriefConsumerContext() {
+  withTempSave((savePath) => {
+    const migrated = JSON.parse(runReport(['brief', savePath, '--json', '--advisor-context']));
+    const context = migrated.advisorConsumerContext;
+    if (context?.report !== 'brief' || context.epistemicLayer !== 'E consumers') {
+      fail('brief consumer context identifies report and layer', JSON.stringify(context, null, 2));
+      return;
+    }
+    if (context.route.advisorId !== 'adventurer-contracts') {
+      fail('brief consumer context routes landless brief to adventurer model', JSON.stringify(context.route));
+      return;
+    }
+    if (!context.advisorModel.graphIds.length || !context.advisorModel.sourceIds.includes('source:ck3-paradoxwikis-com:adventurer')) {
+      fail('brief consumer context carries graph IDs and mechanics source IDs', JSON.stringify(context.advisorModel, null, 2));
+      return;
+    }
+    if (!context.reportGrounding.currentSaveEvidence.some((entry) => entry.reportField === 'brief.travelOpportunities.count' && entry.savePath === '$.task_contracts.database')) {
+      fail('brief consumer context cites save path evidence for report fields', JSON.stringify(context.reportGrounding, null, 2));
+      return;
+    }
+    if (context.comparison.changedFields.length || context.comparison.discrepancies.length) {
+      fail('brief consumer context classifies no discrepancies for parity pilot', JSON.stringify(context.comparison, null, 2));
+      return;
+    }
+    ok('brief consumer context cites advisor model, graph IDs, sources, and save evidence');
+  });
+}
+
+function testBriefTextContext() {
+  withTempSave((savePath) => {
+    const output = runReport(['brief', savePath, '--advisor-context']);
+    if (!output.includes('## Advisor Consumer Context') || !output.includes('brief.travelOpportunities.count -> $.task_contracts.database')) {
+      fail('brief text report prints advisor consumer context', output);
+      return;
+    }
+    ok('brief text report prints advisor consumer context');
+  });
+}
+
+console.log('ck3-report-consumers self-test');
+console.log('==============================');
+
+testBriefJsonParity();
+testBriefConsumerContext();
+testBriefTextContext();
+
+if (failed > 0) {
+  console.error(`\n${failed} test(s) failed`);
+  process.exit(1);
+}
+console.log('\nAll report-consumer tests passed');

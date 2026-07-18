@@ -70,6 +70,8 @@ Build an advisor brief with travel opportunities, available favors, pending cool
 scripts/ck3-save-report brief <save-or-manifest>
 ```
 
+Add `--advisor-context` to the brief report to include the Task 13 consumer grounding: advisor model, mechanics source IDs, durable graph IDs, save evidence paths, and a migration discrepancy summary. The base brief payload remains unchanged unless this flag is present.
+
 Build a strategic scout report for camp movement, POI/fame gates, ruler targets, hook guardrails, epidemic risk, and local-board contract choices:
 
 ```bash

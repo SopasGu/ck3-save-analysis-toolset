@@ -43,9 +43,9 @@ Locked by the plan; key points an agent will otherwise miss:
 
 ## Current Checkpoint
 
-Tasks 0-12 in `docs/ck3-evidence-graph-plan.md` are complete. The next worker should start at **Task 13: Refactor existing reports as consumers**.
+Tasks 0-13 in `docs/ck3-evidence-graph-plan.md` are complete. The next worker should start at **Task 14: Add ongoing health and compatibility operations**.
 
-Useful Task 13 inputs now available:
+Useful Task 14 inputs now available:
 
 - All Task 0-10 artifacts above plus Task 11:
 - `knowledge/sources/ck3-wiki-topic-pages.seed.json` - deterministic 48-page documentation seed
@@ -60,10 +60,12 @@ Useful Task 13 inputs now available:
 - `scripts/test-advisor-kernel` - validates advisor pages carry graph IDs, source IDs, and inspection sections
 - `scripts/ck3-save-advisor` - Task 12 ephemeral advisor packet command; routes questions to advisor models, cites mechanics content, graph IDs, and current-save report fields, and writes ignored `state/instance-graphs/advisor-*.json`
 - `scripts/test-save-advisor` - validates advisor routing, mechanics citations, save evidence paths, unknown-structure reporting, state output, and `.json.gz` input support
+- `scripts/ck3-save-report brief --advisor-context` - Task 13 pilot showing an existing report as a consumer of advisor/schema knowledge while preserving the legacy brief payload
+- `scripts/test-report-consumers` - validates brief parity, advisor model/source/graph grounding, save evidence paths, and empty discrepancy classification
 
-Before beginning Task 13, run `npm run check:all` and inspect the Task 13 plan section.
+Before beginning Task 14, run `npm run check:all` and inspect the Task 14 plan section.
 
-Task 13 should refactor one existing report as a consumer of the durable schema/advisor layer. Do not let report-specific heuristics redefine the graph or claim ledger; compare old vs new output and preserve campaign facts under ignored state.
+Task 14 should add ongoing health and compatibility operations. Do not expand report-specific heuristics during maintenance work; use the Task 13 brief pilot as the migration pattern for additional consumer surfaces.
 
 ## Commands
 
