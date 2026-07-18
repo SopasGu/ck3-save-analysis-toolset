@@ -770,7 +770,7 @@ When a task reveals that a locked design decision is wrong, the worker must stop
 - [x] Task 9: Add semantic claims
 - [x] Task 10: Build the LLM Wiki kernel
 - [x] Task 11: Integrate Paradox and installed-game documentation
-- [ ] Task 12: Implement ephemeral analysis for arbitrary saves
+- [x] Task 12: Implement ephemeral analysis for arbitrary saves
 - [ ] Task 13: Refactor existing reports as consumers
 - [ ] Task 14: Add ongoing health and compatibility operations
 

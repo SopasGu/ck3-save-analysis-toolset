@@ -1,0 +1,96 @@
+#!/usr/bin/env node
+import {
+  DEFAULT_STATE_DIR,
+  buildAdvisorPacket,
+  writeAdvisorPacket,
+} from './lib/ck3-save-advisor.mjs';
+
+function printHelp() {
+  console.log(`Usage:
+  ck3-save-advisor <save.json|manifest.json> --question TEXT [options]
+
+Build an ephemeral advisor packet for a current CK3 save. The packet routes the
+question through knowledge/wiki/advisor, cites mechanics-content pages, and
+grounds facts in existing save report fields. Current-save artifacts are written
+under ignored state/ by default.
+
+Options:
+  --question TEXT, -q TEXT   Player question or advisor domain prompt
+  --json                    Print full JSON packet
+  --no-state                Do not write the packet under state/
+  --state-dir PATH          State output directory (default: ${DEFAULT_STATE_DIR})
+  --help, -h                Show this help
+`);
+}
+
+function parseArgs(argv) {
+  const args = {
+    input: null,
+    question: '',
+    json: false,
+    writeState: true,
+    stateDir: DEFAULT_STATE_DIR,
+  };
+  for (let i = 0; i < argv.length; i++) {
+    const arg = argv[i];
+    if (arg === '--help' || arg === '-h') {
+      printHelp();
+      process.exit(0);
+    }
+    if (arg === '--question' || arg === '-q') {
+      args.question = argv[++i] ?? '';
+      continue;
+    }
+    if (arg === '--json') {
+      args.json = true;
+      continue;
+    }
+    if (arg === '--no-state') {
+      args.writeState = false;
+      continue;
+    }
+    if (arg === '--state-dir') {
+      args.stateDir = argv[++i];
+      continue;
+    }
+    if (arg.startsWith('--')) throw new Error(`Unknown argument: ${arg}`);
+    if (!args.input) {
+      args.input = arg;
+      continue;
+    }
+    if (!args.question) {
+      args.question = arg;
+      continue;
+    }
+    args.question += ` ${arg}`;
+  }
+  return args;
+}
+
+try {
+  const args = parseArgs(process.argv.slice(2));
+  if (!args.input) {
+    printHelp();
+    process.exit(2);
+  }
+  const packet = buildAdvisorPacket(args.input, { question: args.question });
+  const statePath = args.writeState ? writeAdvisorPacket(packet, { stateDir: args.stateDir }) : null;
+  if (args.json) {
+    console.log(JSON.stringify({ ...packet, statePath }, null, 2));
+  } else {
+    console.log('# CK3 Save Advisor');
+    console.log(packet.answer);
+    console.log('');
+    console.log(`Advisor model: ${packet.route.advisorPath}`);
+    console.log(`Mechanics sources: ${packet.mechanics.map((m) => m.sourceId).join(', ') || 'none'}`);
+    console.log(`Graph IDs: ${packet.advisorModel.graphIds.join(', ') || 'none'}`);
+    console.log(`Schema compatibility: ${packet.schemaCompatibility.status}`);
+    if (packet.schemaCompatibility.unknownTopLevelKeys.length) {
+      console.log(`Unknown top-level keys: ${packet.schemaCompatibility.unknownTopLevelKeys.join(', ')}`);
+    }
+    if (statePath) console.log(`Ephemeral packet: ${statePath}`);
+  }
+} catch (err) {
+  console.error(err.message);
+  process.exit(1);
+}

@@ -43,9 +43,9 @@ Locked by the plan; key points an agent will otherwise miss:
 
 ## Current Checkpoint
 
-Tasks 0-11 in `docs/ck3-evidence-graph-plan.md` are complete. The next worker should start at **Task 12: Implement ephemeral analysis for arbitrary saves**.
+Tasks 0-12 in `docs/ck3-evidence-graph-plan.md` are complete. The next worker should start at **Task 13: Refactor existing reports as consumers**.
 
-Useful Task 12 inputs now available:
+Useful Task 13 inputs now available:
 
 - All Task 0-10 artifacts above plus Task 11:
 - `knowledge/sources/ck3-wiki-topic-pages.seed.json` - deterministic 48-page documentation seed
@@ -58,10 +58,12 @@ Useful Task 12 inputs now available:
 - Updated `knowledge/wiki/pages/mechanics/` directory (48 mechanics_concept pages)
 - `knowledge/wiki/advisor/` - curated advisor models for player-facing synthesis; start here for any chat/advice workflow
 - `scripts/test-advisor-kernel` - validates advisor pages carry graph IDs, source IDs, and inspection sections
+- `scripts/ck3-save-advisor` - Task 12 ephemeral advisor packet command; routes questions to advisor models, cites mechanics content, graph IDs, and current-save report fields, and writes ignored `state/instance-graphs/advisor-*.json`
+- `scripts/test-save-advisor` - validates advisor routing, mechanics citations, save evidence paths, unknown-structure reporting, state output, and `.json.gz` input support
 
-Before beginning Task 12, run `npm run check:all` and inspect the Task 12 plan section.
+Before beginning Task 13, run `npm run check:all` and inspect the Task 13 plan section.
 
-Task 12 must make the current-save analyzer useful for an expert-advisor conversation. Do not treat generated graph-node pages as the primary answer surface; use `knowledge/wiki/advisor/index.md` to route questions into concept models, then ground the answer in ephemeral save facts and citations.
+Task 13 should refactor one existing report as a consumer of the durable schema/advisor layer. Do not let report-specific heuristics redefine the graph or claim ledger; compare old vs new output and preserve campaign facts under ignored state.
 
 ## Commands
 
@@ -93,6 +95,7 @@ scripts/ck3-save-report diff       <old> <new>
 scripts/ck3-save-report timeline   <save-or-manifest>...
 scripts/ck3-save-report chronicle  <save-or-manifest>...
 scripts/ck3-save-report screenshots <save-or-manifest>
+scripts/ck3-save-advisor <save-or-manifest-or-json.gz> --question "What should I do next?" [--json]
 ```
 
 Full report semantics: `docs/ck3-save-analysis.md`.

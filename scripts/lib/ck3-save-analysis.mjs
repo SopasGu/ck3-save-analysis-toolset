@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import zlib from 'node:zlib';
 
 const SKILL_NAMES = ['diplomacy', 'martial', 'stewardship', 'intrigue', 'learning', 'prowess'];
 const CK3_GAME_DIR = path.join(process.env.HOME ?? '', '.steam/debian-installation/steamapps/common/Crusader Kings III/game');
@@ -143,7 +144,10 @@ const DEFAULT_SCOUT_TARGETS = [
 let staticTitleIndex = null;
 
 export function readSaveJson(filePath) {
-  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  const raw = filePath.endsWith('.gz')
+    ? zlib.gunzipSync(fs.readFileSync(filePath)).toString('utf8')
+    : fs.readFileSync(filePath, 'utf8');
+  return JSON.parse(raw);
 }
 
 export function readManifestOrJson(filePath) {

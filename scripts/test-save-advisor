@@ -1,0 +1,216 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import zlib from 'node:zlib';
+import { execFileSync } from 'node:child_process';
+import {
+  buildAdvisorPacket,
+  routeAdvisorQuestion,
+  writeAdvisorPacket,
+} from './lib/ck3-save-advisor.mjs';
+
+let failed = 0;
+
+function ok(label) {
+  console.log(`OK    ${label}`);
+}
+
+function fail(label, detail) {
+  console.error(`FAIL  ${label}`);
+  if (detail) console.error(detail);
+  failed++;
+}
+
+function syntheticSave() {
+  return {
+    date: '872.5.18',
+    played_character: { character: 101 },
+    living: {
+      '101': {
+        first_name: 'Test Adventurer',
+        birth: '850.1.1',
+        culture: 1,
+        faith: 2,
+        skill: [4, 9, 5, 6, 3, 12],
+        trait: ['brave', 'adventurer'],
+        alive_data: {
+          location: { location: 1001 },
+          gold: { value: 42 },
+          prestige: { currency: 88 },
+          piety: { currency: 15 },
+          influence: { currency: 0 },
+          perk: ['stalwart_leader_perk'],
+        },
+        landed_data: {
+          government: 'landless_adventurer_government',
+          laws: ['camp_purpose_mercenaries'],
+          succession: [102],
+          domain: [],
+        },
+      },
+      '102': {
+        first_name: 'Follower',
+        birth: '855.1.1',
+        culture: 1,
+        faith: 2,
+        skill: [2, 3, 4, 5, 6, 7],
+        court_data: { employer: 101 },
+        alive_data: {},
+        landed_data: {},
+      },
+      '201': {
+        first_name: 'Patron',
+        birth: '830.1.1',
+        culture: 1,
+        faith: 2,
+        skill: [8, 8, 8, 8, 8, 8],
+        alive_data: { gold: { value: 150 }, location: { location: 1002 } },
+        landed_data: { government: 'feudal_government', domain: [301] },
+      },
+    },
+    culture_manager: { cultures: { '1': { name: 'Test Culture' } } },
+    religion: { faiths: { '2': { tag: 'test_faith' } } },
+    landed_titles: {
+      landed_titles: {
+        '301': { key: 'c_test', holder: 201, title_name_data: { name: 'Test County' }, capital: 1002 },
+      },
+    },
+    provinces: {
+      '1001': { holding: { type: 'castle_holding' } },
+      '1002': { holding: { type: 'castle_holding' } },
+    },
+    task_contracts: {
+      database: {
+        c1: {
+          owner: 101,
+          name: 'Guard the Caravan',
+          type: 'task_contract_prowess',
+          status: 'available',
+          tier: 2,
+          location: 1002,
+          employer: 201,
+        },
+      },
+    },
+    relations: {
+      active_relations: [
+        {
+          first: 101,
+          second: 201,
+          active_hook_0: { type: 'contact_list_weak_hook', expiration_date: '873.1.1' },
+        },
+      ],
+    },
+    opinions: { active_opinions: [] },
+    experimental_custom_database: {},
+  };
+}
+
+function withTempSave(fn) {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'ck3-advisor-test-'));
+  const savePath = path.join(dir, 'save.json');
+  fs.writeFileSync(savePath, JSON.stringify(syntheticSave(), null, 2));
+  try {
+    fn(savePath, dir);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+}
+
+function testRoute() {
+  const route = routeAdvisorQuestion('What should I do next as this adventurer with contracts?');
+  if (route.id !== 'adventurer-contracts' || !route.matchedTerms.includes('adventurer')) {
+    fail('advisor routing maps adventurer question to adventurer model', JSON.stringify(route));
+    return;
+  }
+  const war = routeAdvisorQuestion('Can my army win a war with these knights?');
+  if (war.id !== 'warfare') {
+    fail('advisor routing maps army/war question to warfare model', JSON.stringify(war));
+    return;
+  }
+  ok('advisor routing selects domain models');
+}
+
+function testPacket() {
+  withTempSave((savePath, dir) => {
+    const packet = buildAdvisorPacket(savePath, {
+      question: 'What should I do next as this adventurer?',
+      generatedAt: '2026-07-18T00:00:00Z',
+    });
+    if (packet.route.advisorId !== 'adventurer-contracts') {
+      fail('advisor packet routes to adventurer model', packet.route.advisorId);
+      return;
+    }
+    if (!packet.mechanics.some((m) => m.sourceId === 'source:ck3-paradoxwikis-com:adventurer')) {
+      fail('advisor packet cites mechanics source pages', JSON.stringify(packet.mechanics, null, 2));
+      return;
+    }
+    if (!packet.evidence.currentSave.some((e) => e.reportField === 'brief.travelOpportunities.count' && e.savePath === '$.task_contracts.database')) {
+      fail('advisor packet cites current-save report fields and source paths', JSON.stringify(packet.evidence, null, 2));
+      return;
+    }
+    if (!packet.advisorModel.graphIds.length) {
+      fail('advisor packet carries graph IDs from advisor model', JSON.stringify(packet.advisorModel));
+      return;
+    }
+    if (packet.schemaCompatibility.status !== 'review_needed') {
+      fail('advisor packet reports unknown top-level structures', JSON.stringify(packet.schemaCompatibility));
+      return;
+    }
+    const outPath = writeAdvisorPacket(packet, { stateDir: path.join(dir, 'state/instance-graphs') });
+    if (!outPath.includes('state/instance-graphs') || !fs.existsSync(outPath)) {
+      fail('advisor packet writes ignored-state style artifact', outPath);
+      return;
+    }
+    ok('advisor packet cites advisor model, mechanics, graph IDs, save evidence, and schema compatibility');
+  });
+}
+
+function testCli() {
+  withTempSave((savePath, dir) => {
+    const stateDir = path.join(dir, 'instance-graphs');
+    const out = execFileSync(process.execPath, [
+      'scripts/ck3-save-advisor',
+      savePath,
+      '--question',
+      'What should I do next as this adventurer?',
+      '--json',
+      '--state-dir',
+      stateDir,
+    ], { encoding: 'utf8' });
+    const parsed = JSON.parse(out);
+    if (parsed.route.advisorId !== 'adventurer-contracts' || !parsed.statePath || !fs.existsSync(parsed.statePath)) {
+      fail('ck3-save-advisor CLI emits JSON and writes state packet', out);
+      return;
+    }
+    ok('ck3-save-advisor CLI emits JSON and writes state packet');
+  });
+}
+
+function testGzipInput() {
+  withTempSave((savePath, dir) => {
+    const gzPath = path.join(dir, 'save.json.gz');
+    fs.writeFileSync(gzPath, zlib.gzipSync(fs.readFileSync(savePath)));
+    const packet = buildAdvisorPacket(gzPath, { question: 'adventurer contracts' });
+    if (packet.input.jsonPath !== gzPath || packet.route.advisorId !== 'adventurer-contracts') {
+      fail('advisor accepts gzipped Rakaly JSON input', JSON.stringify(packet.input));
+      return;
+    }
+    ok('advisor accepts gzipped Rakaly JSON input');
+  });
+}
+
+console.log('ck3-save-advisor self-test');
+console.log('==========================');
+
+testRoute();
+testPacket();
+testCli();
+testGzipInput();
+
+if (failed > 0) {
+  console.error(`\n${failed} test(s) failed`);
+  process.exit(1);
+}
+console.log('\nAll save-advisor tests passed');
