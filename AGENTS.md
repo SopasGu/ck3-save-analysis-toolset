@@ -43,9 +43,9 @@ Locked by the plan; key points an agent will otherwise miss:
 
 ## Current Checkpoint
 
-Tasks 0-13 in `docs/ck3-evidence-graph-plan.md` are complete. The next worker should start at **Task 14: Add ongoing health and compatibility operations**.
+Tasks 0-14 in `docs/ck3-evidence-graph-plan.md` are complete. The initial evidence graph, mechanics wiki, advisor packet, report-consumer pilot, and maintenance health loop are in place.
 
-Useful Task 14 inputs now available:
+Useful project inputs now available:
 
 - All Task 0-10 artifacts above plus Task 11:
 - `knowledge/sources/ck3-wiki-topic-pages.seed.json` - deterministic 48-page documentation seed
@@ -62,10 +62,12 @@ Useful Task 14 inputs now available:
 - `scripts/test-save-advisor` - validates advisor routing, mechanics citations, save evidence paths, unknown-structure reporting, state output, and `.json.gz` input support
 - `scripts/ck3-save-report brief --advisor-context` - Task 13 pilot showing an existing report as a consumer of advisor/schema knowledge while preserving the legacy brief payload
 - `scripts/test-report-consumers` - validates brief parity, advisor model/source/graph grounding, save evidence paths, and empty discrepancy classification
+- `scripts/ck3-maintenance health` / `npm run maintenance` - Task 14 durable health report for graph, claims, wiki links, mechanics citations, applicability scope, and fixture schema diffs
+- `docs/ck3-maintenance.md` - ongoing health, new-specimen workflow, versioning policy, and bad-ingest recovery runbook
 
-Before beginning Task 14, run `npm run check:all` and inspect the Task 14 plan section.
+Before beginning new feature work, run `npm run check:all` and inspect the relevant plan or design document.
 
-Task 14 should add ongoing health and compatibility operations. Do not expand report-specific heuristics during maintenance work; use the Task 13 brief pilot as the migration pattern for additional consumer surfaces.
+For follow-up work, prefer extending the advisor-facing flows over adding disconnected artifacts. Use the Task 13 brief pilot as the migration pattern for additional report consumers, and keep Task 14 maintenance checks passing before every handoff.
 
 ## Commands
 

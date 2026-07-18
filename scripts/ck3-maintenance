@@ -1,0 +1,116 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import { buildMaintenanceReport } from './lib/ck3-maintenance.mjs';
+
+function printHelp() {
+  console.log(`Usage: ck3-maintenance health [options]
+
+Runs the Task 14 maintenance health checks for the durable CK3 schema graph,
+claim ledger, documentation-backed wiki, mechanics pages, and fixture-based
+schema compatibility workflow.
+
+Options:
+  --json              Print machine-readable report JSON
+  --out PATH          Write report JSON to PATH
+  --quiet            Suppress human summary when --out is used
+  --graph PATH        Override durable graph path
+  --claims PATH       Override claim ledger path
+  --sources PATH      Override source registry path
+  --wiki DIR          Override wiki directory
+  --mechanics DIR     Override mechanics-content directory
+  --max-items N       Max retained items in fixture schema diffs (default: 25)
+`);
+}
+
+function parseArgs(argv) {
+  const command = argv[0];
+  const args = {
+    command,
+    json: false,
+    quiet: false,
+  };
+  for (let index = 1; index < argv.length; index += 1) {
+    const arg = argv[index];
+    switch (arg) {
+      case '--json':
+        args.json = true;
+        break;
+      case '--quiet':
+      case '-q':
+        args.quiet = true;
+        break;
+      case '--out':
+        args.out = argv[++index];
+        break;
+      case '--graph':
+        args.graphPath = argv[++index];
+        break;
+      case '--claims':
+        args.claimsPath = argv[++index];
+        break;
+      case '--sources':
+        args.sourceRegistryPath = argv[++index];
+        break;
+      case '--wiki':
+        args.wikiDir = argv[++index];
+        break;
+      case '--mechanics':
+        args.mechanicsDir = argv[++index];
+        break;
+      case '--max-items':
+        args.maxItemsPerSection = Number.parseInt(argv[++index], 10);
+        break;
+      case '--help':
+      case '-h':
+        printHelp();
+        process.exit(0);
+        break;
+      default:
+        throw new Error(`Unknown arg: ${arg}`);
+    }
+  }
+  return args;
+}
+
+async function main() {
+  const args = parseArgs(process.argv.slice(2));
+  if (!args.command || args.command === '--help' || args.command === '-h') {
+    printHelp();
+    process.exit(args.command ? 0 : 2);
+  }
+  if (args.command !== 'health') throw new Error(`Unknown command: ${args.command}`);
+  const report = await buildMaintenanceReport(args);
+  const json = JSON.stringify(report, null, 2) + '\n';
+  if (args.out) {
+    fs.mkdirSync(path.dirname(path.resolve(args.out)), { recursive: true });
+    fs.writeFileSync(args.out, json);
+  }
+  if (args.json || !args.out) process.stdout.write(args.json ? json : humanSummary(report));
+  else if (!args.quiet) process.stderr.write(`CK3 maintenance health: ${report.status}\n`);
+  process.exit(report.status === 'fail' ? 1 : 0);
+}
+
+function humanSummary(report) {
+  const lines = [
+    `# CK3 Maintenance Health`,
+    `Status: ${report.status}`,
+    `Checks: ${report.summary.checks}, failures: ${report.summary.failures}, warnings: ${report.summary.warnings}`,
+    `Graph: ${report.summary.graphNodes} nodes, ${report.summary.graphEdges} edges`,
+    `Claims: ${report.summary.claims} claims, ${report.summary.semanticEdges} semantic edges`,
+    '',
+  ];
+  for (const check of report.checks) {
+    lines.push(`- ${check.status.toUpperCase()} ${check.id}: ${check.title}`);
+    for (const finding of check.findings.slice(0, 5)) {
+      lines.push(`  - ${finding.file}: ${finding.detector}: ${finding.message}`);
+    }
+    if (check.findings.length > 5) lines.push(`  - ... ${check.findings.length - 5} more`);
+  }
+  return `${lines.join('\n')}\n`;
+}
+
+main().catch((error) => {
+  console.error(error.message);
+  process.exit(1);
+});

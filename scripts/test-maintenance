@@ -1,0 +1,131 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { execFileSync, spawnSync } from 'node:child_process';
+import { buildMaintenanceReport, schemaDiffForFixtures } from './lib/ck3-maintenance.mjs';
+
+let failed = 0;
+
+function ok(label) {
+  console.log(`OK    ${label}`);
+}
+
+function fail(label, detail) {
+  console.error(`FAIL  ${label}`);
+  if (detail) console.error(detail);
+  failed++;
+}
+
+async function testHealthReport() {
+  const report = await buildMaintenanceReport({ generatedAt: '2026-07-18T00:00:00Z' });
+  if (report.status !== 'ok' || report.summary.failures !== 0) {
+    fail('maintenance health passes on committed durable artifacts', JSON.stringify(report, null, 2));
+    return;
+  }
+  const required = [
+    'graph.valid',
+    'claims.valid',
+    'wiki.lint',
+    'mechanics.citations',
+    'applicability.scope',
+    'schema.no_change_fixture',
+    'schema.structural_fixture',
+  ];
+  const ids = new Set(report.checks.map((check) => check.id));
+  if (!required.every((id) => ids.has(id))) {
+    fail('maintenance health includes all Task 14 check families', JSON.stringify(report.checks.map((check) => check.id)));
+    return;
+  }
+  ok('maintenance health passes on committed durable artifacts');
+}
+
+async function testSchemaFixtureDiffs() {
+  const noChange = await schemaDiffForFixtures(
+    'fixtures/schema/synthetic-diff-base.json',
+    'fixtures/schema/synthetic-diff-base.json',
+  );
+  if (noChange.summary.structuralChanges !== 0) {
+    fail('no-change fixture produces no durable diff', JSON.stringify(noChange.summary));
+    return;
+  }
+  const structural = await schemaDiffForFixtures(
+    'fixtures/schema/synthetic-diff-base.json',
+    'fixtures/schema/synthetic-diff-new-field.json',
+    { maxItemsPerSection: 10 },
+  );
+  if (structural.summary.structuralChanges === 0 || Object.values(structural.summary.omitted).some((count) => count !== 0)) {
+    fail('structural fixture produces bounded review diff', JSON.stringify(structural.summary));
+    return;
+  }
+  ok('fixture schema diffs distinguish no-change and structural changes');
+}
+
+function testCliJson() {
+  const out = execFileSync(process.execPath, [
+    'scripts/ck3-maintenance',
+    'health',
+    '--json',
+  ], { encoding: 'utf8' });
+  const report = JSON.parse(out);
+  if (report.kind !== 'ck3_maintenance_report' || report.status !== 'ok') {
+    fail('maintenance CLI emits passing JSON health report', out);
+    return;
+  }
+  ok('maintenance CLI emits passing JSON health report');
+}
+
+function testActionableFailure() {
+  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'ck3-maintenance-test-'));
+  const wikiDir = path.join(temp, 'wiki');
+  copyDir('knowledge/wiki', wikiDir);
+  const pagePath = path.join(wikiDir, 'advisor', 'index.md');
+  fs.appendFileSync(pagePath, '\n[[advisor/no-such-page]]\n');
+  const result = spawnSync(process.execPath, [
+    'scripts/ck3-maintenance',
+    'health',
+    '--json',
+    '--wiki',
+    wikiDir,
+  ], { encoding: 'utf8' });
+  fs.rmSync(temp, { recursive: true, force: true });
+  if (result.status === 0) {
+    fail('maintenance CLI exits nonzero on lint failure', result.stdout);
+    return;
+  }
+  const report = JSON.parse(result.stdout);
+  const broken = report.checks
+    .find((check) => check.id === 'wiki.lint')
+    ?.findings
+    ?.find((finding) => finding.detector === 'broken_link' && finding.file === 'advisor/index.md');
+  if (!broken) {
+    fail('maintenance failure identifies actionable file and detector', result.stdout);
+    return;
+  }
+  ok('maintenance failure identifies actionable file and detector');
+}
+
+function copyDir(from, to) {
+  fs.mkdirSync(to, { recursive: true });
+  for (const name of fs.readdirSync(from)) {
+    const src = path.join(from, name);
+    const dst = path.join(to, name);
+    const stat = fs.statSync(src);
+    if (stat.isDirectory()) copyDir(src, dst);
+    else fs.copyFileSync(src, dst);
+  }
+}
+
+console.log('ck3-maintenance self-test');
+console.log('=========================');
+
+await testHealthReport();
+await testSchemaFixtureDiffs();
+testCliJson();
+testActionableFailure();
+
+if (failed > 0) {
+  console.error(`\n${failed} test(s) failed`);
+  process.exit(1);
+}
+console.log('\nAll maintenance tests passed');
