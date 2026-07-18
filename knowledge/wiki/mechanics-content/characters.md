@@ -6,7 +6,7 @@ sourceId: "source:ck3-paradoxwikis-com:character"
 sourceRevisionId: 34938
 sourceOldidUrl: "https://ck3.paradoxwikis.com/Character?oldid=34938"
 license: "CC BY-SA 3.0"
-generatedAt: "2026-07-18T07:02:11.038Z"
+generatedAt: "2026-07-18T07:20:18.943Z"
 contentHash: "49a274750cb2097c3aab600320590fab815be86428f26398e2d4549a0983e343"
 ---
 
@@ -29,9 +29,9 @@ Use this page when a question needs CK3 mechanics context for Characters. Combin
 ### Overview
 
 - A character refers to any person, historical or generated, that is represented personally in Crusader Kings III. Every single character is an individual, living entity that will act individually and has the potential to change history. Characters can be either noble or lowborn, and landed or unlanded.
-- Lowborn characters are not members of a dynasty. If they are landed with a playable government title they will become noble and found a dynasty.
-- Unlanded characters do not own any holdings; a character who Leases holdings (e.g. a Realm Priest) is considered an unlanded character.
-- All Characters are part of a certain Religion and Culture, and may have a variety of Attributes, Traits, Modifiers and Resources that further shape each individual. Some may even attempt to interact with others through Schemes. If they are landed, they will also have Titles, Council (if they are at least a Count), a specific Government, a Lifestyle and a Court.
+- Lowborn characters are not members of a [[mechanics-content/dynasty|dynasty]]. If they are landed with a playable [[mechanics-content/government|government]] [[mechanics-content/titles|title]] they will become noble and found a dynasty.
+- Unlanded characters do not own any [[mechanics-content/barony|holdings]]; a character who Leases holdings (e.g. a Realm Priest) is considered an unlanded character.
+- All Characters are part of a certain Religion and [[mechanics-content/culture|Culture]], and may have a variety of [[mechanics-content/attributes|Attributes]], [[mechanics-content/traits|Traits]], [[mechanics-content/modifiers|Modifiers]] and [[mechanics-content/resources|Resources]] that further shape each individual. Some may even attempt to interact with others through [[mechanics-content/schemes|Schemes]]. If they are landed, they will also have [[mechanics-content/titles|Titles]], [[mechanics-content/council|Council]] (if they are at least a Count), a specific [[mechanics-content/government|Government]], a [[mechanics-content/lifestyle|Lifestyle]] and a [[mechanics-content/court|Court]].
 
 ### Appearance
 
@@ -49,29 +49,29 @@ Use this page when a question needs CK3 mechanics context for Characters. Combin
 
 ### General
 
-- General is an opinion modifier that affects every character, this means only Popular Opinion of Counties are independent of this modifier. See also Attributes. These are modifiers that influence General opinion:
+- General is an opinion modifier that affects every character, this means only Popular Opinion of [[mechanics-content/county|Counties]] are independent of this modifier. See also [[mechanics-content/attributes|Attributes]]. These are [[mechanics-content/modifiers|modifiers]] that influence General opinion:
 
 ### Attraction
 
-- Attraction is an opinion modifier that can only be held towards characters one's sexual preference allows. Male characters aged above 65 years and female character above 50 years are not affected by attraction. Only adults (16 year old and above) can generate attraction and have attraction towards another. These are modifiers that influence Attractionopinion:
-- +5/+10 Trait "Hunter" (Falconer way) (Level 1/Level 2)
-- +5/+10/+15 Trait "Amazonian"/("Herculean")/"Robust"/"Hale"
-- -30/-20/-10/+10/+20/+30 Trait "Hideous"/"Ugly"/"Homely"/"Comely"/"Handsome"("Pretty")/"Beautiful"
+- Attraction is an opinion modifier that can only be held towards characters one's sexual preference allows. Male characters aged above 65 years and female character above 50 years are not affected by attraction. Only adults (16 year old and above) can generate attraction and have attraction towards another. These are [[mechanics-content/modifiers|modifiers]] that influence Attractionopinion:
+- +5/+10 [[mechanics-content/traits|Trait]] "Hunter" (Falconer way) (Level 1/Level 2)
+- +5/+10/+15 [[mechanics-content/traits|Trait]] "Amazonian"/("Herculean")/"Robust"/"Hale"
+- -30/-20/-10/+10/+20/+30 [[mechanics-content/traits|Trait]] "Hideous"/"Ugly"/"Homely"/"Comely"/"Handsome"("Pretty")/"Beautiful"
 
 ### Same Dynasty
 
-- Dynasty is an opinion modifier that affects everyone of the same dynasty. These are modifiers that influence Same Dynasty opinion:
+- [[mechanics-content/dynasty|Dynasty]] is an opinion modifier that affects everyone of the same dynasty. These are [[mechanics-content/modifiers|modifiers]] that influence Same Dynasty opinion:
 
 ### Virtue & Sins
 
-- Some traits are considered virtuous or sinful in certain faiths, the opinion modifier will be dependant on the character whose faith sees certain traits as virtuous or sinful. (e,g, a Muslim who has the "Forgiving" trait would have no modifiers from other Muslims, have +10 (virtue) modifier from Christians and -10 (sin) modifier with Asatruans).
+- Some [[mechanics-content/traits|traits]] are considered virtuous or sinful in certain [[mechanics-content/faith|faiths]], the opinion modifier will be dependant on the character whose faith sees certain traits as virtuous or sinful. (e,g, a Muslim who has the "Forgiving" trait would have no [[mechanics-content/modifiers|modifiers]] from other Muslims, have +10 (virtue) modifier from Christians and -10 (sin) modifier with Asatruans).
 
 ### Faith Hostility
 
-- Faith Hostility is determined by the Religious Families to be Righteous/Astray/Hostile/Evil, and are then given 0/-10/-20/-30 opinion maluses, respectively.
-- "Pluralist" Doctrine: -50% faith hostility opinion malus
-- "Fundamentalist" Doctrine +100% faith hostility opinion malus
-- The opinion malus from other characters is dependant by how hostile the other faith sees that faith that you belong to as, not how hostile your faith sees their faith as. The "Pluralist" and "Fundamentalist" Doctrines affect how much maluses to opinion they have for you, not vice-versa.
+- [[mechanics-content/characters#faith-hostility|Faith Hostility]] is determined by the Religious Families to be Righteous/Astray/Hostile/Evil, and are then given 0/-10/-20/-30 opinion maluses, respectively.
+- "Pluralist" [[mechanics-content/doctrines|Doctrine]]: -50% [[mechanics-content/characters#faith-hostility|faith hostility]] opinion malus
+- "Fundamentalist" [[mechanics-content/doctrines|Doctrine]] +100% [[mechanics-content/characters#faith-hostility|faith hostility]] opinion malus
+- The opinion malus from other characters is dependant by how hostile the other [[mechanics-content/faith|faith]] sees that faith that you belong to as, not how hostile your faith sees their faith as. The "Pluralist" and "Fundamentalist" [[mechanics-content/doctrines|Doctrines]] affect how much maluses to opinion they have for you, not vice-versa.
 
 ### Relations
 
@@ -79,54 +79,54 @@ Use this page when a question needs CK3 mechanics context for Characters. Combin
 - Childhood relations can only be held between two child characters and might evolve into their corresponding adulthood relations when the characters reach adulthood
 - Adulthood relations can be gained and lost as a result of events
 - Lifelong relations can only be obtained towards characters with an existing adulthood relation and each character can have only one of each lifelong relation
-- Two characters who have Nomadic government or the Way of the Nomad trait can swear a Blood Brotherhood with each other as long as they're not family members. Being Blood Siblings has the same benefits as being Friends but also gives the characters a Strong Hook on each other, forms an alliance, and allows choosing a Blood Brother modifier if any is available. Each character can only have one Blood Brother.
+- Two characters who have Nomadic [[mechanics-content/government|government]] or the Way of the Nomad [[mechanics-content/traits|trait]] can swear a Blood Brotherhood with each other as long as they're not family members. Being Blood Siblings has the same benefits as being Friends but also gives the characters a Strong [[mechanics-content/hooks|Hook]] on each other, forms an [[mechanics-content/alliance|alliance]], and allows choosing a Blood Brother [[mechanics-content/modifiers|modifier]] if any is available. Each character can only have one Blood Brother.
 
 ### Tyranny
 
 - Tyranny is opinion negative opinion gained by rulers who take unjust actions. It is felt by vassals and courtiers towards a liege. The maximum tyranny a character can have is 1000. Tyranny is not gained if the liege has a valid reason. Tyranny can be lost through certain events and most importantly through Monthly Decay:
-- -0.05 Monthly delay by Perk 'Venial' guile legacy Guile Dynasty
-- All tyrannical actions, events and the monthly decay can be affected by the following modifiers: With the Torturer lifestyle perk Malice Implicit, characters gain dread +0.5 dread per tyranny.
+- -0.05 Monthly delay by Perk 'Venial' guile legacy Guile [[mechanics-content/dynasty|Dynasty]]
+- All tyrannical actions, events and the monthly decay can be affected by the following [[mechanics-content/modifiers|modifiers]]: With the Torturer [[mechanics-content/lifestyle|lifestyle]] perk Malice Implicit, characters gain dread +0.5 dread per tyranny.
 
 ### Diplomatic range
 
 - The diplomatic range is the distance within which two characters can interact with each other. Neighboring realms are always within diplomatic range of each other, as well as realms separated by no more than three sea zones.
-- The first Dynasty Legacy from the Adventure Legacy Tree from Northern Lords DLC increases Diplomatic Range by 30%.
+- The first [[mechanics-content/dynasty|Dynasty Legacy]] from the Adventure Legacy Tree from Northern Lords DLC increases Diplomatic Range by 30%.
 - The Rock of Gibraltar increases Diplomatic Range by 20%.
 - Diplomatic range map mode is only available in debug mode.
 
 ### Nicknames
 
-- Nicknames are epithets granted to characters and are displayed either before or after a character's name. They are mainly gained through decision decisions and events.
+- Nicknames are epithets granted to characters and are displayed either before or after a character's name. They are mainly gained through decision [[mechanics-content/decisions|decisions]] and events.
 
 ### AI Personality
 
-- AI characters will act based on the following attributes:
-- Boldness: Characters with high Boldness are less affected by Dread and more likely to declare war on rulers of similar or higher strength, accept and propose Duels and take risks. Characters with low Boldness are more affected by Dread and more likely to declare war on weaker rulers, accept faction ultimatums and more reluctant to try to imprison Strong Vassals and take risks.
-- Compassion: Characters with high Compassion are more likely to release prisoners (especially children), use the
-- Promote Cultural Acceptance steward task, let people marry for love and make friends and more reluctant to harm others, use the Murder scheme, execute prisoners or torture prisoners. Characters with low Compassion are more likely to harm others, use Hostile schemes, execute prisoners or torture prisoners.
+- AI characters will act based on the following [[mechanics-content/attributes|attributes]]:
+- Boldness: Characters with high Boldness are less affected by Dread and more likely to declare [[mechanics-content/warfare|war]] on rulers of similar or higher strength, accept and propose [[mechanics-content/duel|Duels]] and take risks. Characters with low Boldness are more affected by Dread and more likely to declare war on weaker rulers, accept faction ultimatums and more reluctant to try to imprison Strong Vassals and take risks.
+- Compassion: Characters with high Compassion are more likely to release [[mechanics-content/prisoners|prisoners]] (especially children), use the
+- Promote [[mechanics-content/culture#cultural-acceptance|Cultural Acceptance]] steward task, let people marry for love and make friends and more reluctant to harm others, use the Murder scheme, execute [[mechanics-content/prisoners|prisoners]] or torture prisoners. Characters with low Compassion are more likely to harm others, use Hostile [[mechanics-content/schemes|schemes]], execute prisoners or torture prisoners.
 - Greed: Characters with high Greed will more often choose short-term gains, go on raidRaids, use the
 
 ### Economic Archetype
 
-- An AI ruler would spend their Gold according to the following archetypes based on their traits and attributes: Warlike: A Warlike ruler will save Gold for war before investing it in developing their realm. If they are at peace for an extended period of time, they will use their gold to build Buildings. If the Legends of the Dead DLC is installed they are also more likely to create and promote Heroic legends.
-- Relevant Traits: Wrathful, Impatient, Sadistic, Ambitious, Vengeful, Irritable, and Zealous.
+- An AI ruler would spend their [[mechanics-content/resources|Gold]] according to the following archetypes based on their [[mechanics-content/traits|traits]] and [[mechanics-content/attributes|attributes]]: Warlike: A Warlike ruler will save Gold for [[mechanics-content/warfare|war]] before investing it in developing their realm. If they are at peace for an extended period of time, they will use their gold to build [[mechanics-content/building|Buildings]]. If the Legends of the Dead DLC is installed they are also more likely to create and promote Heroic legends.
+- Relevant [[mechanics-content/traits|Traits]]: Wrathful, Impatient, Sadistic, Ambitious, Vengeful, Irritable, and Zealous.
 - AI with high Boldness and Greed also tends to be Warlike.
-- Cautious: A Cautious ruler is more averse to declaring offensive wars, more inclined to save Gold for defense, and invest gold for Fortification Buildings and Men-at-Arms regiments. If the Legends of the Dead DLC is installed they are also less likely to create and promote legends.
-- Relevant traits: Patient, Calm, Craven, Paranoid, and Content.
+- Cautious: A Cautious ruler is more averse to declaring offensive [[mechanics-content/warfare|wars]], more inclined to save [[mechanics-content/resources|Gold]] for defense, and invest gold for Fortification [[mechanics-content/building|Buildings]] and [[mechanics-content/army#men-at-arms|Men-at-Arms regiments]]. If the Legends of the Dead DLC is installed they are also less likely to create and promote legends.
+- Relevant [[mechanics-content/traits|traits]]: Patient, Calm, Craven, Paranoid, and Content.
 
 ### Legends
 
-- Legends represent important deeds that a character achieved in life. The story of the legend will be written in various events as the legend is being completed. Creating a legend costs 200 Gold if Count or Duke, 300 if King and 400 if Emperor, and it also has a monthly maintenance cost until it is completed. legitimizing legend Legitimizing legends also cost 75 Prestige.
+- Legends represent important deeds that a character achieved in life. The story of the legend will be written in various events as the legend is being completed. Creating a legend costs 200 Gold if Count or Duke, 300 if King and 400 if Emperor, and it also has a monthly maintenance cost until it is completed. legitimizing legend Legitimizing legends also cost 75 [[mechanics-content/resources|Prestige]].
 - Friend or Best Friend with the legend's creator
-- Legends come in three types and three levels of quality, which together determine what benefits they give. When a legend is created it will start at Famed quality. Once it has spread to 100 Baronies it can be upgraded to Illustrious quality and will not spread further until upgraded. Once it has spread to 300 Baronies it can be upgraded to Mythical quality and will not spread further until upgraded.
+- Legends come in three types and three levels of quality, which together determine what benefits they give. When a legend is created it will start at Famed quality. Once it has spread to 100 [[mechanics-content/barony|Baronies]] it can be upgraded to Illustrious quality and will not spread further until upgraded. Once it has spread to 300 Baronies it can be upgraded to Mythical quality and will not spread further until upgraded.
 
 ### Historical legend seeds
 
-- Historical legend seeds can only be used once per game, regardless of character. They are restricted to certain dynasties, cultures or faiths. Some historical seeds have an associated ancient culture. If the Royal Court DLC is also enabled, completing these legends will give the option to create a divergent culture with the ancient culture's cultural pillars
+- Historical legend seeds can only be used once per game, regardless of character. They are restricted to certain [[mechanics-content/dynasty|dynasties]], [[mechanics-content/culture|cultures]] or [[mechanics-content/faith|faiths]]. Some historical seeds have an associated ancient culture. If the [[mechanics-content/royal-court|Royal Court]] DLC is also enabled, completing these legends will give the option to create a [[mechanics-content/culture#divergent-cultures|divergent culture]] with the ancient culture's cultural pillars
 
 ### Legitimizing historical seeds
 
-- Legitimizing historical seeds, in addition to their usual bonuses, will also give the character completing the legend claims on a certain major title.
+- Legitimizing historical seeds, in addition to their usual bonuses, will also give the character completing the legend claims on a certain major [[mechanics-content/titles|title]].
 
 ## Related Wiki Topics
 

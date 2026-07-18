@@ -6,7 +6,7 @@ sourceId: "source:ck3-paradoxwikis-com:hooks"
 sourceRevisionId: 34509
 sourceOldidUrl: "https://ck3.paradoxwikis.com/Hooks?oldid=34509"
 license: "CC BY-SA 3.0"
-generatedAt: "2026-07-18T07:02:11.038Z"
+generatedAt: "2026-07-18T07:20:18.943Z"
 contentHash: "10cda3ac294263055515ec6a5d54b036312e1c085fabed2b333d97acdf7cbe88"
 ---
 
@@ -32,18 +32,18 @@ Use this page when a question needs CK3 mechanics context for Hooks. Combine the
 
 ### Weak hooks
 
-- Weak hooks can only be used once. For most interactions a weak hook only provides a bonus to acceptance rather than forced action. The hook name has some narrow effects. The Obligation hook halves the monthly base salary of assigned court positions (it does not affect task expenses).
+- Weak hooks can only be used once. For most interactions a weak hook only provides a bonus to acceptance rather than forced action. The hook name has some narrow effects. The Obligation hook halves the monthly base salary of assigned [[mechanics-content/court|court]] positions (it does not affect task expenses).
 
 ### Perpetual hooks
 
 - Perpetual hooks are permanent and can be used multiple times with a five year cool-down between uses. For most interactions a perpetual hook only provides a bonus to acceptance rather than forced action. Perpetual hooks cannot be fabricated.
 - wrd Loyal Hostage hooks can be obtained if the A Loyal Hostage story ends positively
 - cor Indebted Claimant hooks are obtained on every installed claimant if a ruler fulfills a Install Claimants oath
-- auh Filial Piety hooks are obtained at birth if the faith has the Filial Piety tenet
+- auh Filial [[mechanics-content/resources|Piety]] hooks are obtained at birth if the [[mechanics-content/faith|faith]] has the Filial Piety [[mechanics-content/tenets|tenet]]
 
 ### Strong hooks
 
-- Strong hooks can be used multiple times with a five year cool-down between uses. For most interactions using a strong hook will force acceptance. Passively, it also prevents the character from joining factions, declaring war, imprisoning or demanding religious conversion from the character holding the hook. Having a strong hook over a Realm Priest forces them to pay maximum contribution.
+- Strong hooks can be used multiple times with a five year cool-down between uses. For most interactions using a strong hook will force acceptance. Passively, it also prevents the character from joining factions, declaring [[mechanics-content/warfare|war]], imprisoning or demanding religious conversion from the character [[mechanics-content/barony|holding]] the hook. Having a strong hook over a Realm Priest forces them to pay maximum contribution.
 
 ### Spending hooks
 
@@ -51,7 +51,7 @@ Use this page when a question needs CK3 mechanics context for Hooks. Combine the
 
 ### What hooks can't do
 
-- Hooks cannot be invoked in many interactions, but these are the most notable. Arbitrary rulers may use the Dismiss Hook interaction at the cost of opinion, prestige, and tyranny.
+- Hooks cannot be invoked in many interactions, but these are the most notable. Arbitrary rulers may use the Dismiss Hook interaction at the cost of opinion, [[mechanics-content/resources|prestige]], and tyranny.
 
 ### Secrets
 

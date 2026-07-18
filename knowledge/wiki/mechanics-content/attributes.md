@@ -6,7 +6,7 @@ sourceId: "source:ck3-paradoxwikis-com:attributes"
 sourceRevisionId: 34884
 sourceOldidUrl: "https://ck3.paradoxwikis.com/Attributes?oldid=34884"
 license: "CC BY-SA 3.0"
-generatedAt: "2026-07-18T07:02:11.038Z"
+generatedAt: "2026-07-18T07:20:18.943Z"
 contentHash: "cb8e508f41d6d5b14e35a2c42f50b6f89d2ae4f525da863f7af3f7ac86439021"
 ---
 
@@ -32,17 +32,17 @@ Use this page when a question needs CK3 mechanics context for Attributes. Combin
 
 ### Age
 
-- A character is considered a child if they are below 16 years and an adult once they reach 16 years. A character can die of old age after reaching 60 years. (If they die of poor health before it, the death reason will be "Natural Causes".) Each starting character will have a number of lifestyle perks unlocked based on its age.
+- A character is considered a child if they are below 16 years and an adult once they reach 16 years. A character can die of old age after reaching 60 years. (If they die of poor health before it, the death reason will be "Natural Causes".) Each starting character will have a number of [[mechanics-content/lifestyle|lifestyle]] perks unlocked based on its age.
 - Once a character reaches the age of 25, they have a 7.5% chance to lose health −0.125 health each year. The chance increases by 2.2% each year.
-- Once a character reaches the age of 45, they have a 10% chance to lose prowess 1 prowess each year. The chance increases by 1.5% each year. A dynasty can prevent this by completing the
+- Once a character reaches the age of 45, they have a 10% chance to lose prowess 1 prowess each year. The chance increases by 1.5% each year. A [[mechanics-content/dynasty|dynasty]] can prevent this by completing the
 
 ### Skills
 
-- Skills represent a character's expertise across various fields and together with traits determine how good or bad a character is at a given task. Each character will be born with a skill level between 0 and 10 in every skill category, partially determined by both parents.
+- Skills represent a character's expertise across various fields and together with [[mechanics-content/traits|traits]] determine how good or bad a character is at a given task. Each character will be born with a skill level between 0 and 10 in every skill category, partially determined by both parents.
 
 ### Value thresholds
 
-- The final value of each skill, including modification by education and other traits, is tested against certain thresholds in the game data. One is used to set the human-readable description of the skill level shown in the tooltip while mousing over one of a character's skills, to give a general assessment of their ability.
+- The final value of each skill, including modification by education and other [[mechanics-content/traits|traits]], is tested against certain thresholds in the game data. One is used to set the human-readable description of the skill level shown in the tooltip while mousing over one of a character's skills, to give a general assessment of their ability.
 
 ### Dread
 
@@ -50,7 +50,7 @@ Use this page when a question needs CK3 mechanics context for Attributes. Combin
 
 ### Intimidation and terror
 
-- Intimidated characters are less likely to join factions or schemes against the character they're intimidated by, while a terrified character will never join factions or schemes against them. In addition, it affects their acceptance for various character interactions:
+- Intimidated characters are less likely to join factions or [[mechanics-content/schemes|schemes]] against the character they're intimidated by, while a terrified character will never join factions or schemes against them. In addition, it affects their acceptance for various character interactions:
 
 ### Natural dread
 
@@ -58,7 +58,7 @@ Use this page when a question needs CK3 mechanics context for Attributes. Combin
 
 ### Health
 
-- Health is a measure of how likely a character is to die. Male characters are born with health between (and including) 4.5 and 4.9; female characters are born with health between (and including) 5.0 and 5.4. HealthLossViaAge Some traits, tenets and modifiers provide bonuses health boost Disease resistance (health).
+- Health is a measure of how likely a character is to die. Male characters are born with health between (and including) 4.5 and 4.9; female characters are born with health between (and including) 5.0 and 5.4. HealthLossViaAge Some [[mechanics-content/traits|traits]], [[mechanics-content/tenets|tenets]] and [[mechanics-content/modifiers|modifiers]] provide bonuses health boost Disease resistance (health).
 
 ### Health boosts and penalties
 
@@ -66,43 +66,43 @@ Use this page when a question needs CK3 mechanics context for Attributes. Combin
 
 ### Death
 
-- death Death is the end of a character's life. For landed characters, it triggers succession for any held titles. There can be multiple causes:
+- death Death is the end of a character's life. For landed characters, it triggers succession for any held [[mechanics-content/titles|titles]]. There can be multiple causes:
 - health When health is either Poor, Near Death or Dying, there is a chance at a given interval to die. The lower a character's health, the bigger this chance is.
-- Upon success of a murder scheme, the targeted character dies.
-- decision The Attempt Suicide decision has a chance for the character to die.
-- Knights may die in battle or in duels, with this chance increasing with low prowess and other factors.
+- Upon success of a murder [[mechanics-content/schemes|scheme]], the targeted character dies.
+- [[mechanics-content/decisions|decision]] The Attempt Suicide decision has a chance for the character to die.
+- [[mechanics-content/knight|Knights]] may die in battle or in [[mechanics-content/duel|duels]], with this chance increasing with low prowess and other factors.
 
 ### Fertility
 
-- Fertility represents a character's chance to have or cause pregnancy. Married couples and lovers who are a man and a woman, have a monthly chance to get the woman pregnant based on the average fertility of the two partners. A character has a base fertility of 50%, modified by additive modifiers such as traits and artifacts. There is also a multiplicative modifier from age.
+- Fertility represents a character's chance to have or cause pregnancy. Married couples and lovers who are a man and a woman, have a monthly chance to get the woman pregnant based on the average fertility of the two partners. A character has a base fertility of 50%, modified by additive [[mechanics-content/modifiers|modifiers]] such as [[mechanics-content/traits|traits]] and [[mechanics-content/artifacts|artifacts]]. There is also a multiplicative modifier from age.
 
 ### Pregnancy and Complications
 
-- Women will start showing signs of pregnancy on the 2nd month, during which they will have -2 prowess penalty, and will give birth in the 10th month. It is possible for the mother to suffer pregnancy complications, which may result in stillbirth and/or the death of the mother. Currently, there are only 2 modifiers that influence the chance of pregnancy complications, such as:
+- Women will start showing signs of pregnancy on the 2nd month, during which they will have -2 prowess penalty, and will give birth in the 10th month. It is possible for the mother to suffer pregnancy complications, which may result in stillbirth and/or the death of the mother. Currently, there are only 2 [[mechanics-content/modifiers|modifiers]] that influence the chance of pregnancy complications, such as:
 
 ### Disease resistance (fertility)
 
-- It is possible for fertility penalties to be negated by the fertility Disease resistance (fertility) modifier. Currently, only the Iron Constitution perk in the Whole of Body tree provides some.
+- It is possible for fertility penalties to be negated by the fertility Disease resistance (fertility) [[mechanics-content/modifiers|modifier]]. Currently, only the Iron Constitution perk in the Whole of Body tree provides some.
 
 ### Stress
 
-- Stress is a measure of a character's mental health and is gained whenever a character responds to an event or decision in a way that conflicts with their personality traits, someone they're close to dies, the character is imprisoned in a dungeon or is tortured. Serving as a guardian for a ward can also cause stress if the guardian elects to change the child's personality traits.
+- [[mechanics-content/resources|Stress]] is a measure of a character's mental health and is gained whenever a character responds to an event or [[mechanics-content/decisions|decision]] in a way that conflicts with their personality [[mechanics-content/traits|traits]], someone they're close to dies, the character is imprisoned in a dungeon or is tortured. Serving as a guardian for a ward can also cause stress if the guardian elects to change the child's personality traits.
 
 ### Mental Breaks
 
-- A character breaching the threshold of 100, 200, or 300 stress for the first time will immediately suffer a Mental Break. Mental breaks range in severity from level 1 to 3 and grant the option to either Stress loss lose some stress with a choice of gaining one of two traits (a Coping Mechanism or worse, see table below) or Stress gain gain additional stress.
+- A character breaching the threshold of 100, 200, or 300 [[mechanics-content/resources|stress]] for the first time will immediately suffer a Mental Break. Mental breaks range in severity from level 1 to 3 and grant the option to either Stress loss lose some stress with a choice of gaining one of two [[mechanics-content/traits|traits]] (a Coping Mechanism or worse, see table below) or Stress gain gain additional stress.
 
 ### Known languages
 
-- Known languages are the languages that a character can speak fluently. Speaking the language of a different culture reduces the different culture opinion penalties with both characters and counties of that culture in half. Each character will always know the language of their culture and can learn a number of foreign languages via the Learn Language scheme.
+- Known languages are the languages that a character can speak fluently. Speaking the language of a different [[mechanics-content/culture|culture]] reduces the different culture opinion penalties with both characters and [[mechanics-content/county|counties]] of that culture in half. Each character will always know the language of their culture and can learn a number of foreign languages via the Learn Language [[mechanics-content/schemes|scheme]].
 
 ### Legitimacy
 
-- Legitimacy is a measure of a ruler character's right to rule. Legitimacy can be gained by creating titles (gaining titles through usurpation only decreases the former owner's Legitimacy), releasing higher-ranked prisoners with no demands, taking certain decisions, creating legends, holding court, attending activities, having a Senechal and assigning a Court Musician to the Bolster Legitimacy task (effectiveness...
+- [[mechanics-content/resources|Legitimacy]] is a measure of a ruler character's right to rule. Legitimacy can be gained by creating [[mechanics-content/titles|titles]] (gaining titles through usurpation only decreases the former owner's Legitimacy), releasing higher-ranked [[mechanics-content/prisoners|prisoners]] with no demands, taking certain [[mechanics-content/decisions|decisions]], creating legends, [[mechanics-content/barony|holding]] [[mechanics-content/court|court]], attending [[mechanics-content/activity|activities]], having a Senechal and assigning a Court Musician to the Bolster Legitimacy task (effectiveness...
 
 ### Nomadic legitimacy
 
-- Rulers with Nomadic government are expected to have the Rightful legitimacy level and are affected the same way regardless of their title rank. Their legitimacy gains and loses from wars are also doubled and they also gain legitimacy by marrying the noble courtiers of a ruler with equal or higher Dominance law.
+- Rulers with Nomadic [[mechanics-content/government|government]] are expected to have the Rightful [[mechanics-content/resources|legitimacy]] level and are affected the same way regardless of their [[mechanics-content/titles|title]] rank. Their legitimacy gains and loses from [[mechanics-content/warfare|wars]] are also doubled and they also gain legitimacy by marrying the noble courtiers of a ruler with equal or higher Dominance [[mechanics-content/laws|law]].
 
 ## Related Wiki Topics
 

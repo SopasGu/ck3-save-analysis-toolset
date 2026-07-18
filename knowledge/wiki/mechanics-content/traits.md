@@ -6,7 +6,7 @@ sourceId: "source:ck3-paradoxwikis-com:traits"
 sourceRevisionId: 34781
 sourceOldidUrl: "https://ck3.paradoxwikis.com/Traits?oldid=34781"
 license: "CC BY-SA 3.0"
-generatedAt: "2026-07-18T07:02:11.038Z"
+generatedAt: "2026-07-18T07:20:18.943Z"
 contentHash: "ed3771fa8283f72ab41f54be0c944a702abaeff75c66ba85bd06c8fd4b8c92a5"
 ---
 
@@ -28,15 +28,15 @@ Use this page when a question needs CK3 mechanics context for Traits. Combine th
 
 ### Overview
 
-- Traits represent a character's personality, abilities, reputation, and physical characteristics. They can be gained or lost through events and some traits can be inherited by descendants. Traits affect everything about a character, from attributes to the opinion others have on them. Most traits influence the outcome of certain events or grant additional options.
+- Traits represent a character's personality, abilities, reputation, and physical characteristics. They can be gained or lost through events and some traits can be inherited by descendants. Traits affect everything about a character, from [[mechanics-content/attributes|attributes]] to the opinion others have on them. Most traits influence the outcome of certain events or grant additional options.
 
 ### Personality traits
 
-- Personality traits are the traits that represent a character the most and impact if and how much Stress a character receives for actions and decisions that conflict with these traits. For AI characters, it also determines their behavior (e.g. how resistant they are to another character's Dread). Characters tend not to have more than 3 personality traits.
+- Personality traits are the traits that represent a character the most and impact if and how much [[mechanics-content/resources|Stress]] a character receives for actions and [[mechanics-content/decisions|decisions]] that conflict with these traits. For AI characters, it also determines their behavior (e.g. how resistant they are to another character's Dread). Characters tend not to have more than 3 personality traits.
 
 ### Education traits
 
-- When reaching adulthood every character receives an education trait based on how their education focus went and can be upgraded by completing University Visit activities. Level 5 education traits can only be obtained if the child's dynasty finished the Legitimacy dynasty legacy or the estate has the Education Hall upgrade.
+- When reaching adulthood every character receives an education trait based on how their education focus went and can be upgraded by completing University Visit [[mechanics-content/activity|activities]]. Level 5 education traits can only be obtained if the child's dynasty finished the [[mechanics-content/resources|Legitimacy]] [[mechanics-content/dynasty|dynasty legacy]] or the estate has the Education Hall upgrade.
 
 ### Congenital traits
 
@@ -48,34 +48,34 @@ Use this page when a question needs CK3 mechanics context for Traits. Combine th
 
 ### Leveled traits
 
-- The following traits have one or more trait paths. The traits and the experience to upgrade them are gained following certain actions, events or activities. Each trait level adds to the previous ones (i.e. Blademaster at level 2 gives prowess +12 Prowess).
+- The following traits have one or more trait paths. The traits and the experience to upgrade them are gained following certain actions, events or [[mechanics-content/activity|activities]]. Each trait level adds to the previous ones (i.e. Blademaster at level 2 gives [[mechanics-content/attributes|prowess]] +12 Prowess).
 
 ### Commander traits
 
-- Commander traits give various bonuses to armies led by a character with such traits. If creating a custom ruler each commander trait costs 25 customization points. Commander traits come in 4 levels.
+- [[mechanics-content/army|Commander]] traits give various bonuses to armies led by a character with such traits. If creating a custom ruler each commander trait costs 25 customization points. Commander traits come in 4 levels.
 - At level 3 the trait's bonuses triple and the traits also provides +1 Advantage
-- At level 4 the trait's bonuses quadruple and the traits also provides +2 Advantage and +1 Martial
-- Guardians can attempt to teach wards their commander traits. The success chance depends primarily on the ward's Opinion, Martial and Prowess. One commander trait can be taught every 5 years.
+- At level 4 the trait's bonuses quadruple and the traits also provides +2 Advantage and +1 [[mechanics-content/attributes|Martial]]
+- Guardians can attempt to teach wards their [[mechanics-content/army|commander]] traits. The success chance depends primarily on the ward's Opinion, Martial and [[mechanics-content/attributes|Prowess]]. One commander trait can be taught every 5 years.
 
 ### Adventurer traits
 
-- Adventurer traits are only present on certain historical adventurers in 1066 and cannot be obtained by other means. They have only a single path. The Exiled trait is leveled up by defeating characters of Norman culture in battle or duels.
+- Adventurer traits are only present on certain historical [[mechanics-content/adventurer|adventurers]] in 1066 and cannot be obtained by other means. They have only a single path. The Exiled trait is leveled up by defeating characters of Norman [[mechanics-content/culture|culture]] in battle or [[mechanics-content/duel|duels]].
 
 ### Lifestyle traits
 
-- Lifestyle traits can be obtained through either the final perk of each Lifestyle tree or as a result of Lifestyle Decisions. They are available for custom rulers even if the required DLC is not installed. Adding lifestyle traits to a custom ruler will not unlock the prerequisite perks. Resetting lifestyle perks remove the lifestyle traits as well.
+- [[mechanics-content/lifestyle|Lifestyle]] traits can be obtained through either the final perk of each Lifestyle tree or as a result of Lifestyle [[mechanics-content/decisions|Decisions]]. They are available for custom rulers even if the required DLC is not installed. Adding lifestyle traits to a custom ruler will not unlock the prerequisite perks. Resetting lifestyle perks remove the lifestyle traits as well.
 
 ### Infamy traits
 
-- Infamy traits may be virtuous, accepted, shunned or considered criminal for a character depending on the Doctrines or Tenets of its faith. If either the character's faith or their liege's faith considers the trait shunned or criminal then the character will gain a secret instead of the trait, and will only gain the trait if the secret is exposed.
+- Infamy traits may be virtuous, accepted, shunned or considered criminal for a character depending on the [[mechanics-content/doctrines|Doctrines]] or [[mechanics-content/tenets|Tenets]] of its [[mechanics-content/faith|faith]]. If either the character's faith or their liege's faith considers the trait shunned or criminal then the character will gain a secret instead of the trait, and will only gain the trait if the secret is exposed.
 
 ### Coping mechanisms
 
-- A coping mechanism is a trait that can be obtained when a character suffers a mental break and helps a character lose stress and usually imparts negative effects. A few coping mechanisms impart only positive effects and are rare but can be obtained more easily by having the Whole of Body lifestyle focus. Each character can have up to two coping mechanisms. Each coping mechanism unlocks a unique decision.
+- A coping mechanism is a trait that can be obtained when a character suffers a mental break and helps a character lose [[mechanics-content/resources|stress]] and usually imparts negative effects. A few coping mechanisms impart only positive effects and are rare but can be obtained more easily by having the Whole of Body [[mechanics-content/lifestyle|lifestyle]] focus. Each character can have up to two coping mechanisms. Each coping mechanism unlocks a unique [[mechanics-content/decisions|decision]].
 
 ### Childhood traits
 
-- Characters between 3 and 15 years old will have a childhood trait, which is decided at random but the chance can be influenced by a few cultural traditions. Childhood traits grant a minor bonus to two Skills and if the child is given an Education Focus that matches one of the two Skills the trait improves, then the trait can improve the level of the education trait given when the character reaches adulthood.
+- Characters between 3 and 15 years old will have a childhood trait, which is decided at random but the chance can be influenced by a few cultural [[mechanics-content/traditions|traditions]]. Childhood traits grant a minor bonus to two Skills and if the child is given an Education Focus that matches one of the two Skills the trait improves, then the trait can improve the level of the education trait given when the character reaches adulthood.
 
 ### Health traits
 
@@ -83,7 +83,7 @@ Use this page when a question needs CK3 mechanics context for Traits. Combine th
 
 ### Wounds
 
-- There are three traits of increasing severity that represents a character's current level of wounds. They are increased as part of various events, hunts, duels, or battles, and have a chance to be reduced every 3 months. The chance to reduce wounds decreases with the character's age and Stress. They cannot be added to custom characters.
+- There are three traits of increasing severity that represents a character's current level of wounds. They are increased as part of various events, hunts, [[mechanics-content/duel|duels]], or battles, and have a chance to be reduced every 3 months. The chance to reduce wounds decreases with the character's age and [[mechanics-content/resources|Stress]]. They cannot be added to custom characters.
 
 ### Diseases
 
@@ -95,11 +95,11 @@ Use this page when a question needs CK3 mechanics context for Traits. Combine th
 
 ### Incapable
 
-- Incapable is the most severe health trait and cannot be added at character creation. It prevents the character from having children, declaring war, performing schemes, hosting or joining activities, being councilors or knights, or taking part in duels, forces them into an Entrenched Regency, all their skills will always be 0, and if the character has a royal court the throne will be empty.
+- Incapable is the most severe health trait and cannot be added at character creation. It prevents the character from having children, declaring [[mechanics-content/warfare|war]], performing [[mechanics-content/schemes|schemes]], hosting or joining [[mechanics-content/activity|activities]], being councilors or [[mechanics-content/knight|knights]], or taking part in [[mechanics-content/duel|duels]], forces them into an Entrenched Regency, all their skills will always be 0, and if the character has a [[mechanics-content/royal-court|royal court]] the throne will be empty.
 
 ### Dynasty traits
 
-- Dynasty traits can be either given or removed by members of the same Dynasty.
+- [[mechanics-content/dynasty|Dynasty]] traits can be either given or removed by members of the same Dynasty.
 
 ## Related Wiki Topics
 

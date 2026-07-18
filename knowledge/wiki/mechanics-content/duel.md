@@ -6,7 +6,7 @@ sourceId: "source:ck3-paradoxwikis-com:duel"
 sourceRevisionId: 34995
 sourceOldidUrl: "https://ck3.paradoxwikis.com/Duel?oldid=34995"
 license: "CC BY-SA 3.0"
-generatedAt: "2026-07-18T07:02:11.038Z"
+generatedAt: "2026-07-18T07:20:18.943Z"
 contentHash: "ae25cd9cb59dbaa928e40b8bd7487bc8f779b66926e3c8fe225affac1b486535"
 ---
 
@@ -28,17 +28,17 @@ Use this page when a question needs CK3 mechanics context for Duel. Combine thes
 
 ### Overview
 
-- A duel is a combat outside of battle between two characters. Duels can last either until a character gets wounded or until death. Characters cannot duel if they are children, have the Blind, Incapable or Pregnant trait or a disease trait or are both over 70 and have below 10 Prowess. Characters will wear armor during duels, except for Tribal rulers who will fight shirtless.
+- A duel is a combat outside of battle between two characters. Duels can last either until a character gets wounded or until death. Characters cannot duel if they are children, have the Blind, Incapable or Pregnant [[mechanics-content/traits|trait]] or a disease trait or are both over 70 and have below 10 [[mechanics-content/attributes|Prowess]]. Characters will wear armor during duels, except for Tribal rulers who will fight shirtless.
 
 ### Issuing a challenge
 
-- Duels can start either as a result of events or if a character issues a challenge, which can only be done once every 5 years. If the recipient refuses the challenge they lose 150 Prestige while the challenger gains 150 Prestige. Acceptance for a duel is determined by the difference in Prowess as well as the recipient's Opinion and personality.
+- Duels can start either as a result of events or if a character issues a challenge, which can only be done once every 5 years. If the recipient refuses the challenge they lose 150 [[mechanics-content/resources|Prestige]] while the challenger gains 150 Prestige. Acceptance for a duel is determined by the difference in [[mechanics-content/attributes|Prowess]] as well as the recipient's Opinion and personality.
 
 ### Mechanics
 
 - Likelihood of Success is a measure of how well a character is doing overall, both offensively and defensively; having a sufficient lead in this at the end of a round results in a victory by skill.
 - Risk of Injury is a measure of how overextended a character is; having this sufficiently close to the character’s own Likelihood of Success means a possibility of a loss by mistake if a victory by skill failed to happen that round. The chance of a loss by mistake is equal to the excess Risk of Injury over Likelihood of Success.
-- Both of these values accumulate over the duel. All duels last between 2 and 4 rounds. Starting from the third round, victory from either method becomes increasingly more likely round by round. If there is still no victor after the fourth round, then instead the character with higher Prowess wins by Sudden Death. In case of a tie in Prowess, a coin flip decides the winner.
+- Both of these values accumulate over the duel. All duels last between 2 and 4 rounds. Starting from the third round, victory from either method becomes increasingly more likely round by round. If there is still no victor after the fourth round, then instead the character with higher [[mechanics-content/attributes|Prowess]] wins by Sudden Death. In case of a tie in Prowess, a coin flip decides the winner.
 - Characters with high Boldness or Vengefulness will choose the option that offers the best Likelihood of Success
 - Characters with low Boldness or Vengefulness will choose the option that offers the least Risk of Injury
 

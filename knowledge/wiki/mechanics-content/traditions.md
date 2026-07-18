@@ -6,7 +6,7 @@ sourceId: "source:ck3-paradoxwikis-com:traditions"
 sourceRevisionId: 34856
 sourceOldidUrl: "https://ck3.paradoxwikis.com/Traditions?oldid=34856"
 license: "CC BY-SA 3.0"
-generatedAt: "2026-07-18T07:02:11.038Z"
+generatedAt: "2026-07-18T07:20:18.943Z"
 contentHash: "f8d04dfcd9aa407adaa5cd0913cebd8aa70cb40c745e3a22782fdcb13774046c"
 ---
 
@@ -28,18 +28,18 @@ Use this page when a question needs CK3 mechanics context for Traditions. Combin
 
 ### Overview
 
-- Traditions represent the main customs of a culture and can grant various effects. A culture can have up to 5 traditions in the tribal era, with every additional era reached granting an additional slot for Traditions. Adding a tradition costs 2000 Prestige, which may be increased by the following:
-- +2000 if the culture does not have one of the Tradition's preferred ethos.
-- +3000 if optional requirement is not fulfilled. This does not apply to AI Culture Heads.
-- In the Royal Court DLC replacing a tradition increases the final cost by +50% and the time it takes to establish it by +25%. The needed time to establish a tradition is dependent on the number of counties with that culture. The fewer counties the culture has, the faster it goes. The maximum time to establish a tradition is 30 years. It should be noted that many traditions are mutually exclusive with other traditions.
+- Traditions represent the main customs of a [[mechanics-content/culture|culture]] and can grant various effects. A culture can have up to 5 traditions in the tribal era, with every additional era reached granting an additional slot for Traditions. Adding a tradition costs 2000 [[mechanics-content/resources|Prestige]], which may be increased by the following:
+- +2000 if the [[mechanics-content/culture|culture]] does not have one of the Tradition's preferred ethos.
+- +3000 if optional requirement is not fulfilled. This does not apply to AI [[mechanics-content/culture|Culture]] Heads.
+- In the [[mechanics-content/royal-court|Royal Court]] DLC replacing a tradition increases the final cost by +50% and the time it takes to establish it by +25%. The needed time to establish a tradition is dependent on the number of [[mechanics-content/county|counties]] with that [[mechanics-content/culture|culture]]. The fewer counties the culture has, the faster it goes. The maximum time to establish a tradition is 30 years. It should be noted that many traditions are mutually exclusive with other traditions.
 
 ### Ritual traditions
 
-- When a ritual tradition conflicts with a faith doctrine the tradition takes precedence.
+- When a ritual tradition conflicts with a [[mechanics-content/faith|faith]] [[mechanics-content/doctrines|doctrine]] the tradition takes precedence.
 
 ### Regional traditions
 
-- All regional traditions are restricted to certain regions, heritages or cultures.
+- All regional traditions are restricted to certain regions, heritages or [[mechanics-content/culture|cultures]].
 
 ## Related Wiki Topics
 

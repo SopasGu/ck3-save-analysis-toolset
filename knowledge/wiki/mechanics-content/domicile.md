@@ -6,7 +6,7 @@ sourceId: "source:ck3-paradoxwikis-com:domicile"
 sourceRevisionId: 34985
 sourceOldidUrl: "https://ck3.paradoxwikis.com/Domicile?oldid=34985"
 license: "CC BY-SA 3.0"
-generatedAt: "2026-07-18T07:02:11.038Z"
+generatedAt: "2026-07-18T07:20:18.943Z"
 contentHash: "2102337977a673004a6226f1979ff0efed453615450f0a805b0494510a89a687"
 ---
 
@@ -28,9 +28,9 @@ Use this page when a question needs CK3 mechanics context for Domicile. Combine 
 
 ### Overview
 
-- Domiciles are available to characters whose government type goes not require them to own landed titles. The appearance of buildings in a domicile depends on the character's culture and the terrain depends on the terrain of the barony where the domicile is located. There are five types of domiciles: Adventurer governments have a Camp
-- governor efficiency Administrative governments have an Administrative estate
-- Celestial, Meritocratic and Meritocratic Khanate governments have a Celestial estate
+- Domiciles are available to characters whose government type goes not require them to own landed [[mechanics-content/titles|titles]]. The appearance of [[mechanics-content/building|buildings]] in a domicile depends on the character's [[mechanics-content/culture|culture]] and the terrain depends on the terrain of the [[mechanics-content/barony|barony]] where the domicile is located. There are five types of domiciles: [[mechanics-content/adventurer|Adventurer]] [[mechanics-content/government|governments]] have a Camp
+- governor efficiency Administrative [[mechanics-content/government|governments]] have an Administrative estate
+- Celestial, Meritocratic and Meritocratic Khanate [[mechanics-content/government|governments]] have a Celestial estate
 
 ## Related Wiki Topics
 

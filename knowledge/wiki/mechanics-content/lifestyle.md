@@ -6,7 +6,7 @@ sourceId: "source:ck3-paradoxwikis-com:lifestyle"
 sourceRevisionId: 35009
 sourceOldidUrl: "https://ck3.paradoxwikis.com/Lifestyle?oldid=35009"
 license: "CC BY-SA 3.0"
-generatedAt: "2026-07-18T07:02:11.038Z"
+generatedAt: "2026-07-18T07:20:18.943Z"
 contentHash: "dd6cd92df01222800204b3abceaf22b7683f5d8a909d8c105f94ca7275803d68"
 ---
 
@@ -32,15 +32,15 @@ Use this page when a question needs CK3 mechanics context for Lifestyle. Combine
 
 ### Focuses
 
-- Each lifestyle contains 3 focuses, each one granting various bonuses to the character. All focuses grant +25 monthly experience towards the character's lifestyle, which can further be improved by the character's education and other factors. A character's focus can be changed once every 5 years. Characters must have a playable government or be heirs to gain lifestyle experience.
+- Each lifestyle contains 3 focuses, each one granting various bonuses to the character. All focuses grant +25 monthly experience towards the character's lifestyle, which can further be improved by the character's education and other factors. A character's focus can be changed once every 5 years. Characters must have a playable [[mechanics-content/government|government]] or be heirs to gain lifestyle experience.
 
 ### Education focuses
 
-- Education focuses are available to characters between the age of 6 and 9 and grant the character +1 in the matching skill. When the character becomes an adult they will gain an education trait. The level of the education trait depends on both how well the character's childhood trait matched with the education focus, and the quality of their guardian, if they were assigned one.
+- Education focuses are available to characters between the age of 6 and 9 and grant the character +1 in the matching skill. When the character becomes an adult they will gain an education [[mechanics-content/traits|trait]]. The level of the education trait depends on both how well the character's childhood trait matched with the education focus, and the quality of their guardian, if they were assigned one.
 
 ### Perk trees
 
-- Each lifestyle has 3 perk trees, each one containing 9 perks. Each perk costs 1000 experience to unlock and the final perk in each tree always gives a powerful trait. Both lifestyle experience and two unique traits can be obtained through lifestyle events. A perk can only be unlocked if all perks above have been unlocked but a few very rare travel events can also grant perks regardless of prerequisites.
+- Each lifestyle has 3 perk trees, each one containing 9 perks. Each perk costs 1000 experience to unlock and the final perk in each tree always gives a powerful trait. Both lifestyle experience and two unique [[mechanics-content/traits|traits]] can be obtained through lifestyle events. A perk can only be unlocked if all perks above have been unlocked but a few very rare [[mechanics-content/travel|travel]] events can also grant perks regardless of prerequisites.
 
 ## Related Wiki Topics
 

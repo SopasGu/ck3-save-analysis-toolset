@@ -6,7 +6,7 @@ sourceId: "source:ck3-paradoxwikis-com:schemes"
 sourceRevisionId: 34962
 sourceOldidUrl: "https://ck3.paradoxwikis.com/Schemes?oldid=34962"
 license: "CC BY-SA 3.0"
-generatedAt: "2026-07-18T07:02:11.038Z"
+generatedAt: "2026-07-18T07:20:18.943Z"
 contentHash: "2d5a3f2ac372b93111a792fae778e75cd49a7de9447eaef760f39b5c1efe1b84"
 ---
 
@@ -28,19 +28,19 @@ Use this page when a question needs CK3 mechanics context for Schemes. Combine t
 
 ### Overview
 
-- Any character can be targeted with a scheme in accordance with the plans of the schemer. Each character can run one scheme of each type at the same time. Ongoing schemes can be canceled at any point. Various events can take place during a scheme. Some traits, characteristic or statuses of the schemer and target can influence various values in a scheme.
+- Any character can be targeted with a scheme in accordance with the plans of the schemer. Each character can run one scheme of each type at the same time. Ongoing schemes can be canceled at any point. Various events can take place during a scheme. Some [[mechanics-content/traits|traits]], characteristic or statuses of the schemer and target can influence various values in a scheme.
 
 ### Scheme mechanics
 
 - scheme success chance Success Chance determines how likely it is for the scheme to succeed when it is executed and grows over time.
 - scheme phase length Phase Length determines how fast the scheme progresses. On Personal schemes it determines when the scheme completes and on Hostile and Political schemes it determines how long does it take to gain Advantage.
 - Hostile and Political schemes have 4 additional values.
-- scheme potential Potential determines the maximum Success Chance. The schemer's skills can give up to 30% Potential, with the rest coming from agents. Potential cannot exceed 95% except for contract schemes.
+- scheme potential Potential determines the maximum Success Chance. The schemer's skills can give up to 30% Potential, with the rest coming from agents. Potential cannot exceed 95% except for [[mechanics-content/adventurer#contracts|contract]] schemes.
 - scheme secrecy Secrecy determines how likely it is for a scheme to remain undetected by the target. The chance for the scheme to be discovered upon execution is equal to the missing Secrecy and the chance for the scheme to gain a Breach each month is equal to a tenth of the missing Secrecy. Secrecy has no effects during Grace. Grace is normally six months, but raises to ten months with the
 
 ### Hostile schemes
 
-- Hostile schemes use agents and secrecy. If secrecy fails the targeted character will gain an imprisonment reason on the schemer. Hostile schemes cannot target the schemer's own children unless the schemer has the Sadistic trait. Being at war with someone grants -50 Success Chance to Murder schemes and -500 Success Chance to Abduction schemes.
+- Hostile schemes use agents and secrecy. If secrecy fails the targeted character will gain an imprisonment reason on the schemer. Hostile schemes cannot target the schemer's own children unless the schemer has the Sadistic [[mechanics-content/traits|trait]]. Being at [[mechanics-content/warfare|war]] with someone grants -50 Success Chance to Murder schemes and -500 Success Chance to Abduction schemes.
 
 ### Personal schemes
 
@@ -48,15 +48,15 @@ Use this page when a question needs CK3 mechanics context for Schemes. Combine t
 
 ### Political schemes
 
-- Political schemes are only available between characters with governor efficiency Administrative, Celestial, Ritsuryō, Meritocratic or Meritocratic Khanate government. They have no failure effects beyond giving Stress. The only exception is Raid Estate. If a vassal is discovered performing the scheme the liege will consider them a criminal unless the character obtained a remit.
+- Political schemes are only available between characters with governor efficiency Administrative, Celestial, Ritsuryō, Meritocratic or Meritocratic Khanate [[mechanics-content/government|government]]. They have no failure effects beyond giving [[mechanics-content/resources|Stress]]. The only exception is Raid Estate. If a vassal is discovered performing the scheme the liege will consider them a criminal unless the character obtained a remit.
 
 ### Mandala schemes
 
-- Mandala schemes are only available to rulers with Mandala government who have the Aspect of Trickery. Both schemes can only target the same ruler once every 5 years and do not use secrecy. The skill used in both schemes is Intrigue Leverage Contribution is only available while a great project is underway and has unfunded contributions.
+- Mandala schemes are only available to rulers with Mandala [[mechanics-content/government|government]] who have the Aspect of Trickery. Both schemes can only target the same ruler once every 5 years and do not use secrecy. The skill used in both schemes is [[mechanics-content/attributes|Intrigue]] Leverage Contribution is only available while a great project is underway and has unfunded contributions.
 
 ### Agents
 
-- Most hostile and political schemes can have up to 5 agents - adult characters who contribute to the scheme. Only the target's courtiers, guests and direct vassals can be invited as agents and only if they are not improsoned or part of another scheme. Agents come in many types, which determines what scheme stat they will increase and which skills and traits will increase their contribution.
+- Most hostile and political schemes can have up to 5 agents - adult characters who contribute to the scheme. Only the target's courtiers, guests and direct vassals can be invited as agents and only if they are not improsoned or part of another scheme. Agents come in many types, which determines what scheme stat they will increase and which skills and [[mechanics-content/traits|traits]] will increase their contribution.
 
 ### Swaying Agents
 
@@ -65,28 +65,28 @@ Use this page when a question needs CK3 mechanics context for Schemes. Combine t
 ### Agent Personality
 
 - Some agents are more likely than others to engage in hostile scheming based on their AI Personality (the following discussion does not apply to political schemes other than Raid Estate and in some cases may be the opposite, like Compassionate characters getting a bonus to Promote schemes).
-- Most characters (even generous characters like Lackeys) face a -10 acceptance penalty for "nothing to gain" unless they dislike the target. Greedy characters (like Rapacious characters or Raveners) suffer -35 acceptance for nothing to gain unless they get a title from the target's death. However, they get twice the acceptance from gold bribes (+20 instead of +10) and removes the nothing to gain penalty.
+- Most characters (even generous characters like Lackeys) face a -10 acceptance penalty for "nothing to gain" unless they dislike the target. Greedy characters (like Rapacious characters or Raveners) suffer -35 acceptance for nothing to gain unless they get a [[mechanics-content/titles|title]] from the target's death. However, they get twice the acceptance from [[mechanics-content/resources|gold]] bribes (+20 instead of +10) and removes the nothing to gain penalty.
 - Low Boldness face a -10 acceptance penalty for "too dangerous". For Cowardly characters (like Spineless characters or Cravens), this increases to -100, and the penalty stacks with "Intimidated/Terrified by Target"
 - Most Compassionate characters (Gracious or Empaths) have a larger immoral penalty (-40), which scales downward until it becomes a bonus for Evil Villains (+10)!
 - Characters with even a little Vengefulness will get a large (+40) bonus to scheme against someone who has slighted them, even if they are not rivals.
 
 ### Scheme type agents
 
-- This table includes a quick reference of the types of assassins for each scheme arrangement with the most relevant skills (size indicates relevance). For full details on beneficial traits, see agent tables below.
-- scheme phase length Infiltrator Intrigue Diplomacy
-- scheme phase length Socialite Diplomacy Intrigue Learning
+- This table includes a quick reference of the types of assassins for each scheme arrangement with the most relevant skills (size indicates relevance). For full details on beneficial [[mechanics-content/traits|traits]], see agent tables below.
+- scheme phase length Infiltrator Intrigue [[mechanics-content/attributes|Diplomacy]]
+- scheme phase length Socialite [[mechanics-content/attributes|Diplomacy]] Intrigue Learning
 
 ### Scheme potential agents
 
-- The following agents increase scheme success chance Scheme Potential. The Eunuch agent type is only available for agents with the Eunuch or Beardless Eunuch trait and requires either the schemer or the target's culture to have the Court Eunuchs, Byzantine Traditions or Palace Politics tradition. The Devotee agent type can only be added by events from having a positive Camp Temperament.
+- The following agents increase scheme success chance Scheme Potential. The Eunuch agent type is only available for agents with the Eunuch or Beardless Eunuch [[mechanics-content/traits|trait]] and requires either the schemer or the target's [[mechanics-content/culture|culture]] to have the [[mechanics-content/court|Court]] Eunuchs, Byzantine [[mechanics-content/traditions|Traditions]] or Palace Politics tradition. The Devotee agent type can only be added by events from having a positive [[mechanics-content/adventurer#camp-temperament|Camp Temperament]].
 
 ### Administrative agents
 
-- The following agent types are only available for agents with Administrative government.
+- The following agent types are only available for agents with Administrative [[mechanics-content/government|government]].
 
 ### Phase length agents
 
-- The following agents reduce Scheme Phase Length. The Bureaucrat agent type is only available for agents with a title rank of Duke or higher.
+- The following agents reduce Scheme Phase Length. The Bureaucrat agent type is only available for agents with a [[mechanics-content/titles|title]] rank of Duke or higher.
 
 ### Secrecy agents
 
@@ -94,13 +94,13 @@ Use this page when a question needs CK3 mechanics context for Schemes. Combine t
 
 ### Countermeasure focus
 
-- Each character can choose a Countermeasure Focus, which will give them a bonus against certain schemes but cause various penalties. They come in three tiers. Tier 2 countermeasure focuses are unlocked by the Paranoid trait or the Palace Politics tradition. Tier 3 countermeasures are unlocked by certain traditions, tenets or traits.
+- Each character can choose a Countermeasure Focus, which will give them a bonus against certain schemes but cause various penalties. They come in three tiers. Tier 2 countermeasure focuses are unlocked by the Paranoid trait or the Palace Politics tradition. Tier 3 countermeasures are unlocked by certain [[mechanics-content/traditions|traditions]], [[mechanics-content/tenets|tenets]] or [[mechanics-content/traits|traits]].
 
 ### Bribe Officials
 
-- Rulers with governor efficiency Administrative, Celestial, Meritocratic, Meritocratic Khanate or Ritsuryō government have access to an additional countermeasure focus called Bribe Officials.
-- The tier 2 countermeasure is unlocked by having the Palace Politics tradition or the
-- The tier 3 countermeasure is unlocked by having the Palace Politics tradition and the
+- Rulers with governor efficiency Administrative, Celestial, Meritocratic, Meritocratic Khanate or Ritsuryō [[mechanics-content/government|government]] have access to an additional countermeasure focus called Bribe Officials.
+- The tier 2 countermeasure is unlocked by having the Palace Politics [[mechanics-content/traditions|tradition]] or the
+- The tier 3 countermeasure is unlocked by having the Palace Politics [[mechanics-content/traditions|tradition]] and the
 
 ## Related Wiki Topics
 

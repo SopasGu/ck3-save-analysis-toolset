@@ -6,7 +6,7 @@ sourceId: "source:ck3-paradoxwikis-com:tenet"
 sourceRevisionId: 35036
 sourceOldidUrl: "https://ck3.paradoxwikis.com/Tenet?oldid=35036"
 license: "CC BY-SA 3.0"
-generatedAt: "2026-07-18T07:02:11.038Z"
+generatedAt: "2026-07-18T07:20:18.943Z"
 contentHash: "b4499e0f211331f6ec7a9aa3822bc4b36da83d7e72910cf4282ef95b42923a97"
 ---
 
@@ -28,7 +28,7 @@ Use this page when a question needs CK3 mechanics context for Tenets. Combine th
 
 ### Overview
 
-- Tenets represent a faith's most important rites, rituals and traditions. Each faith has exactly three. The piety cost to choose a tenet when creating a new faith depends on what religion it belongs to. The cost of the tenet will also be discounted by 50% if it is present in the original faith.
+- Tenets represent a [[mechanics-content/faith|faith]]'s most important rites, rituals and [[mechanics-content/traditions|traditions]]. Each faith has exactly three. The [[mechanics-content/resources|piety]] cost to choose a tenet when creating a new faith depends on what religion it belongs to. The cost of the tenet will also be discounted by 50% if it is present in the original faith.
 
 ### Common tenets
 
@@ -44,7 +44,7 @@ Use this page when a question needs CK3 mechanics context for Tenets. Combine th
 
 ### Syncretism
 
-- All faiths can pick a Syncretism tenet, which borrow at least one virtue and sin from another religion, allow the faith to use artifacts restricted to that religion, grants +30 Opinion mutually with all characters and counties following it, and makes their faiths and the faith with the tenet consider each other Astray/Hostile instead of Hostile/Evil, depending on the faiths' Theism doctrine.
+- All [[mechanics-content/faith|faiths]] can pick a Syncretism tenet, which borrow at least one virtue and sin from another religion, allow the faith to use [[mechanics-content/artifacts|artifacts]] restricted to that religion, grants +30 Opinion mutually with all characters and [[mechanics-content/county|counties]] following it, and makes their faiths and the faith with the tenet consider each other Astray/Hostile instead of Hostile/Evil, depending on the faiths' Theism [[mechanics-content/doctrines|doctrine]].
 
 ## Related Wiki Topics
 

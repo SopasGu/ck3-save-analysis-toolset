@@ -6,7 +6,7 @@ sourceId: "source:ck3-paradoxwikis-com:knight"
 sourceRevisionId: 34696
 sourceOldidUrl: "https://ck3.paradoxwikis.com/Knight?oldid=34696"
 license: "CC BY-SA 3.0"
-generatedAt: "2026-07-18T07:02:11.038Z"
+generatedAt: "2026-07-18T07:20:18.943Z"
 contentHash: "7c9a709790859cc32ce1504143ddd416647fd466e1e31f212a2d43220c911cfe"
 ---
 
@@ -28,22 +28,22 @@ Use this page when a question needs CK3 mechanics context for Knight. Combine th
 
 ### Overview
 
-- Knights are characters that fight in an army. Each ruler can only have a small number of Knights. By default, any available characters will be appointed as knight based on its Prowess skill, but this behavior can be changed in the Permissions menu. Diarchs cannot be appointed as knights. If an army loses a Battle, each Knight has a 10% chance to be captured and imprisoned and 5% chance to be killed.
+- Knights are characters that fight in an [[mechanics-content/army|army]]. Each ruler can only have a small number of Knights. By default, any available characters will be appointed as knight based on its [[mechanics-content/attributes|Prowess]] skill, but this behavior can be changed in the Permissions menu. Diarchs cannot be appointed as knights. If an army loses a Battle, each Knight has a 10% chance to be captured and imprisoned and 5% chance to be killed.
 
 ### Cultural alternatives
 
-- Knight is the default naming for most governments, and Champion for tribal governments. But some alternatives exist.
+- Knight is the default naming for most [[mechanics-content/government|governments]], and Champion for tribal governments. But some alternatives exist.
 
 ### Appointment
 
-- Each ruler can only have a small number of Knights. By default, Knights are appointed automatically based on their Prowess skill, but characters can be manually forced or forbidden to become Knights. To be appointed as Knights a character must fulfil the following conditions:
-- Members of the clergy and characters with the Devoted trait may only serve as knights if their faith has the Clerical function Recruitment Clerical Function doctrine, the Warmonger tenet, or the Unrelenting Faith tenet.
-- If Royal Court is installed the ruler's culture's Martial Custom must allow it.
-- If Royal Court is not installed the ruler's faith's View on Gender must allow it.
+- Each ruler can only have a small number of Knights. By default, Knights are appointed automatically based on their [[mechanics-content/attributes|Prowess]] skill, but characters can be manually forced or forbidden to become Knights. To be appointed as Knights a character must fulfil the following conditions:
+- Members of the clergy and characters with the Devoted [[mechanics-content/traits|trait]] may only serve as knights if their [[mechanics-content/faith|faith]] has the Clerical function Recruitment Clerical Function [[mechanics-content/doctrines|doctrine]], the Warmonger [[mechanics-content/tenets|tenet]], or the Unrelenting Faith tenet.
+- If [[mechanics-content/royal-court|Royal Court]] is installed the ruler's [[mechanics-content/culture|culture]]'s [[mechanics-content/attributes|Martial]] Custom must allow it.
+- If [[mechanics-content/royal-court|Royal Court]] is not installed the ruler's [[mechanics-content/faith|faith]]'s View on Gender must allow it.
 
 ### Combat performance
 
-- Knights represent a significant fraction of the total realm fighting force. Their strong side is extremely high damage per combat width, which helps to out-damage and even stackwipe larger enemy armies. They are also free in terms of monthly maintenance.
+- Knights represent a significant fraction of the total realm fighting force. Their strong side is extremely high damage per combat width, which helps to out-damage and even stackwipe larger enemy [[mechanics-content/army|armies]]. They are also free in terms of monthly maintenance.
 
 ### Number of Knights
 
@@ -51,24 +51,24 @@ Use this page when a question needs CK3 mechanics context for Knight. Combine th
 
 ### Accolades
 
-- Accolades are special named honors granted to knights by rulers at the cost of 100-200 Prestige, depending on primary title rank. Accolades can only be unlanded knights with at least 8 Prowess and have a +15 Opinion of their liege. Accolades are less likely to die in battle or be captured than knights.
-- A ruler can have up to 5 accolades, depending on the following:
-- Government is Feudal, Clan, Tribal, Nomadic, Mandala, Ritsuryō, Sōryō or Wanua
+- [[mechanics-content/knight#accolades|Accolades]] are special named honors granted to knights by rulers at the cost of 100-200 [[mechanics-content/resources|Prestige]], depending on primary [[mechanics-content/titles|title]] rank. Accolades can only be unlanded knights with at least 8 [[mechanics-content/attributes|Prowess]] and have a +15 Opinion of their liege. Accolades are less likely to die in battle or be captured than knights.
+- A ruler can have up to 5 [[mechanics-content/knight#accolades|accolades]], depending on the following:
+- [[mechanics-content/government|Government]] is Feudal, Clan, Tribal, Nomadic, Mandala, Ritsuryō, Sōryō or Wanua
 
 ### Rank
 
-- Accolades have a rank, which ranges from 1 to 6. Each time its rank increases it gains an attribute point, which can be used to either level up an existing attribute or gain an additional one, up to 3. Ranks are increased by gaining sufficient Glory, which can be obtained in the following ways:
-- Their liege wins a war against a ruler with higher title rank
-- They attend activities, especially Grand tournaments
-- Accolades lose 200 Glory upon succession if the previous accolade did not die in battle or duel but even if the rank is reduced existing accolade attributes are not downgraded or removed. There is no maximum limit to Glory.
+- [[mechanics-content/knight#accolades|Accolades]] have a rank, which ranges from 1 to 6. Each time its rank increases it gains an [[mechanics-content/attributes|attribute]] point, which can be used to either level up an existing attribute or gain an additional one, up to 3. Ranks are increased by gaining sufficient Glory, which can be obtained in the following ways:
+- Their liege wins a [[mechanics-content/warfare|war]] against a ruler with higher [[mechanics-content/titles|title]] rank
+- They attend [[mechanics-content/activity|activities]], especially Grand tournaments
+- [[mechanics-content/knight#accolades|Accolades]] lose 200 Glory upon succession if the previous accolade did not die in battle or [[mechanics-content/duel|duel]] but even if the rank is reduced existing accolade [[mechanics-content/attributes|attributes]] are not downgraded or removed. There is no maximum limit to Glory.
 
 ### Accolade attributes
 
-- Which accolade attributes are available for selection depends on the knight's traits and can rarely also be unlocked through events. Only one of each accolade attributes may be selected for accolades.
+- Which accolade [[mechanics-content/attributes|attributes]] are available for selection depends on the knight's [[mechanics-content/traits|traits]] and can rarely also be unlocked through events. Only one of each accolade attributes may be selected for [[mechanics-content/knight#accolades|accolades]].
 
 ### Retinue attributes
 
-- Retinue accolade attributes unlock a unique type of men-at-arms at rank 2. Each accolade can only have one retinue attribute.
+- Retinue [[mechanics-content/knight#accolades|accolade]] [[mechanics-content/attributes|attributes]] unlock a unique type of [[mechanics-content/army#men-at-arms|men-at-arms]] at rank 2. Each accolade can only have one retinue attribute.
 
 ## Related Wiki Topics
 

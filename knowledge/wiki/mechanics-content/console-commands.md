@@ -6,7 +6,7 @@ sourceId: "source:ck3-paradoxwikis-com:console-commands"
 sourceRevisionId: 35014
 sourceOldidUrl: "https://ck3.paradoxwikis.com/Console_commands?oldid=35014"
 license: "CC BY-SA 3.0"
-generatedAt: "2026-07-18T07:02:11.038Z"
+generatedAt: "2026-07-18T07:20:18.943Z"
 contentHash: "99b3c2cef66272f18bc1242adb904ad9953ccbf388fed7bf65b852b6e17c3b7e"
 ---
 
@@ -79,7 +79,7 @@ Use this page when a question needs CK3 mechanics context for Console commands. 
 
 ### Debug info
 
-- Debug info can be enabled and disabled either from one of the console buttons or by using the debug_mode command. When debug info is activated, characters, interactions and events will show debug info which is normally hidden during normal gameplay. It should be noted that when debug info is enabled the game will consume a bit more resources but it shouldn't have a noticeable effect on most machines.
+- Debug info can be enabled and disabled either from one of the console buttons or by using the debug_mode command. When debug info is activated, characters, interactions and events will show debug info which is normally hidden during normal gameplay. It should be noted that when debug info is enabled the game will consume a bit more [[mechanics-content/resources|resources]] but it shouldn't have a noticeable effect on most machines.
 
 ### Characters
 
@@ -99,11 +99,11 @@ Use this page when a question needs CK3 mechanics context for Console commands. 
 
 ### Spawning artifacts
 
-- Most artifacts are randomly generated through complex scripts and cannot be spawned with the console. However historical artifacts can be created that way. To spawn an artifact copy one of the following lines in the console. The game will crash without the { OWNER = this } scope.
+- Most [[mechanics-content/artifacts|artifacts]] are randomly generated through complex scripts and cannot be spawned with the console. However historical artifacts can be created that way. To spawn an artifact copy one of the following lines in the console. The game will crash without the { OWNER = this } scope.
 
 ### Converting commands
 
-- The following commands can be used to convert the realm to a faith, culture, government or title hierarchy. Conversion limited to the character's domain can be done via debug interactions (Take Action In Every County).
+- The following commands can be used to convert the realm to a [[mechanics-content/faith|faith]], [[mechanics-content/culture|culture]], [[mechanics-content/government|government]] or [[mechanics-content/titles|title]] hierarchy. Conversion limited to the character's domain can be done via debug interactions (Take Action In Every [[mechanics-content/county|County]]).
 
 ### Shattered World mode
 

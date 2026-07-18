@@ -6,7 +6,7 @@ sourceId: "source:ck3-paradoxwikis-com:doctrines"
 sourceRevisionId: 35023
 sourceOldidUrl: "https://ck3.paradoxwikis.com/Doctrines?oldid=35023"
 license: "CC BY-SA 3.0"
-generatedAt: "2026-07-18T07:02:11.038Z"
+generatedAt: "2026-07-18T07:20:18.943Z"
 contentHash: "90f6695b4991f53b8d4a0d2e4a533874b813e5108fb483d6b5821adb58ad3b81"
 ---
 
@@ -28,15 +28,15 @@ Use this page when a question needs CK3 mechanics context for Doctrines. Combine
 
 ### Overview
 
-- Each faith has a large number of doctrines, which detail what is allowed and what is forbidden within a faith. They also affect how AI characters with the Zealous trait will act.
+- Each [[mechanics-content/faith|faith]] has a large number of doctrines, which detail what is allowed and what is forbidden within a faith. They also affect how AI characters with the Zealous [[mechanics-content/traits|trait]] will act.
 
 ### {{anchor|Main Doctrines}} Main doctrines
 
-- Main doctrines determine the rules of the faith itself and have a considerable impact on how the realm is governed.
+- Main doctrines determine the rules of the [[mechanics-content/faith|faith]] itself and have a considerable impact on how the realm is governed.
 
 ### Religion doctrines
 
-- Certain religions have a sixth main doctrine, which determines faith hostility between its faiths.
+- Certain religions have a sixth main doctrine, which determines [[mechanics-content/characters#faith-hostility|faith hostility]] between its [[mechanics-content/faith|faiths]].
 
 ### Marriage doctrines
 
@@ -44,23 +44,23 @@ Use this page when a question needs CK3 mechanics context for Doctrines. Combine
 
 ### {{anchor|Crime Doctrines}} Crime doctrines
 
-- Crime doctrines determine whether certain traits are accepted, shunned, crimes or virtues.
-- If the trait is a crime then characters will keep it secret. If discovered, the character can be blackmailed for a Strong Hook. If the trait is exposed the character will lose Opinion with all characters whose faith has the doctrine and they'll be considered a criminal.
-- If the trait is a shunned then characters will keep it secret. If discovered, the character can be blackmailed for a Weak Hook. If the trait is exposed the character will lose Opinion with all characters whose faith has the doctrine.
-- If the trait is accepted then characters will be open about it. If the character is a vassal or courtier then their liege's faith much also consider it accepted or virtuous for this to happen.
-- If the trait is a virtuous then characters will be open about it and gain bonuses for having the trait. If the character is a vassal or courtier then their liege's faith much also consider it accepted or virtuous for this to happen.
+- Crime doctrines determine whether certain [[mechanics-content/traits|traits]] are accepted, shunned, crimes or virtues.
+- If the [[mechanics-content/traits|trait]] is a crime then characters will keep it secret. If discovered, the character can be blackmailed for a Strong [[mechanics-content/hooks|Hook]]. If the trait is exposed the character will lose Opinion with all characters whose [[mechanics-content/faith|faith]] has the doctrine and they'll be considered a criminal.
+- If the [[mechanics-content/traits|trait]] is a shunned then characters will keep it secret. If discovered, the character can be blackmailed for a Weak [[mechanics-content/hooks|Hook]]. If the trait is exposed the character will lose Opinion with all characters whose [[mechanics-content/faith|faith]] has the doctrine.
+- If the [[mechanics-content/traits|trait]] is accepted then characters will be open about it. If the character is a vassal or courtier then their liege's [[mechanics-content/faith|faith]] much also consider it accepted or virtuous for this to happen.
+- If the [[mechanics-content/traits|trait]] is a virtuous then characters will be open about it and gain bonuses for having the trait. If the character is a vassal or courtier then their liege's [[mechanics-content/faith|faith]] much also consider it accepted or virtuous for this to happen.
 
 ### {{anchor|Clerical Doctrines}} Clerical doctrines
 
-- Clerical doctrines have various effects that only apply to court chaplains, realm priests, temple holders, and characters with the Monk trait.
+- Clerical doctrines have various effects that only apply to [[mechanics-content/court|court]] chaplains, realm priests, temple holders, and characters with the Monk [[mechanics-content/traits|trait]].
 
 ### Coronation Tradition
 
-- The Coronation Tradition doctrine decides who can use what activity variant when planning a Coronation activity. Changing the doctrine when creating a new faith has a base cost of 400 Piety regardless of the current faith's doctrines.
+- The Coronation [[mechanics-content/traditions|Tradition]] doctrine decides who can use what [[mechanics-content/activity|activity]] variant when planning a Coronation activity. Changing the doctrine when creating a new [[mechanics-content/faith|faith]] has a base cost of 400 [[mechanics-content/resources|Piety]] regardless of the current faith's doctrines.
 
 ### {{anchor|Special Doctrines}} Special doctrines
 
-- Special doctrines are encountered on some faiths as an additional doctrine.
+- Special doctrines are encountered on some [[mechanics-content/faith|faiths]] as an additional doctrine.
 
 ## Related Wiki Topics
 

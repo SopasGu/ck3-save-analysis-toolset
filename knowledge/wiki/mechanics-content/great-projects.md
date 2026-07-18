@@ -6,7 +6,7 @@ sourceId: "source:ck3-paradoxwikis-com:great-projects"
 sourceRevisionId: 34951
 sourceOldidUrl: "https://ck3.paradoxwikis.com/Great_projects?oldid=34951"
 license: "CC BY-SA 3.0"
-generatedAt: "2026-07-18T07:02:11.038Z"
+generatedAt: "2026-07-18T07:20:18.943Z"
 contentHash: "60893f3d455efc17b75b03eba980a21e1939f04df7779c3fd97f802d7ad12958"
 ---
 
@@ -28,22 +28,22 @@ Use this page when a question needs CK3 mechanics context for Great projects. Co
 
 ### Overview
 
-- Great projects are massive undertakings of independent rulers that call on all the resources in the realm. A great project begins with a starting cost which the ruler must pay. At this point the project can be canceled and the starting cost will be refunded.
+- Great projects are massive undertakings of independent rulers that call on all the [[mechanics-content/resources|resources]] in the realm. A great project begins with a starting cost which the ruler must pay. At this point the project can be canceled and the starting cost will be refunded.
 
 ### Develop Communities
 
-- Develop Communities is a great project available to rulers with governor efficiency Administrative, Celestial, Ritsuryō, Meritocratic or Meritocratic Khanate government. The Hegemon of China also requires to have filled the Minister of Works council position. The project must target a duchy and when completed every county inside will gain Development and every holding in them will gain or upgrade a random building.
-- Send Construction Crew costs 100 Treasury and gives the ruler who paid it 60 Merit if their government uses it and 350 Prestige if it does not
-- Provide Engineers costs 100 Treasury and gives the ruler who paid it 60 Influence
-- The great project has one optional contribution, which can only be paid by the governor of the selected duchy. The contribution costs 400-800 Treasury depending on the culture's era and increases the Development in the governor's capital by 1 and gives them experience for the Governor trait.
+- Develop Communities is a great project available to rulers with governor efficiency Administrative, Celestial, Ritsuryō, Meritocratic or Meritocratic Khanate [[mechanics-content/government|government]]. The Hegemon of China also requires to have filled the Minister of Works [[mechanics-content/council|council]] position. The project must target a duchy and when completed every [[mechanics-content/county|county]] inside will gain Development and every [[mechanics-content/barony|holding]] in them will gain or upgrade a random [[mechanics-content/building|building]].
+- Send Construction Crew costs 100 Treasury and gives the ruler who paid it 60 Merit if their [[mechanics-content/government|government]] uses it and 350 [[mechanics-content/resources|Prestige]] if it does not
+- Provide Engineers costs 100 [[mechanics-content/resources|Treasury]] and gives the ruler who paid it 60 Influence
+- The great project has one optional contribution, which can only be paid by the governor of the selected duchy. The contribution costs 400-800 [[mechanics-content/resources|Treasury]] depending on the [[mechanics-content/culture|culture]]'s era and increases the Development in the governor's capital by 1 and gives them experience for the Governor [[mechanics-content/traits|trait]].
 
 ### Capital Temple Complex
 
-- Capital Temple Complex is a great project available to independent rulers with Mandala government. When the great project is completed the ruler will gain 350 Prestige, 100 Legitimacy and 150 Renown and the realm capital holding will either be changed to Temple Citadel or its Capital Temple Complex building will be upgraded. Starting the great project costs 250 Piety for each level.
+- Capital Temple Complex is a great project available to independent rulers with Mandala [[mechanics-content/government|government]]. When the great project is completed the ruler will gain 350 [[mechanics-content/resources|Prestige]], 100 Legitimacy and 150 Renown and the realm capital [[mechanics-content/barony|holding]] will either be changed to Temple Citadel or its Capital Temple Complex [[mechanics-content/building|building]] will be upgraded. Starting the great project costs 250 Piety for each level.
 
 ### Hegemony of China great projects
 
-- The following great projects are only available to the Hegemon of China, its diarch, and certain councilors, and require the said council position to be filled. The cost to both start the great project and pay contribution scales with the hegemon's Treasury income and is halved if the great project is started by a diarch or councilor.
+- The following great projects are only available to the Hegemon of China, its diarch, and certain councilors, and require the said [[mechanics-content/council|council]] position to be filled. The cost to both start the great project and pay contribution scales with the hegemon's [[mechanics-content/resources|Treasury]] income and is halved if the great project is started by a diarch or councilor.
 
 ## Related Wiki Topics
 

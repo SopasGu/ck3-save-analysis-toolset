@@ -6,7 +6,7 @@ sourceId: "source:ck3-paradoxwikis-com:mechanics"
 sourceRevisionId: 22574
 sourceOldidUrl: "https://ck3.paradoxwikis.com/Mechanics?oldid=22574"
 license: "CC BY-SA 3.0"
-generatedAt: "2026-07-18T07:02:11.038Z"
+generatedAt: "2026-07-18T07:20:18.943Z"
 contentHash: "081e9c6d832d8de50e8feb0687632b95adc03b2e7a39dc2441faafcfd0f744ea"
 ---
 

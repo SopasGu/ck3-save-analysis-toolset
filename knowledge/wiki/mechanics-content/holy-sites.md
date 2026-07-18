@@ -6,7 +6,7 @@ sourceId: "source:ck3-paradoxwikis-com:holy-sites"
 sourceRevisionId: 34957
 sourceOldidUrl: "https://ck3.paradoxwikis.com/Holy_sites?oldid=34957"
 license: "CC BY-SA 3.0"
-generatedAt: "2026-07-18T07:02:11.038Z"
+generatedAt: "2026-07-18T07:20:18.943Z"
 contentHash: "c32375edeeeab6aa07894ad7ff1cb206de64d11e0a4e7ab131dff50d9730c03e"
 ---
 
@@ -28,7 +28,7 @@ Use this page when a question needs CK3 mechanics context for Holy sites. Combin
 
 ### Overview
 
-- Holy sites are baronies that are considered sacred by a Faith. If a faith controls a holy site, all characters belonging to that faith will gain a permanent bonus. In addition, holy sites are the targets of Pilgrimage activities and they are necessary to create a Head of Faith title or to reform a pagan faith. Several tenets also grant additional bonuses from holy sites.
+- Holy sites are [[mechanics-content/barony|baronies]] that are considered sacred by a Faith. If a faith controls a holy site, all characters belonging to that faith will gain a permanent bonus. In addition, holy sites are the targets of Pilgrimage [[mechanics-content/activity|activities]] and they are necessary to create a [[mechanics-content/faith|Head of Faith]] [[mechanics-content/titles|title]] or to reform a pagan faith. Several [[mechanics-content/tenets|tenets]] also grant additional bonuses from holy sites.
 
 ### Unused holy sites
 

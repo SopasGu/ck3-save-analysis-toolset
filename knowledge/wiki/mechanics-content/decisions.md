@@ -6,7 +6,7 @@ sourceId: "source:ck3-paradoxwikis-com:decisions"
 sourceRevisionId: 31884
 sourceOldidUrl: "https://ck3.paradoxwikis.com/Decisions?oldid=31884"
 license: "CC BY-SA 3.0"
-generatedAt: "2026-07-18T07:02:11.038Z"
+generatedAt: "2026-07-18T07:20:18.943Z"
 contentHash: "91a77a72a733ef8fa639228765cbfa976765a15a09f50bf7fecbda96f3a3249a"
 ---
 
@@ -28,10 +28,10 @@ Use this page when a question needs CK3 mechanics context for Decisions. Combine
 
 ### Overview
 
-- Decisions are actions that can be taken under certain circumstances. Some decisions can only be taken once per character or once per game while others can be taken repeatedly. Most decisions are unavailable if the character has the Incapable trait. Decisions are not shown unless the character meets one of the more specific requirements. Decisions are divided into three groups:
+- Decisions are actions that can be taken under certain circumstances. Some decisions can only be taken once per character or once per game while others can be taken repeatedly. Most decisions are unavailable if the character has the Incapable [[mechanics-content/traits|trait]]. Decisions are not shown unless the character meets one of the more specific requirements. Decisions are divided into three groups:
 - Character decisions are available to every character in the game
-- Ruler decisions are available only to rulers - characters who own landed titles
-- Adventurer decisions are available only to adventurers
+- Ruler decisions are available only to rulers - characters who own landed [[mechanics-content/titles|titles]]
+- Adventurer decisions are available only to [[mechanics-content/adventurer|adventurers]]
 
 ## Related Wiki Topics
 

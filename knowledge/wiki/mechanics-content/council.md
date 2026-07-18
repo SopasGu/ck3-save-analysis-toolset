@@ -6,7 +6,7 @@ sourceId: "source:ck3-paradoxwikis-com:council"
 sourceRevisionId: 35055
 sourceOldidUrl: "https://ck3.paradoxwikis.com/Council?oldid=35055"
 license: "CC BY-SA 3.0"
-generatedAt: "2026-07-18T07:02:11.038Z"
+generatedAt: "2026-07-18T07:20:18.943Z"
 contentHash: "1e3db824f2268de97f94dd5baf5349bd80be941dc300dde5fc11b464f43b10e7"
 ---
 
@@ -28,11 +28,11 @@ Use this page when a question needs CK3 mechanics context for Council. Combine t
 
 ### Overview
 
-- The council is a group of specialized vassals or courtier that help a landed character rule their realm. If a councilor is also a commander, it cannot lead troops while assigned to a task. Each councilor can be assigned to one of a number of tasks. Current progress towards a councilor task is lost if the task is changed, except for Integrate Title and Increase Development/Control in County.
+- The council is a group of specialized vassals or courtier that help a landed character rule their realm. If a councilor is also a [[mechanics-content/army|commander]], it cannot lead troops while assigned to a task. Each councilor can be assigned to one of a number of tasks. Current progress towards a councilor task is lost if the task is changed, except for Integrate [[mechanics-content/titles|Title]] and Increase Development/Control in [[mechanics-content/county|County]].
 
 ### Spymaster
 
-- The Spymaster is a position available to all rulers. It uses Intrigue as primary skill and its purpose is to help the ruler's schemes and protect them against hostile schemes. In a Celestial Hegemony of China the council position will be renamed to Imperial Censor and will receive the empire The Censorate title. The council position has three possible tasks:
+- The Spymaster is a position available to all rulers. It uses [[mechanics-content/attributes|Intrigue]] as primary skill and its purpose is to help the ruler's [[mechanics-content/schemes|schemes]] and protect them against hostile schemes. In a Celestial Hegemony of China the council position will be renamed to Imperial Censor and will receive the empire The Censorate [[mechanics-content/titles|title]]. The council position has three possible tasks:
 
 ### Confidant
 
@@ -42,39 +42,39 @@ Use this page when a question needs CK3 mechanics context for Council. Combine t
 
 ### Regular council
 
-- Rulers who do not have Nomadic government or a Celestial Hegemony of China have four additional council positions.
+- Rulers who do not have Nomadic [[mechanics-content/government|government]] or a Celestial Hegemony of China have four additional council positions.
 
 ### Chancellor
 
-- The Chancellor uses Diplomacy as their primary skill and has four possible tasks:
+- The Chancellor uses [[mechanics-content/attributes|Diplomacy]] as their primary skill and has four possible tasks:
 
 ### Steward
 
-- The Steward uses Stewardship as their primary skill and has five possible tasks:
+- The Steward uses [[mechanics-content/attributes|Stewardship]] as their primary skill and has five possible tasks:
 
 ### Marshal
 
-- The Marshal uses Martial as their primary skill and has four possible tasks:
+- The Marshal uses [[mechanics-content/attributes|Martial]] as their primary skill and has four possible tasks:
 
 ### Religious affairs councilor
 
-- There are two possible religious affair councilors, depending on the Clerical Tradition doctrine of the ruler's faith. Both of them use Learning as their primary skill. Who appoints them and for how long depends on the faith's Clerical Appointment doctrine, and only characters who have the same faith as the liege and are allowed by the Clerical Gender doctrine can be appointed.
+- There are two possible religious affair councilors, depending on the Clerical [[mechanics-content/traditions|Tradition]] [[mechanics-content/doctrines|doctrine]] of the ruler's [[mechanics-content/faith|faith]]. Both of them use [[mechanics-content/attributes|Learning]] as their primary skill. Who appoints them and for how long depends on the faith's Clerical Appointment doctrine, and only characters who have the same faith as the liege and are allowed by the Clerical Gender doctrine can be appointed.
 
 ### Kurultai
 
-- Rulers with Nomadic government can grant four Kurultai positions. Their obedience is necessary for the realm to have a Stable Succession. Each Kurultai can be assigned to one of the following tasks:
+- Rulers with Nomadic [[mechanics-content/government|government]] can grant four Kurultai positions. Their obedience is necessary for the realm to have a Stable Succession. Each Kurultai can be assigned to one of the following tasks:
 
 ### Hegemony of China council
 
-- As long as the Hegemony of China has Celestial government it will have 8 additional council positions. Councilors receive a salary that is decided in the realm budget allocation and their domicile location will always be the liege's realm capital. The councilors receive the following bonuses in addition to the usual councilor bonuses:
+- As long as the Hegemony of China has Celestial [[mechanics-content/government|government]] it will have 8 additional council positions. Councilors receive a salary that is decided in the realm budget allocation and their [[mechanics-content/domicile|domicile]] location will always be the liege's realm capital. The councilors receive the following bonuses in addition to the usual councilor bonuses:
 - yes Additional interactions with fellow vassals
-- scheme +1 Max Hostile, Personal and Political schemes
+- scheme +1 Max Hostile, Personal and Political [[mechanics-content/schemes|schemes]]
 - Can be given the Favored Minister council position Unlock the Department Aide council position
-- decision Can take the Request Bestowal of Honors decision
+- [[mechanics-content/decisions|decision]] Can take the Request Bestowal of Honors decision
 
 ### Departments
 
-- Departments are the 3 more powerful councilors. One of the departments will be the diarch, decided by the Grand Secretariat Control law. The Spymaster, called Imperial Censor, will also be a department.
+- Departments are the 3 more powerful councilors. One of the departments will be the diarch, decided by the Grand Secretariat Control [[mechanics-content/laws|law]]. The Spymaster, called Imperial Censor, will also be a department.
 
 ### Ministries
 
@@ -82,7 +82,7 @@ Use this page when a question needs CK3 mechanics context for Council. Combine t
 
 ### Benefits from being a councilor
 
-- Each councilor will gain various benefits depending on both the exact position and the title rank of its liege. If the councilor is a vassal with a government that uses Influence they will gain some that scales with both the liege's title rank and its monthly income.
+- Each councilor will gain various benefits depending on both the exact position and the [[mechanics-content/titles|title]] rank of its liege. If the councilor is a vassal with a [[mechanics-content/government|government]] that uses Influence they will gain some that scales with both the liege's title rank and its monthly income.
 
 ## Related Wiki Topics
 

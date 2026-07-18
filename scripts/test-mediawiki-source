@@ -4,6 +4,7 @@ import {
   buildMediaWikiTopicRegistryEntry,
   buildMechanicsContentPage,
   extractMediaWikiMechanicsNotes,
+  linkMechanicsTerms,
   selectMediaWikiTopicGroup,
   sourceIdForMediaWikiPage,
   summarizeMediaWikiLinks,
@@ -268,7 +269,7 @@ function testMechanicsContentPage() {
     fail('mechanics content page includes license attribution', page);
     return;
   }
-  if (!page.includes('Characters are the actors that hold titles')) {
+  if (!page.includes('Characters are the actors that hold [[mechanics-content/titles|titles]]')) {
     fail('mechanics content page carries mechanics content notes', page);
     return;
   }
@@ -277,6 +278,42 @@ function testMechanicsContentPage() {
     return;
   }
   ok('mechanics content page carries cited article-derived notes');
+}
+
+function testMechanicsInlineLinks() {
+  const linked = linkMechanicsTerms(
+    'Armies use Knights, Men-at-Arms, Prestige, Culture traditions, Faith tenets, Schemes and Hooks.',
+    { currentSlug: 'warfare' },
+  );
+  const expected = [
+    '[[mechanics-content/army|Armies]]',
+    '[[mechanics-content/knight|Knights]]',
+    '[[mechanics-content/army#men-at-arms|Men-at-Arms]]',
+    '[[mechanics-content/resources|Prestige]]',
+    '[[mechanics-content/culture|Culture]]',
+    '[[mechanics-content/traditions|traditions]]',
+    '[[mechanics-content/faith|Faith]]',
+    '[[mechanics-content/tenets|tenets]]',
+    '[[mechanics-content/schemes|Schemes]]',
+    '[[mechanics-content/hooks|Hooks]]',
+  ];
+  for (const item of expected) {
+    if (!linked.includes(item)) {
+      fail('mechanics inline linker adds traversal links', linked);
+      return;
+    }
+  }
+
+  const selfLinked = linkMechanicsTerms('Army uses Men-at-Arms and Knights.', { currentSlug: 'army' });
+  if (selfLinked.includes('[[mechanics-content/army|Army]]')) {
+    fail('mechanics inline linker avoids ordinary self-links', selfLinked);
+    return;
+  }
+  if (!selfLinked.includes('[[mechanics-content/army#men-at-arms|Men-at-Arms]]')) {
+    fail('mechanics inline linker keeps useful self-section anchors', selfLinked);
+    return;
+  }
+  ok('mechanics inline linker adds traversal links and avoids noisy self-links');
 }
 
 console.log('ck3-mediawiki-source self-test');
@@ -289,6 +326,7 @@ testTopicPageSummaryAndEntry();
 testTopicGroupSelection();
 testMechanicsContentExtraction();
 testMechanicsContentPage();
+testMechanicsInlineLinks();
 
 if (failed > 0) {
   console.error(`\n${failed} test(s) failed`);

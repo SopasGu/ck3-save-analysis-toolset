@@ -6,7 +6,7 @@ sourceId: "source:ck3-paradoxwikis-com:building"
 sourceRevisionId: 34809
 sourceOldidUrl: "https://ck3.paradoxwikis.com/Building?oldid=34809"
 license: "CC BY-SA 3.0"
-generatedAt: "2026-07-18T07:02:11.038Z"
+generatedAt: "2026-07-18T07:20:18.943Z"
 contentHash: "c08c07f9ba617f5f95b636279997a0da51a1f3f3fa277164d82d23d73abfee05"
 ---
 
@@ -28,59 +28,59 @@ Use this page when a question needs CK3 mechanics context for Building. Combine 
 
 ### Overview
 
-- Each Holding has access to a number of buildings. Regular buildings primarily focus on increasing taxes and levies, with some secondary effects such as increasing fortifications or increasing supply, and can be upgraded once the required level of Development is reached. Only one building may be constructed or upgraded at a time in any Holding.
+- Each [[mechanics-content/barony|Holding]] has access to a number of buildings. Regular buildings primarily focus on increasing taxes and levies, with some secondary effects such as increasing fortifications or increasing supply, and can be upgraded once the required level of Development is reached. Only one building may be constructed or upgraded at a time in any Holding.
 
 ### Construction
 
-- Each barony has a limited number of slots to construct buildings. Building slots cannot be lost.
-- 1 slot is available to all baronies and can construct regular buildings.
-- 1 slot is available to all county capitals and can construct regular buildings.
-- 1 slot is available if the county's culture has the Ledger innovation and can construct regular buildings.
-- 1 slot is available if the county's culture has the bailiffs Magistrates innovation and can construct regular buildings.
+- Each [[mechanics-content/barony|barony]] has a limited number of slots to construct buildings. Building slots cannot be lost.
+- 1 slot is available to all [[mechanics-content/barony|baronies]] and can construct regular buildings.
+- 1 slot is available to all [[mechanics-content/county|county]] capitals and can construct regular buildings.
+- 1 slot is available if the [[mechanics-content/county|county]]'s [[mechanics-content/culture|culture]] has the Ledger [[mechanics-content/innovation|innovation]] and can construct regular buildings.
+- 1 slot is available if the [[mechanics-content/county|county]]'s [[mechanics-content/culture|culture]] has the bailiffs Magistrates [[mechanics-content/innovation|innovation]] and can construct regular buildings.
 
 ### Economic buildings
 
-- These buildings improve prosperity of holdings.
+- These buildings improve prosperity of [[mechanics-content/barony|holdings]].
 
 ### Military buildings
 
-- These buildings increase levies and support stationed men-at-arms.
+- These buildings increase levies and support stationed [[mechanics-content/army#men-at-arms|men-at-arms]].
 
 ### Fortification buildings
 
-- These buildings increase the defenseiveness of Castle holdings.
+- These buildings increase the defenseiveness of Castle [[mechanics-content/barony|holdings]].
 
 ### Temple buildings
 
-- These buildings can only be built in Temple holdings.
+- These buildings can only be built in Temple [[mechanics-content/barony|holdings]].
 
 ### Temple Citadel buildings
 
-- These buildings can only be built in Temple Citadel holdings.
+- These buildings can only be built in Temple Citadel [[mechanics-content/barony|holdings]].
 
 ### Tribe buildings
 
-- These buildings can only be built in Tribe holdings.
+- These buildings can only be built in Tribe [[mechanics-content/barony|holdings]].
 
 ### County buildings
 
-- These buildings can only be built in the capital of a county.
+- These buildings can only be built in the capital of a [[mechanics-content/county|county]].
 
 ### Duchy buildings
 
-- These buildings can only be built in the capital of a Duchy and only if the holder has the respective Duchy title.
+- These buildings can only be built in the capital of a Duchy and only if the holder has the respective Duchy [[mechanics-content/titles|title]].
 
 ### Special buildings
 
-- These are unique buildings for certain holdings on the map, including holy sites, universities, and mines. Most of these also serve as point-of-interest that provide lifestyle experience for traveling characters.
+- These are unique buildings for certain [[mechanics-content/barony|holdings]] on the map, including [[mechanics-content/holy-sites|holy sites]], universities, and mines. Most of these also serve as point-of-interest that provide [[mechanics-content/lifestyle|lifestyle]] experience for [[mechanics-content/travel|traveling]] characters.
 
 ### City buildings
 
-- City buildings can only be constructed in City holdings. All of them require 3 years to build.
+- City buildings can only be constructed in City [[mechanics-content/barony|holdings]]. All of them require 3 years to build.
 
 ### Oath buildings
 
-- Oath buildings can only be constructed by rulers who swore an oath to provide for the people and only inside their domain. After the oath is completed new buildings of this type cannot be constructed until the next owner makes the same oath. Building or upgrading oath buildings takes 3 years and they do not have any holding requirements.
+- Oath buildings can only be constructed by rulers who swore an oath to provide for the people and only inside their domain. After the oath is completed new buildings of this type cannot be constructed until the next owner makes the same oath. Building or upgrading oath buildings takes 3 years and they do not have any [[mechanics-content/barony|holding]] requirements.
 
 ### Terrain chart
 

@@ -6,7 +6,7 @@ sourceId: "source:ck3-paradoxwikis-com:hired-forces"
 sourceRevisionId: 34994
 sourceOldidUrl: "https://ck3.paradoxwikis.com/Hired_forces?oldid=34994"
 license: "CC BY-SA 3.0"
-generatedAt: "2026-07-18T07:02:11.038Z"
+generatedAt: "2026-07-18T07:20:18.943Z"
 contentHash: "51eb3fc42cc06db6303f45e624c36fce1b583ecf113c9151fd465f08a58693ff"
 ---
 
@@ -28,31 +28,31 @@ Use this page when a question needs CK3 mechanics context for Hired forces. Comb
 
 ### Overview
 
-- Hired forces are predefined armies which may be temporarily controlled by hiring them with Gold. Hired forces cannot be used to raid. There are two types of hired forces, each one with its own tab in the Military menu.
+- Hired forces are predefined [[mechanics-content/army|armies]] which may be temporarily controlled by hiring them with [[mechanics-content/resources|Gold]]. Hired forces cannot be used to raid. There are two types of hired forces, each one with its own tab in the Military menu.
 
 ### Mercenaries
 
-- Mercenaries are armies that can be hired by rulers for 3 years. The gold cost is paid upon hiring the Mercenaries and there is no additional cost associated with hiring them, but at the end of the 3 years, they will leave if their contract is not extended. Extending a contract for 3 years has the same cost as initially hiring the army.
+- Mercenaries are [[mechanics-content/army|armies]] that can be hired by rulers for 3 years. The [[mechanics-content/resources|gold]] cost is paid upon hiring the Mercenaries and there is no additional cost associated with hiring them, but at the end of the 3 years, they will leave if their [[mechanics-content/adventurer#contracts|contract]] is not extended. Extending a contract for 3 years has the same cost as initially hiring the army.
 - 30% with the Soldiers of Lesser Fortune perk of the Overseer tree.
-- 15% with the "Swords for hire" Tradition, for same culture only.
-- 25% from the "Condottieri" regional innovation, for same culture only.
-- 50% from "Malleable" subjects Tradition, for same culture only
+- 15% with the "Swords for hire" [[mechanics-content/traditions|Tradition]], for same [[mechanics-content/culture|culture]] only.
+- 25% from the "Condottieri" regional [[mechanics-content/innovation|innovation]], for same [[mechanics-content/culture|culture]] only.
+- 50% from "Malleable" [[mechanics-content/subjects|subjects]] [[mechanics-content/traditions|Tradition]], for same [[mechanics-content/culture|culture]] only
 
 ### Holy orders
 
-- Holy orders are independent military organizations that work to defend and expand the influence of their faith. Each holy order has a Duke rank title. Rulers can create a holy order via the Found Holy Order decision. The decision requires the ruler making the decision to choose an owned castle or city holding that aren't a county capital as the order's headquarters.
-- -500 Piety if the holy order belongs to a faith considered Righteous or same faith
-- -100 Piety if the holy order belongs to a faith considered Astray
-- +250 Piety and +20 Opinion with the head of faith if the holy order belongs to a faith considered Hostile or Evil but the holy order's faith will also gain 10 Fervor
-- If the barony's county had the same faith as the holy order it will gain -15 Popular Opinion and -0.15 Monthly Control for 10 years
+- Holy orders are independent military organizations that work to defend and expand the influence of their [[mechanics-content/faith|faith]]. Each holy order has a Duke rank [[mechanics-content/titles|title]]. Rulers can create a holy order via the Found Holy Order [[mechanics-content/decisions|decision]]. The decision requires the ruler making the decision to choose an owned castle or city [[mechanics-content/barony|holding]] that aren't a [[mechanics-content/county|county]] capital as the order's headquarters.
+- -500 [[mechanics-content/resources|Piety]] if the holy order belongs to a [[mechanics-content/faith|faith]] considered Righteous or same faith
+- -100 [[mechanics-content/resources|Piety]] if the holy order belongs to a [[mechanics-content/faith|faith]] considered Astray
+- +250 [[mechanics-content/resources|Piety]] and +20 Opinion with the [[mechanics-content/faith|head of faith]] if the holy order belongs to a faith considered Hostile or Evil but the holy order's faith will also gain 10 Fervor
+- If the [[mechanics-content/barony|barony]]'s [[mechanics-content/county|county]] had the same [[mechanics-content/faith|faith]] as the holy order it will gain -15 Popular Opinion and -0.15 Monthly Control for 10 years
 
 ### Patronage
 
-- A King or above who controls the barony where a holy order is located will be its patron, even if they are a subject. If the top liege is a Duke or below the holy order will have no patron. Patrons of a holy order may hire them at no cost, as long as they belong to the same faith. They may also get events that allows them to grant holdings to the new holy order.
+- A King or above who controls the [[mechanics-content/barony|barony]] where a holy order is located will be its patron, even if they are a [[mechanics-content/subjects|subject]]. If the top liege is a Duke or below the holy order will have no patron. Patrons of a holy order may hire them at no cost, as long as they belong to the same [[mechanics-content/faith|faith]]. They may also get events that allows them to grant holdings to the new holy order.
 
 ### Members
 
-- All members of a holy order gain the Order Member trait. Rulers of the same faith can ask the courtiers who have the same faith, a Martial education trait, are not Excommunicated or diarch and are allowed by gender laws to join the holy order. If the faith has multiple holy orders the ruler will be asked which holy order to pick. The courtier must accept the offer, with its Boldness and Zeal playing a major effect.
+- All members of a holy order gain the Order Member [[mechanics-content/traits|trait]]. Rulers of the same [[mechanics-content/faith|faith]] can ask the courtiers who have the same faith, a [[mechanics-content/attributes|Martial]] education trait, are not Excommunicated or diarch and are allowed by gender [[mechanics-content/laws|laws]] to join the holy order. If the faith has multiple holy orders the ruler will be asked which holy order to pick. The courtier must accept the offer, with its Boldness and Zeal playing a major effect.
 
 ## Related Wiki Topics
 

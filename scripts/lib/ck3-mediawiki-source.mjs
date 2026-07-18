@@ -235,7 +235,7 @@ export function buildMechanicsContentPage({
   for (const section of sections) {
     lines.push(`### ${section.title}`, '');
     for (const note of section.notes) {
-      lines.push(`- ${note}`);
+      lines.push(`- ${linkMechanicsTerms(note, { currentSlug: slugTitle })}`);
     }
     lines.push('');
   }
@@ -252,6 +252,22 @@ export function buildMechanicsContentPage({
   lines.push(`- Source page length: \`${source.page.length ?? 'unknown'}\``);
   lines.push('');
   return lines.join('\n');
+}
+
+export function linkMechanicsTerms(value, options = {}) {
+  let text = String(value);
+  const currentSlug = options.currentSlug ?? null;
+  const linkedTargets = new Set();
+  for (const alias of MECHANICS_LINK_ALIASES) {
+    if (alias.slug === currentSlug && !alias.anchor) continue;
+    if (linkedTargets.has(alias.target)) continue;
+    const next = replaceFirstUnlinked(text, alias, currentSlug);
+    if (next !== text) {
+      text = next;
+      linkedTargets.add(alias.target);
+    }
+  }
+  return text;
 }
 
 export function summarizeMediaWikiLinks(source) {
@@ -711,6 +727,174 @@ function truncateSentence(value, limit) {
   }
   const space = clipped.lastIndexOf(' ');
   return `${clipped.slice(0, space > 0 ? space : limit).trim()}...`;
+}
+
+const MECHANICS_LINK_ALIASES = [
+  ['men-at-arms regiments', 'Men-at-Arms regiments', 'army', 'Men-at-Arms'],
+  ['men-at-arms regiment', 'Men-at-Arms regiment', 'army', 'Men-at-Arms'],
+  ['men-at-arms', 'Men-at-Arms', 'army', 'Men-at-Arms'],
+  ['casus belli', 'Casus Belli', 'casus-belli'],
+  ['great holy wars', 'Great Holy Wars', 'warfare'],
+  ['holy wars', 'Holy Wars', 'warfare'],
+  ['head of faith', 'Head of Faith', 'faith'],
+  ['heads of faith', 'Heads of Faith', 'faith'],
+  ['holy sites', 'Holy sites', 'holy-sites'],
+  ['holy site', 'Holy site', 'holy-sites'],
+  ['game rules', 'game rules', 'game-rules'],
+  ['royal court', 'Royal Court', 'royal-court'],
+  ['power sharing', 'Power sharing', 'power-sharing'],
+  ['hired forces', 'Hired forces', 'hired-forces'],
+  ['great projects', 'Great projects', 'great-projects'],
+  ['interesting characters', 'Interesting characters', 'interesting-characters'],
+  ['rally point', 'Rally Point', 'army'],
+  ['rally points', 'Rally Points', 'army'],
+  ['war score', 'War Score', 'warfare'],
+  ['war contribution', 'War Contribution', 'warfare'],
+  ['commander traits', 'Commander traits', 'traits'],
+  ['commander trait', 'Commander trait', 'traits'],
+  ['commander', 'Commander', 'army'],
+  ['commanders', 'Commanders', 'army'],
+  ['knights', 'Knights', 'knight'],
+  ['knight', 'Knight', 'knight'],
+  ['accolades', 'Accolades', 'knight', 'Accolades'],
+  ['accolade', 'Accolade', 'knight', 'Accolades'],
+  ['armies', 'armies', 'army'],
+  ['army', 'army', 'army'],
+  ['warfare', 'Warfare', 'warfare'],
+  ['war', 'war', 'warfare'],
+  ['wars', 'wars', 'warfare'],
+  ['alliance', 'Alliance', 'alliance'],
+  ['alliances', 'Alliances', 'alliance'],
+  ['duels', 'Duels', 'duel'],
+  ['duel', 'Duel', 'duel'],
+  ['travel options', 'Travel options', 'travel', 'Travel options'],
+  ['traveling', 'Traveling', 'travel'],
+  ['travel', 'Travel', 'travel'],
+  ['adventurers', 'Adventurers', 'adventurer'],
+  ['adventurer', 'Adventurer', 'adventurer'],
+  ['contracts', 'Contracts', 'adventurer', 'Contracts'],
+  ['contract', 'Contract', 'adventurer', 'Contracts'],
+  ['camp purpose', 'camp purpose', 'adventurer', 'Camp purpose'],
+  ['camp temperament', 'camp temperament', 'adventurer', 'Camp temperament'],
+  ['provisions', 'Provisions', 'adventurer'],
+  ['domicile', 'Domicile', 'domicile'],
+  ['court grandeur', 'Court grandeur', 'royal-court'],
+  ['court', 'Court', 'court'],
+  ['council', 'Council', 'council'],
+  ['councillor', 'Councillor', 'council'],
+  ['councillors', 'Councillors', 'council'],
+  ['governments', 'Governments', 'government'],
+  ['government', 'Government', 'government'],
+  ['laws', 'Laws', 'laws'],
+  ['law', 'Law', 'laws'],
+  ['prisoners', 'Prisoners', 'prisoners'],
+  ['prisoner', 'Prisoner', 'prisoners'],
+  ['activities', 'Activities', 'activity'],
+  ['activity', 'Activity', 'activity'],
+  ['decisions', 'Decisions', 'decisions'],
+  ['decision', 'Decision', 'decisions'],
+  ['titles', 'Titles', 'titles'],
+  ['title', 'Title', 'titles'],
+  ['subjects', 'Subjects', 'subjects'],
+  ['subject', 'Subject', 'subjects'],
+  ['counties', 'counties', 'county'],
+  ['county', 'county', 'county'],
+  ['baronies', 'baronies', 'barony'],
+  ['barony', 'barony', 'barony'],
+  ['holdings', 'holdings', 'barony'],
+  ['holding', 'holding', 'barony'],
+  ['buildings', 'Buildings', 'building'],
+  ['building', 'Building', 'building'],
+  ['dynasty legacies', 'Dynasty Legacies', 'dynasty'],
+  ['dynasty legacy', 'Dynasty Legacy', 'dynasty'],
+  ['dynasties', 'Dynasties', 'dynasty'],
+  ['dynasty', 'Dynasty', 'dynasty'],
+  ['culture head', 'Culture Head', 'culture', 'Culture head'],
+  ['cultural acceptance', 'Cultural Acceptance', 'culture', 'Cultural acceptance'],
+  ['hybrid cultures', 'Hybrid cultures', 'culture', 'Hybrid cultures'],
+  ['hybrid culture', 'Hybrid culture', 'culture', 'Hybrid cultures'],
+  ['divergent cultures', 'Divergent cultures', 'culture', 'Divergent cultures'],
+  ['divergent culture', 'Divergent culture', 'culture', 'Divergent cultures'],
+  ['traditions', 'Traditions', 'traditions'],
+  ['tradition', 'Tradition', 'traditions'],
+  ['innovations', 'Innovations', 'innovation'],
+  ['innovation', 'Innovation', 'innovation'],
+  ['cultures', 'cultures', 'culture'],
+  ['culture', 'Culture', 'culture'],
+  ['faith hostility', 'Faith Hostility', 'characters', 'Faith Hostility'],
+  ['faiths', 'Faiths', 'faith'],
+  ['faith', 'Faith', 'faith'],
+  ['doctrines', 'Doctrines', 'doctrines'],
+  ['doctrine', 'Doctrine', 'doctrines'],
+  ['tenets', 'Tenets', 'tenets'],
+  ['tenet', 'Tenet', 'tenets'],
+  ['traits', 'Traits', 'traits'],
+  ['trait', 'Trait', 'traits'],
+  ['attributes', 'Attributes', 'attributes'],
+  ['attribute', 'Attribute', 'attributes'],
+  ['prowess', 'Prowess', 'attributes'],
+  ['martial', 'Martial', 'attributes'],
+  ['diplomacy', 'Diplomacy', 'attributes'],
+  ['stewardship', 'Stewardship', 'attributes'],
+  ['intrigue', 'Intrigue', 'attributes'],
+  ['learning', 'Learning', 'attributes'],
+  ['resources', 'Resources', 'resources'],
+  ['prestige', 'Prestige', 'resources'],
+  ['piety', 'Piety', 'resources'],
+  ['gold', 'Gold', 'resources'],
+  ['stress', 'Stress', 'resources'],
+  ['legitimacy', 'Legitimacy', 'resources'],
+  ['renown', 'Renown', 'resources'],
+  ['treasury', 'Treasury', 'resources'],
+  ['herd', 'Herd', 'resources'],
+  ['schemes', 'Schemes', 'schemes'],
+  ['scheme', 'Scheme', 'schemes'],
+  ['hooks', 'Hooks', 'hooks'],
+  ['hook', 'Hook', 'hooks'],
+  ['modifiers', 'Modifiers', 'modifiers'],
+  ['modifier', 'Modifier', 'modifiers'],
+  ['artifacts', 'Artifacts', 'artifacts'],
+  ['artifact', 'Artifact', 'artifacts'],
+  ['lifestyles', 'Lifestyles', 'lifestyle'],
+  ['lifestyle', 'Lifestyle', 'lifestyle'],
+].map(([term, label, slugValue, anchor]) => ({
+  term,
+  label,
+  slug: slugValue,
+  anchor,
+  target: `mechanics-content/${slugValue}${anchor ? `#${slug(anchor)}` : ''}`,
+  pattern: new RegExp(`(^|[^A-Za-z0-9_\\]])(${escapeRegExp(term)})(?=$|[^A-Za-z0-9_])`, 'gi'),
+}));
+
+function replaceFirstUnlinked(text, alias) {
+  let match;
+  alias.pattern.lastIndex = 0;
+  while ((match = alias.pattern.exec(text)) !== null) {
+    const start = match.index + match[1].length;
+    const end = start + match[2].length;
+    if (isInsideMarkdownLink(text, start) || isInsideCodeSpan(text, start)) {
+      alias.pattern.lastIndex = end;
+      continue;
+    }
+    const linked = `[[${alias.target}|${match[2]}]]`;
+    return `${text.slice(0, start)}${linked}${text.slice(end)}`;
+  }
+  return text;
+}
+
+function isInsideMarkdownLink(text, index) {
+  const open = text.lastIndexOf('[[', index);
+  const close = text.lastIndexOf(']]', index);
+  return open > close;
+}
+
+function isInsideCodeSpan(text, index) {
+  const before = text.slice(0, index);
+  return (before.match(/`/g) ?? []).length % 2 === 1;
+}
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 class MediaWikiClient {

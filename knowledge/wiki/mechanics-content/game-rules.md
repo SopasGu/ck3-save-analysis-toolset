@@ -6,7 +6,7 @@ sourceId: "source:ck3-paradoxwikis-com:game-rules"
 sourceRevisionId: 34952
 sourceOldidUrl: "https://ck3.paradoxwikis.com/Game_rules?oldid=34952"
 license: "CC BY-SA 3.0"
-generatedAt: "2026-07-18T07:02:11.038Z"
+generatedAt: "2026-07-18T07:20:18.943Z"
 contentHash: "1b7e686cf03c72d9c14b9c7339c815ee5680556840d36b9dd24b1ae3ecd38b5d"
 ---
 
@@ -44,7 +44,7 @@ Use this page when a question needs CK3 mechanics context for Game rules. Combin
 
 ### Conquerors
 
-- Conquerors rules determine how Conquerors affect gameplay and the Conqueror trait. None of them disables achievements.
+- Conquerors rules determine how Conquerors affect gameplay and the Conqueror [[mechanics-content/traits|trait]]. None of them disables achievements.
 
 ### Situations
 
@@ -52,7 +52,7 @@ Use this page when a question needs CK3 mechanics context for Game rules. Combin
 
 ### Extra Administrative Realms
 
-- Extra Administrative Realms rules can make a realm start with Administrative government to better reflect its historical organization. None of them disables achievements.
+- Extra Administrative Realms rules can make a realm start with Administrative [[mechanics-content/government|government]] to better reflect its historical organization. None of them disables achievements.
 
 ### Extra Nomadic Region
 
