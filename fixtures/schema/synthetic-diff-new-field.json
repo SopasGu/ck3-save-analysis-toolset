@@ -1,0 +1,22 @@
+{
+  "domains": {
+    "1": {
+      "label": "domain-a"
+    },
+    "2": {
+      "label": "domain-b"
+    }
+  },
+  "records": {
+    "10": {
+      "domain": 1,
+      "score": 5,
+      "new_field": true
+    },
+    "11": {
+      "domain": 2,
+      "score": 6,
+      "new_field": false
+    }
+  }
+}

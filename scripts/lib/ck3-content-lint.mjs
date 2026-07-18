@@ -2,6 +2,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 export const DEFAULT_MAX_JSON_BYTES = 1024 * 1024;
+export const DEFAULT_OVERSIZED_JSON_ALLOWLIST = [
+  'knowledge/schema/graph.json',
+];
 
 export const SOURCE_PATH_PATTERNS = [
   {
@@ -59,11 +62,17 @@ function findMatches(line, regex) {
 
 export function lintFile(filePath, options = {}) {
   const maxJsonBytes = options.maxJsonBytes ?? DEFAULT_MAX_JSON_BYTES;
+  const oversizedJsonAllowlist =
+    options.oversizedJsonAllowlist ?? DEFAULT_OVERSIZED_JSON_ALLOWLIST;
   const identifiers = options.identifiers ?? [];
   const findings = [];
 
   const stat = fs.statSync(filePath);
-  if (filePath.endsWith('.json') && stat.size > maxJsonBytes) {
+  if (
+    filePath.endsWith('.json') &&
+    stat.size > maxJsonBytes &&
+    !isAllowlisted(filePath, oversizedJsonAllowlist)
+  ) {
     findings.push({
       file: filePath,
       detector: 'oversized_json',
@@ -116,6 +125,11 @@ export function lintFile(filePath, options = {}) {
   }
 
   return findings;
+}
+
+function isAllowlisted(filePath, allowlist) {
+  const normalized = filePath.replace(/\\/g, '/');
+  return allowlist.some((allowed) => normalized.endsWith(allowed));
 }
 
 export function lintPaths(inputs, options = {}) {

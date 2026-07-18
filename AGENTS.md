@@ -43,17 +43,32 @@ Locked by the plan; key points an agent will otherwise miss:
 
 ## Current Checkpoint
 
-Tasks 0-4 in `docs/ck3-evidence-graph-plan.md` are complete. The next worker should start at **Task 5: Discover identity domains and reference candidates**.
+Tasks 0-8 in `docs/ck3-evidence-graph-plan.md` are complete. The next worker should start at **Task 9: Add semantic claims without contaminating structural discovery**.
 
-Useful Task 5 inputs now available:
+Useful Task 9 inputs now available:
 
 - `knowledge/sources/registry.json` - registered bootstrap source metadata
+- `knowledge/schema/graph.json` - first durable schema graph generated from the bootstrap source
+- `knowledge/schema/graph.schema.json` - schema for durable graph artifacts
+- `knowledge/schema/compatibility-report.json` - Task 7 compatibility report comparing the bootstrap graph against a second local-only Rakaly specimen
+- `fixtures/schema/` - synthetic fixtures and manifests covering discovery stages without requiring full campaign artifacts
 - `scripts/ck3-save-discover` - generic streaming JSON structure discovery
 - `scripts/ck3-save-shape` - normalized path and shape catalog generation
 - `scripts/ck3-save-collections` - candidate collection and record-type catalog generation
+- `scripts/ck3-save-references` - identity-domain and aggregate reference-candidate catalog generation
+- `scripts/ck3-save-schema` - durable schema graph generation and validation
+- `scripts/ck3-save-schema-diff` - durable schema graph compatibility diff
 - `scripts/lib/ck3-candidate-collections.mjs` - reusable Task 4 collection identification logic
+- `scripts/lib/ck3-identity-references.mjs` - reusable Task 5 identity/reference discovery logic
+- `scripts/lib/ck3-schema-graph.mjs` - reusable Task 6 graph generation and validation logic
+- `scripts/lib/ck3-schema-diff.mjs` - reusable Task 7 graph compatibility diff logic
+- `scripts/test-schema-fixtures` - Task 8 fixture regression runner
+- `scripts/ck3-wiki-source` - Task 11 groundwork MediaWiki source adapter for CK3 Wiki documentation metadata
+- `knowledge/sources/ck3-wiki-main-page-links.json` - registered CK3 Wiki `Main_Page/links` source summary and seed topic links
 
-Before beginning Task 5, run `npm run check:all` and inspect the Task 5 plan section. Task 5 should build from the candidate collections and record types; it should not jump directly to semantic CK3 names until the identity/reference evidence is recorded.
+Before beginning Task 9, run `npm run check:all` and inspect the Task 9 plan section. Task 9 may name record types, fields, identity domains, and references only through explicit versioned claims backed by graph evidence; do not let semantic rules alter structural observations.
+
+Documentation groundwork note: CK3 Wiki sources may be fetched through `scripts/ck3-wiki-source` with serial requests, local caching, meaningful User-Agent headers, and `Retry-After` handling. For this project, assume all official CK3 DLC is active unless a later source explicitly scopes behavior otherwise. Documentation metadata can support proposed claims, but it must not create accepted claims or wiki pages before Tasks 9-10 define those ledgers and rules.
 
 ## Commands
 

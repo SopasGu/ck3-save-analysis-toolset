@@ -1,0 +1,119 @@
+#!/usr/bin/env node
+import {
+  buildMediaWikiRegistryEntry,
+  sourceIdForMediaWikiPage,
+  summarizeMediaWikiLinks,
+} from './lib/ck3-mediawiki-source.mjs';
+
+let failed = 0;
+
+function ok(label) {
+  console.log(`OK    ${label}`);
+}
+
+function fail(label, detail) {
+  console.error(`FAIL  ${label}`);
+  if (detail) console.error(detail);
+  failed++;
+}
+
+function fixtureSource() {
+  return {
+    sourceId: 'source:ck3-paradoxwikis-com:main-page-links',
+    kind: 'mediawiki_page',
+    site: {
+      key: 'ck3.paradoxwikis.com',
+      sitename: 'CK3 Wiki',
+      generator: 'MediaWiki 1.39.4',
+      apiUrl: 'https://ck3.paradoxwikis.com/api.php',
+      server: 'https://ck3.paradoxwikis.com',
+      articlePath: '/$1',
+      rights: {
+        url: 'https://central.paradoxwikis.com/Central:Copyrights',
+        text: 'Attribution-ShareAlike 3.0',
+      },
+    },
+    page: {
+      title: 'Main Page/links',
+      pageId: 1217,
+      canonicalUrl: 'https://ck3.paradoxwikis.com/Main_Page/links',
+      revisionId: 34070,
+      parentRevisionId: 33252,
+      revisionTimestamp: '2026-03-31T15:22:48Z',
+      revisionSha1: 'bc27c8066b15f94e64c1129e145403c0e844100c',
+      oldidUrl: 'https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070',
+    },
+    links: [
+      { title: "Beginner's guide", url: 'https://ck3.paradoxwikis.com/Beginner%27s_guide' },
+      { title: 'Characters', url: 'https://ck3.paradoxwikis.com/Characters' },
+      { title: 'Culture', url: 'https://ck3.paradoxwikis.com/Culture' },
+      { title: 'Faith', url: 'https://ck3.paradoxwikis.com/Faith' },
+      { title: 'Adventurer', url: 'https://ck3.paradoxwikis.com/Adventurer' },
+      { title: 'Downloadable content', url: 'https://ck3.paradoxwikis.com/Downloadable_content' },
+    ],
+    requestPolicy: {
+      userAgent: 'test-agent',
+      minDelayMs: 1200,
+      concurrency: 1,
+      cacheDir: '/tmp/cache',
+      retryAfterHonored: true,
+    },
+  };
+}
+
+function testSourceId() {
+  const id = sourceIdForMediaWikiPage('ck3.paradoxwikis.com', 'Main Page/links');
+  if (id !== 'source:ck3-paradoxwikis-com:main-page-links') {
+    fail('mediawiki sourceId is stable and readable', id);
+    return;
+  }
+  ok('mediawiki sourceId is stable and readable');
+}
+
+function testSummaryGroups() {
+  const summary = summarizeMediaWikiLinks(fixtureSource());
+  if (
+    summary.gettingStarted[0]?.title !== "Beginner's guide" ||
+    summary.characterSystems[0]?.title !== 'Characters' ||
+    summary.cultureFaith.length !== 2 ||
+    summary.governance[0]?.title !== 'Adventurer'
+  ) {
+    fail('main links grouped into seed mechanics topics', JSON.stringify(summary, null, 2));
+    return;
+  }
+  ok('main links grouped into seed mechanics topics');
+}
+
+function testRegistryEntryScopeAndCitation() {
+  const entry = buildMediaWikiRegistryEntry(fixtureSource(), {
+    allDlcActive: true,
+    gameVersions: ['1.19.0.6'],
+    acquiredAt: '2026-07-17T21:00:00-07:00',
+  });
+  if (entry.scope.allDlcActive !== true || !entry.scope.dlc.includes('ALL_ACTIVE_ASSUMPTION')) {
+    fail('registry entry records all-DLC-active scope', JSON.stringify(entry.scope));
+    return;
+  }
+  if (entry.oldidUrl !== 'https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070') {
+    fail('registry entry preserves oldid citation URL', entry.oldidUrl);
+    return;
+  }
+  if (entry.content.copiedContent !== 'metadata_and_link_titles_only') {
+    fail('registry entry avoids whole-page content copy', JSON.stringify(entry.content));
+    return;
+  }
+  ok('registry entry records all-DLC scope, citation, and limited copied content');
+}
+
+console.log('ck3-mediawiki-source self-test');
+console.log('==============================');
+
+testSourceId();
+testSummaryGroups();
+testRegistryEntryScopeAndCitation();
+
+if (failed > 0) {
+  console.error(`\n${failed} test(s) failed`);
+  process.exit(1);
+}
+console.log('\nAll mediawiki-source tests passed');

@@ -2,6 +2,134 @@
   "schemaVersion": 1,
   "sources": [
     {
+      "sourceId": "source:ck3-paradoxwikis-com:main-page-links",
+      "kind": "documentation_mediawiki_page",
+      "label": "CK3 Wiki: Main Page/links",
+      "acquiredAt": "2026-07-18T04:09:41.876Z",
+      "publisher": "CK3 Wiki",
+      "documentType": "mediawiki_page",
+      "title": "Main Page/links",
+      "canonicalUrl": "https://ck3.paradoxwikis.com/Main_Page/links",
+      "oldidUrl": "https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070",
+      "revision": {
+        "pageId": 1217,
+        "revisionId": 34070,
+        "parentRevisionId": 33252,
+        "timestamp": "2026-03-31T15:22:48Z",
+        "sha1": "bc27c8066b15f94e64c1129e145403c0e844100c"
+      },
+      "content": {
+        "hashAlgorithm": "sha256",
+        "structuralSummarySha256": "1a061b09f026be7e89df18ba3255fb135b3e5a345f81a12c1e84e65ee935e779",
+        "copiedContent": "metadata_and_link_titles_only"
+      },
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "licensing": {
+        "rights": {
+          "url": "https://central.paradoxwikis.com/Central:Copyrights",
+          "text": "Attribution-ShareAlike 3.0"
+        },
+        "redistribution": "Do not copy whole wiki pages into this repository; store citations, page metadata, and short summaries only unless license review permits more."
+      },
+      "requestPolicy": {
+        "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+        "minDelayMs": 1200,
+        "concurrency": 1,
+        "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+        "retryAfterHonored": true
+      },
+      "extracted": {
+        "linkCount": 57,
+        "topicGroups": {
+          "gettingStarted": [
+            "Beginner's guide",
+            "Mechanics",
+            "Game rules",
+            "Console commands",
+            "Interesting characters"
+          ],
+          "characterSystems": [
+            "Characters",
+            "Attributes",
+            "Traits",
+            "Resources",
+            "Lifestyle",
+            "Dynasty",
+            "Schemes",
+            "Hooks",
+            "Artifacts",
+            "Modifiers"
+          ],
+          "governance": [
+            "Council",
+            "Court",
+            "Government",
+            "Laws",
+            "Prisoners",
+            "Activity",
+            "Decisions",
+            "Power sharing",
+            "Royal court",
+            "Adventurer"
+          ],
+          "realm": [
+            "Titles",
+            "Subjects",
+            "Building",
+            "Domicile",
+            "Great projects",
+            "Situation",
+            "Barony",
+            "County",
+            "Travel"
+          ],
+          "warfare": [
+            "Warfare",
+            "Army",
+            "Knight",
+            "Hired forces",
+            "Casus belli",
+            "Alliance",
+            "Duel"
+          ],
+          "cultureFaith": [
+            "Faith",
+            "Doctrines",
+            "Tenets",
+            "Holy sites",
+            "Culture",
+            "Traditions",
+            "Innovation"
+          ],
+          "documentationMeta": [
+            "Modding",
+            "Jargon",
+            "Achievements",
+            "Developer diaries",
+            "Patches",
+            "Downloadable content"
+          ]
+        }
+      },
+      "visibility": {
+        "classification": "external",
+        "rawArtifactCommitted": false,
+        "rationale": "External CK3 wiki documentation source. Durable knowledge should cite this page/revision and store only compliant summaries."
+      },
+      "notes": [
+        "Task 11 groundwork source. Use this documentation page as context for proposed claims only; do not let it alter structural observations."
+      ]
+    },
+    {
       "sourceId": "source:rakaly-specimen-451e9bb9cff734cc",
       "kind": "rakaly_save_specimen",
       "label": "Bootstrap Rakaly specimen (2026-07-16)",
@@ -44,6 +172,52 @@
         "nullCount": 0,
         "maxDepth": 12,
         "measurementSource": "scripts/lib/json-structure-discovery.mjs streaming traversal of expanded Rakaly JSON (Task 2)"
+      },
+      "notes": []
+    },
+    {
+      "sourceId": "source:rakaly-specimen-944bbb0994ce45dc",
+      "kind": "rakaly_save_specimen",
+      "label": "Second Rakaly specimen for schema compatibility (879.1.1)",
+      "acquiredAt": "2026-07-17T19:38:00-07:00",
+      "content": {
+        "compressed": {
+          "sha256": "7cf3a2a9690227792a6d5d00263eaac93151be0bdd67818ecb82f53a4b249743",
+          "byteSize": 13445005,
+          "compression": "gzip"
+        },
+        "expanded": {
+          "sha256": "944bbb0994ce45dc7b8e156f1e869ed7f0926392a99ed55da378ddc7684d861e",
+          "byteSize": 101839328
+        }
+      },
+      "rakaly": {
+        "tool": "rakaly",
+        "version": "0.8.17",
+        "versionSource": "scripts/ck3-rakaly wrapper"
+      },
+      "ck3": {
+        "version": "1.19.0.6",
+        "source": "meta_data.version in expanded JSON"
+      },
+      "saveGameDate": "879.1.1",
+      "dlc": [],
+      "mods": [],
+      "visibility": {
+        "classification": "local_only",
+        "rawArtifactCommitted": false,
+        "rationale": "Local-only nearby compatibility specimen for Task 7; raw artifact remains ignored and must not be promoted into durable campaign entities."
+      },
+      "structuralMeasurements": {
+        "objectCount": 1480448,
+        "arrayCount": 602063,
+        "primitiveCount": 4658187,
+        "stringCount": 1729287,
+        "numberCount": 2843553,
+        "booleanCount": 85347,
+        "nullCount": 0,
+        "maxDepth": 11,
+        "measurementSource": "scripts/lib/json-structure-discovery.mjs streaming traversal of expanded Rakaly JSON (Task 7)"
       },
       "notes": []
     }

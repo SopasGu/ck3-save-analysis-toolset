@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "fixture": "synthetic-core.json",
+  "kind": "synthetic",
+  "description": "Minimal invented fixture covering map collections, array collections, shape variants, identity collisions, sentinels, nulls, unresolved references, and aggregate reference candidates.",
+  "covers": [
+    "streaming discovery",
+    "map collection discovery",
+    "array collection discovery",
+    "shape variant / optional fields",
+    "identity-domain key indexing",
+    "identity collision for raw value 1 across cultures and faiths",
+    "sentinel reference values 0 and -1",
+    "null references",
+    "unresolved reference values",
+    "aggregate reference candidates"
+  ],
+  "privacy": {
+    "source": "invented",
+    "containsCampaignEntities": false,
+    "containsSourceRecordIds": false,
+    "redaction": "none; this fixture was authored synthetically"
+  },
+  "expected": {
+    "collections": ["$.cultures", "$.faiths", "$.people", "$.settlements", "$.relations"],
+    "identityDomains": [
+      "identity_domain:$.cultures.<key>",
+      "identity_domain:$.faiths.<key>",
+      "identity_domain:$.people.<key>",
+      "identity_domain:$.settlements.<key>"
+    ],
+    "referenceFields": [
+      "$.people.<key>.culture",
+      "$.people.<key>.faith",
+      "$.people.<key>.home"
+    ]
+  }
+}

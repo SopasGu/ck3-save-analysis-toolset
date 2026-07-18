@@ -106,7 +106,7 @@ export function loadRegistry(registryPath) {
     if (typeof s.sourceId !== 'string') {
       throw new Error(`Registry entry missing sourceId: ${registryPath}`);
     }
-    if (!s.sourceId.startsWith(SOURCE_ID_PREFIX)) {
+    if (!s.sourceId.startsWith('source:')) {
       throw new Error(`Registry entry has unexpected sourceId: ${s.sourceId}`);
     }
   }

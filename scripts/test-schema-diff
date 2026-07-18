@@ -1,0 +1,217 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import { spawnSync } from 'node:child_process';
+import { discoverStructure } from './lib/json-structure-discovery.mjs';
+import { ShapeCollector } from './lib/ck3-shape-fingerprints.mjs';
+import { identifyCandidateCollections } from './lib/ck3-candidate-collections.mjs';
+import { IdentityReferenceCollector } from './lib/ck3-identity-references.mjs';
+import { generateSchemaGraph } from './lib/ck3-schema-graph.mjs';
+import { diffSchemaGraphs } from './lib/ck3-schema-diff.mjs';
+
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const TMP = fs.mkdtempSync(path.join(os.tmpdir(), 'ck3-schema-diff-test-'));
+
+let failed = 0;
+
+function ok(label) {
+  console.log(`OK    ${label}`);
+}
+
+function fail(label, detail) {
+  console.error(`FAIL  ${label}`);
+  if (detail) console.error(detail);
+  failed++;
+}
+
+let counter = 0;
+function writeFixture(name, content) {
+  const filePath = path.join(TMP, `${counter++}-${name}`);
+  fs.writeFileSync(filePath, content);
+  return filePath;
+}
+
+function sourceRegistry() {
+  return {
+    schemaVersion: 1,
+    sources: [{
+      sourceId: 'source:test',
+      kind: 'synthetic_fixture',
+      label: 'Synthetic fixture',
+      visibility: { classification: 'synthetic' },
+    }],
+  };
+}
+
+async function graphFor(content) {
+  const filePath = writeFixture('input.json', content);
+  const shapeCollector = new ShapeCollector();
+  await discoverStructure({ source: filePath, collector: shapeCollector });
+  const shapeCatalog = {
+    schemaVersion: 1,
+    source: { sourceId: 'source:test' },
+    ...shapeCollector.result(),
+  };
+  const collections = identifyCandidateCollections(shapeCatalog.pathPatterns, { minPopulation: 2 });
+  const collectionCatalog = {
+    schemaVersion: 1,
+    source: { sourceId: 'source:test' },
+    ...collections,
+  };
+  const refCollector = new IdentityReferenceCollector(collectionCatalog);
+  await discoverStructure({ source: filePath, collector: refCollector });
+  const referenceCatalog = {
+    schemaVersion: 1,
+    source: { sourceId: 'source:test' },
+    ...refCollector.result(),
+  };
+  return generateSchemaGraph({
+    sourceRegistry: sourceRegistry(),
+    shapeCatalog,
+    collectionCatalog,
+    referenceCatalog,
+  }, { sourceId: 'source:test' });
+}
+
+async function testNewCharactersDoNotDiff() {
+  const base = await graphFor(JSON.stringify({
+    domains: {
+      '1': { name: 'a' },
+      '2': { name: 'b' },
+    },
+    people: {
+      '10001': { domain: 1, score: 10 },
+      '10002': { domain: 2, score: 20 },
+    },
+  }));
+  const next = await graphFor(JSON.stringify({
+    domains: {
+      '3': { name: 'c' },
+      '4': { name: 'd' },
+    },
+    people: {
+      '20001': { domain: 3, score: 30 },
+      '20002': { domain: 4, score: 40 },
+    },
+  }));
+  const diff = diffSchemaGraphs(base, next);
+  if (diff.summary.structuralChanges !== 0) {
+    fail('new entities do not create durable graph diff', JSON.stringify(diff.summary));
+    return;
+  }
+  ok('new entity IDs and values do not create durable graph diff');
+}
+
+async function testNewFieldCreatesDiff() {
+  const base = await graphFor(JSON.stringify({
+    domains: {
+      '1': { name: 'a' },
+      '2': { name: 'b' },
+    },
+    people: {
+      '10001': { domain: 1 },
+      '10002': { domain: 2 },
+    },
+  }));
+  const next = await graphFor(JSON.stringify({
+    domains: {
+      '1': { name: 'a' },
+      '2': { name: 'b' },
+    },
+    people: {
+      '10001': { domain: 1, new_field: true },
+      '10002': { domain: 2, new_field: false },
+    },
+  }));
+  const diff = diffSchemaGraphs(base, next);
+  if (
+    !diff.addedNodes.some((n) => n.kind === 'field') &&
+    !diff.addedNodes.some((n) => n.kind === 'shape_variant')
+  ) {
+    fail('new field creates reviewable schema diff', JSON.stringify(diff));
+    return;
+  }
+  ok('new field creates reviewable schema diff');
+}
+
+async function testChangedReferenceCoverageVisible() {
+  const base = await graphFor(JSON.stringify({
+    domains: {
+      '1': { name: 'a' },
+      '2': { name: 'b' },
+    },
+    people: {
+      '10001': { domain: 1 },
+      '10002': { domain: 2 },
+    },
+  }));
+  const next = await graphFor(JSON.stringify({
+    domains: {
+      '1': { name: 'a' },
+      '2': { name: 'b' },
+    },
+    people: {
+      '10001': { domain: 1 },
+      '10002': { domain: 999 },
+    },
+  }));
+  const diff = diffSchemaGraphs(base, next);
+  const changedCoverage = diff.changedEdges.some((edge) =>
+    edge.kind === 'field_uses_identity_domain' &&
+    edge.changes.some((change) => change.path.includes('coverage') || change.path.includes('numerator')),
+  );
+  if (!changedCoverage) {
+    fail('conflicting reference observations remain visible', JSON.stringify(diff));
+    return;
+  }
+  ok('changed aggregate reference coverage remains visible');
+}
+
+async function testCliSmoke() {
+  const base = await graphFor(JSON.stringify({
+    domains: { '1': {}, '2': {} },
+    people: { '10': { domain: 1 }, '11': { domain: 2 } },
+  }));
+  const next = await graphFor(JSON.stringify({
+    domains: { '1': {}, '2': {} },
+    people: { '10': { domain: 1, flag: true }, '11': { domain: 2, flag: false } },
+  }));
+  const basePath = writeFixture('base-graph.json', JSON.stringify(base));
+  const nextPath = writeFixture('next-graph.json', JSON.stringify(next));
+  const outPath = path.join(TMP, 'diff.json');
+  const cli = path.join(ROOT, 'scripts', 'ck3-save-schema-diff');
+  const result = spawnSync('node', [
+    cli,
+    '--base', basePath,
+    '--next', nextPath,
+    '--quiet',
+    '--out', outPath,
+  ], { encoding: 'utf8' });
+  if (result.status !== 0) {
+    fail('schema diff CLI exits 0', `status=${result.status}\n${result.stderr}`);
+    return;
+  }
+  const diff = JSON.parse(fs.readFileSync(outPath, 'utf8'));
+  if (diff.summary.structuralChanges === 0) {
+    fail('schema diff CLI emits changes', JSON.stringify(diff));
+    return;
+  }
+  ok('CLI emits schema compatibility diff');
+}
+
+console.log('ck3-schema-diff self-test');
+console.log('=========================');
+
+await testNewCharactersDoNotDiff();
+await testNewFieldCreatesDiff();
+await testChangedReferenceCoverageVisible();
+await testCliSmoke();
+
+fs.rmSync(TMP, { recursive: true, force: true });
+
+if (failed > 0) {
+  console.error(`\n${failed} test(s) failed`);
+  process.exit(1);
+}
+console.log('\nAll schema-diff tests passed');

@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "graphSchema": "knowledge/schema/graph.schema.json",
+  "currentGraph": "knowledge/schema/graph.json",
+  "notes": [
+    "Version 1 models generalized CK3 save structure only: collections, record types, shape variants, fields, identity domains, source documents, and aggregate reference patterns."
+  ]
+}

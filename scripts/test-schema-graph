@@ -1,0 +1,239 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import { spawnSync } from 'node:child_process';
+import { discoverStructure } from './lib/json-structure-discovery.mjs';
+import { ShapeCollector } from './lib/ck3-shape-fingerprints.mjs';
+import { identifyCandidateCollections } from './lib/ck3-candidate-collections.mjs';
+import { IdentityReferenceCollector } from './lib/ck3-identity-references.mjs';
+import {
+  generateSchemaGraph,
+  validateSchemaGraph,
+} from './lib/ck3-schema-graph.mjs';
+
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const TMP = fs.mkdtempSync(path.join(os.tmpdir(), 'ck3-schema-graph-test-'));
+
+let failed = 0;
+
+function ok(label) {
+  console.log(`OK    ${label}`);
+}
+
+function fail(label, detail) {
+  console.error(`FAIL  ${label}`);
+  if (detail) console.error(detail);
+  failed++;
+}
+
+let counter = 0;
+function writeFixture(name, content) {
+  const filePath = path.join(TMP, `${counter++}-${name}`);
+  fs.writeFileSync(filePath, content);
+  return filePath;
+}
+
+function sourceRegistry() {
+  return {
+    schemaVersion: 1,
+    sources: [{
+      sourceId: 'source:test',
+      kind: 'synthetic_fixture',
+      label: 'Synthetic fixture',
+      ck3: { version: 'test' },
+      saveGameDate: null,
+      visibility: { classification: 'synthetic' },
+    }],
+  };
+}
+
+async function catalogsFor(content) {
+  const filePath = writeFixture('input.json', content);
+  const shapeCollector = new ShapeCollector();
+  await discoverStructure({ source: filePath, collector: shapeCollector });
+  const shapeCatalog = {
+    schemaVersion: 1,
+    source: { sourceId: 'source:test' },
+    ...shapeCollector.result(),
+  };
+  const collectionCore = identifyCandidateCollections(shapeCatalog.pathPatterns, { minPopulation: 2 });
+  const collectionCatalog = {
+    schemaVersion: 1,
+    source: { sourceId: 'source:test' },
+    ...collectionCore,
+  };
+  const refCollector = new IdentityReferenceCollector(collectionCatalog);
+  await discoverStructure({ source: filePath, collector: refCollector });
+  const referenceCatalog = {
+    schemaVersion: 1,
+    source: { sourceId: 'source:test' },
+    ...refCollector.result(),
+  };
+  return {
+    sourceRegistry: sourceRegistry(),
+    shapeCatalog,
+    collectionCatalog,
+    referenceCatalog,
+  };
+}
+
+function graphIds(graph) {
+  return {
+    nodes: graph.nodes.map((n) => n.id).sort(),
+    edges: graph.edges.map((e) => e.id).sort(),
+  };
+}
+
+async function testGraphValidAndGeneralized() {
+  const catalogs = await catalogsFor(JSON.stringify({
+    domains: {
+      '1001': { label: 'a' },
+      '1002': { label: 'b' },
+    },
+    records: {
+      '9001': { domain: 1001, optional: true },
+      '9002': { domain: 1002 },
+    },
+  }));
+  const graph = generateSchemaGraph(catalogs, { sourceId: 'source:test' });
+  const errors = validateSchemaGraph(graph);
+  if (errors.length > 0) {
+    fail('graph validates', errors.join('\n'));
+    return;
+  }
+  if (!graph.nodes.some((n) => n.kind === 'collection') || !graph.nodes.some((n) => n.kind === 'identity_domain')) {
+    fail('graph has core node kinds', JSON.stringify(graph.summary));
+    return;
+  }
+  if (!graph.edges.some((e) => e.kind === 'field_uses_identity_domain')) {
+    fail('graph has aggregate reference edge', JSON.stringify(graph.summary.edgeKinds));
+    return;
+  }
+  if (graph.nodes.some((n) => n.id.includes('9001') || n.id.includes('1001'))) {
+    fail('graph IDs exclude instance IDs', JSON.stringify(graph.nodes.map((n) => n.id)));
+    return;
+  }
+  if ([...graph.nodes, ...graph.edges].some((item) => !Array.isArray(item.provenance) || item.provenance.length === 0)) {
+    fail('every graph item has provenance', JSON.stringify(graph));
+    return;
+  }
+  ok('schema graph validates and contains generalized nodes/edges');
+}
+
+async function testDeterministicAndStableIds() {
+  const a = await catalogsFor(JSON.stringify({
+    domains: {
+      '1001': { label: 'a' },
+      '1002': { label: 'b' },
+    },
+    records: {
+      '9001': { domain: 1001, flag: true },
+      '9002': { domain: 1002, flag: false },
+    },
+  }));
+  const b = await catalogsFor(JSON.stringify({
+    domains: {
+      '2001': { label: 'c' },
+      '2002': { label: 'd' },
+    },
+    records: {
+      '8001': { domain: 2001, flag: true },
+      '8002': { domain: 2002, flag: false },
+    },
+  }));
+  const graph1 = generateSchemaGraph(a, { sourceId: 'source:test' });
+  const graph2 = generateSchemaGraph(a, { sourceId: 'source:test' });
+  if (JSON.stringify(graph1) !== JSON.stringify(graph2)) {
+    fail('generation is deterministic');
+    return;
+  }
+  const ids1 = graphIds(graph1);
+  const ids2 = graphIds(generateSchemaGraph(b, { sourceId: 'source:test' }));
+  if (JSON.stringify(ids1) !== JSON.stringify(ids2)) {
+    fail('graph IDs stable when instance values change', JSON.stringify({ ids1, ids2 }));
+    return;
+  }
+  ok('graph generation is deterministic and stable across instance-value changes');
+}
+
+function testValidatorRejectsInstanceIds() {
+  const graph = {
+    schemaVersion: 1,
+    sourceIds: ['source:test'],
+    summary: { nodes: 1, edges: 0, nodeKinds: {}, edgeKinds: {} },
+    nodes: [{
+      id: 'field:living.123456.culture',
+      kind: 'field',
+      label: 'culture',
+      status: 'observed',
+      scope: { gameVersions: [], dlc: [], mods: [] },
+      provenance: [{ sourceId: 'source:test', observationId: 'obs:test', layer: 'schema_observation' }],
+      notes: [],
+      properties: {},
+    }],
+    edges: [],
+  };
+  const errors = validateSchemaGraph(graph);
+  if (!errors.some((e) => e.includes('instance record id'))) {
+    fail('validator rejects instance-looking IDs', JSON.stringify(errors));
+    return;
+  }
+  ok('validator rejects instance-looking stable graph IDs');
+}
+
+async function testCliSmoke() {
+  const catalogs = await catalogsFor(JSON.stringify({
+    domains: {
+      '1': { label: 'one' },
+      '2': { label: 'two' },
+    },
+    records: {
+      '10': { domain: 1 },
+      '11': { domain: 2 },
+    },
+  }));
+  const shapePath = writeFixture('shape.json', JSON.stringify(catalogs.shapeCatalog));
+  const collectionsPath = writeFixture('collections.json', JSON.stringify(catalogs.collectionCatalog));
+  const refsPath = writeFixture('references.json', JSON.stringify(catalogs.referenceCatalog));
+  const sourcesPath = writeFixture('sources.json', JSON.stringify(catalogs.sourceRegistry));
+  const outputPath = path.join(TMP, 'graph.json');
+  const cli = path.join(ROOT, 'scripts', 'ck3-save-schema');
+  const result = spawnSync('node', [
+    cli,
+    '--shape', shapePath,
+    '--collections', collectionsPath,
+    '--references', refsPath,
+    '--sources', sourcesPath,
+    '--source-id', 'source:test',
+    '--quiet',
+    '--out', outputPath,
+  ], { encoding: 'utf8' });
+  if (result.status !== 0) {
+    fail('schema CLI exits 0', `status=${result.status}\n${result.stderr}`);
+    return;
+  }
+  const graph = JSON.parse(fs.readFileSync(outputPath, 'utf8'));
+  const errors = validateSchemaGraph(graph);
+  if (errors.length > 0) {
+    fail('schema CLI emits valid graph', JSON.stringify(errors));
+    return;
+  }
+  ok('CLI emits valid schema graph for synthetic fixture');
+}
+
+console.log('ck3-schema-graph self-test');
+console.log('===========================');
+
+await testGraphValidAndGeneralized();
+await testDeterministicAndStableIds();
+testValidatorRejectsInstanceIds();
+await testCliSmoke();
+
+fs.rmSync(TMP, { recursive: true, force: true });
+
+if (failed > 0) {
+  console.error(`\n${failed} test(s) failed`);
+  process.exit(1);
+}
+console.log('\nAll schema-graph tests passed');

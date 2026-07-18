@@ -1,0 +1,196 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import { discoverStructure } from './lib/json-structure-discovery.mjs';
+import { ShapeCollector } from './lib/ck3-shape-fingerprints.mjs';
+import { identifyCandidateCollections } from './lib/ck3-candidate-collections.mjs';
+import { IdentityReferenceCollector } from './lib/ck3-identity-references.mjs';
+import {
+  generateSchemaGraph,
+  validateSchemaGraph,
+} from './lib/ck3-schema-graph.mjs';
+import { diffSchemaGraphs } from './lib/ck3-schema-diff.mjs';
+import { lintPaths } from './lib/ck3-content-lint.mjs';
+import { LINT_PATTERNS } from './lib/ck3-content-lint-patterns.mjs';
+
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const FIXTURES = path.join(ROOT, 'fixtures/schema');
+
+let failed = 0;
+
+function ok(label) {
+  console.log(`OK    ${label}`);
+}
+
+function fail(label, detail) {
+  console.error(`FAIL  ${label}`);
+  if (detail) console.error(detail);
+  failed++;
+}
+
+function sourceRegistry() {
+  return {
+    schemaVersion: 1,
+    sources: [{
+      sourceId: 'source:synthetic-fixture',
+      kind: 'synthetic_fixture',
+      label: 'Synthetic schema fixture',
+      visibility: {
+        classification: 'synthetic',
+        rawArtifactCommitted: true,
+      },
+    }],
+  };
+}
+
+async function graphFor(filePath) {
+  const shapeCollector = new ShapeCollector();
+  await discoverStructure({ source: filePath, collector: shapeCollector });
+  const shapeCatalog = {
+    schemaVersion: 1,
+    source: { sourceId: 'source:synthetic-fixture' },
+    ...shapeCollector.result(),
+  };
+  const collectionCore = identifyCandidateCollections(shapeCatalog.pathPatterns, {
+    minPopulation: 2,
+  });
+  const collectionCatalog = {
+    schemaVersion: 1,
+    source: { sourceId: 'source:synthetic-fixture' },
+    ...collectionCore,
+  };
+  const refCollector = new IdentityReferenceCollector(collectionCatalog);
+  await discoverStructure({ source: filePath, collector: refCollector });
+  const referenceCatalog = {
+    schemaVersion: 1,
+    source: { sourceId: 'source:synthetic-fixture' },
+    ...refCollector.result(),
+  };
+  const graph = generateSchemaGraph({
+    sourceRegistry: sourceRegistry(),
+    shapeCatalog,
+    collectionCatalog,
+    referenceCatalog,
+  }, { sourceId: 'source:synthetic-fixture' });
+  return {
+    shapeCatalog,
+    collectionCatalog,
+    referenceCatalog,
+    graph,
+  };
+}
+
+function collectionPointers(catalog) {
+  return new Set(catalog.candidateCollections.map((c) => c.pointer));
+}
+
+function domainIds(catalog) {
+  return new Set(catalog.identityDomains.map((d) => d.id));
+}
+
+function referenceFields(catalog) {
+  return new Set(catalog.referenceCandidates.map((c) => c.fieldPointer));
+}
+
+async function testCoreFixture() {
+  const fixturePath = path.join(FIXTURES, 'synthetic-core.json');
+  const manifestPath = path.join(FIXTURES, 'synthetic-core.manifest.json');
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+  const { shapeCatalog, collectionCatalog, referenceCatalog, graph } = await graphFor(fixturePath);
+
+  if (shapeCatalog.pathPatterns.length === 0) {
+    fail('core fixture: discovery produces path patterns');
+    return;
+  }
+  const collections = collectionPointers(collectionCatalog);
+  for (const expected of manifest.expected.collections) {
+    if (!collections.has(expected)) {
+      fail('core fixture: expected collection discovered', `${expected} missing from ${Array.from(collections).join(', ')}`);
+      return;
+    }
+  }
+  const domains = domainIds(referenceCatalog);
+  for (const expected of manifest.expected.identityDomains) {
+    if (!domains.has(expected)) {
+      fail('core fixture: expected identity domain discovered', `${expected} missing`);
+      return;
+    }
+  }
+  const refs = referenceFields(referenceCatalog);
+  for (const expected of manifest.expected.referenceFields) {
+    if (!refs.has(expected)) {
+      fail('core fixture: expected reference candidate discovered', `${expected} missing`);
+      return;
+    }
+  }
+  const faith = referenceCatalog.referenceCandidates.find((c) => c.fieldPointer === '$.people.<key>.faith');
+  if (!faith || faith.evidence.sentinelCount !== 1 || faith.evidence.nullCount !== 1) {
+    fail('core fixture: sentinels and nulls reported separately', JSON.stringify(faith?.evidence));
+    return;
+  }
+  const culture = referenceCatalog.referenceCandidates.find((c) => c.fieldPointer === '$.people.<key>.culture');
+  if (!culture || culture.ambiguousValueCount === 0) {
+    fail('core fixture: identity collision retained', JSON.stringify(culture));
+    return;
+  }
+  const graphErrors = validateSchemaGraph(graph);
+  if (graphErrors.length > 0) {
+    fail('core fixture: generated schema graph validates', graphErrors.join('\n'));
+    return;
+  }
+  ok('synthetic core fixture covers discovery, collections, references, and graph generation');
+}
+
+async function testDiffFixtures() {
+  const base = (await graphFor(path.join(FIXTURES, 'synthetic-diff-base.json'))).graph;
+  const entityOnly = (await graphFor(path.join(FIXTURES, 'synthetic-diff-entity-only.json'))).graph;
+  const newField = (await graphFor(path.join(FIXTURES, 'synthetic-diff-new-field.json'))).graph;
+
+  const entityDiff = diffSchemaGraphs(base, entityOnly);
+  if (entityDiff.summary.structuralChanges !== 0) {
+    fail('diff fixtures: entity-only changes ignored', JSON.stringify(entityDiff.summary));
+    return;
+  }
+  const fieldDiff = diffSchemaGraphs(base, newField);
+  if (
+    !fieldDiff.addedNodes.some((n) => n.kind === 'field') &&
+    !fieldDiff.addedNodes.some((n) => n.kind === 'shape_variant')
+  ) {
+    fail('diff fixtures: new field creates schema diff', JSON.stringify(fieldDiff));
+    return;
+  }
+  ok('synthetic diff fixtures separate campaign churn from schema changes');
+}
+
+function testFixtureManifestsAndLint() {
+  const index = JSON.parse(fs.readFileSync(path.join(FIXTURES, 'manifest.json'), 'utf8'));
+  for (const entry of index.fixtures) {
+    const fixturePath = path.join(FIXTURES, entry.path);
+    const manifestPath = path.join(FIXTURES, entry.manifest);
+    if (!fs.existsSync(fixturePath) || !fs.existsSync(manifestPath)) {
+      fail('fixture index paths exist', JSON.stringify(entry));
+      return;
+    }
+  }
+  const findings = lintPaths([FIXTURES], {
+    identifiers: LINT_PATTERNS.identifiers,
+  });
+  if (findings.length > 0) {
+    fail('schema fixtures pass durable-content lint', JSON.stringify(findings, null, 2));
+    return;
+  }
+  ok('fixture manifests exist and schema fixtures pass durable-content lint');
+}
+
+console.log('ck3-schema-fixtures self-test');
+console.log('=============================');
+
+await testCoreFixture();
+await testDiffFixtures();
+testFixtureManifestsAndLint();
+
+if (failed > 0) {
+  console.error(`\n${failed} test(s) failed`);
+  process.exit(1);
+}
+console.log('\nAll schema-fixture tests passed');

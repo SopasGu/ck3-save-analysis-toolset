@@ -1,0 +1,78 @@
+{
+  "cultures": {
+    "1": {
+      "label": "invented-culture-a",
+      "traditions": ["storytellers", "mariners"]
+    },
+    "2": {
+      "label": "invented-culture-b",
+      "traditions": ["gardeners"]
+    }
+  },
+  "faiths": {
+    "1": {
+      "label": "invented-faith-a",
+      "virtue": "patience"
+    },
+    "3": {
+      "label": "invented-faith-b",
+      "virtue": "charity"
+    }
+  },
+  "people": {
+    "10": {
+      "culture": 1,
+      "faith": 3,
+      "home": 20,
+      "flags": ["traveler", "scribe"]
+    },
+    "11": {
+      "culture": 2,
+      "faith": 0,
+      "home": 21,
+      "flags": ["scribe"]
+    },
+    "12": {
+      "culture": 9,
+      "faith": null,
+      "home": -1
+    }
+  },
+  "settlements": {
+    "20": {
+      "label": "invented-hold-a",
+      "rank": 1
+    },
+    "21": {
+      "label": "invented-hold-b",
+      "rank": 2
+    }
+  },
+  "relations": [
+    {
+      "from": 10,
+      "to": 11,
+      "kind": "knows"
+    },
+    {
+      "from": 11,
+      "to": 12,
+      "kind": "knows"
+    },
+    {
+      "from": 12,
+      "to": 10,
+      "kind": "knows"
+    },
+    {
+      "from": 10,
+      "to": 12,
+      "kind": "owes"
+    },
+    {
+      "from": 12,
+      "to": 11,
+      "kind": "owes"
+    }
+  ]
+}

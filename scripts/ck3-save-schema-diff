@@ -1,0 +1,108 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import { diffSchemaGraphs } from './lib/ck3-schema-diff.mjs';
+import { validateSchemaGraph } from './lib/ck3-schema-graph.mjs';
+
+function printHelp() {
+  console.log(`Usage: ck3-save-schema-diff --base GRAPH.json --next GRAPH.json [options]
+
+Compares two durable schema graph artifacts by stable graph IDs. The report is
+about schema changes: collections, record types, fields, identity domains, and
+aggregate reference patterns. It does not compare per-campaign entities.
+
+Options:
+  --out PATH             Write diff JSON to PATH (default: stdout)
+  --max-items N          Max entries retained per diff section; counts remain complete (default: 200)
+  --include-provenance   Treat provenance-only differences as changes
+  --quiet                Suppress progress on stderr
+`);
+}
+
+function parseArgs(argv) {
+  const args = {
+    base: null,
+    next: null,
+    out: null,
+    maxItemsPerSection: 200,
+    includeProvenance: false,
+    quiet: false,
+  };
+  for (let i = 0; i < argv.length; i++) {
+    const a = argv[i];
+    switch (a) {
+      case '--base':
+        args.base = argv[++i];
+        break;
+      case '--next':
+        args.next = argv[++i];
+        break;
+      case '--out':
+        args.out = argv[++i];
+        break;
+      case '--max-items':
+        args.maxItemsPerSection = parseInt(argv[++i], 10);
+        break;
+      case '--include-provenance':
+        args.includeProvenance = true;
+        break;
+      case '--quiet':
+      case '-q':
+        args.quiet = true;
+        break;
+      case '--help':
+      case '-h':
+        printHelp();
+        process.exit(0);
+        break;
+      default:
+        console.error(`Unknown arg: ${a}`);
+        printHelp();
+        process.exit(2);
+    }
+  }
+  return args;
+}
+
+function readGraph(label, filePath) {
+  if (!filePath) {
+    console.error(`Missing required --${label}`);
+    printHelp();
+    process.exit(2);
+  }
+  if (!fs.existsSync(filePath)) {
+    console.error(`${label} graph not found: ${filePath}`);
+    process.exit(2);
+  }
+  const graph = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  const errors = validateSchemaGraph(graph);
+  if (errors.length > 0) {
+    console.error(`${label} graph failed validation:\n- ${errors.join('\n- ')}`);
+    process.exit(1);
+  }
+  return graph;
+}
+
+function main() {
+  const args = parseArgs(process.argv.slice(2));
+  const base = readGraph('base', args.base);
+  const next = readGraph('next', args.next);
+  const diff = diffSchemaGraphs(base, next, {
+    ignoreProvenance: !args.includeProvenance,
+    maxItemsPerSection: args.maxItemsPerSection,
+  });
+  const json = JSON.stringify(diff, null, 2) + '\n';
+  if (args.out) {
+    fs.mkdirSync(path.dirname(path.resolve(args.out)), { recursive: true });
+    fs.writeFileSync(args.out, json);
+    if (!args.quiet) {
+      process.stderr.write(
+        `Wrote schema diff (${diff.summary.structuralChanges} structural changes) to ${args.out}\n`,
+      );
+    }
+  } else {
+    process.stdout.write(json);
+  }
+}
+
+main();

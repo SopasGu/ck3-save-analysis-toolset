@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "kind": "synthetic",
+  "description": "Paired fixtures for schema compatibility diff regression tests.",
+  "fixtures": {
+    "base": "synthetic-diff-base.json",
+    "entityOnly": "synthetic-diff-entity-only.json",
+    "newField": "synthetic-diff-new-field.json"
+  },
+  "covers": [
+    "new entity IDs and values do not create durable graph diffs",
+    "new structural fields create reviewable graph diffs"
+  ],
+  "privacy": {
+    "source": "invented",
+    "containsCampaignEntities": false,
+    "containsSourceRecordIds": false,
+    "redaction": "none; these fixtures were authored synthetically"
+  }
+}

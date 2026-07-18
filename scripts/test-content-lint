@@ -45,6 +45,16 @@ cases.push({
   threshold: 256,
 });
 
+const graphPath = path.join(TMP, 'knowledge/schema/graph.json');
+fs.mkdirSync(path.dirname(graphPath), { recursive: true });
+fs.writeFileSync(graphPath, JSON.stringify({ data: 'x'.repeat(2048) }));
+cases.push({
+  name: 'knowledge/schema/graph.json (allowed durable graph artifact)',
+  path: graphPath,
+  expect: 0,
+  threshold: 256,
+});
+
 let failed = 0;
 console.log('ck3-content-lint self-test');
 console.log('=========================');

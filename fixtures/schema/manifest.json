@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "description": "Synthetic CK3-like schema fixtures for normal regression tests. These fixtures are invented and are not redactions of a real campaign save.",
+  "fixtures": [
+    {
+      "path": "synthetic-core.json",
+      "manifest": "synthetic-core.manifest.json"
+    },
+    {
+      "path": "synthetic-diff-base.json",
+      "manifest": "synthetic-diff.manifest.json"
+    },
+    {
+      "path": "synthetic-diff-entity-only.json",
+      "manifest": "synthetic-diff.manifest.json"
+    },
+    {
+      "path": "synthetic-diff-new-field.json",
+      "manifest": "synthetic-diff.manifest.json"
+    }
+  ],
+  "privacy": {
+    "source": "invented",
+    "containsCampaignEntities": false,
+    "containsSourceRecordIds": false
+  }
+}

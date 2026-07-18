@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sopasgu.github.io/ck3-save-analysis-toolset/schema/graph.schema.json",
+  "title": "CK3 durable save-schema graph",
+  "type": "object",
+  "required": ["schemaVersion", "sourceIds", "summary", "nodes", "edges"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "generatedAt": { "type": ["string", "null"] },
+    "sourceIds": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "summary": {
+      "type": "object",
+      "required": ["nodes", "edges", "nodeKinds", "edgeKinds"],
+      "additionalProperties": false,
+      "properties": {
+        "nodes": { "type": "integer", "minimum": 0 },
+        "edges": { "type": "integer", "minimum": 0 },
+        "nodeKinds": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "edgeKinds": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/node" }
+    },
+    "edges": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/edge" }
+    }
+  },
+  "$defs": {
+    "scope": {
+      "type": "object",
+      "required": ["gameVersions", "dlc", "mods"],
+      "additionalProperties": false,
+      "properties": {
+        "gameVersions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "dlc": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "mods": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["sourceId", "observationId", "layer"],
+      "additionalProperties": false,
+      "properties": {
+        "sourceId": { "type": ["string", "null"] },
+        "observationId": { "type": "string" },
+        "layer": { "type": "string" }
+      }
+    },
+    "node": {
+      "type": "object",
+      "required": ["id", "kind", "label", "status", "scope", "provenance", "notes", "properties"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "kind": {
+          "enum": [
+            "collection",
+            "record_type",
+            "shape_variant",
+            "field",
+            "identity_domain",
+            "mechanics_concept",
+            "source_document",
+            "query"
+          ]
+        },
+        "label": { "type": "string" },
+        "status": { "type": "string" },
+        "scope": { "$ref": "#/$defs/scope" },
+        "provenance": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/provenance" }
+        },
+        "notes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "properties": { "type": "object" }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "required": ["id", "kind", "from", "to", "status", "scope", "provenance", "notes", "properties"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "kind": {
+          "enum": [
+            "contains_record_type",
+            "has_shape_variant",
+            "has_field",
+            "field_uses_identity_domain",
+            "keys_records_in",
+            "references_record_type",
+            "nested_under",
+            "variant_of",
+            "supported_by",
+            "contradicted_by",
+            "documented_by",
+            "enables_query",
+            "applies_when"
+          ]
+        },
+        "from": { "type": "string" },
+        "to": { "type": "string" },
+        "status": { "type": "string" },
+        "scope": { "$ref": "#/$defs/scope" },
+        "provenance": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/provenance" }
+        },
+        "notes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "properties": { "type": "object" }
+      }
+    }
+  }
+}

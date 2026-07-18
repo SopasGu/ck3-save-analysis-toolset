@@ -1,0 +1,395 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "sourceId": "source:ck3-paradoxwikis-com:main-page-links",
+    "kind": "mediawiki_page",
+    "site": {
+      "key": "ck3.paradoxwikis.com",
+      "sitename": "CK3 Wiki",
+      "generator": "MediaWiki 1.39.4",
+      "apiUrl": "https://ck3.paradoxwikis.com/api.php",
+      "server": "https://ck3.paradoxwikis.com",
+      "articlePath": "/$1",
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      }
+    },
+    "page": {
+      "title": "Main Page/links",
+      "pageId": 1217,
+      "canonicalUrl": "https://ck3.paradoxwikis.com/Main_Page/links",
+      "revisionId": 34070,
+      "parentRevisionId": 33252,
+      "touched": "2026-03-31T15:22:48Z",
+      "revisionTimestamp": "2026-03-31T15:22:48Z",
+      "revisionSha1": "bc27c8066b15f94e64c1129e145403c0e844100c",
+      "oldidUrl": "https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070"
+    },
+    "links": [
+      {
+        "title": "Achievements",
+        "url": "https://ck3.paradoxwikis.com/Achievements"
+      },
+      {
+        "title": "Activity",
+        "url": "https://ck3.paradoxwikis.com/Activity"
+      },
+      {
+        "title": "Adventurer",
+        "url": "https://ck3.paradoxwikis.com/Adventurer"
+      },
+      {
+        "title": "Alliance",
+        "url": "https://ck3.paradoxwikis.com/Alliance"
+      },
+      {
+        "title": "Army",
+        "url": "https://ck3.paradoxwikis.com/Army"
+      },
+      {
+        "title": "Artifacts",
+        "url": "https://ck3.paradoxwikis.com/Artifacts"
+      },
+      {
+        "title": "Attributes",
+        "url": "https://ck3.paradoxwikis.com/Attributes"
+      },
+      {
+        "title": "Barony",
+        "url": "https://ck3.paradoxwikis.com/Barony"
+      },
+      {
+        "title": "Beginner's guide",
+        "url": "https://ck3.paradoxwikis.com/Beginner's_guide"
+      },
+      {
+        "title": "Building",
+        "url": "https://ck3.paradoxwikis.com/Building"
+      },
+      {
+        "title": "Casus belli",
+        "url": "https://ck3.paradoxwikis.com/Casus_belli"
+      },
+      {
+        "title": "Characters",
+        "url": "https://ck3.paradoxwikis.com/Characters"
+      },
+      {
+        "title": "Communities",
+        "url": "https://ck3.paradoxwikis.com/Communities"
+      },
+      {
+        "title": "Console commands",
+        "url": "https://ck3.paradoxwikis.com/Console_commands"
+      },
+      {
+        "title": "Council",
+        "url": "https://ck3.paradoxwikis.com/Council"
+      },
+      {
+        "title": "County",
+        "url": "https://ck3.paradoxwikis.com/County"
+      },
+      {
+        "title": "Court",
+        "url": "https://ck3.paradoxwikis.com/Court"
+      },
+      {
+        "title": "Culture",
+        "url": "https://ck3.paradoxwikis.com/Culture"
+      },
+      {
+        "title": "Decisions",
+        "url": "https://ck3.paradoxwikis.com/Decisions"
+      },
+      {
+        "title": "Developer diaries",
+        "url": "https://ck3.paradoxwikis.com/Developer_diaries"
+      },
+      {
+        "title": "Doctrines",
+        "url": "https://ck3.paradoxwikis.com/Doctrines"
+      },
+      {
+        "title": "Domicile",
+        "url": "https://ck3.paradoxwikis.com/Domicile"
+      },
+      {
+        "title": "Downloadable content",
+        "url": "https://ck3.paradoxwikis.com/Downloadable_content"
+      },
+      {
+        "title": "Duel",
+        "url": "https://ck3.paradoxwikis.com/Duel"
+      },
+      {
+        "title": "Dynasty",
+        "url": "https://ck3.paradoxwikis.com/Dynasty"
+      },
+      {
+        "title": "Faith",
+        "url": "https://ck3.paradoxwikis.com/Faith"
+      },
+      {
+        "title": "FAQ",
+        "url": "https://ck3.paradoxwikis.com/FAQ"
+      },
+      {
+        "title": "Game rules",
+        "url": "https://ck3.paradoxwikis.com/Game_rules"
+      },
+      {
+        "title": "Government",
+        "url": "https://ck3.paradoxwikis.com/Government"
+      },
+      {
+        "title": "Great projects",
+        "url": "https://ck3.paradoxwikis.com/Great_projects"
+      },
+      {
+        "title": "Hired forces",
+        "url": "https://ck3.paradoxwikis.com/Hired_forces"
+      },
+      {
+        "title": "Holy sites",
+        "url": "https://ck3.paradoxwikis.com/Holy_sites"
+      },
+      {
+        "title": "Hooks",
+        "url": "https://ck3.paradoxwikis.com/Hooks"
+      },
+      {
+        "title": "Innovation",
+        "url": "https://ck3.paradoxwikis.com/Innovation"
+      },
+      {
+        "title": "Interesting characters",
+        "url": "https://ck3.paradoxwikis.com/Interesting_characters"
+      },
+      {
+        "title": "Jargon",
+        "url": "https://ck3.paradoxwikis.com/Jargon"
+      },
+      {
+        "title": "Knight",
+        "url": "https://ck3.paradoxwikis.com/Knight"
+      },
+      {
+        "title": "Laws",
+        "url": "https://ck3.paradoxwikis.com/Laws"
+      },
+      {
+        "title": "Lifestyle",
+        "url": "https://ck3.paradoxwikis.com/Lifestyle"
+      },
+      {
+        "title": "Mechanics",
+        "url": "https://ck3.paradoxwikis.com/Mechanics"
+      },
+      {
+        "title": "Modding",
+        "url": "https://ck3.paradoxwikis.com/Modding"
+      },
+      {
+        "title": "Modifiers",
+        "url": "https://ck3.paradoxwikis.com/Modifiers"
+      },
+      {
+        "title": "Patches",
+        "url": "https://ck3.paradoxwikis.com/Patches"
+      },
+      {
+        "title": "Power sharing",
+        "url": "https://ck3.paradoxwikis.com/Power_sharing"
+      },
+      {
+        "title": "Prisoners",
+        "url": "https://ck3.paradoxwikis.com/Prisoners"
+      },
+      {
+        "title": "Resources",
+        "url": "https://ck3.paradoxwikis.com/Resources"
+      },
+      {
+        "title": "Royal court",
+        "url": "https://ck3.paradoxwikis.com/Royal_court"
+      },
+      {
+        "title": "Schemes",
+        "url": "https://ck3.paradoxwikis.com/Schemes"
+      },
+      {
+        "title": "Situation",
+        "url": "https://ck3.paradoxwikis.com/Situation"
+      },
+      {
+        "title": "Subjects",
+        "url": "https://ck3.paradoxwikis.com/Subjects"
+      },
+      {
+        "title": "Tenets",
+        "url": "https://ck3.paradoxwikis.com/Tenets"
+      },
+      {
+        "title": "Titles",
+        "url": "https://ck3.paradoxwikis.com/Titles"
+      },
+      {
+        "title": "Traditions",
+        "url": "https://ck3.paradoxwikis.com/Traditions"
+      },
+      {
+        "title": "Traits",
+        "url": "https://ck3.paradoxwikis.com/Traits"
+      },
+      {
+        "title": "Travel",
+        "url": "https://ck3.paradoxwikis.com/Travel"
+      },
+      {
+        "title": "Tutorial videos",
+        "url": "https://ck3.paradoxwikis.com/Tutorial_videos"
+      },
+      {
+        "title": "Warfare",
+        "url": "https://ck3.paradoxwikis.com/Warfare"
+      }
+    ],
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    }
+  },
+  "registryEntry": {
+    "sourceId": "source:ck3-paradoxwikis-com:main-page-links",
+    "kind": "documentation_mediawiki_page",
+    "label": "CK3 Wiki: Main Page/links",
+    "acquiredAt": "2026-07-18T04:09:41.876Z",
+    "publisher": "CK3 Wiki",
+    "documentType": "mediawiki_page",
+    "title": "Main Page/links",
+    "canonicalUrl": "https://ck3.paradoxwikis.com/Main_Page/links",
+    "oldidUrl": "https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070",
+    "revision": {
+      "pageId": 1217,
+      "revisionId": 34070,
+      "parentRevisionId": 33252,
+      "timestamp": "2026-03-31T15:22:48Z",
+      "sha1": "bc27c8066b15f94e64c1129e145403c0e844100c"
+    },
+    "content": {
+      "hashAlgorithm": "sha256",
+      "structuralSummarySha256": "1a061b09f026be7e89df18ba3255fb135b3e5a345f81a12c1e84e65ee935e779",
+      "copiedContent": "metadata_and_link_titles_only"
+    },
+    "scope": {
+      "gameVersions": [
+        "1.19.0.6"
+      ],
+      "dlc": [
+        "ALL_ACTIVE_ASSUMPTION"
+      ],
+      "mods": [],
+      "allDlcActive": true
+    },
+    "licensing": {
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      },
+      "redistribution": "Do not copy whole wiki pages into this repository; store citations, page metadata, and short summaries only unless license review permits more."
+    },
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    },
+    "extracted": {
+      "linkCount": 57,
+      "topicGroups": {
+        "gettingStarted": [
+          "Beginner's guide",
+          "Mechanics",
+          "Game rules",
+          "Console commands",
+          "Interesting characters"
+        ],
+        "characterSystems": [
+          "Characters",
+          "Attributes",
+          "Traits",
+          "Resources",
+          "Lifestyle",
+          "Dynasty",
+          "Schemes",
+          "Hooks",
+          "Artifacts",
+          "Modifiers"
+        ],
+        "governance": [
+          "Council",
+          "Court",
+          "Government",
+          "Laws",
+          "Prisoners",
+          "Activity",
+          "Decisions",
+          "Power sharing",
+          "Royal court",
+          "Adventurer"
+        ],
+        "realm": [
+          "Titles",
+          "Subjects",
+          "Building",
+          "Domicile",
+          "Great projects",
+          "Situation",
+          "Barony",
+          "County",
+          "Travel"
+        ],
+        "warfare": [
+          "Warfare",
+          "Army",
+          "Knight",
+          "Hired forces",
+          "Casus belli",
+          "Alliance",
+          "Duel"
+        ],
+        "cultureFaith": [
+          "Faith",
+          "Doctrines",
+          "Tenets",
+          "Holy sites",
+          "Culture",
+          "Traditions",
+          "Innovation"
+        ],
+        "documentationMeta": [
+          "Modding",
+          "Jargon",
+          "Achievements",
+          "Developer diaries",
+          "Patches",
+          "Downloadable content"
+        ]
+      }
+    },
+    "visibility": {
+      "classification": "external",
+      "rawArtifactCommitted": false,
+      "rationale": "External CK3 wiki documentation source. Durable knowledge should cite this page/revision and store only compliant summaries."
+    },
+    "notes": [
+      "Task 11 groundwork source. Use this documentation page as context for proposed claims only; do not let it alter structural observations."
+    ]
+  }
+}

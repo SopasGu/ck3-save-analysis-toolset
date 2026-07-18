@@ -1,0 +1,138 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import {
+  generateSchemaGraph,
+  validateSchemaGraph,
+} from './lib/ck3-schema-graph.mjs';
+
+function printHelp() {
+  console.log(`Usage: ck3-save-schema --shape PATH --collections PATH --references PATH --sources PATH [options]
+
+Builds the first durable CK3 save-schema graph from structural observation
+catalogs. The output contains generalized graph nodes and aggregate reference
+patterns only; it does not emit per-save character/title/province instances.
+
+Options:
+  --shape PATH          Shape catalog from ck3-save-shape
+  --collections PATH    Candidate collection catalog from ck3-save-collections
+  --references PATH     Identity/reference catalog from ck3-save-references
+  --sources PATH        Source registry JSON
+  --source-id ID        Source ID to attach as provenance
+  --max-reference-candidates N
+                       Maximum ranked reference candidates projected into graph (default: 250)
+  --max-target-domains N
+                       Maximum target identity domains per reference candidate (default: 3)
+  --out PATH            Write output JSON to PATH (default: stdout)
+  --quiet               Suppress progress on stderr
+`);
+}
+
+function parseArgs(argv) {
+  const args = {
+    shape: null,
+    collections: null,
+    references: null,
+    sources: null,
+    sourceId: null,
+    maxReferenceCandidates: 250,
+    maxTargetDomainsPerCandidate: 3,
+    out: null,
+    quiet: false,
+  };
+  for (let i = 0; i < argv.length; i++) {
+    const a = argv[i];
+    switch (a) {
+      case '--shape':
+        args.shape = argv[++i];
+        break;
+      case '--collections':
+        args.collections = argv[++i];
+        break;
+      case '--references':
+        args.references = argv[++i];
+        break;
+      case '--sources':
+        args.sources = argv[++i];
+        break;
+      case '--source-id':
+        args.sourceId = argv[++i];
+        break;
+      case '--max-reference-candidates':
+        args.maxReferenceCandidates = parseInt(argv[++i], 10);
+        break;
+      case '--max-target-domains':
+        args.maxTargetDomainsPerCandidate = parseInt(argv[++i], 10);
+        break;
+      case '--out':
+        args.out = argv[++i];
+        break;
+      case '--quiet':
+      case '-q':
+        args.quiet = true;
+        break;
+      case '--help':
+      case '-h':
+        printHelp();
+        process.exit(0);
+        break;
+      default:
+        console.error(`Unknown arg: ${a}`);
+        process.exit(2);
+    }
+  }
+  return args;
+}
+
+function readJson(label, filePath) {
+  if (!filePath) {
+    console.error(`Missing required --${label}`);
+    printHelp();
+    process.exit(2);
+  }
+  if (!fs.existsSync(filePath)) {
+    console.error(`${label} file not found: ${filePath}`);
+    process.exit(2);
+  }
+  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+}
+
+function main() {
+  const args = parseArgs(process.argv.slice(2));
+  const sourceRegistry = readJson('sources', args.sources);
+  const shapeCatalog = readJson('shape', args.shape);
+  const collectionCatalog = readJson('collections', args.collections);
+  const referenceCatalog = readJson('references', args.references);
+
+  const graph = generateSchemaGraph({
+    sourceRegistry,
+    shapeCatalog,
+    collectionCatalog,
+    referenceCatalog,
+  }, {
+    sourceId: args.sourceId,
+    maxReferenceCandidates: args.maxReferenceCandidates,
+    maxTargetDomainsPerCandidate: args.maxTargetDomainsPerCandidate,
+  });
+
+  const errors = validateSchemaGraph(graph);
+  if (errors.length > 0) {
+    console.error(`Generated graph failed validation:\n- ${errors.join('\n- ')}`);
+    process.exit(1);
+  }
+
+  const json = JSON.stringify(graph, null, 2) + '\n';
+  if (args.out) {
+    fs.mkdirSync(path.dirname(path.resolve(args.out)), { recursive: true });
+    fs.writeFileSync(args.out, json);
+    if (!args.quiet) {
+      process.stderr.write(
+        `Wrote schema graph (${graph.nodes.length} nodes, ${graph.edges.length} edges) to ${args.out}\n`,
+      );
+    }
+  } else {
+    process.stdout.write(json);
+  }
+}
+
+main();

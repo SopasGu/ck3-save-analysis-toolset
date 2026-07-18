@@ -1,0 +1,232 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import { spawnSync } from 'node:child_process';
+import { discoverStructure } from './lib/json-structure-discovery.mjs';
+import { ShapeCollector } from './lib/ck3-shape-fingerprints.mjs';
+import { identifyCandidateCollections } from './lib/ck3-candidate-collections.mjs';
+import { IdentityReferenceCollector } from './lib/ck3-identity-references.mjs';
+
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const TMP = fs.mkdtempSync(path.join(os.tmpdir(), 'ck3-refs-test-'));
+
+let failed = 0;
+
+function ok(label) {
+  console.log(`OK    ${label}`);
+}
+
+function fail(label, detail) {
+  console.error(`FAIL  ${label}`);
+  if (detail) console.error(detail);
+  failed++;
+}
+
+let counter = 0;
+function writeFixture(name, content) {
+  const filePath = path.join(TMP, `${counter++}-${name}`);
+  fs.writeFileSync(filePath, content);
+  return filePath;
+}
+
+async function catalogsFor(content, options = {}) {
+  const filePath = writeFixture('input.json', content);
+  const shapeCollector = new ShapeCollector(options);
+  await discoverStructure({ source: filePath, collector: shapeCollector });
+  const shape = shapeCollector.result();
+  const collections = identifyCandidateCollections(shape.pathPatterns, options);
+  const refCollector = new IdentityReferenceCollector(collections);
+  await discoverStructure({ source: filePath, collector: refCollector });
+  return { filePath, shape, collections, references: refCollector.result() };
+}
+
+function byField(catalog, fieldPointer) {
+  return catalog.referenceCandidates.find((c) => c.fieldPointer === fieldPointer);
+}
+
+function testIdentityDomainsAndReferences() {
+  return catalogsFor(
+    JSON.stringify({
+      cultures: {
+        '1': { name: 'A' },
+        '2': { name: 'B' },
+      },
+      faiths: {
+        '1': { name: 'X' },
+        '3': { name: 'Y' },
+      },
+      people: {
+        '10': { culture: 1, faith: 3 },
+        '11': { culture: 2, faith: 0 },
+        '12': { culture: 999, faith: null },
+      },
+    }),
+    { minPopulation: 2 },
+  ).then(({ references }) => {
+    const domains = references.identityDomains.map((d) => d.id);
+    for (const expected of [
+      'identity_domain:$.cultures.<key>',
+      'identity_domain:$.faiths.<key>',
+      'identity_domain:$.people.<key>',
+    ]) {
+      if (!domains.includes(expected)) {
+        fail('identity domains: map keys indexed', `missing ${expected}; got ${domains.join(', ')}`);
+        return;
+      }
+    }
+    const culture = byField(references, '$.people.<key>.culture');
+    if (!culture) {
+      fail('reference candidate: people culture', JSON.stringify(references.referenceCandidates));
+      return;
+    }
+    if (culture.evidence.denominator !== 3 || culture.evidence.resolvedCount !== 2 || culture.evidence.unresolvedCount !== 1) {
+      fail('reference evidence numerator/denominator', JSON.stringify(culture.evidence));
+      return;
+    }
+    if (culture.ambiguousValueCount !== 1 || culture.targetDomainIds.length < 2) {
+      fail('ambiguous value retained', JSON.stringify(culture));
+      return;
+    }
+    const faith = byField(references, '$.people.<key>.faith');
+    if (!faith) {
+      fail('reference candidate: people faith', JSON.stringify(references.referenceCandidates));
+      return;
+    }
+    if (faith.evidence.sentinelCount !== 1 || faith.evidence.nullCount !== 1 || faith.evidence.resolvedCount !== 1) {
+      fail('sentinel/null/resolved separated', JSON.stringify(faith.evidence));
+      return;
+    }
+    ok('identity domains and aggregate reference candidates discovered');
+  });
+}
+
+function testMissingSeparateFromNull() {
+  return catalogsFor(
+    JSON.stringify({
+      titles: {
+        '1': { name: 'A' },
+        '2': { name: 'B' },
+      },
+      holders: {
+        '10': { title: 1 },
+        '11': {},
+        '12': { title: null },
+      },
+    }),
+    { minPopulation: 2 },
+  ).then(({ references }) => {
+    const title = byField(references, '$.holders.<key>.title');
+    if (!title) {
+      fail('missing/null: reference candidate present', JSON.stringify(references.referenceCandidates));
+      return;
+    }
+    if (title.evidence.missingCount !== 1 || title.evidence.nullCount !== 1 || title.evidence.denominator !== 3) {
+      fail('missing and null reported separately', JSON.stringify(title.evidence));
+      return;
+    }
+    ok('missing fields and null values are counted separately');
+  });
+}
+
+function testCliSmoke() {
+  return catalogsFor(
+    JSON.stringify({
+      domains: {
+        '1': { label: 'one' },
+        '2': { label: 'two' },
+      },
+      records: {
+        '10': { domain: 1 },
+        '11': { domain: 2 },
+      },
+    }),
+    { minPopulation: 2 },
+  ).then(({ filePath, collections }) => {
+    const collectionsPath = writeFixture('collections.json', JSON.stringify(collections));
+    const outputPath = path.join(TMP, 'references.json');
+    const cli = path.join(ROOT, 'scripts', 'ck3-save-references');
+    const result = spawnSync('node', [cli, filePath, '--collections', collectionsPath, '--quiet', '--out', outputPath], {
+      encoding: 'utf8',
+    });
+    if (result.status !== 0) {
+      fail('references CLI exits 0', `status=${result.status}\n${result.stderr}`);
+      return;
+    }
+    const output = JSON.parse(fs.readFileSync(outputPath, 'utf8'));
+    if (!byField(output, '$.records.<key>.domain')) {
+      fail('references CLI emits field candidate', JSON.stringify(output));
+      return;
+    }
+    ok('CLI emits identity/reference catalog for synthetic fixture');
+  });
+}
+
+function testBootstrapSmoke() {
+  const bootstrap = path.join(ROOT, 'state/rakaly-cli/output/ingest/last_save_2026-07-16_221531.json.gz');
+  if (!fs.existsSync(bootstrap)) {
+    console.log(`SKIP  bootstrap identity/reference discovery (not found: ${bootstrap})`);
+    return Promise.resolve();
+  }
+  const shapePath = path.join(TMP, 'bootstrap-shape.json');
+  const collectionsPath = path.join(TMP, 'bootstrap-collections.json');
+  const refsPath = path.join(TMP, 'bootstrap-refs.json');
+  const shapeCli = path.join(ROOT, 'scripts', 'ck3-save-shape');
+  const collectionsCli = path.join(ROOT, 'scripts', 'ck3-save-collections');
+  const refsCli = path.join(ROOT, 'scripts', 'ck3-save-references');
+  let result = spawnSync('node', [shapeCli, bootstrap, '--quiet', '--out', shapePath], {
+    encoding: 'utf8',
+    maxBuffer: 64 * 1024 * 1024,
+  });
+  if (result.status !== 0) {
+    fail('bootstrap references: shape run', result.stderr.slice(0, 500));
+    return Promise.resolve();
+  }
+  result = spawnSync('node', [collectionsCli, shapePath, '--quiet', '--out', collectionsPath], {
+    encoding: 'utf8',
+    maxBuffer: 64 * 1024 * 1024,
+  });
+  if (result.status !== 0) {
+    fail('bootstrap references: collections run', result.stderr.slice(0, 500));
+    return Promise.resolve();
+  }
+  result = spawnSync('node', [refsCli, bootstrap, '--collections', collectionsPath, '--quiet', '--out', refsPath], {
+    encoding: 'utf8',
+    maxBuffer: 64 * 1024 * 1024,
+    timeout: 120000,
+  });
+  if (result.status !== 0) {
+    fail('bootstrap references: reference run', `status=${result.status}\n${result.stderr.slice(0, 500)}`);
+    return Promise.resolve();
+  }
+  const refs = JSON.parse(fs.readFileSync(refsPath, 'utf8'));
+  if (refs.identityDomains.length < 10 || refs.referenceCandidates.length < 10) {
+    fail('bootstrap references: useful observations', JSON.stringify(refs.summary));
+    return Promise.resolve();
+  }
+  if (refs.ambiguityReport.length === 0) {
+    fail('bootstrap references: ambiguity report populated', JSON.stringify(refs.summary));
+    return Promise.resolve();
+  }
+  console.log(
+    `     (bootstrap references: ${refs.identityDomains.length} domains, ${refs.referenceCandidates.length} candidates, ${refs.ambiguityReport.length} ambiguous)`,
+  );
+  ok('bootstrap identity/reference discovery runs without semantic allowlist');
+  return Promise.resolve();
+}
+
+console.log('ck3-identity-references self-test');
+console.log('=================================');
+
+await testIdentityDomainsAndReferences();
+await testMissingSeparateFromNull();
+await testCliSmoke();
+await testBootstrapSmoke();
+
+fs.rmSync(TMP, { recursive: true, force: true });
+
+if (failed > 0) {
+  console.error(`\n${failed} test(s) failed`);
+  process.exit(1);
+}
+console.log('\nAll identity-reference tests passed');

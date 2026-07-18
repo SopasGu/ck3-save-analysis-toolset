@@ -1,0 +1,157 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import {
+  DEFAULT_CK3_WIKI_API,
+  DEFAULT_MIN_DELAY_MS,
+  DEFAULT_USER_AGENT,
+  buildMediaWikiRegistryEntry,
+  fetchMediaWikiPageSource,
+} from './lib/ck3-mediawiki-source.mjs';
+import {
+  addOrUpdateSource,
+  loadRegistry,
+  saveRegistry,
+} from './lib/ck3-source-registry.mjs';
+
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const DEFAULT_CACHE = path.join(ROOT, 'state/mediawiki-cache/ck3.paradoxwikis.com');
+const DEFAULT_REGISTRY = path.join(ROOT, 'knowledge/sources/registry.json');
+
+function printHelp() {
+  console.log(`Usage:
+  ck3-wiki-source fetch-page --title TITLE [options]
+
+Fetch and summarize a single CK3 Wiki MediaWiki page as a documentation source.
+Requests are serial, cached, and default to a conservative delay.
+
+Options:
+  --api-url URL          MediaWiki API endpoint (default: CK3 Paradox Wiki)
+  --cache-dir PATH       Local API response cache (default: state/mediawiki-cache/...)
+  --registry PATH        Source registry path (default: knowledge/sources/registry.json)
+  --out PATH             Write source summary JSON to PATH
+  --register             Add/update the source registry entry
+  --all-dlc-active       Record scope assumption that all CK3 DLC is active
+  --game-version TEXT    Optional game-version scope
+  --min-delay-ms N       Minimum delay between uncached requests (default: ${DEFAULT_MIN_DELAY_MS})
+  --user-agent TEXT      Explicit User-Agent / Api-User-Agent
+  --quiet                Suppress progress on stderr
+`);
+}
+
+function parseArgs(argv) {
+  const args = {
+    subcommand: argv[0] ?? null,
+    title: null,
+    apiUrl: DEFAULT_CK3_WIKI_API,
+    cacheDir: DEFAULT_CACHE,
+    registry: DEFAULT_REGISTRY,
+    out: null,
+    register: false,
+    allDlcActive: false,
+    gameVersion: null,
+    minDelayMs: DEFAULT_MIN_DELAY_MS,
+    userAgent: DEFAULT_USER_AGENT,
+    quiet: false,
+  };
+  for (let i = 1; i < argv.length; i++) {
+    const a = argv[i];
+    switch (a) {
+      case '--title':
+        args.title = argv[++i];
+        break;
+      case '--api-url':
+        args.apiUrl = argv[++i];
+        break;
+      case '--cache-dir':
+        args.cacheDir = argv[++i];
+        break;
+      case '--registry':
+        args.registry = argv[++i];
+        break;
+      case '--out':
+        args.out = argv[++i];
+        break;
+      case '--register':
+        args.register = true;
+        break;
+      case '--all-dlc-active':
+        args.allDlcActive = true;
+        break;
+      case '--game-version':
+        args.gameVersion = argv[++i];
+        break;
+      case '--min-delay-ms':
+        args.minDelayMs = parseInt(argv[++i], 10);
+        break;
+      case '--user-agent':
+        args.userAgent = argv[++i];
+        break;
+      case '--quiet':
+      case '-q':
+        args.quiet = true;
+        break;
+      case '--help':
+      case '-h':
+        printHelp();
+        process.exit(0);
+        break;
+      default:
+        console.error(`Unknown argument: ${a}`);
+        printHelp();
+        process.exit(2);
+    }
+  }
+  return args;
+}
+
+async function main() {
+  const args = parseArgs(process.argv.slice(2));
+  if (args.subcommand !== 'fetch-page') {
+    printHelp();
+    process.exit(args.subcommand ? 2 : 0);
+  }
+  if (!args.title) {
+    console.error('fetch-page requires --title');
+    process.exit(2);
+  }
+  const source = await fetchMediaWikiPageSource({
+    apiUrl: args.apiUrl,
+    title: args.title,
+    cacheDir: args.cacheDir,
+    userAgent: args.userAgent,
+    minDelayMs: args.minDelayMs,
+  });
+  const entry = buildMediaWikiRegistryEntry(source, {
+    allDlcActive: args.allDlcActive,
+    gameVersions: args.gameVersion ? [args.gameVersion] : [],
+    notes: [
+      'Task 11 groundwork source. Use this documentation page as context for proposed claims only; do not let it alter structural observations.',
+    ],
+  });
+  const output = {
+    schemaVersion: 1,
+    source,
+    registryEntry: entry,
+  };
+  if (args.out) {
+    fs.mkdirSync(path.dirname(path.resolve(args.out)), { recursive: true });
+    fs.writeFileSync(args.out, JSON.stringify(output, null, 2) + '\n');
+  }
+  if (args.register) {
+    const registry = loadRegistry(args.registry);
+    addOrUpdateSource(registry, entry);
+    saveRegistry(args.registry, registry);
+    if (!args.quiet) {
+      process.stderr.write(`Registered ${entry.sourceId} in ${args.registry}\n`);
+    }
+  }
+  if (!args.out) {
+    process.stdout.write(JSON.stringify(output, null, 2) + '\n');
+  }
+}
+
+main().catch((err) => {
+  console.error(err.stack || err.message);
+  process.exit(2);
+});

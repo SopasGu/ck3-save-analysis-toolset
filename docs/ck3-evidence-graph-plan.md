@@ -627,6 +627,8 @@ Tasks are dependency-ordered. A worker may complete one task at a time, but must
 
 **Dependencies:** Tasks 9-10.
 
+**Groundwork note:** A narrow MediaWiki source-adapter slice may precede Tasks 9-10 when it only registers documentation sources and seed topic metadata. It must not create accepted semantic claims or wiki pages before the claim ledger and wiki operating rules exist. For current work, assume all official CK3 DLC is active unless a later source explicitly scopes behavior otherwise.
+
 **Work:**
 
 1. Define source adapters for official documentation, patch notes, developer diaries, and installed game definitions/localization.
@@ -743,10 +745,10 @@ When a task reveals that a locked design decision is wrong, the worker must stop
 - [x] Task 2: Implement generic streaming-aware JSON traversal
 - [x] Task 3: Normalize paths and fingerprint shapes
 - [x] Task 4: Discover candidate collections and record types
-- [ ] Task 5: Discover identity domains and reference candidates
-- [ ] Task 6: Build the first durable save-schema graph
-- [ ] Task 7: Validate and generalize across multiple saves
-- [ ] Task 8: Create redacted and synthetic fixtures
+- [x] Task 5: Discover identity domains and reference candidates
+- [x] Task 6: Build the first durable save-schema graph
+- [x] Task 7: Validate and generalize across multiple saves
+- [x] Task 8: Create redacted and synthetic fixtures
 - [ ] Task 9: Add semantic claims
 - [ ] Task 10: Build the LLM Wiki kernel
 - [ ] Task 11: Integrate Paradox and installed-game documentation

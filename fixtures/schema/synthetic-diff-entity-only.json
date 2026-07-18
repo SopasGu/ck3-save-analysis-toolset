@@ -1,0 +1,20 @@
+{
+  "domains": {
+    "3": {
+      "label": "domain-c"
+    },
+    "4": {
+      "label": "domain-d"
+    }
+  },
+  "records": {
+    "20": {
+      "domain": 3,
+      "score": 7
+    },
+    "21": {
+      "domain": 4,
+      "score": 8
+    }
+  }
+}
