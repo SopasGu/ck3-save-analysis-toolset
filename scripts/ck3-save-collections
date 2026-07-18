@@ -1,0 +1,118 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import { identifyCandidateCollections } from './lib/ck3-candidate-collections.mjs';
+
+function printHelp() {
+  console.log(`Usage: ck3-save-collections <path-to-shape-catalog.json> [options]
+
+Reads a shape catalog JSON (produced by ck3-save-shape) and emits a candidate
+collections + record types catalog. Pure CK3-agnostic discovery: every
+collection and record type is named by its source path and shape fingerprint.
+
+Options:
+  --min-population N     Minimum children for a collection (default: 5)
+  --out PATH             Write output JSON to PATH (default: stdout)
+  --quiet                Suppress progress on stderr
+`);
+}
+
+function parseArgs(argv) {
+  const args = {
+    input: null,
+    minPopulation: 5,
+    out: null,
+    quiet: false,
+  };
+  for (let i = 0; i < argv.length; i++) {
+    const a = argv[i];
+    switch (a) {
+      case '--min-population':
+        args.minPopulation = parseInt(argv[++i], 10);
+        break;
+      case '--out':
+        args.out = argv[++i];
+        break;
+      case '--quiet':
+      case '-q':
+        args.quiet = true;
+        break;
+      case '--help':
+      case '-h':
+        printHelp();
+        process.exit(0);
+        break;
+      default:
+        if (a.startsWith('--')) {
+          console.error(`Unknown flag: ${a}`);
+          process.exit(2);
+        }
+        if (args.input) {
+          console.error(`Unexpected positional arg: ${a}`);
+          process.exit(2);
+        }
+        args.input = a;
+    }
+  }
+  return args;
+}
+
+async function main() {
+  const args = parseArgs(process.argv.slice(2));
+  if (!args.input) {
+    printHelp();
+    process.exit(2);
+  }
+  if (!fs.existsSync(args.input)) {
+    console.error(`File not found: ${args.input}`);
+    process.exit(2);
+  }
+
+  const shape = JSON.parse(fs.readFileSync(args.input, 'utf8'));
+  if (!Array.isArray(shape.pathPatterns)) {
+    console.error('Input is not a shape catalog: missing pathPatterns');
+    process.exit(2);
+  }
+
+  const start = Date.now();
+  const catalog = identifyCandidateCollections(shape.pathPatterns, {
+    minPopulation: args.minPopulation,
+  });
+  const elapsed = Date.now() - start;
+
+  const output = {
+    schemaVersion: 1,
+    source: {
+      shapeCatalogPath: path.resolve(args.input),
+      sourceId: shape.source?.sourceId ?? null,
+    },
+    config: {
+      minPopulation: args.minPopulation,
+    },
+    summary: catalog.summary,
+    candidateCollections: catalog.candidateCollections,
+    candidateRecordTypes: catalog.candidateRecordTypes,
+    reviewRanking: catalog.reviewRanking,
+    diagnostics: {
+      durationMs: elapsed,
+    },
+  };
+
+  const json = JSON.stringify(output, null, 2) + '\n';
+  if (args.out) {
+    fs.mkdirSync(path.dirname(path.resolve(args.out)), { recursive: true });
+    fs.writeFileSync(args.out, json);
+    if (!args.quiet) {
+      process.stderr.write(
+        `Wrote ${catalog.candidateCollections.length} collections / ${catalog.candidateRecordTypes.length} record types to ${args.out} in ${elapsed} ms\n`,
+      );
+    }
+  } else {
+    process.stdout.write(json);
+  }
+}
+
+main().catch((err) => {
+  console.error(err.stack || err.message);
+  process.exit(2);
+});

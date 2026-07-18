@@ -1,0 +1,540 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import { spawnSync } from 'node:child_process';
+import { discoverStructure } from './lib/json-structure-discovery.mjs';
+import { ShapeCollector } from './lib/ck3-shape-fingerprints.mjs';
+import { identifyCandidateCollections } from './lib/ck3-candidate-collections.mjs';
+
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const TMP = fs.mkdtempSync(path.join(os.tmpdir(), 'ck3-collections-test-'));
+
+let failed = 0;
+
+function ok(label) {
+  console.log(`OK    ${label}`);
+}
+
+function fail(label, detail) {
+  console.error(`FAIL  ${label}`);
+  if (detail) console.error(detail);
+  failed++;
+}
+
+let fixtureCounter = 0;
+function writeFixture(name, content) {
+  const filePath = path.join(TMP, `${fixtureCounter++}-${name}`);
+  fs.writeFileSync(filePath, content);
+  return filePath;
+}
+
+async function shapeCatalogFor(content, options = {}) {
+  const filePath = writeFixture('input.json', content);
+  const collector = new ShapeCollector(options);
+  await discoverStructure({ source: filePath, collector });
+  return collector.result();
+}
+
+function collectionByPointer(catalog, pointer) {
+  return catalog.candidateCollections.find((c) => c.pointer === pointer);
+}
+
+function recordTypeByFingerprint(catalog, fp) {
+  return catalog.candidateRecordTypes.find((rt) => rt.shapeFingerprint === fp);
+}
+
+async function runOnContent(content, options = {}) {
+  const shape = await shapeCatalogFor(content, options);
+  return identifyCandidateCollections(shape.pathPatterns, options);
+}
+
+function testSyncReturn() {
+  const catalog = identifyCandidateCollections([]);
+  if (catalog.summary.candidateCollections !== 0) {
+    fail('identifyCandidateCollections returns a value synchronously', JSON.stringify(catalog));
+    return;
+  }
+  ok('identifyCandidateCollections is a synchronous function');
+}
+
+function testMapCollectionDetected() {
+  return runOnContent(
+    JSON.stringify({
+      provinces: {
+        '1277': { name: 'A', culture: 1 },
+        '1278': { name: 'B', culture: 2 },
+        '1279': { name: 'C', culture: 3 },
+        '1280': { name: 'D', culture: 4 },
+        '1281': { name: 'E', culture: 5 },
+        '1282': { name: 'F', culture: 6 },
+      },
+    }),
+  ).then((catalog) => {
+    const c = collectionByPointer(catalog, '$.provinces');
+    if (!c) {
+      fail('map collection: detected', `collections: ${catalog.candidateCollections.map((x) => x.pointer)}`);
+      return;
+    }
+    if (c.childKeyKind !== 'map') {
+      fail('map collection: childKeyKind=map', `got ${c.childKeyKind}`);
+      return;
+    }
+    if (c.populationCount !== 6) {
+      fail('map collection: populationCount', `expected 6, got ${c.populationCount}`);
+      return;
+    }
+    if (c.recordCount !== 6) {
+      fail('map collection: recordCount', `expected 6, got ${c.recordCount}`);
+      return;
+    }
+    if (c.recordTypeIds.length !== 1) {
+      fail('map collection: one record type', JSON.stringify(c.recordTypeIds));
+      return;
+    }
+    if (!c.coherenceScore || c.coherenceScore <= 0) {
+      fail('map collection: coherence', `score=${c.coherenceScore}`);
+      return;
+    }
+    ok('map-backed collection detected with population and record type');
+  });
+}
+
+function testArrayCollectionDetected() {
+  return runOnContent(
+    JSON.stringify({
+      opinions: [
+        { target: 1, value: 50 },
+        { target: 2, value: 30 },
+        { target: 3, value: -10 },
+        { target: 4, value: 75 },
+        { target: 5, value: 0 },
+      ],
+    }),
+  ).then((catalog) => {
+    const c = collectionByPointer(catalog, '$.opinions');
+    if (!c) {
+      fail('array collection: detected', JSON.stringify(catalog.candidateCollections.map((x) => x.pointer)));
+      return;
+    }
+    if (c.childKeyKind !== 'array') {
+      fail('array collection: childKeyKind', `got ${c.childKeyKind}`);
+      return;
+    }
+    if (c.populationCount !== 5) {
+      fail('array collection: population', `got ${c.populationCount}`);
+      return;
+    }
+    if (c.coherenceScore !== 1.0) {
+      fail('array collection: coherence=1.0 (arrays are homogeneous)', `got ${c.coherenceScore}`);
+      return;
+    }
+    ok('array-backed collection detected (e.g. opinions)');
+  });
+}
+
+function testNestedCollectionsDetected() {
+  return runOnContent(
+    JSON.stringify({
+      top: {
+        inner: {
+          '1': { x: 1 },
+          '2': { x: 2 },
+          '3': { x: 3 },
+          '4': { x: 4 },
+          '5': { x: 5 },
+          '6': { x: 6 },
+        },
+      },
+    }),
+  ).then((catalog) => {
+    if (!collectionByPointer(catalog, '$.top.inner')) {
+      fail('nested collection: $.top.inner', JSON.stringify(catalog.candidateCollections.map((x) => x.pointer)));
+      return;
+    }
+    ok('nested map collections discovered without a CK3 allowlist');
+  });
+}
+
+function testNoFalsePositivesOnSmallPopulation() {
+  return runOnContent(
+    JSON.stringify({
+      tiny_collection: {
+        a: { x: 1 },
+        b: { x: 2 },
+      },
+    }),
+    { minPopulation: 5 },
+  ).then((catalog) => {
+    if (collectionByPointer(catalog, '$.tiny_collection')) {
+      fail('no false positives: tiny collection', 'should not be classified as a collection');
+      return;
+    }
+    ok('sub-threshold population does not produce a collection');
+  });
+}
+
+function testNumericKeysPromoted() {
+  return runOnContent(
+    JSON.stringify({
+      ids: {
+        '0': { x: 1 },
+        '1': { x: 2 },
+        '2': { x: 3 },
+        '3': { x: 4 },
+        '4': { x: 5 },
+        '5': { x: 6 },
+        '6': { x: 7 },
+        '7': { x: 8 },
+        '8': { x: 9 },
+        '9': { x: 10 },
+        '10': { x: 11 },
+        '11': { x: 12 },
+      },
+    }),
+  ).then((catalog) => {
+    const c = collectionByPointer(catalog, '$.ids');
+    if (!c) {
+      fail('numeric keys promoted: $.ids present', JSON.stringify(catalog.candidateCollections.map((x) => x.pointer)));
+      return;
+    }
+    if (c.childKeyKind !== 'map') {
+      fail('numeric keys promoted: kind=map', `got ${c.childKeyKind}`);
+      return;
+    }
+    if (c.populationCount !== 12) {
+      fail('numeric keys promoted: population', `expected 12, got ${c.populationCount}`);
+      return;
+    }
+    ok('pure numeric string keys (record IDs) are promoted to a map collection');
+  });
+}
+
+function testMapOfMapRecognized() {
+  return runOnContent(
+    JSON.stringify({
+      outer: {
+        '1': { inner: { '100': { v: 1 }, '101': { v: 2 }, '102': { v: 3 } } },
+        '2': { inner: { '100': { v: 4 }, '101': { v: 5 }, '102': { v: 6 } } },
+        '3': { inner: { '100': { v: 7 }, '101': { v: 8 }, '102': { v: 9 } } },
+      },
+    }),
+    { minPopulation: 3 },
+  ).then((catalog) => {
+    const outer = collectionByPointer(catalog, '$.outer');
+    const outerInner = collectionByPointer(catalog, '$.outer.<key>.inner');
+    if (!outer || !outerInner) {
+      fail('map of map recognized', `outer=${!!outer} outerInner=${!!outerInner}`);
+      return;
+    }
+    ok('nested map collections both recognized');
+  });
+}
+
+function testUncertainFlag() {
+  return runOnContent(
+    JSON.stringify({
+      smallish: {
+        '1': { x: 1 },
+        '2': { x: 2 },
+        '3': { x: 3 },
+        '4': { x: 4 },
+        '5': { x: 5 },
+        '6': { x: 6 },
+        '7': { x: 7 },
+        '8': { x: 8 },
+        '9': { x: 9 },
+        '10': { x: 10 },
+      },
+    }),
+    { minPopulation: 5 },
+  ).then((catalog) => {
+    const c = collectionByPointer(catalog, '$.smallish');
+    if (!c) {
+      fail('uncertain flag: collection present', 'missing');
+      return;
+    }
+    if (!c.uncertain) {
+      fail('uncertain flag: low-population flagged', `uncertain=${c.uncertain}, pop=${c.populationCount}`);
+      return;
+    }
+    ok('low-population collections marked uncertain rather than forced');
+  });
+}
+
+function testRecordTypeLinksCollections() {
+  return runOnContent(
+    JSON.stringify({
+      meta1: {
+        '1': { x: 1 },
+        '2': { x: 2 },
+        '3': { x: 3 },
+        '4': { x: 4 },
+        '5': { x: 5 },
+        '6': { x: 6 },
+      },
+      meta2: {
+        '1': { x: 1 },
+        '2': { x: 2 },
+        '3': { x: 3 },
+        '4': { x: 4 },
+        '5': { x: 5 },
+        '6': { x: 6 },
+      },
+    }),
+  ).then((catalog) => {
+    const c1 = collectionByPointer(catalog, '$.meta1');
+    const c2 = collectionByPointer(catalog, '$.meta2');
+    if (!c1 || !c2) {
+      fail('record type links: both collections present', 'missing');
+      return;
+    }
+    if (c1.shapeFingerprint !== c2.shapeFingerprint) {
+      fail('record type links: same shape', `${c1.shapeFingerprint} vs ${c2.shapeFingerprint}`);
+      return;
+    }
+    const fp = c1.shapeFingerprint;
+    const rt = recordTypeByFingerprint(catalog, fp);
+    if (!rt) {
+      fail('record type links: type in catalog', `fp=${fp}`);
+      return;
+    }
+    if (rt.collectionIds.length !== 2) {
+      fail('record type links: 2 collections', JSON.stringify(rt.collectionIds));
+      return;
+    }
+    if (!rt.collectionIds.includes(c1.id) || !rt.collectionIds.includes(c2.id)) {
+      fail('record type links: includes both collections', JSON.stringify(rt.collectionIds));
+      return;
+    }
+    ok('record type links to all collections sharing the same shape');
+  });
+}
+
+function testReviewRanking() {
+  return runOnContent(
+    JSON.stringify({
+      big: {
+        '1': { x: 1 },
+        '2': { x: 2 },
+        '3': { x: 3 },
+        '4': { x: 4 },
+        '5': { x: 5 },
+      },
+      small: {
+        '1': { x: 1 },
+        '2': { x: 2 },
+        '3': { x: 3 },
+        '4': { x: 4 },
+        '5': { x: 5 },
+      },
+    }),
+  ).then((catalog) => {
+    if (catalog.reviewRanking.length < 2) {
+      fail('review ranking: at least 2 entries', JSON.stringify(catalog.reviewRanking));
+      return;
+    }
+    if (catalog.reviewRanking[0].populationCount < catalog.reviewRanking[1].populationCount) {
+      fail('review ranking: descending population', JSON.stringify(catalog.reviewRanking.map((r) => r.populationCount)));
+      return;
+    }
+    ok('review ranking sorted by population');
+  });
+}
+
+function testPopulationCountsAreNotCardinalities() {
+  return runOnContent(
+    JSON.stringify({
+      collection: {
+        '1': { x: 1 },
+        '2': { x: 2 },
+        '3': { x: 3 },
+        '4': { x: 4 },
+        '5': { x: 5 },
+      },
+    }),
+  ).then((catalog) => {
+    const c = collectionByPointer(catalog, '$.collection');
+    if (!c) return fail('pop not cardinalities: collection', 'missing');
+    if (c.populationCount !== 5) return fail('pop not cardinalities: count', `got ${c.populationCount}`);
+    ok('population counts are observation values, not schema cardinalities');
+  });
+}
+
+function testEmptyPathPatterns() {
+  const catalog = identifyCandidateCollections([]);
+  if (catalog.candidateCollections.length !== 0) {
+    fail('empty input: no collections', JSON.stringify(catalog));
+    return;
+  }
+  if (catalog.candidateRecordTypes.length !== 0) {
+    fail('empty input: no record types', JSON.stringify(catalog));
+    return;
+  }
+  if (catalog.summary.candidateCollections !== 0) {
+    fail('empty input: summary count', JSON.stringify(catalog.summary));
+    return;
+  }
+  ok('empty path patterns produce empty catalog');
+}
+
+function testBootstrapCollections() {
+  const bootstrap = path.join(
+    ROOT,
+    'state/rakaly-cli/output/ingest/last_save_2026-07-16_221531.json.gz',
+  );
+  if (!fs.existsSync(bootstrap)) {
+    fail('bootstrap gz exists', `not found: ${bootstrap}`);
+    return Promise.resolve();
+  }
+  const cli = path.join(ROOT, 'scripts', 'ck3-save-shape');
+  const shapeFile = path.join(TMP, 'bootstrap-shape.json');
+  const collFile = path.join(TMP, 'bootstrap-collections.json');
+  const start = Date.now();
+  const shapeRun = spawnSync('node', [cli, bootstrap, '--quiet', '--out', shapeFile, '--source-id', 'source:rakaly-specimen-451e9bb9cff734cc'], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+  if (shapeRun.status !== 0) {
+    fail('bootstrap shape run', `status=${shapeRun.status}\n${shapeRun.stderr.slice(0, 500)}`);
+    return Promise.resolve();
+  }
+  const shape = JSON.parse(fs.readFileSync(shapeFile, 'utf8'));
+  const coll = identifyCandidateCollections(shape.pathPatterns);
+  fs.writeFileSync(collFile, JSON.stringify(coll));
+  const elapsed = Date.now() - start;
+
+  const topByPop = coll.candidateCollections.slice().sort((a, b) => b.populationCount - a.populationCount);
+  const top1 = topByPop[0];
+  if (!top1 || top1.populationCount < 50000) {
+    fail('bootstrap: largest population reasonable', `top: ${top1?.pointer}, pop: ${top1?.populationCount}`);
+    return Promise.resolve();
+  }
+  if (!top1.pointer.includes('living') && !top1.pointer.includes('opinions') && !top1.pointer.includes('coat')) {
+    fail('bootstrap: largest is from a known major CK3 table', `top: ${top1.pointer}`);
+    return Promise.resolve();
+  }
+
+  const topLevelMaps = coll.candidateCollections.filter(
+    (c) => c.childKeyKind === 'map' && c.pointer.split('.').length === 2,
+  );
+  if (topLevelMaps.length < 5) {
+    fail('bootstrap: many top-level map collections', `found ${topLevelMaps.length}`);
+    return Promise.resolve();
+  }
+  const livingCol = coll.candidateCollections.find((c) => c.pointer === '$.living');
+  if (!livingCol || livingCol.populationCount < 1000) {
+    fail('bootstrap: $.living as a collection', JSON.stringify(livingCol));
+    return Promise.resolve();
+  }
+
+  if (coll.candidateRecordTypes.length < 10) {
+    fail('bootstrap: many record types', `found ${coll.candidateRecordTypes.length}`);
+    return Promise.resolve();
+  }
+
+  console.log(
+    `     (bootstrap collections: ${coll.candidateCollections.length} collections, ${coll.candidateRecordTypes.length} record types, ${elapsed} ms; top=${top1.pointer}@${top1.populationCount})`,
+  );
+  ok('bootstrap identifies collections and record types without CK3 allowlist');
+  return Promise.resolve();
+}
+
+function testArrayOfContainersIncluded() {
+  return runOnContent(
+    JSON.stringify({
+      relations: [
+        { from: 1, to: 2, type: 'rival' },
+        { from: 3, to: 4, type: 'friend' },
+        { from: 5, to: 6, type: 'lover' },
+        { from: 7, to: 8, type: 'spouse' },
+        { from: 9, to: 10, type: 'rival' },
+      ],
+    }),
+  ).then((catalog) => {
+    if (!collectionByPointer(catalog, '$.relations')) {
+      fail('array of containers: $.relations present', JSON.stringify(catalog.candidateCollections.map((x) => x.pointer)));
+      return;
+    }
+    ok('array-backed record collections (relations) included');
+  });
+}
+
+function testCollectionsCliSmoke() {
+  const shapeFile = path.join(TMP, 'cli-shape.json');
+  const outputFile = path.join(TMP, 'cli-collections.json');
+  const shapeCatalog = {
+    schemaVersion: 1,
+    source: {
+      sourceId: 'source:test-shape',
+    },
+    pathPatterns: [
+      {
+        pointer: '$.records',
+        childKeyKind: 'map',
+        totalChildren: 6,
+        recordCount: 6,
+        fields: [{ name: '<key>', isRequired: true }],
+        shapeFingerprint: 'sha256:container',
+      },
+      {
+        pointer: '$.records.<key>',
+        childKeyKind: 'field',
+        totalChildren: 12,
+        recordCount: 6,
+        fields: [
+          { name: 'name', occurrenceCount: 6, isRequired: true },
+          { name: 'value', occurrenceCount: 6, isRequired: true },
+        ],
+        shapeFingerprint: 'sha256:record',
+      },
+    ],
+  };
+  fs.writeFileSync(shapeFile, JSON.stringify(shapeCatalog));
+  const cli = path.join(ROOT, 'scripts', 'ck3-save-collections');
+  const result = spawnSync('node', [cli, shapeFile, '--quiet', '--out', outputFile], {
+    encoding: 'utf8',
+  });
+  if (result.status !== 0) {
+    fail('collections CLI smoke: exits 0', `status=${result.status}\n${result.stderr}`);
+    return;
+  }
+  const catalog = JSON.parse(fs.readFileSync(outputFile, 'utf8'));
+  if (catalog.source.sourceId !== 'source:test-shape') {
+    fail('collections CLI smoke: sourceId carried forward', JSON.stringify(catalog.source));
+    return;
+  }
+  if (!collectionByPointer(catalog, '$.records')) {
+    fail('collections CLI smoke: collection emitted', JSON.stringify(catalog));
+    return;
+  }
+  if (!recordTypeByFingerprint(catalog, 'sha256:record')) {
+    fail('collections CLI smoke: record type emitted', JSON.stringify(catalog));
+    return;
+  }
+  ok('CLI emits candidate collections catalog for a shape fixture');
+}
+
+console.log('ck3-candidate-collections self-test');
+console.log('====================================');
+
+await testMapCollectionDetected();
+await testArrayCollectionDetected();
+await testNestedCollectionsDetected();
+await testNoFalsePositivesOnSmallPopulation();
+await testNumericKeysPromoted();
+await testMapOfMapRecognized();
+await testUncertainFlag();
+await testRecordTypeLinksCollections();
+await testReviewRanking();
+await testPopulationCountsAreNotCardinalities();
+await testArrayOfContainersIncluded();
+testCollectionsCliSmoke();
+testEmptyPathPatterns();
+testSyncReturn();
+await testBootstrapCollections();
+
+fs.rmSync(TMP, { recursive: true, force: true });
+
+if (failed > 0) {
+  console.error(`\n${failed} test(s) failed`);
+  process.exit(1);
+}
+console.log('\nAll candidate-collections tests passed');

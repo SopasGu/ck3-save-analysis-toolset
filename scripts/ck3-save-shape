@@ -1,0 +1,141 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import {
+  discoverStructure,
+} from './lib/json-structure-discovery.mjs';
+import { ShapeCollector } from './lib/ck3-shape-fingerprints.mjs';
+
+function parseArgs(argv) {
+  const args = {
+    input: null,
+    mapKeyThreshold: 50,
+    sampleLimit: 5,
+    out: null,
+    sourceId: null,
+    quiet: false,
+  };
+  for (let i = 0; i < argv.length; i++) {
+    const a = argv[i];
+    switch (a) {
+      case '--map-key-threshold':
+        args.mapKeyThreshold = parseInt(argv[++i], 10);
+        break;
+      case '--sample-limit':
+        args.sampleLimit = parseInt(argv[++i], 10);
+        break;
+      case '--out':
+        args.out = argv[++i];
+        break;
+      case '--source-id':
+        args.sourceId = argv[++i];
+        break;
+      case '--quiet':
+      case '-q':
+        args.quiet = true;
+        break;
+      case '--help':
+      case '-h':
+        printHelp();
+        process.exit(0);
+        break;
+      default:
+        if (a.startsWith('--')) {
+          console.error(`Unknown flag: ${a}`);
+          process.exit(2);
+        }
+        if (args.input) {
+          console.error(`Unexpected positional arg: ${a}`);
+          process.exit(2);
+        }
+        args.input = a;
+    }
+  }
+  return args;
+}
+
+function printHelp() {
+  console.log(`Usage: ck3-save-shape <path-to-json-or-json.gz> [options]
+
+Stream-parses a JSON or gzip-compressed JSON file and emits a shape catalog:
+normalized path patterns, child-key classification (field vs map vs array),
+deterministic shape fingerprints, field occurrence counts, polymorphic-field
+detection, and a small sample of raw child keys per map.
+
+Options:
+  --map-key-threshold N     Unique child keys per parent before promotion to map
+  --sample-limit N          Raw sample keys kept per map placeholders
+  --source-id ID            Attach a source registry ID to the result
+  --out PATH                Write output JSON to PATH (default: stdout)
+  --quiet                   Suppress progress on stderr
+`);
+}
+
+async function main() {
+  const args = parseArgs(process.argv.slice(2));
+  if (!args.input) {
+    printHelp();
+    process.exit(2);
+  }
+  if (!fs.existsSync(args.input)) {
+    console.error(`File not found: ${args.input}`);
+    process.exit(2);
+  }
+
+  const collector = new ShapeCollector({
+    mapKeyThreshold: args.mapKeyThreshold,
+    sampleLimit: args.sampleLimit,
+  });
+
+  const startTime = Date.now();
+  const result = await discoverStructure({
+    source: args.input,
+    collector,
+    onProgress: args.quiet
+      ? null
+      : (p) => {
+          const mb = (p.bytesProcessed / 1024 / 1024).toFixed(1);
+          const rssMb = (p.rssBytes / 1024 / 1024).toFixed(0);
+          process.stderr.write(`  ${mb} MB processed (${rssMb} MB RSS, ${p.elapsedMs} ms)\n`);
+        },
+  });
+
+  const stat = fs.statSync(args.input);
+  const output = {
+    schemaVersion: 1,
+    source: {
+      path: path.resolve(args.input),
+      byteSize: stat.size,
+      compressed: args.input.endsWith('.gz'),
+      sourceId: args.sourceId,
+    },
+    config: {
+      mapKeyThreshold: args.mapKeyThreshold,
+      sampleLimit: args.sampleLimit,
+    },
+    summary: result.summary,
+    diagnostics: {
+      durationMs: result.diagnostics.durationMs,
+      peakRssBytes: result.diagnostics.peakRssBytes,
+      bytesProcessed: result.diagnostics.bytesProcessed,
+    },
+    root: result.root,
+    pathPatterns: result.pathPatterns,
+  };
+
+  const json = JSON.stringify(output, null, 2) + '\n';
+  if (args.out) {
+    fs.mkdirSync(path.dirname(path.resolve(args.out)), { recursive: true });
+    fs.writeFileSync(args.out, json);
+    process.stderr.write(
+      `Wrote ${output.pathPatterns.length} path patterns to ${args.out} in ${result.diagnostics.durationMs} ms\n`,
+    );
+  } else {
+    process.stdout.write(json);
+  }
+}
+
+main().catch((err) => {
+  console.error(err.stack || err.message);
+  process.exit(2);
+});

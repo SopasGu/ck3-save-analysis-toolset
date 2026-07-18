@@ -1,116 +1,115 @@
 # AGENTS.md - CK3 Save Analysis Toolset
 
-This repository is a local Crusader Kings III save-analysis toolset. The current active project is the durable Rakaly save-schema evidence graph and LLM wiki work.
+Local Crusader Kings III save-analysis tooling. Current active project is the durable Rakaly save-schema evidence graph + LLM wiki defined in `docs/ck3-evidence-graph-plan.md`.
+
+This file is shared handoff across Codex, OpenCode, and OpenClaw sessions.
 
 ## Start Here
 
-Before changing code, read:
+Before changing code, read in this order:
 
-1. `docs/ck3-evidence-graph-plan.md`
+1. `docs/ck3-evidence-graph-plan.md` - authoritative implementation plan. **Controls all schema/wiki/mechanics work.** If any other doc conflicts, this plan wins unless Cris says otherwise.
 2. `README.md`
-3. `docs/ck3-save-analysis.md`
+3. `docs/ck3-save-analysis.md` - existing report surface (snapshot, patrons, brief, scout, graph, chronicle, screenshots, resolve, diff, timeline)
+4. `docs/ck3-knowledge-graph-handoff.md` - original motivation; superseded by the evidence-graph plan for sequencing, kept for concept context
 
-`docs/ck3-evidence-graph-plan.md` is the authoritative implementation plan for the current work. If another project document conflicts with it, follow `docs/ck3-evidence-graph-plan.md` unless Cris explicitly says otherwise.
-
-This project may be worked on from multiple coding harnesses, including Codex, OpenCode, and OpenClaw. Treat this file as the shared handoff for all of them.
+OpenClaw skills live in `skills/ck3-save-analysis/` and `skills/ck3-save-analysis-screenshots/` (private, mode `0600`). Read them when operating the existing screenshot or report tooling.
 
 ## Current Goal
 
-Build a reusable, versioned, evidence-backed map of the durable structure of CK3 saves parsed by Rakaly.
-
-The durable graph/wiki should explain general CK3 save structure:
-
-- collections and record populations
-- record types and shape variants
-- fields, types, optionality, and cardinality
-- identity domains such as character, title, province, culture, and faith IDs
-- reference patterns between record types
-- version/DLC/mod applicability
-- semantic claims backed by evidence
-- reusable queries and screeners
-
-The durable graph/wiki is not a dump of one campaign. Campaign-specific graphs, parsed saves, and private analysis artifacts belong under ignored `state/`.
+Build a reusable, versioned, evidence-backed schema graph of CK3 saves parsed by Rakaly, plus a maintained Markdown wiki. See `docs/ck3-evidence-graph-plan.md` §1-2 for the locked design. **Do not start by expanding the existing advisor reports** (snapshot, brief, scout, etc.) - they are later consumers, not the schema source.
 
 ## Important Boundary
 
-Keep these private or ignored by default:
+Ignored by default (see `.gitignore`): `state/`, `*.ck3`, `*.zip`, `scripts/rakaly`, `scripts/rakaly-cli`, `node_modules/`. These contain raw saves, full Rakaly JSON, generated manifests, screenshots, and private rakaly binaries.
 
-- raw `.ck3` saves
-- full Rakaly JSON output
-- generated manifests
-- screenshots
-- campaign-instance graphs
-- private wiki builds under `state/`
+Durable / committed: source code, `docs/`, schemas, `knowledge/`, `fixtures/`, and small redacted or synthetic examples. `knowledge/sources/registry.json` is intentionally committed as the source registry. `fixtures/lint/` is intentionally committed to exercise the durable-content lint.
 
-Commit these:
+### Bootstrap artifact is already in public Git history
 
-- source code
-- docs
-- schemas
-- durable knowledge artifacts under `knowledge/`
-- redacted or synthetic fixtures under `fixtures/`
-- small examples that do not leak private campaign state
-
-The repo intentionally ignores `state/`, `*.ck3`, and `*.zip`.
+`state/rakaly-cli/output/ingest/last_save_2026-07-16_221531.json.gz` (~16 MB compressed, ~120 MB expanded) was committed before `state/` was ignored. It is the bootstrap structural specimen for the plan's Task 1 and is registered there. Do not "clean it up," rewrite history, or add additional full saves without explicit owner authorization. Treat it as evidence, not as durable knowledge; do not let its individual campaign records leak into `knowledge/`.
 
 ## Implementation Rules
 
-- Follow `docs/ck3-evidence-graph-plan.md` task order.
-- Keep structural discovery independent of existing mechanic-specific extractors at first.
-- Do not use `extractSnapshot`, `extractPoliticalGraph`, `extractBrief`, `extractScout`, or contact-favor logic to decide the initial schema graph.
-- Preserve evidence paths for derived facts.
-- Separate raw observations, durable schema graph facts, semantic claims, wiki synthesis, and report consumers.
-- Prefer plain JSON plus Markdown as the canonical durable interchange until a real need justifies SQLite, DuckDB, RDF, Graphify, Obsidian-specific output, or another adapter.
-- Make every recommendation or semantic claim auditable back to source evidence.
-- Treat Roads to Power landless mechanics as first-class, but do not let the current Nino campaign define the general schema.
+Locked by the plan; key points an agent will otherwise miss:
 
-## Existing Commands
+- Follow `docs/ck3-evidence-graph-plan.md` task order. Start at **Task 0**, then **Task 1**. Do not skip to ontology naming or mechanics extraction.
+- The initial structural discovery must **not** import or be biased by existing extractors in `scripts/lib/ck3-save-analysis.mjs`: `extractSnapshot`, `extractPoliticalGraph`, `extractBrief`, `extractScout`, `extractLandlessMechanics`, contact-favor logic, etc.
+- Stable graph IDs must never contain instance record IDs (no `character:37885`, no `living.37885` in stable IDs).
+- Every durable graph item carries `provenance` (source + observation IDs) and `scope` (gameVersions / DLC / mods).
+- Roads to Power landless mechanics (camp purpose, contact favors, `contact_list_weak_hook`, `contact_list_request_interaction`) are first-class. Do not let the current Nino campaign define the general schema - it is a test corpus.
+- Prefer plain JSON + Markdown. SQLite / DuckDB / RDF / Graphify / Obsidian are adapters, not yet justified.
+- If a locked design decision looks wrong, stop and document the evidence. Do not silently redesign.
 
-Useful checks:
+## Current Checkpoint
+
+Tasks 0-4 in `docs/ck3-evidence-graph-plan.md` are complete. The next worker should start at **Task 5: Discover identity domains and reference candidates**.
+
+Useful Task 5 inputs now available:
+
+- `knowledge/sources/registry.json` - registered bootstrap source metadata
+- `scripts/ck3-save-discover` - generic streaming JSON structure discovery
+- `scripts/ck3-save-shape` - normalized path and shape catalog generation
+- `scripts/ck3-save-collections` - candidate collection and record-type catalog generation
+- `scripts/lib/ck3-candidate-collections.mjs` - reusable Task 4 collection identification logic
+
+Before beginning Task 5, run `npm run check:all` and inspect the Task 5 plan section. Task 5 should build from the candidate collections and record types; it should not jump directly to semantic CK3 names until the identity/reference evidence is recorded.
+
+## Commands
+
+Run all syntax checks at once:
 
 ```bash
 npm run check
-node --check scripts/ck3-save-report
-node --check scripts/ck3-save-ingest
 ```
 
-Useful existing workflows:
+Discover and parse saves:
 
 ```bash
 scripts/ck3-save-ingest --list
 scripts/ck3-save-ingest --all
-scripts/ck3-save-report snapshot state/rakaly-cli/output/ingest/<save>.manifest.json
-scripts/ck3-save-report graph state/rakaly-cli/output/ingest/<save>.manifest.json --json
-scripts/ck3-save-report scout state/rakaly-cli/output/ingest/<save>.manifest.json --json
+scripts/ck3-save-ingest --source "$HOME/.local/share/Paradox Interactive/Crusader Kings III/save games/autosave.ck3"
+scripts/ck3-save-ingest --screenshots-sync
 ```
 
-Generated save artifacts live under `state/` and are normally ignored.
+Generate reports (add `--json` for machine-readable; `state/` paths assume default ingest layout):
 
-## Good Next Step
+```bash
+scripts/ck3-save-report snapshot   state/rakaly-cli/output/ingest/<save>.manifest.json
+scripts/ck3-save-report patrons    <manifest>
+scripts/ck3-save-report graph      <manifest> --json
+scripts/ck3-save-report brief      <manifest> --json
+scripts/ck3-save-report scout      <manifest> [--json] [target...]
+scripts/ck3-save-report resolve    <manifest> character:<id> province:<id> title:<id> culture:<id> faith:<id>
+scripts/ck3-save-report diff       <old> <new>
+scripts/ck3-save-report timeline   <save-or-manifest>...
+scripts/ck3-save-report chronicle  <save-or-manifest>...
+scripts/ck3-save-report screenshots <save-or-manifest>
+```
 
-The next worker should start by implementing the first discovery-oriented slice from `docs/ck3-evidence-graph-plan.md`, not by expanding advisor reports.
+Full report semantics: `docs/ck3-save-analysis.md`.
 
-A good first implementation target is a read-only structural inventory/discovery command that:
+Rakaly wrapper lives at `scripts/ck3-rakaly` (ignored binary at `state/rakaly-cli/rakaly-0.8.17-x86_64-unknown-linux-musl/rakaly`).
 
-- accepts a save JSON or manifest
-- reports top-level keys and collection sizes
-- samples recurring object shapes
-- identifies candidate record populations
-- records source paths and source fingerprints
-- emits machine-readable JSON
-- does not depend on current CK3 gameplay-specific report extractors
+## Required Worker Protocol
 
-Keep the first pass boring, deterministic, and evidence-heavy. Fancy advice can come after the schema layer is trustworthy.
+From plan §8, condensed:
 
-## Git Notes
+1. State the task number and epistemic layer (A raw sources / B observations / C schema graph / D semantic claims / E consumers).
+2. Inspect existing work before editing; avoid unrelated refactors.
+3. Run `npm run check` plus targeted tests, graph/schema validation, and durable-content lint.
+4. Report files changed, commands run, results, uncertainties, next unblocked task.
+5. Update the plan's §9 checklist only when acceptance checks actually pass.
 
-This repository should use the personal GitHub identity:
+## Git
+
+Use the personal GitHub identity for this repo:
 
 ```text
 SopasGu <262275194+SopasGu@users.noreply.github.com>
 ```
 
-Before committing, check:
+Before committing:
 
 ```bash
 git config --local user.name

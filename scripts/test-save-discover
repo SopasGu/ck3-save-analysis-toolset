@@ -1,0 +1,477 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import zlib from 'node:zlib';
+import { spawnSync } from 'node:child_process';
+import {
+  AggregateCollector,
+  ParseError,
+  StreamingJsonParser,
+  discoverStructure,
+} from './lib/json-structure-discovery.mjs';
+
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const TMP = fs.mkdtempSync(path.join(os.tmpdir(), 'ck3-discovery-test-'));
+
+let failed = 0;
+
+function ok(label) {
+  console.log(`OK    ${label}`);
+}
+
+function fail(label, detail) {
+  console.error(`FAIL  ${label}`);
+  if (detail) console.error(detail);
+  failed++;
+}
+
+function writeFixture(name, content, gz = false) {
+  const filePath = path.join(TMP, name);
+  if (gz) {
+    const gzipped = zlib.gzipSync(Buffer.from(content, 'utf8'));
+    fs.writeFileSync(filePath, gzipped);
+  } else {
+    fs.writeFileSync(filePath, content);
+  }
+  return filePath;
+}
+
+function findObservation(observations, predicate) {
+  return observations.find(predicate) || null;
+}
+
+async function collect(source) {
+  const observations = [];
+  const parser = new StreamingJsonParser({
+    observe: (o) => observations.push(o),
+    onError: (err) => {
+      throw err;
+    },
+  });
+  const data = fs.readFileSync(source, 'utf8');
+  parser.feed(data);
+  parser.end();
+  return observations;
+}
+
+function testObjectFixture() {
+  const src = writeFixture('object.json', '{"a":1,"b":"two","c":true,"d":null}');
+  return collect(src).then((obs) => {
+    if (obs.length !== 5) {
+      fail('object fixture count', `expected 5 observations (1 root + 4 values), got ${obs.length}`);
+      return;
+    }
+    const root = obs[0];
+    if (root.valueType !== 'object' || root.pointer !== '$' || root.depth !== 1) {
+      fail('object fixture root', JSON.stringify(root));
+      return;
+    }
+    const a = findObservation(obs, (o) => o.key === 'a');
+    if (!a || a.pointer !== '$.a' || a.valueType !== 'number' || a.value !== 1) {
+      fail('object fixture $.a', JSON.stringify(a));
+      return;
+    }
+    const d = findObservation(obs, (o) => o.key === 'd');
+    if (!d || d.valueType !== 'null' || d.value !== null) {
+      fail('object fixture $.d null', JSON.stringify(d));
+      return;
+    }
+    ok('synthetic object fixture');
+  });
+}
+
+function testArrayFixture() {
+  const src = writeFixture('array.json', '[1,"two",true,null,[10,20]]');
+  return collect(src).then((obs) => {
+    if (obs.length !== 8) {
+      fail('array fixture count', `expected 8 observations, got ${obs.length}`);
+      return;
+    }
+    const root = obs[0];
+    if (root.valueType !== 'array' || root.pointer !== '$') {
+      fail('array fixture root', JSON.stringify(root));
+      return;
+    }
+    const idx2 = findObservation(obs, (o) => o.index === 2);
+    if (!idx2 || idx2.pointer !== '$[2]' || idx2.value !== true) {
+      fail('array fixture $[2]', JSON.stringify(idx2));
+      return;
+    }
+    const nested = findObservation(obs, (o) => o.valueType === 'array' && o.depth === 2);
+    if (!nested || nested.pointer !== '$[4]') {
+      fail('array fixture $[4] (nested)', JSON.stringify(nested));
+      return;
+    }
+    const nested20 = findObservation(obs, (o) => o.value === 20);
+    if (!nested20 || nested20.pointer !== '$[4][1]') {
+      fail('array fixture $[4][1]', JSON.stringify(nested20));
+      return;
+    }
+    ok('synthetic array fixture (incl. nested arrays)');
+  });
+}
+
+function testScalarsFixture() {
+  const src = writeFixture('scalars.json', '{"s":"hi","n":42,"neg":-3.14,"t":true,"f":false,"z":null}');
+  return collect(src).then((obs) => {
+    const types = Object.fromEntries(obs.filter((o) => o.depth === 2).map((o) => [o.key, o.valueType]));
+    const expected = { s: 'string', n: 'number', neg: 'number', t: 'boolean', f: 'boolean', z: 'null' };
+    for (const [k, v] of Object.entries(expected)) {
+      if (types[k] !== v) {
+        fail(`scalar fixture $.${k}`, `expected ${v}, got ${types[k]}`);
+        return;
+      }
+    }
+    const neg = findObservation(obs, (o) => o.key === 'neg');
+    if (neg.value !== -3.14) {
+      fail('scalar fixture neg value', `got ${neg.value}`);
+      return;
+    }
+    ok('synthetic scalar/null/boolean fixture');
+  });
+}
+
+function testMixedFixture() {
+  const content = JSON.stringify({
+    meta: { version: '1.0', tags: ['a', 'b', 'c'] },
+    items: [
+      { id: 1, val: 'x' },
+      { id: 2, val: 'y' },
+    ],
+    flag: false,
+  });
+  const src = writeFixture('mixed.json', content);
+  return collect(src).then((obs) => {
+    const tags_b = findObservation(obs, (o) => o.pointer === '$.meta.tags[1]');
+    if (!tags_b || tags_b.value !== 'b') {
+      fail('mixed fixture $.meta.tags[1]', JSON.stringify(tags_b));
+      return;
+    }
+    const items_1_val = findObservation(obs, (o) => o.pointer === '$.items[1].val');
+    if (!items_1_val || items_1_val.value !== 'y') {
+      fail('mixed fixture $.items[1].val', JSON.stringify(items_1_val));
+      return;
+    }
+    const flag = findObservation(obs, (o) => o.pointer === '$.flag');
+    if (!flag || flag.value !== false) {
+      fail('mixed fixture $.flag', JSON.stringify(flag));
+      return;
+    }
+    ok('synthetic mixed-shape fixture (nested object+array+primitives)');
+  });
+}
+
+async function testBootstrapGz() {
+  const bootstrap = path.join(ROOT, 'state/rakaly-cli/output/ingest/last_save_2026-07-16_221531.json.gz');
+  if (!fs.existsSync(bootstrap)) {
+    fail('bootstrap gz exists', `not found: ${bootstrap}`);
+    return;
+  }
+  const collector = new AggregateCollector({ catalogLimit: 5000 });
+  try {
+    const r = await discoverStructure({ source: bootstrap, collector });
+    if (r.summary.maxDepth < 1) {
+      fail('bootstrap gz maxDepth', JSON.stringify(r.summary));
+      return;
+    }
+    if (r.summary.objects < 100) {
+      fail('bootstrap gz object count', JSON.stringify(r.summary));
+      return;
+    }
+    if (r.summary.catalogSize === 0) {
+      fail('bootstrap gz catalogSize', 'empty');
+      return;
+    }
+    ok(
+      `bootstrap gz accepted (objects=${r.summary.objects}, arrays=${r.summary.arrays}, primitives=${r.summary.primitives}, maxDepth=${r.summary.maxDepth})`,
+    );
+  } catch (err) {
+    fail('bootstrap gz accepted', err.stack || err.message);
+  }
+}
+
+async function testDeterministicAggregate() {
+  const bootstrap = path.join(ROOT, 'state/rakaly-cli/output/ingest/last_save_2026-07-16_221531.json.gz');
+  if (!fs.existsSync(bootstrap)) return; // skipped if bootstrap not present
+
+  const runOnce = async () => {
+    const c = new AggregateCollector({ catalogLimit: 1000 });
+    const r = await discoverStructure({ source: bootstrap, collector: c });
+    return JSON.stringify({
+      summary: r.summary,
+      catalog: r.pointerCatalog,
+    });
+  };
+  const a = await runOnce();
+  const b = await runOnce();
+  if (a === b) {
+    ok('two runs produce byte-equivalent aggregate output');
+  } else {
+    fail('two runs byte-equivalent', `len(a)=${a.length} len(b)=${b.length}`);
+  }
+}
+
+function testCorruptGz() {
+  const filePath = path.join(TMP, 'corrupt.json.gz');
+  fs.writeFileSync(filePath, 'this is not gzip data at all just text');
+  const collector = new AggregateCollector({ catalogLimit: 100 });
+  return discoverStructure({ source: filePath, collector }).then(
+    () => {
+      fail('corrupt gz produces clear error', 'expected rejection');
+    },
+    (err) => {
+      const msg = `${err.code || ''} ${err.message || ''}`;
+      if (/unexpected end of file|invalid|zlib|gunzip|incorrect header/i.test(msg)) {
+        ok('corrupt gz produces clear error');
+      } else {
+        fail('corrupt gz produces clear error', `unexpected error: ${err.message}`);
+      }
+    },
+  );
+}
+
+function testInvalidJson() {
+  const filePath = path.join(TMP, 'invalid.json');
+  // Truncated boolean — definitely not a valid token.
+  fs.writeFileSync(filePath, '{"a":1,"b":tru}');
+  const collector = new AggregateCollector({ catalogLimit: 100 });
+  return discoverStructure({ source: filePath, collector }).then(
+    () => {
+      fail('invalid JSON produces clear error', 'expected rejection');
+    },
+    (err) => {
+      if (err instanceof ParseError || (err && err.name === 'ParseError')) {
+        ok('invalid JSON produces clear ParseError');
+      } else {
+        fail('invalid JSON produces clear error', `unexpected error: ${err.message}`);
+      }
+    },
+  );
+}
+
+function expectRejection(label, content, expectMessageRegex) {
+  const filePath = path.join(TMP, `${label.replace(/[^a-z0-9]/gi, '_')}.json`);
+  fs.writeFileSync(filePath, content);
+  const collector = new AggregateCollector({ catalogLimit: 100 });
+  return discoverStructure({ source: filePath, collector }).then(
+    () => {
+      fail(`${label} rejected`, 'expected rejection but parse succeeded');
+    },
+    (err) => {
+      if (err && err.name === 'ParseError' && expectMessageRegex.test(err.message)) {
+        ok(`${label} rejected (${err.message})`);
+      } else {
+        fail(`${label} rejected`, `unexpected error: ${err && err.message}`);
+      }
+    },
+  );
+}
+
+function testNumberValidation() {
+  const cases = [
+    ['leading zero', '{"a":01}', /leading zeros/i],
+    ['multiple leading zeros', '{"a":00}', /leading zeros/i],
+    ['trailing decimal', '{"a":1.}', /no digits after decimal/i],
+    ['just minus', '{"a":-}', /no digits|Unterminated/i],
+    ['just minus (no number)', '{"a":-}', /no digits|Unterminated/i],
+    ['exponent with no digits', '{"a":1e}', /no digits in exponent|Unterminated/i],
+    ['exponent sign no digits', '{"a":1e+}', /no digits in exponent|Unterminated/i],
+  ];
+  return Promise.all(cases.map(([label, content, re]) => expectRejection(`number: ${label}`, content, re)));
+}
+
+function testParentType() {
+  const cases = [
+    { label: 'root object parentType=null', content: '{}', depth: 1, expectedParent: null },
+    {
+      label: 'nested object reports object parent',
+      content: '{"a":{"b":1}}',
+      depth: 2,
+      expectedParent: 'object',
+      pointer: '$.a',
+    },
+    {
+      label: 'nested array reports object parent',
+      content: '{"a":[1,2]}',
+      depth: 2,
+      expectedParent: 'object',
+      pointer: '$.a',
+    },
+    {
+      label: 'array element reports array parent',
+      content: '[1, [2, 3]]',
+      depth: 2,
+      expectedParent: 'array',
+      pointer: '$[1]',
+    },
+    {
+      label: 'primitive inside object reports object parent',
+      content: '{"a":1}',
+      depth: 2,
+      expectedParent: 'object',
+      pointer: '$.a',
+    },
+    {
+      label: 'primitive inside array reports array parent',
+      content: '[1]',
+      depth: 2,
+      expectedParent: 'array',
+      pointer: '$[0]',
+    },
+  ];
+  return Promise.all(
+    cases.map(async ({ label, content, depth, expectedParent, pointer }) => {
+      const filePath = path.join(TMP, `pt_${label.replace(/[^a-z0-9]/gi, '_')}.json`);
+      fs.writeFileSync(filePath, content);
+      const observations = [];
+      const parser = new StreamingJsonParser({
+        observe: (o) => observations.push(o),
+        onError: (err) => {
+          fail(`${label}`, `unexpected parse error: ${err.message}`);
+        },
+      });
+      parser.feed(fs.readFileSync(filePath, 'utf8'));
+      parser.end();
+      if (pointer) {
+        const obs = observations.find((o) => o.pointer === pointer);
+        if (!obs) {
+          fail(`${label}`, `no observation at ${pointer}`);
+          return;
+        }
+        if (obs.depth !== depth) {
+          fail(`${label}`, `expected depth ${depth}, got ${obs.depth}`);
+          return;
+        }
+        if (obs.parentType !== expectedParent) {
+          fail(
+            `${label}`,
+            `expected parentType=${expectedParent}, got ${obs.parentType} (obs=${JSON.stringify(obs)})`,
+          );
+          return;
+        }
+        ok(`${label}`);
+      } else {
+        const root = observations.find((o) => o.depth === depth);
+        if (!root) {
+          fail(`${label}`, `no root observation at depth ${depth}`);
+          return;
+        }
+        if (root.parentType !== expectedParent) {
+          fail(
+            `${label}`,
+            `expected parentType=${expectedParent}, got ${root.parentType}`,
+          );
+          return;
+        }
+        ok(`${label}`);
+      }
+    }),
+  );
+}
+
+function testTopLevelScalars() {
+  const cases = [
+    { label: 'top-level number', content: '42', valueType: 'number', value: 42, depth: 1, parentType: null, pointer: '$' },
+    { label: 'top-level negative number', content: '-3.14', valueType: 'number', value: -3.14, depth: 1, parentType: null, pointer: '$' },
+    { label: 'top-level string', content: '"hello"', valueType: 'string', value: 'hello', depth: 1, parentType: null, pointer: '$' },
+    { label: 'top-level true', content: 'true', valueType: 'boolean', value: true, depth: 1, parentType: null, pointer: '$' },
+    { label: 'top-level false', content: 'false', valueType: 'boolean', value: false, depth: 1, parentType: null, pointer: '$' },
+    { label: 'top-level null', content: 'null', valueType: 'null', value: null, depth: 1, parentType: null, pointer: '$' },
+    { label: 'top-level array', content: '[1,2]', valueType: 'array', value: null, depth: 1, parentType: null, pointer: '$' },
+  ];
+  return Promise.all(
+    cases.map(async ({ label, content, valueType, value, depth, parentType, pointer }) => {
+      const filePath = path.join(TMP, `tls_${label.replace(/[^a-z0-9]/gi, '_')}.json`);
+      fs.writeFileSync(filePath, content);
+      const observations = [];
+      const parser = new StreamingJsonParser({
+        observe: (o) => observations.push(o),
+        onError: (err) => {
+          fail(`${label}`, `unexpected parse error: ${err.message}`);
+        },
+      });
+      parser.feed(fs.readFileSync(filePath, 'utf8'));
+      parser.end();
+      const root = observations.find((o) => o.depth === depth);
+      if (!root) {
+        fail(`${label}`, `no observation at depth ${depth} (have ${observations.length} observations)`);
+        return;
+      }
+      if (root.pointer !== pointer) {
+        fail(`${label}`, `expected pointer=${pointer}, got ${root.pointer}`);
+        return;
+      }
+      if (root.valueType !== valueType) {
+        fail(`${label}`, `expected valueType=${valueType}, got ${root.valueType}`);
+        return;
+      }
+      if (valueType !== 'array' && root.value !== value) {
+        fail(`${label}`, `expected value=${JSON.stringify(value)}, got ${JSON.stringify(root.value)}`);
+        return;
+      }
+      if (root.parentType !== parentType) {
+        fail(`${label}`, `expected parentType=${parentType}, got ${root.parentType}`);
+        return;
+      }
+      ok(`${label}`);
+    }),
+  );
+}
+
+function testNoCk3Import() {
+  const libText = fs.readFileSync(path.join(ROOT, 'scripts/lib/json-structure-discovery.mjs'), 'utf8');
+  const cliText = fs.readFileSync(path.join(ROOT, 'scripts/ck3-save-discover'), 'utf8');
+  const grep = /ck3-save-analysis/;
+  if (grep.test(libText)) {
+    fail('library does not import ck3-save-analysis.mjs', 'match found in lib');
+    return;
+  }
+  if (grep.test(cliText)) {
+    fail('CLI does not import ck3-save-analysis.mjs', 'match found in CLI');
+    return;
+  }
+  ok('library + CLI do not import scripts/lib/ck3-save-analysis.mjs');
+}
+
+function testCliAggregateDeterminism() {
+  const cli = path.join(ROOT, 'scripts/ck3-save-discover');
+  const fixturePath = path.join(TMP, 'det-sample.json');
+  fs.writeFileSync(fixturePath, JSON.stringify({ foo: [1, 2, { bar: 'baz' }] }));
+  const a = spawnSync('node', [cli, fixturePath, '--quiet'], { encoding: 'utf8' });
+  const b = spawnSync('node', [cli, fixturePath, '--quiet'], { encoding: 'utf8' });
+  if (a.status !== 0 || b.status !== 0) {
+    fail('CLI exit code 0', `a=${a.status} b=${b.status}\n${a.stderr}\n${b.stderr}`);
+    return;
+  }
+  if (a.stdout === b.stdout) {
+    ok('CLI produces byte-equivalent aggregate output across runs');
+  } else {
+    fail('CLI byte-equivalent', 'stdout differs');
+  }
+}
+
+console.log('ck3-save-discover self-test');
+console.log('===========================');
+
+await testObjectFixture();
+await testArrayFixture();
+await testScalarsFixture();
+await testMixedFixture();
+await testBootstrapGz();
+await testDeterministicAggregate();
+await testCorruptGz();
+await testInvalidJson();
+await testNumberValidation();
+await testParentType();
+await testTopLevelScalars();
+testNoCk3Import();
+testCliAggregateDeterminism();
+
+fs.rmSync(TMP, { recursive: true, force: true });
+
+if (failed > 0) {
+  console.error(`\n${failed} test(s) failed`);
+  process.exit(1);
+}
+console.log('\nAll discovery tests passed');

@@ -1,0 +1,499 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import { spawnSync } from 'node:child_process';
+import {
+  discoverStructure,
+} from './lib/json-structure-discovery.mjs';
+import {
+  ShapeCollector,
+  computeShapeFingerprint,
+  finalizeShapeCatalog,
+} from './lib/ck3-shape-fingerprints.mjs';
+
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const TMP = fs.mkdtempSync(path.join(os.tmpdir(), 'ck3-shape-test-'));
+
+let failed = 0;
+
+function ok(label) {
+  console.log(`OK    ${label}`);
+}
+
+function fail(label, detail) {
+  console.error(`FAIL  ${label}`);
+  if (detail) console.error(detail);
+  failed++;
+}
+
+let fixtureCounter = 0;
+function writeFixture(name, content) {
+  const filePath = path.join(TMP, `${fixtureCounter++}-${name}`);
+  fs.writeFileSync(filePath, content);
+  return filePath;
+}
+
+function patternById(catalog, id) {
+  return catalog.pathPatterns.find((p) => p.id === id);
+}
+
+function patternByPointer(catalog, pointer) {
+  return catalog.pathPatterns.find((p) => p.pointer === pointer);
+}
+
+function fieldByName(pattern, name) {
+  return pattern.fields.find((f) => f.name === name);
+}
+
+async function shapeCatalogFor(content, options = {}) {
+  const filePath = writeFixture('input.json', content);
+  const collector = new ShapeCollector(options);
+  await discoverStructure({ source: filePath, collector });
+  return collector.result();
+}
+
+function testMapKeyDetection() {
+  // Multiple numeric keys at the same parent → map placeholder.
+  const content = JSON.stringify({
+    living: {
+      '37885': { culture: 131, faith: 23 },
+      '12345': { culture: 131, faith: 23 },
+      '99999': { culture: 131, faith: 23 },
+    },
+  });
+  return shapeCatalogFor(content).then((catalog) => {
+    const living = patternByPointer(catalog, '$.living');
+    if (!living) {
+      fail('map-key detection: $.living present', JSON.stringify(catalog.pathPatterns));
+      return;
+    }
+    if (living.childKeyKind !== 'map') {
+      fail('map-key detection: childKeyKind', `expected "map", got "${living.childKeyKind}"`);
+      return;
+    }
+    const placeholder = fieldByName(living, '<key>');
+    if (!placeholder) {
+      fail('map-key detection: <key> field', JSON.stringify(living.fields));
+      return;
+    }
+    if (placeholder.occurrenceCount !== 3) {
+      fail('map-key detection: placeholder count', `expected 3, got ${placeholder.occurrenceCount}`);
+      return;
+    }
+    if (!placeholder.sampleRawKeys || placeholder.sampleRawKeys.length !== 3) {
+      fail('map-key detection: sample keys', JSON.stringify(placeholder));
+      return;
+    }
+    const charShape = patternByPointer(catalog, '$.living.<key>');
+    if (!charShape) {
+      fail('map-key detection: $.living.<key> present', JSON.stringify(catalog.pathPatterns));
+      return;
+    }
+    if (charShape.fields.length !== 2) {
+      fail('map-key detection: child fields count', `expected 2, got ${charShape.fields.length}`);
+      return;
+    }
+    ok('numeric child keys collapse to <key> placeholder with sample retained');
+  });
+}
+
+function testFieldNamePreserved() {
+  // Non-numeric keys stay as fields.
+  const content = JSON.stringify({
+    meta: { version: '1.0', save_date: '2024.1.1' },
+  });
+  return shapeCatalogFor(content).then((catalog) => {
+    const meta = patternByPointer(catalog, '$.meta');
+    if (!meta) {
+      fail('field preservation: $.meta present', JSON.stringify(catalog.pathPatterns));
+      return;
+    }
+    if (meta.childKeyKind !== 'field') {
+      fail('field preservation: childKeyKind', `expected "field", got "${meta.childKeyKind}"`);
+      return;
+    }
+    if (!fieldByName(meta, 'version')) {
+      fail('field preservation: version field', JSON.stringify(meta.fields));
+      return;
+    }
+    if (!fieldByName(meta, 'save_date')) {
+      fail('field preservation: save_date field', JSON.stringify(meta.fields));
+      return;
+    }
+    ok('non-numeric child keys are preserved as field names');
+  });
+}
+
+function testRequiredVsOptional() {
+  // culture appears in every record; motto appears in one only.
+  const content = JSON.stringify({
+    living: {
+      '10001': { culture: 1, motto: 'hi' },
+      '10002': { culture: 2 },
+      '10003': { culture: 3 },
+    },
+  });
+  return shapeCatalogFor(content).then((catalog) => {
+    const charShape = patternByPointer(catalog, '$.living.<key>');
+    if (!charShape) {
+      fail('required/optional: $.living.<key> present', JSON.stringify(catalog.pathPatterns));
+      return;
+    }
+    const culture = fieldByName(charShape, 'culture');
+    const motto = fieldByName(charShape, 'motto');
+    if (!culture || !culture.isRequired) {
+      fail('required/optional: culture required', JSON.stringify(culture));
+      return;
+    }
+    if (!motto || motto.isRequired) {
+      fail('required/optional: motto optional', JSON.stringify(motto));
+      return;
+    }
+    if (culture.occurrenceCount !== 3 || motto.occurrenceCount !== 1) {
+      fail('required/optional: counts', `culture=${culture.occurrenceCount}, motto=${motto.occurrenceCount}`);
+      return;
+    }
+    ok('isRequired tracks per-field occurrence vs parent total');
+  });
+}
+
+function testPolymorphicField() {
+  // A field that takes string in one record, number in another.
+  const content = JSON.stringify({
+    living: {
+      '20001': { luck: 'lucky' },
+      '20002': { luck: 42 },
+    },
+  });
+  return shapeCatalogFor(content).then((catalog) => {
+    const charShape = patternByPointer(catalog, '$.living.<key>');
+    if (!charShape) {
+      fail('polymorphic: $.living.<key> present', JSON.stringify(catalog.pathPatterns));
+      return;
+    }
+    const luck = fieldByName(charShape, 'luck');
+    if (!luck) {
+      fail('polymorphic: luck field', JSON.stringify(charShape));
+      return;
+    }
+    if (!luck.isPolymorphic) {
+      fail('polymorphic: detected', `isPolymorphic=${luck.isPolymorphic}, types=${JSON.stringify(luck.valueTypes)}`);
+      return;
+    }
+    if (!luck.valueTypes.includes('string') || !luck.valueTypes.includes('number')) {
+      fail('polymorphic: value types', JSON.stringify(luck.valueTypes));
+      return;
+    }
+    if (!luck.valueTypeFingerprint.startsWith('union:')) {
+      fail('polymorphic: fingerprint', `expected union:..., got ${luck.valueTypeFingerprint}`);
+      return;
+    }
+    ok('polymorphic field detected and fingerprinted as union');
+  });
+}
+
+function testSameShapeSameFingerprint() {
+  // Two structurally identical records under different parents share a fingerprint.
+  const a = JSON.stringify({ outer: { inner: { x: 1, y: 'hi' } } });
+  const b = JSON.stringify({ other: { inner: { x: 99, y: 'bye' } } });
+  return Promise.all([shapeCatalogFor(a), shapeCatalogFor(b)]).then(([catA, catB]) => {
+    const innerA = patternByPointer(catA, '$.outer.inner');
+    const innerB = patternByPointer(catB, '$.other.inner');
+    if (!innerA || !innerB) {
+      fail('shared fingerprint: both present', `innerA=${!!innerA}, innerB=${!!innerB}`);
+      return;
+    }
+    if (innerA.shapeFingerprint !== innerB.shapeFingerprint) {
+      fail('shared fingerprint: equal', `${innerA.shapeFingerprint} vs ${innerB.shapeFingerprint}`);
+      return;
+    }
+    ok('records with identical structure share a shape fingerprint');
+  });
+}
+
+function testOptionalVariantsRemainRelated() {
+  // Two records with one optional field different but same required fields.
+  const content = JSON.stringify({
+    living: {
+      '30001': { culture: 1, faith: 2 },
+      '30002': { culture: 3, faith: 4, motto: 'hi' },
+    },
+  });
+  return shapeCatalogFor(content).then((catalog) => {
+    const charShape = patternByPointer(catalog, '$.living.<key>');
+    if (!charShape) {
+      fail('optional variants: shape present', JSON.stringify(catalog.pathPatterns));
+      return;
+    }
+    const culture = fieldByName(charShape, 'culture');
+    const motto = fieldByName(charShape, 'motto');
+    if (!culture || !motto) {
+      fail('optional variants: fields present', JSON.stringify(charShape));
+      return;
+    }
+    if (!culture.isRequired || motto.isRequired) {
+      fail('optional variants: isRequired flags', JSON.stringify({ culture, motto }));
+      return;
+    }
+    const fingerprint = computeShapeFingerprint(charShape.fields, false);
+    if (fingerprint !== charShape.shapeFingerprint) {
+      fail('optional variants: computeShapeFingerprint matches', `${fingerprint} vs ${charShape.shapeFingerprint}`);
+      return;
+    }
+    ok('optional-field variants remain in the same shape with distinct required flags');
+  });
+}
+
+function testStableAcrossInputOrder() {
+  // Same data, different field order → identical fingerprint.
+  const a = JSON.stringify({ x: 1, y: 2, z: 3 });
+  const b = JSON.stringify({ z: 3, x: 1, y: 2 });
+  return Promise.all([shapeCatalogFor(a), shapeCatalogFor(b)]).then(([catA, catB]) => {
+    const rootA = patternByPointer(catA, '$');
+    const rootB = patternByPointer(catB, '$');
+    if (rootA.shapeFingerprint !== rootB.shapeFingerprint) {
+      fail('stable across order: fingerprint', `${rootA.shapeFingerprint} vs ${rootB.shapeFingerprint}`);
+      return;
+    }
+    ok('fingerprint stable across input field order');
+  });
+}
+
+function testNestedContainerFingerprint() {
+  // The child's shape fingerprint must be referenced by the parent's field descriptor.
+  const content = JSON.stringify({
+    a: {
+      b: { c: 1 },
+      d: { c: 2 },
+    },
+  });
+  return shapeCatalogFor(content).then((catalog) => {
+    const bShape = patternByPointer(catalog, '$.a.b');
+    const dShape = patternByPointer(catalog, '$.a.d');
+    if (!bShape || !dShape) {
+      fail('nested fingerprint: present', `b=${!!bShape}, d=${!!dShape}`);
+      return;
+    }
+    const aShape = patternByPointer(catalog, '$.a');
+    if (!aShape) {
+      fail('nested fingerprint: $.a present', JSON.stringify(catalog.pathPatterns));
+      return;
+    }
+    const bField = fieldByName(aShape, 'b');
+    const dField = fieldByName(aShape, 'd');
+    if (bField.valueTypeFingerprint !== bShape.shapeFingerprint) {
+      fail('nested fingerprint: b references child', `${bField.valueTypeFingerprint} vs ${bShape.shapeFingerprint}`);
+      return;
+    }
+    if (dField.valueTypeFingerprint !== dShape.shapeFingerprint) {
+      fail('nested fingerprint: d references child', `${dField.valueTypeFingerprint} vs ${dShape.shapeFingerprint}`);
+      return;
+    }
+    if (bShape.shapeFingerprint === dShape.shapeFingerprint) {
+      ok('nested containers with identical shape share a fingerprint (propagated through parent)');
+    } else {
+      fail('nested fingerprint: b and d same', `${bShape.shapeFingerprint} vs ${dShape.shapeFingerprint}`);
+    }
+  });
+}
+
+function testNoDynamicKeysAsFields() {
+  // Many unique numeric keys must NOT explode the field list.
+  const records = {};
+  for (let i = 0; i < 200; i++) {
+    records[String(i)] = { culture: i, faith: 23 };
+  }
+  return shapeCatalogFor(JSON.stringify({ living: records })).then((catalog) => {
+    const living = patternByPointer(catalog, '$.living');
+    if (!living || living.childKeyKind !== 'map') {
+      fail('no dynamic keys: promoted to map', JSON.stringify(living));
+      return;
+    }
+    if (living.fields.length !== 1 || living.fields[0].name !== '<key>') {
+      fail('no dynamic keys: single <key> field', JSON.stringify(living.fields));
+      return;
+    }
+    if (living.fields[0].occurrenceCount !== 200) {
+      fail('no dynamic keys: aggregate count', `expected 200, got ${living.fields[0].occurrenceCount}`);
+      return;
+    }
+    ok('200 unique numeric keys collapse to one <key> field (no field explosion)');
+  });
+}
+
+function testCatalogStructure() {
+  return shapeCatalogFor(JSON.stringify({ a: 1 })).then((catalog) => {
+    if (typeof catalog.summary !== 'object') {
+      fail('catalog structure: summary', JSON.stringify(catalog));
+      return;
+    }
+    for (const key of [
+      'totalObservations',
+      'totalContainers',
+      'totalPrimitives',
+      'uniqueParentPaths',
+      'pathPatterns',
+      'mapKeyPatternCount',
+      'polymorphicFieldCount',
+      'optionalFieldCount',
+    ]) {
+      if (!(key in catalog.summary)) {
+        fail('catalog structure: summary key ' + key, JSON.stringify(catalog.summary));
+        return;
+      }
+    }
+    if (!catalog.root || catalog.root.pointer !== '$') {
+      fail('catalog structure: root entry', JSON.stringify(catalog.root));
+      return;
+    }
+    ok('catalog has summary + root + pathPatterns with required keys');
+  });
+}
+
+function testEmptyAndMinimalInputs() {
+  return Promise.all([
+    shapeCatalogFor('{}').then((c) => {
+      const root = patternByPointer(c, '$');
+      if (!root || root.fields.length !== 0) {
+        fail('empty object: root shape', JSON.stringify(root));
+        return;
+      }
+      ok('empty object → root with no fields');
+    }),
+    shapeCatalogFor('[]').then((c) => {
+      const root = patternByPointer(c, '$');
+      if (!root || root.fields.length !== 0) {
+        fail('empty array: root shape', JSON.stringify(root));
+        return;
+      }
+      ok('empty array → root with no fields');
+    }),
+    shapeCatalogFor('[1,2,3]').then((c) => {
+      const root = patternByPointer(c, '$');
+      if (!root) {
+        fail('array of primitives: root present', JSON.stringify(c.pathPatterns));
+        return;
+      }
+      ok('array of primitives handled');
+    }),
+  ]);
+}
+
+function testCliSmoke() {
+  const cli = path.join(ROOT, 'scripts', 'ck3-save-shape');
+  const fixturePath = writeFixture('cli-smoke.json', JSON.stringify({ a: { b: 1 }, c: [1, 2] }));
+  const result = spawnSync('node', [cli, fixturePath, '--quiet'], { encoding: 'utf8' });
+  if (result.status !== 0) {
+    fail('CLI exit 0', `status=${result.status}\n${result.stderr}`);
+    return;
+  }
+  let output;
+  try {
+    output = JSON.parse(result.stdout);
+  } catch (err) {
+    fail('CLI JSON parse', err.message + '\n' + result.stdout.slice(0, 200));
+    return;
+  }
+  if (!output.pathPatterns || output.pathPatterns.length === 0) {
+    fail('CLI has pathPatterns', JSON.stringify(output).slice(0, 200));
+    return;
+  }
+  if (output.summary.totalObservations < 4) {
+    fail('CLI summary totals', JSON.stringify(output.summary));
+    return;
+  }
+  ok('CLI emits a valid shape catalog JSON for a synthetic fixture');
+}
+
+function testBootstrapShape() {
+  const bootstrap = path.join(
+    ROOT,
+    'state/rakaly-cli/output/ingest/last_save_2026-07-16_221531.json.gz',
+  );
+  if (!fs.existsSync(bootstrap)) {
+    fail('bootstrap gz exists', `not found: ${bootstrap}`);
+    return Promise.resolve();
+  }
+  const cli = path.join(ROOT, 'scripts', 'ck3-save-shape');
+  const out = path.join(TMP, 'bootstrap-shape.json');
+  const start = Date.now();
+  const result = spawnSync(
+    'node',
+    [cli, bootstrap, '--quiet', '--out', out, '--source-id', 'source:rakaly-specimen-451e9bb9cff734cc'],
+    { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 },
+  );
+  const elapsed = Date.now() - start;
+  if (result.status !== 0) {
+    fail('bootstrap shape run', `status=${result.status}\n${result.stderr.slice(0, 500)}`);
+    return Promise.resolve();
+  }
+  const catalog = JSON.parse(fs.readFileSync(out, 'utf8'));
+  const livingCollection = catalog.pathPatterns.find((p) => p.pointer === '$.living');
+  if (!livingCollection) {
+    fail(
+      'bootstrap shape: $.living present',
+      `first 5 path patterns: ${JSON.stringify(catalog.pathPatterns.slice(0, 5).map((p) => p.pointer))}`,
+    );
+    return Promise.resolve();
+  }
+  if (livingCollection.childKeyKind !== 'map') {
+    fail('bootstrap shape: living is map', `childKeyKind=${livingCollection.childKeyKind}`);
+    return Promise.resolve();
+  }
+  const living = catalog.pathPatterns.find((p) => p.pointer === '$.living.<key>');
+  if (!living) {
+    fail('bootstrap shape: $.living.<key> present');
+    return Promise.resolve();
+  }
+  if (!living.fields.find((f) => f.name === 'culture')) {
+    fail(
+      'bootstrap shape: "culture" field present in character',
+      `first fields: ${JSON.stringify(living.fields.slice(0, 5))}`,
+    );
+    return Promise.resolve();
+  }
+  if (!living.fields.find((f) => f.name === 'faith')) {
+    fail('bootstrap shape: "faith" field present in character');
+    return Promise.resolve();
+  }
+  if (typeof living.recordCount !== 'number' || living.recordCount <= 0) {
+    fail('bootstrap shape: positive recordCount', `recordCount=${living.recordCount}`);
+    return Promise.resolve();
+  }
+  const metaData = catalog.pathPatterns.find((p) => p.pointer === '$.meta_data');
+  if (!metaData || metaData.shapeFingerprint === living.shapeFingerprint) {
+    fail('bootstrap shape: meta_data differs from living');
+    return Promise.resolve();
+  }
+  console.log(
+    `     (bootstrap shape: ${catalog.pathPatterns.length} path patterns, ${catalog.summary.totalObservations} obs, ${elapsed} ms; living has ${living.fields.length} fields, recordCount=${living.recordCount})`,
+  );
+  ok('bootstrap shape catalog: living map, fields tracked, fingerprints distinct');
+  return Promise.resolve();
+}
+
+console.log('ck3-shape-fingerprints self-test');
+console.log('=================================');
+
+await testMapKeyDetection();
+await testFieldNamePreserved();
+await testRequiredVsOptional();
+await testPolymorphicField();
+await testSameShapeSameFingerprint();
+await testOptionalVariantsRemainRelated();
+await testStableAcrossInputOrder();
+await testNestedContainerFingerprint();
+await testNoDynamicKeysAsFields();
+await testCatalogStructure();
+await testEmptyAndMinimalInputs();
+testCliSmoke();
+await testBootstrapShape();
+
+fs.rmSync(TMP, { recursive: true, force: true });
+
+if (failed > 0) {
+  console.error(`\n${failed} test(s) failed`);
+  process.exit(1);
+}
+console.log('\nAll shape-fingerprint tests passed');

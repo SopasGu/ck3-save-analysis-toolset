@@ -4,7 +4,18 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "node --check scripts/lib/ck3-save-analysis.mjs && node --check scripts/lib/ck3-screenshots.mjs && node --check scripts/ck3-save-ingest && node --check scripts/ck3-save-report"
+    "check": "for f in scripts/ck3-content-lint scripts/ck3-save-collections scripts/ck3-save-discover scripts/ck3-save-ingest scripts/ck3-save-report scripts/ck3-save-shape scripts/ck3-sources scripts/test-candidate-collections scripts/test-content-lint scripts/test-save-discover scripts/test-shape-fingerprints scripts/test-source-registry scripts/lib/*.mjs; do node --check \"$f\"; done",
+    "lint:content": "node scripts/ck3-content-lint",
+    "lint:content:test": "node scripts/test-content-lint",
+    "sources:inspect": "node scripts/ck3-sources",
+    "test:sources": "node scripts/test-source-registry",
+    "test:discover": "node scripts/test-save-discover",
+    "test:shapes": "node scripts/test-shape-fingerprints",
+    "test:collections": "node scripts/test-candidate-collections",
+    "discover": "node scripts/ck3-save-discover",
+    "shape": "node scripts/ck3-save-shape",
+    "collections": "node scripts/ck3-save-collections",
+    "check:all": "npm run check && npm run lint:content && npm run test:sources && npm run test:discover && npm run test:shapes && npm run test:collections"
   },
   "engines": {
     "node": ">=18"

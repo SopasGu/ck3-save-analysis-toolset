@@ -1,0 +1,76 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import { spawnSync } from 'node:child_process';
+
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const LINT = path.join(ROOT, 'scripts', 'ck3-content-lint');
+const TMP = fs.mkdtempSync(path.join(os.tmpdir(), 'ck3-content-lint-'));
+
+const cases = [
+  {
+    name: 'clean/schema.json',
+    path: path.join(ROOT, 'fixtures/lint/clean/schema.json'),
+    expect: 0,
+  },
+  {
+    name: 'clean/notes.md',
+    path: path.join(ROOT, 'fixtures/lint/clean/notes.md'),
+    expect: 0,
+  },
+  {
+    name: 'planted/instance.json (campaign identifier + record ID)',
+    path: path.join(ROOT, 'fixtures/lint/planted/instance.json'),
+    expect: 1,
+  },
+  {
+    name: 'planted/notes.md (campaign identifier)',
+    path: path.join(ROOT, 'fixtures/lint/planted/notes.md'),
+    expect: 1,
+  },
+  {
+    name: 'planted/source-path.json (leaked state/ path)',
+    path: path.join(ROOT, 'fixtures/lint/planted/source-path.json'),
+    expect: 1,
+  },
+];
+
+const oversizedPath = path.join(TMP, 'oversized.json');
+fs.writeFileSync(oversizedPath, JSON.stringify({ data: 'x'.repeat(2048) }));
+cases.push({
+  name: 'oversized.json (synthetic, low threshold)',
+  path: oversizedPath,
+  expect: 1,
+  threshold: 256,
+});
+
+let failed = 0;
+console.log('ck3-content-lint self-test');
+console.log('=========================');
+
+for (const c of cases) {
+  if (!fs.existsSync(c.path)) {
+    console.log(`SKIP: ${c.name} (fixture missing)`);
+    continue;
+  }
+  const args = [LINT, '--quiet', c.path];
+  if (c.threshold) args.push('--max-json-bytes', String(c.threshold));
+  const result = spawnSync('node', args, { encoding: 'utf8' });
+  const actual = result.status;
+  const ok = actual === c.expect;
+  console.log(`${ok ? 'OK  ' : 'FAIL'}  ${c.name}  expected=${c.expect} actual=${actual}`);
+  if (!ok) {
+    if (result.stdout) process.stdout.write(result.stdout);
+    if (result.stderr) process.stderr.write(result.stderr);
+    failed++;
+  }
+}
+
+fs.rmSync(TMP, { recursive: true, force: true });
+
+if (failed > 0) {
+  console.error(`\n${failed} test(s) failed`);
+  process.exit(1);
+}
+console.log('\nAll content-lint tests passed');

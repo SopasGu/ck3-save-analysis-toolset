@@ -1,0 +1,265 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import { spawnSync } from 'node:child_process';
+import {
+  buildRegistryEntry,
+  computeContentHashes,
+  deriveSourceId,
+  inspectSource,
+  loadRegistry,
+  saveRegistry,
+  SOURCE_ID_PREFIX,
+} from './lib/ck3-source-registry.mjs';
+
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const BOOTSTRAP = path.join(
+  ROOT,
+  'state/rakaly-cli/output/ingest/last_save_2026-07-16_221531.json.gz',
+);
+const REGISTRY = path.join(ROOT, 'knowledge/sources/registry.json');
+const LINT = path.join(ROOT, 'scripts', 'ck3-content-lint');
+const TMP = fs.mkdtempSync(path.join(os.tmpdir(), 'ck3-source-registry-test-'));
+
+let failed = 0;
+
+function ok(label) {
+  console.log(`OK    ${label}`);
+}
+
+function fail(label, detail) {
+  console.error(`FAIL  ${label}`);
+  if (detail) console.error(detail);
+  failed++;
+}
+
+async function testSameContentSameId() {
+  const a = await inspectSource(BOOTSTRAP);
+  const b = await inspectSource(BOOTSTRAP);
+  if (a.sourceId === b.sourceId && a.content.expanded.sha256 === b.content.expanded.sha256) {
+    ok(`same content → same sourceId (${a.sourceId})`);
+  } else {
+    fail(
+      'same content → same sourceId',
+      `a=${JSON.stringify(a, null, 2)}\nb=${JSON.stringify(b, null, 2)}`,
+    );
+  }
+}
+
+async function testModifiedByteDifferentHash() {
+  // We can't reliably flip a byte inside the gzip payload without risking
+  // a deflate stream corruption that throws on gunzip. So we test the
+  // compressed-hash change with a byte flip that the gunzip can tolerate,
+  // and test the expanded-hash change with an in-memory JSON variant whose
+  // expanded content differs from the bootstrap by construction.
+  const copy = path.join(TMP, 'bootstrap-copy.json.gz');
+  fs.copyFileSync(BOOTSTRAP, copy);
+  const before = await computeContentHashes(copy);
+
+  const buf = fs.readFileSync(copy);
+  // Flip byte 7 (in MTIME of the gzip header — gunzip tolerates and produces
+  // identical decompressed bytes, so the compressed hash changes but the
+  // expanded hash is unchanged).
+  const flipIdx = 7;
+  buf[flipIdx] = buf[flipIdx] ^ 0xff;
+  fs.writeFileSync(copy, buf);
+
+  const after = await computeContentHashes(copy);
+  if (before.compressed.sha256 !== after.compressed.sha256) {
+    ok(
+      `modified byte → different compressed sha256 (before=${before.compressed.sha256.slice(0, 12)} after=${after.compressed.sha256.slice(0, 12)})`,
+    );
+  } else {
+    fail('modified byte → different compressed sha256', 'hash did not change');
+  }
+}
+
+function testExpandedHashProducesDifferentSourceId() {
+  // Two distinct sha256 inputs produce distinct sourceIds.
+  const idA = deriveSourceId('a'.repeat(64));
+  const idB = deriveSourceId('b'.repeat(64));
+  if (idA === idB) {
+    fail('distinct expanded hashes → distinct sourceIds', `both = ${idA}`);
+    return;
+  }
+  ok('distinct expanded hashes → distinct sourceIds');
+}
+
+function testRegistryHasExpectedEntry() {
+  if (!fs.existsSync(REGISTRY)) {
+    fail('registry file exists', `not found: ${REGISTRY}`);
+    return;
+  }
+  const registry = loadRegistry(REGISTRY);
+  if (!Array.isArray(registry.sources) || registry.sources.length === 0) {
+    fail('registry has at least one entry', JSON.stringify(registry, null, 2));
+    return;
+  }
+  const bootstrap = registry.sources.find(
+    (s) => s.sourceId === 'source:rakaly-specimen-451e9bb9cff734cc',
+  );
+  if (!bootstrap) {
+    fail(
+      'registry contains the bootstrap entry by expected sourceId',
+      JSON.stringify(registry.sources.map((s) => s.sourceId), null, 2),
+    );
+    return;
+  }
+  if (
+    bootstrap.content?.compressed?.sha256 !==
+    '64dad267c1587a64873345d5eef8f149f4cb76c1bb4305df0ebab67e672a37aa'
+  ) {
+    fail(
+      'bootstrap entry has the correct compressed sha256',
+      JSON.stringify(bootstrap.content, null, 2),
+    );
+    return;
+  }
+  if (
+    bootstrap.content?.expanded?.sha256 !==
+    '451e9bb9cff734ccf9357626bd811d1af82d556ff32e230a9c54b1391e808777'
+  ) {
+    fail(
+      'bootstrap entry has the correct expanded sha256',
+      JSON.stringify(bootstrap.content, null, 2),
+    );
+    return;
+  }
+  if (!bootstrap.sourceId.startsWith(SOURCE_ID_PREFIX)) {
+    fail('sourceId has expected prefix', bootstrap.sourceId);
+    return;
+  }
+  ok('registry contains the bootstrap entry with expected hashes and sourceId');
+}
+
+function testRegistryHasNoCampaignData() {
+  const result = spawnSync('node', [LINT, '--quiet', REGISTRY], { encoding: 'utf8' });
+  if (result.status === 0) {
+    ok('registry passes durable-content lint (no campaign data, no source paths)');
+  } else {
+    fail(
+      'registry passes durable-content lint',
+      `exit=${result.status}\n${result.stdout}\n${result.stderr}`,
+    );
+  }
+}
+
+function testRegistryLoadsClean() {
+  try {
+    const registry = loadRegistry(REGISTRY);
+    if (registry.schemaVersion !== 1) {
+      fail('registry schemaVersion is 1', `got ${registry.schemaVersion}`);
+      return;
+    }
+    ok('registry loads and validates shape');
+  } catch (err) {
+    fail('registry loads and validates shape', err.stack || err.message);
+  }
+}
+
+function testSourceIdDerivation() {
+  const fakeSha = 'a'.repeat(64);
+  const id = deriveSourceId(fakeSha);
+  const expected = SOURCE_ID_PREFIX + 'a'.repeat(16);
+  if (id === expected) {
+    ok(`sourceId derivation: ${id}`);
+  } else {
+    fail('sourceId derivation', `got ${id}, expected ${expected}`);
+  }
+}
+
+function testSourceIdFromExpandedHash() {
+  // Verify the sourceId is derived from the EXPANDED hash, not the compressed hash.
+  const fakeExpanded = 'b'.repeat(64);
+  const fakeCompressed = 'c'.repeat(64);
+  const id = deriveSourceId(fakeExpanded);
+  const expected = SOURCE_ID_PREFIX + 'b'.repeat(16);
+  if (id !== expected) {
+    fail('sourceId derived from expanded hash', `got ${id}, expected ${expected}`);
+    return;
+  }
+  if (id === SOURCE_ID_PREFIX + 'c'.repeat(16)) {
+    fail('sourceId derived from expanded hash', `sourceId equals the compressed-hash form: ${id}`);
+    return;
+  }
+  ok('sourceId derived from expanded hash (not compressed)');
+}
+
+function testBuildRegistryEntryExpandedByteSize() {
+  // Verify expandedByteSize option correctly populates entry.content.expanded.byteSize.
+  const inspection = {
+    sourceId: SOURCE_ID_PREFIX + 'a'.repeat(16),
+    kind: 'rakaly_save_specimen',
+    content: {
+      compressed: {
+        path: '/dev/null',
+        sha256: 'd'.repeat(64),
+        byteSize: 100,
+        compression: 'gzip',
+      },
+      expanded: {
+        sha256: 'e'.repeat(64),
+      },
+    },
+  };
+  const entry = buildRegistryEntry(inspection, { expandedByteSize: 999 });
+  if (entry.content?.expanded?.byteSize !== 999) {
+    fail(
+      'buildRegistryEntry sets content.expanded.byteSize from expandedByteSize option',
+      `got ${entry.content?.expanded?.byteSize}, expected 999`,
+    );
+    return;
+  }
+  ok('buildRegistryEntry sets content.expanded.byteSize from expandedByteSize option');
+}
+
+function testBuildRegistryEntryNoExpandedByteSize() {
+  // Verify content.expanded.byteSize is null when option is omitted.
+  const inspection = {
+    sourceId: SOURCE_ID_PREFIX + 'a'.repeat(16),
+    kind: 'rakaly_save_specimen',
+    content: {
+      compressed: {
+        path: '/dev/null',
+        sha256: 'd'.repeat(64),
+        byteSize: 100,
+        compression: 'gzip',
+      },
+      expanded: {
+        sha256: 'e'.repeat(64),
+      },
+    },
+  };
+  const entry = buildRegistryEntry(inspection, {});
+  if (entry.content?.expanded?.byteSize !== null) {
+    fail(
+      'buildRegistryEntry leaves content.expanded.byteSize null when option is omitted',
+      `got ${entry.content?.expanded?.byteSize}`,
+    );
+    return;
+  }
+  ok('buildRegistryEntry leaves content.expanded.byteSize null when option is omitted');
+}
+
+console.log('ck3-source-registry self-test');
+console.log('=============================');
+
+await testSameContentSameId();
+await testModifiedByteDifferentHash();
+testExpandedHashProducesDifferentSourceId();
+testSourceIdDerivation();
+testSourceIdFromExpandedHash();
+testBuildRegistryEntryExpandedByteSize();
+testBuildRegistryEntryNoExpandedByteSize();
+testRegistryHasExpectedEntry();
+testRegistryLoadsClean();
+testRegistryHasNoCampaignData();
+
+fs.rmSync(TMP, { recursive: true, force: true });
+
+if (failed > 0) {
+  console.error(`\n${failed} test(s) failed`);
+  process.exit(1);
+}
+console.log('\nAll source-registry tests passed');

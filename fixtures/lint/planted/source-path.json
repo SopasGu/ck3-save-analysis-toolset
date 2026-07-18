@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "kind": "source_registration",
+  "id": "source:bootstrap-rakaly-specimen",
+  "label": "Bootstrap Rakaly specimen",
+  "notes": "PLANTED FIXTURE: this leaks an ignored state/ path. The lint must reject it.",
+  "rawArtifactPath": "state/rakaly-cli/output/ingest/last_save_2026-07-16_221531.json.gz"
+}

@@ -1,0 +1,168 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import {
+  DISCOVERY_VERSION,
+  discoverStructure,
+  AggregateCollector,
+  NdjsonCollector,
+} from './lib/json-structure-discovery.mjs';
+
+const ROOT_DIR = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+
+function printHelp() {
+  console.log(`Usage: ck3-save-discover <path-to-json-or-json.gz> [options]
+
+Streams a JSON or gzipped-JSON file and reports structural summary:
+top-level keys, container counts, max depth, and a bounded pointer
+catalog. Default target is the aggregate summary (deterministic,
+byte-equivalent across runs).
+
+Options:
+  --catalog-limit N    Max pointers to track in the catalog (default: 10000)
+  --diagnostics        Include timing/RSS diagnostics in output
+  --mode MODE          aggregate (default) | raw
+  --out PATH           Write output to PATH instead of stdout (raw mode only)
+  --source-id ID       Attach a source registry ID to the result
+  --quiet              Suppress progress on stderr
+`);
+}
+
+function parseArgs(argv) {
+  const args = {
+    input: null,
+    catalogLimit: 10000,
+    diagnostics: false,
+    mode: 'aggregate',
+    out: null,
+    sourceId: null,
+    quiet: false,
+  };
+  for (let i = 0; i < argv.length; i++) {
+    const a = argv[i];
+    switch (a) {
+      case '--catalog-limit':
+        args.catalogLimit = parseInt(argv[++i], 10);
+        break;
+      case '--diagnostics':
+        args.diagnostics = true;
+        break;
+      case '--mode':
+        args.mode = argv[++i];
+        break;
+      case '--out':
+        args.out = argv[++i];
+        break;
+      case '--source-id':
+        args.sourceId = argv[++i];
+        break;
+      case '--quiet':
+      case '-q':
+        args.quiet = true;
+        break;
+      case '--help':
+      case '-h':
+        printHelp();
+        process.exit(0);
+        break;
+      default:
+        if (a.startsWith('--')) {
+          console.error(`Unknown flag: ${a}`);
+          process.exit(2);
+        }
+        if (args.input) {
+          console.error(`Unexpected positional arg: ${a}`);
+          process.exit(2);
+        }
+        args.input = a;
+    }
+  }
+  return args;
+}
+
+async function main() {
+  const args = parseArgs(process.argv.slice(2));
+  if (!args.input) {
+    printHelp();
+    process.exit(2);
+  }
+  if (!fs.existsSync(args.input)) {
+    console.error(`File not found: ${args.input}`);
+    process.exit(2);
+  }
+  const stat = fs.statSync(args.input);
+  if (!stat.isFile()) {
+    console.error(`Not a file: ${args.input}`);
+    process.exit(2);
+  }
+
+  const isGz = args.input.endsWith('.gz');
+  const byteSize = stat.size;
+
+  let collector;
+  let outStream = null;
+  if (args.mode === 'aggregate') {
+    collector = new AggregateCollector({ catalogLimit: args.catalogLimit });
+  } else if (args.mode === 'raw') {
+    if (!args.out) {
+      console.error('--mode raw requires --out PATH');
+      process.exit(2);
+    }
+    fs.mkdirSync(path.dirname(path.resolve(args.out)), { recursive: true });
+    outStream = fs.createWriteStream(args.out);
+    collector = new NdjsonCollector(outStream);
+  } else {
+    console.error(`Unknown mode: ${args.mode}`);
+    process.exit(2);
+  }
+
+  const startTime = Date.now();
+  const result = await discoverStructure({
+    source: args.input,
+    collector,
+    onProgress: args.quiet
+      ? null
+      : (p) => {
+          const mb = (p.bytesProcessed / 1024 / 1024).toFixed(1);
+          const totalMb = (byteSize * (isGz ? 7 : 1) / 1024 / 1024).toFixed(1);
+          const rssMb = (p.rssBytes / 1024 / 1024).toFixed(0);
+          process.stderr.write(
+            `  ${mb} MB processed (${rssMb} MB RSS, ${p.elapsedMs} ms)\n`,
+          );
+        },
+  });
+
+  if (outStream) {
+    await new Promise((resolve) => outStream.end(resolve));
+  }
+
+  if (args.mode === 'raw') {
+    console.error(
+      `Wrote ${result.linesWritten} NDJSON lines to ${args.out} in ${result.diagnostics.durationMs} ms`,
+    );
+    return;
+  }
+
+  const output = {
+    schemaVersion: DISCOVERY_VERSION,
+    source: {
+      path: path.resolve(args.input),
+      byteSize,
+      compressed: isGz,
+      sourceId: args.sourceId,
+    },
+    summary: result.summary,
+    pointerCatalog: result.pointerCatalog,
+  };
+
+  if (args.diagnostics) {
+    output.diagnostics = result.diagnostics;
+  }
+
+  process.stdout.write(JSON.stringify(output, null, 2) + '\n');
+}
+
+main().catch((err) => {
+  console.error(err.stack || err.message);
+  process.exit(2);
+});

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "sourceId": "source:rakaly-specimen-451e9bb9cff734cc",
+      "kind": "rakaly_save_specimen",
+      "label": "Bootstrap Rakaly specimen (2026-07-16)",
+      "acquiredAt": "2026-07-16T22:15:31Z",
+      "content": {
+        "compressed": {
+          "sha256": "64dad267c1587a64873345d5eef8f149f4cb76c1bb4305df0ebab67e672a37aa",
+          "byteSize": 16258133,
+          "compression": "gzip"
+        },
+        "expanded": {
+          "sha256": "451e9bb9cff734ccf9357626bd811d1af82d556ff32e230a9c54b1391e808777",
+          "byteSize": 119529840
+        }
+      },
+      "rakaly": {
+        "tool": "rakaly",
+        "version": "0.8.17",
+        "versionSource": "scripts/ck3-rakaly wrapper"
+      },
+      "ck3": {
+        "version": "1.19.0.6",
+        "source": "meta_data.version in expanded JSON"
+      },
+      "saveGameDate": "885.3.16",
+      "dlc": [],
+      "mods": [],
+      "visibility": {
+        "classification": "public_git_history",
+        "rawArtifactCommitted": true,
+        "rationale": "The compressed Rakaly artifact was committed to the repository before the ignore rule was added. Per the evidence-graph plan section 11 it is the bootstrap structural specimen; treat it as evidence and do not promote its individual records into durable knowledge."
+      },
+      "structuralMeasurements": {
+        "objectCount": 1777496,
+        "arrayCount": 682831,
+        "primitiveCount": 5391802,
+        "stringCount": 2065214,
+        "numberCount": 3232624,
+        "booleanCount": 93964,
+        "nullCount": 0,
+        "maxDepth": 12,
+        "measurementSource": "scripts/lib/json-structure-discovery.mjs streaming traversal of expanded Rakaly JSON (Task 2)"
+      },
+      "notes": []
+    }
+  ]
+}

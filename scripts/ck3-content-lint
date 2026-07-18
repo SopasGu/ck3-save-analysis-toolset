@@ -1,0 +1,105 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import {
+  lintPaths,
+  DEFAULT_MAX_JSON_BYTES,
+} from './lib/ck3-content-lint.mjs';
+import { LINT_PATTERNS } from './lib/ck3-content-lint-patterns.mjs';
+
+const ROOT_DIR = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const DEFAULT_PATTERN_FILE = path.join(ROOT_DIR, 'scripts/lib/ck3-content-lint-patterns.mjs');
+const DEFAULT_TARGET = path.join(ROOT_DIR, 'knowledge');
+
+function parseArgs(argv) {
+  const args = {
+    paths: [],
+    maxJsonBytes: DEFAULT_MAX_JSON_BYTES,
+    patterns: DEFAULT_PATTERN_FILE,
+    quiet: false,
+  };
+  for (let i = 0; i < argv.length; i++) {
+    const a = argv[i];
+    if (a === '--max-json-bytes') args.maxJsonBytes = parseInt(argv[++i], 10);
+    else if (a === '--patterns') args.patterns = argv[++i];
+    else if (a === '--quiet' || a === '-q') args.quiet = true;
+    else if (a === '--help' || a === '-h') {
+      printHelp();
+      process.exit(0);
+    } else args.paths.push(a);
+  }
+  return args;
+}
+
+function printHelp() {
+  console.log(`Usage: ck3-content-lint [paths...] [--max-json-bytes N] [--patterns FILE] [--quiet]
+
+Lints durable-content directories for campaign-only identifiers, oversized JSON,
+and source-artifact path leaks. Default target: knowledge/
+
+Exit codes:
+  0  No findings
+  1  One or more findings
+  2  Error (e.g. pattern file missing or malformed)`);
+}
+
+async function loadIdentifiers(patternFile) {
+  if (!fs.existsSync(patternFile)) {
+    console.error(`Pattern file not found: ${patternFile}`);
+    process.exit(2);
+  }
+  let mod;
+  try {
+    const url = new URL(`file://${path.resolve(patternFile)}`);
+    mod = await import(url.href);
+  } catch (err) {
+    console.error(`Pattern file is malformed: ${patternFile} (${err.message})`);
+    process.exit(2);
+  }
+  const patterns = mod.LINT_PATTERNS ?? mod.default ?? null;
+  if (!patterns || !Array.isArray(patterns.identifiers)) {
+    console.error(`Pattern file must export LINT_PATTERNS with an "identifiers" array: ${patternFile}`);
+    process.exit(2);
+  }
+  return patterns.identifiers;
+}
+
+async function main() {
+  const args = parseArgs(process.argv.slice(2));
+
+  if (args.paths.length === 0) {
+    args.paths.push(DEFAULT_TARGET);
+  }
+
+  const identifiers = await loadIdentifiers(args.patterns);
+
+  const existingPaths = args.paths.filter((p) => fs.existsSync(p));
+  if (existingPaths.length === 0) {
+    if (!args.quiet) console.log('ck3-content-lint: nothing to lint');
+    process.exit(0);
+  }
+
+  const findings = lintPaths(existingPaths, {
+    maxJsonBytes: args.maxJsonBytes,
+    identifiers,
+  });
+
+  if (findings.length === 0) {
+    if (!args.quiet) {
+      console.log(`ck3-content-lint: OK (${existingPaths.length} path(s) checked)`);
+    }
+    process.exit(0);
+  }
+
+  for (const f of findings) {
+    const loc = `${f.file}${f.line ? `:${f.line}` : ''}`;
+    console.error(`${loc} [${f.detector}] ${f.message}`);
+  }
+  console.error(`\n${findings.length} durable-content finding(s)`);
+  process.exit(1);
+}
+
+main().catch((err) => {
+  console.error(err.stack || err.message);
+  process.exit(2);
+});

@@ -1,0 +1,196 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import {
+  CLASSIFICATIONS,
+  addOrUpdateSource,
+  buildRegistryEntry,
+  inspectSource,
+  loadRegistry,
+  saveRegistry,
+} from './lib/ck3-source-registry.mjs';
+
+const ROOT_DIR = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const DEFAULT_REGISTRY = path.join(ROOT_DIR, 'knowledge/sources/registry.json');
+
+function printHelp() {
+  console.log(`Usage:
+  ck3-sources inspect <gz-path>
+      Compute content hashes and the derived sourceId for a Rakaly JSON specimen.
+      Prints JSON to stdout.
+
+  ck3-sources register <gz-path> [options]
+      Add or update a source entry in the registry.
+      Options:
+        --label TEXT                  Display label (default: "Rakaly save specimen")
+        --classification CLASS        public_git_history | local_only | external | redistributed_with_permission
+        --acquired-at ISO             When the specimen was acquired (ISO 8601)
+        --ck3-version TEXT            CK3 version observed in the save metadata
+        --save-game-date TEXT         In-game date string (e.g. "885.3.16")
+        --rakaly-version TEXT         Rakaly version that produced this specimen
+        --raw-artifact-committed BOOL Whether the raw artifact is committed (true/false)
+        --rationale TEXT              Visibility rationale (no source paths or campaign names)
+        --dlc JSON_ARRAY              JSON array of DLC ids/names
+        --mods JSON_ARRAY             JSON array of mod ids/names
+        --expanded-byte-size N        Byte size of the expanded JSON
+        --registry PATH               Registry file (default: knowledge/sources/registry.json)
+        --print                       Print the resulting registry to stdout after write
+`);
+}
+
+function parseJsonArrayFlag(value, flagName) {
+  if (value == null) return undefined;
+  try {
+    const parsed = JSON.parse(value);
+    if (!Array.isArray(parsed)) {
+      throw new Error(`--${flagName} must be a JSON array`);
+    }
+    return parsed;
+  } catch (err) {
+    throw new Error(`Invalid --${flagName} value: ${err.message}`);
+  }
+}
+
+function parseBoolFlag(value, flagName) {
+  if (value === 'true') return true;
+  if (value === 'false') return false;
+  throw new Error(`--${flagName} must be "true" or "false" (got "${value}")`);
+}
+
+async function runInspect(args) {
+  const gzPath = args[0];
+  if (!gzPath) {
+    console.error('inspect requires a gz path');
+    process.exit(2);
+  }
+  if (!fs.existsSync(gzPath)) {
+    console.error(`File not found: ${gzPath}`);
+    process.exit(2);
+  }
+  const inspection = await inspectSource(gzPath);
+  console.log(JSON.stringify(inspection, null, 2));
+}
+
+async function runRegister(args) {
+  const gzPath = args[0];
+  if (!gzPath) {
+    console.error('register requires a gz path');
+    process.exit(2);
+  }
+  if (!fs.existsSync(gzPath)) {
+    console.error(`File not found: ${gzPath}`);
+    process.exit(2);
+  }
+
+  const opts = {
+    label: undefined,
+    acquiredAt: undefined,
+    ck3: undefined,
+    saveGameDate: undefined,
+    rakaly: undefined,
+    dlc: undefined,
+    mods: undefined,
+    visibility: undefined,
+    expandedByteSize: undefined,
+    notes: [],
+  };
+  let classification = 'local_only';
+  let registryPath = DEFAULT_REGISTRY;
+  let printResult = false;
+
+  for (let i = 1; i < args.length; i++) {
+    const a = args[i];
+    const next = () => args[++i];
+    switch (a) {
+      case '--label':
+        opts.label = next();
+        break;
+      case '--classification':
+        classification = next();
+        if (!CLASSIFICATIONS.has(classification)) {
+          console.error(`Unknown classification: ${classification}`);
+          process.exit(2);
+        }
+        break;
+      case '--acquired-at':
+        opts.acquiredAt = next();
+        break;
+      case '--ck3-version':
+        opts.ck3 = { version: next(), source: 'meta_data.version in expanded JSON' };
+        break;
+      case '--save-game-date':
+        opts.saveGameDate = next();
+        break;
+      case '--rakaly-version':
+        opts.rakaly = { tool: 'rakaly', version: next(), versionSource: 'scripts/ck3-rakaly wrapper' };
+        break;
+      case '--raw-artifact-committed':
+        opts.visibility = { ...(opts.visibility ?? {}), rawArtifactCommitted: parseBoolFlag(next(), 'raw-artifact-committed') };
+        break;
+      case '--rationale':
+        opts.visibility = { ...(opts.visibility ?? {}), rationale: next() };
+        break;
+      case '--dlc':
+        opts.dlc = parseJsonArrayFlag(next(), 'dlc');
+        break;
+      case '--mods':
+        opts.mods = parseJsonArrayFlag(next(), 'mods');
+        break;
+      case '--expanded-byte-size':
+        opts.expandedByteSize = parseInt(next(), 10);
+        break;
+      case '--registry':
+        registryPath = next();
+        break;
+      case '--print':
+        printResult = true;
+        break;
+      case '--help':
+      case '-h':
+        printHelp();
+        process.exit(0);
+        break;
+      default:
+        console.error(`Unknown flag: ${a}`);
+        process.exit(2);
+    }
+  }
+
+  opts.visibility = { ...(opts.visibility ?? {}), classification };
+
+  const inspection = await inspectSource(gzPath);
+  const entry = buildRegistryEntry(inspection, opts);
+
+  const registry = loadRegistry(registryPath);
+  addOrUpdateSource(registry, entry);
+  saveRegistry(registryPath, registry);
+
+  console.error(`Registered ${entry.sourceId} in ${registryPath}`);
+  if (printResult) {
+    console.log(JSON.stringify(registry, null, 2));
+  }
+}
+
+async function main() {
+  const args = process.argv.slice(2);
+  const subcommand = args[0];
+  if (!subcommand || subcommand === '--help' || subcommand === '-h') {
+    printHelp();
+    process.exit(subcommand ? 0 : 2);
+  }
+  const rest = args.slice(1);
+  if (subcommand === 'inspect') {
+    await runInspect(rest);
+  } else if (subcommand === 'register') {
+    await runRegister(rest);
+  } else {
+    console.error(`Unknown subcommand: ${subcommand}`);
+    printHelp();
+    process.exit(2);
+  }
+}
+
+main().catch((err) => {
+  console.error(err.stack || err.message);
+  process.exit(2);
+});

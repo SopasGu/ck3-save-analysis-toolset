@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "nodes": [
+    {
+      "id": "character:37885",
+      "kind": "character",
+      "label": "Nino of the Bastards of the Monolith",
+      "scope": {},
+      "provenance": []
+    }
+  ],
+  "edges": [],
+  "notes": "PLANTED FIXTURE: instance record IDs and player name should never appear in durable knowledge."
+}

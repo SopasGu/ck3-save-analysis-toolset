@@ -738,11 +738,11 @@ When a task reveals that a locked design decision is wrong, the worker must stop
 
 ## 9. Progress Checklist
 
-- [ ] Task 0: Establish governance and safety checks
-- [ ] Task 1: Register the bootstrap Rakaly specimen
-- [ ] Task 2: Implement generic streaming-aware JSON traversal
-- [ ] Task 3: Normalize paths and fingerprint shapes
-- [ ] Task 4: Discover candidate collections and record types
+- [x] Task 0: Establish governance and safety checks
+- [x] Task 1: Register the bootstrap Rakaly specimen
+- [x] Task 2: Implement generic streaming-aware JSON traversal
+- [x] Task 3: Normalize paths and fingerprint shapes
+- [x] Task 4: Discover candidate collections and record types
 - [ ] Task 5: Discover identity domains and reference candidates
 - [ ] Task 6: Build the first durable save-schema graph
 - [ ] Task 7: Validate and generalize across multiple saves

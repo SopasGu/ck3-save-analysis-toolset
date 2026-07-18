@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "nodes": [
+    {
+      "id": "collection:living_record",
+      "kind": "collection",
+      "label": "living_record",
+      "scope": {
+        "gameVersions": [],
+        "dlc": [],
+        "mods": []
+      },
+      "provenance": [
+        {
+          "sourceId": "source:bootstrap-rakaly-specimen",
+          "observationIds": ["observation:path-living"]
+        }
+      ],
+      "notes": []
+    },
+    {
+      "id": "field:living_record.culture",
+      "kind": "field",
+      "label": "culture",
+      "scope": {
+        "gameVersions": [],
+        "dlc": [],
+        "mods": []
+      },
+      "provenance": [
+        {
+          "sourceId": "source:bootstrap-rakaly-specimen",
+          "observationIds": ["observation:field-living-culture"]
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:field-living-record-culture-references-culture-id",
+      "kind": "field_uses_identity_domain",
+      "from": "field:living_record.culture",
+      "to": "identity_domain:culture_id",
+      "provenance": [
+        {
+          "sourceId": "source:bootstrap-rakaly-specimen"
+        }
+      ]
+    }
+  ]
+}
