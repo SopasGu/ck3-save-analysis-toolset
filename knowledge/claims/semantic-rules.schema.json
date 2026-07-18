@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sopasgu.github.io/ck3-save-analysis-toolset/schema/semantic-rules.schema.json",
+  "title": "CK3 semantic naming rules",
+  "type": "object",
+  "required": ["schemaVersion", "rules"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["ruleId", "match", "claim"],
+        "additionalProperties": false,
+        "properties": {
+          "ruleId": { "type": "string" },
+          "match": {
+            "type": "object",
+            "required": ["nodeKind", "property", "equals"],
+            "additionalProperties": false,
+            "properties": {
+              "nodeKind": { "type": "string" },
+              "property": { "type": "string" },
+              "equals": { "type": "string" }
+            }
+          },
+          "claim": {
+            "type": "object",
+            "required": ["semanticName", "semanticKind", "proposition", "status", "confidence", "uncertainty"],
+            "additionalProperties": false,
+            "properties": {
+              "semanticName": { "type": "string" },
+              "semanticKind": { "type": "string" },
+              "proposition": { "type": "string" },
+              "status": { "type": "string" },
+              "confidence": { "type": "number" },
+              "docTopic": { "type": ["string", "null"] },
+              "uncertainty": {
+                "type": "object",
+                "required": ["level", "reasons"],
+                "additionalProperties": false,
+                "properties": {
+                  "level": { "type": "string" },
+                  "reasons": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  }
+                }
+              },
+              "notes": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

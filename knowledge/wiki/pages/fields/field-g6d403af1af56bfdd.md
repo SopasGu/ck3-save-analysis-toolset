@@ -1,0 +1,44 @@
+---
+pageType: graph_node
+wikiKernelVersion: 1
+generatedAt: "2026-07-18T04:45:00.000Z"
+graphId: "field:g6d403af1af56bfdd"
+graphKind: "field"
+status: "observed"
+generatedFrom:
+  - "knowledge/schema/graph.json"
+  - "knowledge/claims/claims.json"
+claimIds:
+  []
+provenanceSourceIds:
+  - "source:rakaly-specimen-451e9bb9cff734cc"
+---
+
+# undefined
+
+Graph ID: `field:g6d403af1af56bfdd`
+
+Kind: `field`
+
+Pointer: `$.living.<key>.alive_data.targeting_schemes.undefined`
+
+## Evidence
+
+- Source: `source:rakaly-specimen-451e9bb9cff734cc`
+- Observation: `field:$.living.<key>.alive_data.targeting_schemes.undefined` (schema_observation)
+
+## Properties
+
+- isRequired: `false`
+- parentPointer: `$.living.<key>.alive_data.targeting_schemes`
+- pointer: `$.living.<key>.alive_data.targeting_schemes.undefined`
+- valueTypeFingerprint: `type:number`
+- valueTypes: `number`
+
+## Claims
+
+- No semantic claims currently cite this graph node.
+
+## Related Pages
+
+- No related wiki pages are linked yet.

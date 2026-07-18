@@ -1,0 +1,550 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": null,
+  "claims": [
+    {
+      "claimId": "claim:culture_collection:97ed97b7cd238e8a",
+      "proposition": "The collection at $.culture_manager.cultures contains culture records.",
+      "status": "supported",
+      "subjectGraphIds": [
+        "collection:gbd504da3e7ac6dd3"
+      ],
+      "semanticName": "culture_collection",
+      "semanticKind": "collection_name",
+      "confidence": 0.86,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "collection:gbd504da3e7ac6dd3",
+          "graphKind": "collection",
+          "pointer": "$.culture_manager.cultures"
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:main-page-links",
+          "topic": "Culture",
+          "url": "https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "semantic.collection.cultures"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "The structural path names culture_manager.cultures and the CK3 Wiki has a Culture topic."
+        ]
+      },
+      "notes": []
+    },
+    {
+      "claimId": "claim:culture_id_domain:ce13f402b1baf2ac",
+      "proposition": "Map keys under $.culture_manager.cultures are identifiers for culture records.",
+      "status": "supported",
+      "subjectGraphIds": [
+        "identity_domain:g51fc17655e0a09f8"
+      ],
+      "semanticName": "culture_id_domain",
+      "semanticKind": "identity_domain_name",
+      "confidence": 0.86,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "identity_domain:g51fc17655e0a09f8",
+          "graphKind": "identity_domain",
+          "pointer": "$.culture_manager.cultures"
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:main-page-links",
+          "topic": "Culture",
+          "url": "https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "semantic.identity-domain.culture-ids"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "The key domain and collection path both name cultures."
+        ]
+      },
+      "notes": []
+    },
+    {
+      "claimId": "claim:dead_prunable_character_collection:6b4c23d2f0e0ab7d",
+      "proposition": "The collection at $.characters.dead_prunable contains records for dead prunable characters.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "collection:g1b7e2934a2c7a89f"
+      ],
+      "semanticName": "dead_prunable_character_collection",
+      "semanticKind": "collection_name",
+      "confidence": 0.72,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "collection:g1b7e2934a2c7a89f",
+          "graphKind": "collection",
+          "pointer": "$.characters.dead_prunable"
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:main-page-links",
+          "topic": "Characters",
+          "url": "https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "semantic.collection.dead-prunable-characters"
+      ],
+      "uncertainty": {
+        "level": "medium",
+        "reasons": [
+          "The path is explicit, but the exact pruning semantics need documentation or installed-definition support."
+        ]
+      },
+      "notes": []
+    },
+    {
+      "claimId": "claim:dead_unprunable_character_collection:4ec4306f24147b9f",
+      "proposition": "The collection at $.dead_unprunable contains records for dead unprunable characters.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "collection:g401e1b10d469561d"
+      ],
+      "semanticName": "dead_unprunable_character_collection",
+      "semanticKind": "collection_name",
+      "confidence": 0.72,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "collection:g401e1b10d469561d",
+          "graphKind": "collection",
+          "pointer": "$.dead_unprunable"
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:main-page-links",
+          "topic": "Characters",
+          "url": "https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "semantic.collection.dead-unprunable-characters"
+      ],
+      "uncertainty": {
+        "level": "medium",
+        "reasons": [
+          "The path is explicit, but the exact unprunable semantics need documentation or installed-definition support."
+        ]
+      },
+      "notes": []
+    },
+    {
+      "claimId": "claim:faith_collection:d589c21f0eaf9cac",
+      "proposition": "The collection at $.religion.faiths contains faith records.",
+      "status": "supported",
+      "subjectGraphIds": [
+        "collection:gee6a8c368ea7891b"
+      ],
+      "semanticName": "faith_collection",
+      "semanticKind": "collection_name",
+      "confidence": 0.86,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "collection:gee6a8c368ea7891b",
+          "graphKind": "collection",
+          "pointer": "$.religion.faiths"
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:main-page-links",
+          "topic": "Faith",
+          "url": "https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "semantic.collection.faiths"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "The structural path names religion.faiths and the CK3 Wiki has a Faith topic."
+        ]
+      },
+      "notes": []
+    },
+    {
+      "claimId": "claim:faith_id_domain:1c477813e723574d",
+      "proposition": "Map keys under $.religion.faiths are identifiers for faith records.",
+      "status": "supported",
+      "subjectGraphIds": [
+        "identity_domain:gc82ec019be47d615"
+      ],
+      "semanticName": "faith_id_domain",
+      "semanticKind": "identity_domain_name",
+      "confidence": 0.86,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "identity_domain:gc82ec019be47d615",
+          "graphKind": "identity_domain",
+          "pointer": "$.religion.faiths"
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:main-page-links",
+          "topic": "Faith",
+          "url": "https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "semantic.identity-domain.faith-ids"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "The key domain and collection path both name faiths."
+        ]
+      },
+      "notes": []
+    },
+    {
+      "claimId": "claim:landed_title_collection:33e7cb703816c09a",
+      "proposition": "The collection at $.landed_titles.landed_titles contains landed title records.",
+      "status": "supported",
+      "subjectGraphIds": [
+        "collection:g741a913d0af45d7a"
+      ],
+      "semanticName": "landed_title_collection",
+      "semanticKind": "collection_name",
+      "confidence": 0.84,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "collection:g741a913d0af45d7a",
+          "graphKind": "collection",
+          "pointer": "$.landed_titles.landed_titles"
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:main-page-links",
+          "topic": "Titles",
+          "url": "https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "semantic.collection.landed-titles"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "The structural path names landed_titles.landed_titles and the CK3 Wiki has a Titles topic."
+        ]
+      },
+      "notes": []
+    },
+    {
+      "claimId": "claim:living_character_collection:383d7c10fee8dc76",
+      "proposition": "The collection at $.living contains records for living characters.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "collection:g30298488a18b66f7"
+      ],
+      "semanticName": "living_character_collection",
+      "semanticKind": "collection_name",
+      "confidence": 0.78,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "collection:g30298488a18b66f7",
+          "graphKind": "collection",
+          "pointer": "$.living"
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:main-page-links",
+          "topic": "Characters",
+          "url": "https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "semantic.collection.living-characters"
+      ],
+      "uncertainty": {
+        "level": "medium",
+        "reasons": [
+          "The path name and record volume strongly suggest character records, but this initial rule does not yet inspect installed game definitions."
+        ]
+      },
+      "notes": [
+        "Do not create one durable node per character."
+      ]
+    },
+    {
+      "claimId": "claim:living_character_id_domain:119ed01f50b33efa",
+      "proposition": "Map keys under $.living are identifiers for living character records.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "identity_domain:g4644338e9a957d67"
+      ],
+      "semanticName": "living_character_id_domain",
+      "semanticKind": "identity_domain_name",
+      "confidence": 0.78,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "identity_domain:g4644338e9a957d67",
+          "graphKind": "identity_domain",
+          "pointer": "$.living"
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:main-page-links",
+          "topic": "Characters",
+          "url": "https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "semantic.identity-domain.living-character-ids"
+      ],
+      "uncertainty": {
+        "level": "medium",
+        "reasons": [
+          "The key domain is structurally clear, but semantic ID type needs more cross-source validation."
+        ]
+      },
+      "notes": []
+    },
+    {
+      "claimId": "claim:province_collection:8b906452294e8194",
+      "proposition": "The collection at $.provinces contains province records.",
+      "status": "supported",
+      "subjectGraphIds": [
+        "collection:gbf5a9cdb248cfd31"
+      ],
+      "semanticName": "province_collection",
+      "semanticKind": "collection_name",
+      "confidence": 0.84,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "collection:gbf5a9cdb248cfd31",
+          "graphKind": "collection",
+          "pointer": "$.provinces"
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:main-page-links",
+          "topic": "County",
+          "url": "https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "semantic.collection.provinces"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "The structural path names provinces; CK3 Wiki overview includes County and Barony realm topics, while a dedicated Province page is not in the seed link list."
+        ]
+      },
+      "notes": []
+    }
+  ],
+  "semanticEdges": [
+    {
+      "id": "semantic_edge:214a97fa7180e39a",
+      "kind": "names_graph_item",
+      "claimId": "claim:culture_id_domain:ce13f402b1baf2ac",
+      "from": "claim:culture_id_domain:ce13f402b1baf2ac",
+      "to": "identity_domain:g51fc17655e0a09f8",
+      "status": "supported"
+    },
+    {
+      "id": "semantic_edge:4721f3c6307825a6",
+      "kind": "names_graph_item",
+      "claimId": "claim:faith_id_domain:1c477813e723574d",
+      "from": "claim:faith_id_domain:1c477813e723574d",
+      "to": "identity_domain:gc82ec019be47d615",
+      "status": "supported"
+    },
+    {
+      "id": "semantic_edge:519acd91280add59",
+      "kind": "names_graph_item",
+      "claimId": "claim:dead_prunable_character_collection:6b4c23d2f0e0ab7d",
+      "from": "claim:dead_prunable_character_collection:6b4c23d2f0e0ab7d",
+      "to": "collection:g1b7e2934a2c7a89f",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:5f7cd1f0b87aa308",
+      "kind": "names_graph_item",
+      "claimId": "claim:living_character_id_domain:119ed01f50b33efa",
+      "from": "claim:living_character_id_domain:119ed01f50b33efa",
+      "to": "identity_domain:g4644338e9a957d67",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:781447ca006265ed",
+      "kind": "names_graph_item",
+      "claimId": "claim:culture_collection:97ed97b7cd238e8a",
+      "from": "claim:culture_collection:97ed97b7cd238e8a",
+      "to": "collection:gbd504da3e7ac6dd3",
+      "status": "supported"
+    },
+    {
+      "id": "semantic_edge:a8f40134d165c309",
+      "kind": "names_graph_item",
+      "claimId": "claim:faith_collection:d589c21f0eaf9cac",
+      "from": "claim:faith_collection:d589c21f0eaf9cac",
+      "to": "collection:gee6a8c368ea7891b",
+      "status": "supported"
+    },
+    {
+      "id": "semantic_edge:b1591a37d9550fef",
+      "kind": "names_graph_item",
+      "claimId": "claim:living_character_collection:383d7c10fee8dc76",
+      "from": "claim:living_character_collection:383d7c10fee8dc76",
+      "to": "collection:g30298488a18b66f7",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:e1bb24d993a9a3af",
+      "kind": "names_graph_item",
+      "claimId": "claim:dead_unprunable_character_collection:4ec4306f24147b9f",
+      "from": "claim:dead_unprunable_character_collection:4ec4306f24147b9f",
+      "to": "collection:g401e1b10d469561d",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:e59b9143b2070875",
+      "kind": "names_graph_item",
+      "claimId": "claim:province_collection:8b906452294e8194",
+      "from": "claim:province_collection:8b906452294e8194",
+      "to": "collection:gbf5a9cdb248cfd31",
+      "status": "supported"
+    },
+    {
+      "id": "semantic_edge:e9f59af63f829f6e",
+      "kind": "names_graph_item",
+      "claimId": "claim:landed_title_collection:33e7cb703816c09a",
+      "from": "claim:landed_title_collection:33e7cb703816c09a",
+      "to": "collection:g741a913d0af45d7a",
+      "status": "supported"
+    }
+  ]
+}

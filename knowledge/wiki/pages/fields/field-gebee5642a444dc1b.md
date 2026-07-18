@@ -1,0 +1,44 @@
+---
+pageType: graph_node
+wikiKernelVersion: 1
+generatedAt: "2026-07-18T04:45:00.000Z"
+graphId: "field:gebee5642a444dc1b"
+graphKind: "field"
+status: "observed"
+generatedFrom:
+  - "knowledge/schema/graph.json"
+  - "knowledge/claims/claims.json"
+claimIds:
+  []
+provenanceSourceIds:
+  - "source:rakaly-specimen-451e9bb9cff734cc"
+---
+
+# undefined
+
+Graph ID: `field:gebee5642a444dc1b`
+
+Kind: `field`
+
+Pointer: `$.triggered_event.scope.list[2].duration.undefined`
+
+## Evidence
+
+- Source: `source:rakaly-specimen-451e9bb9cff734cc`
+- Observation: `field:$.triggered_event.scope.list[2].duration.undefined` (schema_observation)
+
+## Properties
+
+- isRequired: `true`
+- parentPointer: `$.triggered_event.scope.list[2].duration`
+- pointer: `$.triggered_event.scope.list[2].duration.undefined`
+- valueTypeFingerprint: `type:number`
+- valueTypes: `number`
+
+## Claims
+
+- No semantic claims currently cite this graph node.
+
+## Related Pages
+
+- No related wiki pages are linked yet.

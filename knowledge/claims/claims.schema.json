@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sopasgu.github.io/ck3-save-analysis-toolset/schema/claims.schema.json",
+  "title": "CK3 semantic claim ledger",
+  "type": "object",
+  "required": ["schemaVersion", "claims", "semanticEdges"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "generatedAt": { "type": ["string", "null"] },
+    "claims": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/claim" }
+    },
+    "semanticEdges": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/semanticEdge" }
+    }
+  },
+  "$defs": {
+    "scope": {
+      "type": "object",
+      "required": ["gameVersions", "dlc", "mods", "allDlcActive"],
+      "additionalProperties": false,
+      "properties": {
+        "gameVersions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "dlc": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "mods": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "allDlcActive": { "type": "boolean" }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["kind", "id"],
+      "additionalProperties": true,
+      "properties": {
+        "kind": {
+          "enum": ["graph_node", "graph_edge", "documentation_source", "comparison"]
+        },
+        "id": { "type": "string" }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "required": [
+        "claimId",
+        "proposition",
+        "status",
+        "subjectGraphIds",
+        "semanticName",
+        "confidence",
+        "scope",
+        "supportingEvidence",
+        "contradictingEvidence",
+        "rules",
+        "uncertainty"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "claimId": { "type": "string" },
+        "proposition": { "type": "string" },
+        "status": {
+          "enum": [
+            "proposed",
+            "supported",
+            "partially_supported",
+            "contradicted",
+            "insufficient_evidence",
+            "context_dependent",
+            "superseded"
+          ]
+        },
+        "subjectGraphIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "semanticName": { "type": "string" },
+        "semanticKind": { "type": "string" },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "scope": { "$ref": "#/$defs/scope" },
+        "supportingEvidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/evidence" }
+        },
+        "contradictingEvidence": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/evidence" }
+        },
+        "rules": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "uncertainty": {
+          "type": "object",
+          "required": ["level", "reasons"],
+          "additionalProperties": false,
+          "properties": {
+            "level": { "enum": ["low", "medium", "high"] },
+            "reasons": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "semanticEdge": {
+      "type": "object",
+      "required": ["id", "kind", "claimId", "from", "to", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "kind": { "type": "string" },
+        "claimId": { "type": "string" },
+        "from": { "type": "string" },
+        "to": { "type": "string" },
+        "status": { "type": "string" }
+      }
+    }
+  }
+}

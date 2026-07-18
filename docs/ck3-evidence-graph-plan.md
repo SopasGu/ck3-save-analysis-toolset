@@ -749,8 +749,8 @@ When a task reveals that a locked design decision is wrong, the worker must stop
 - [x] Task 6: Build the first durable save-schema graph
 - [x] Task 7: Validate and generalize across multiple saves
 - [x] Task 8: Create redacted and synthetic fixtures
-- [ ] Task 9: Add semantic claims
-- [ ] Task 10: Build the LLM Wiki kernel
+- [x] Task 9: Add semantic claims
+- [x] Task 10: Build the LLM Wiki kernel
 - [ ] Task 11: Integrate Paradox and installed-game documentation
 - [ ] Task 12: Implement ephemeral analysis for arbitrary saves
 - [ ] Task 13: Refactor existing reports as consumers

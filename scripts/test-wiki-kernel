@@ -1,0 +1,212 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { spawnSync } from 'node:child_process';
+import {
+  generateWikiKernel,
+  lintWikiKernel,
+  pagePathForNode,
+  writeWikiKernel,
+} from './lib/ck3-wiki-kernel.mjs';
+
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const TMP = fs.mkdtempSync(path.join(os.tmpdir(), 'ck3-wiki-kernel-test-'));
+
+let failed = 0;
+
+function ok(label) {
+  console.log(`OK    ${label}`);
+}
+
+function fail(label, detail) {
+  console.error(`FAIL  ${label}`);
+  if (detail) console.error(detail);
+  failed++;
+}
+
+function fixtureGraph() {
+  return {
+    schemaVersion: 1,
+    generatedAt: 'test',
+    sourceIds: ['source:test'],
+    summary: { nodes: 4, edges: 3 },
+    nodes: [
+      node('collection:g-living', 'collection', 'living', { pointer: '$.living', recordCount: 2 }),
+      node('record_type:g-character', 'record_type', 'record character', { shapeFingerprint: 'sha256:test', occurrenceCount: 2 }),
+      node('field:g-culture', 'field', 'culture', { pointer: '$.living.<key>.culture', valueTypes: ['integer'] }),
+      node('identity_domain:g-culture', 'identity_domain', 'cultures', { collectionPointer: '$.culture_manager.cultures', keyCount: 2 }),
+    ],
+    edges: [
+      edge('edge:contains', 'contains_record_type', 'collection:g-living', 'record_type:g-character'),
+      edge('edge:field', 'has_field', 'record_type:g-character', 'field:g-culture'),
+      edge('edge:domain', 'field_uses_identity_domain', 'field:g-culture', 'identity_domain:g-culture'),
+    ],
+  };
+}
+
+function node(id, kind, label, properties) {
+  return {
+    id,
+    kind,
+    label,
+    status: 'observed',
+    scope: { gameVersions: [], dlc: [], mods: [] },
+    provenance: [{ sourceId: 'source:test', observationId: `${kind}:test`, layer: 'schema_observation' }],
+    notes: [],
+    properties,
+  };
+}
+
+function edge(id, kind, from, to) {
+  return {
+    id,
+    kind,
+    from,
+    to,
+    status: 'observed',
+    scope: { gameVersions: [], dlc: [], mods: [] },
+    provenance: [{ sourceId: 'source:test', observationId: `${kind}:test`, layer: 'schema_observation' }],
+    notes: [],
+    properties: {},
+  };
+}
+
+function fixtureClaims() {
+  return {
+    schemaVersion: 1,
+    generatedAt: 'test',
+    claims: [
+      {
+        claimId: 'claim:living',
+        proposition: 'The living collection contains character records.',
+        status: 'supported',
+        subjectGraphIds: ['collection:g-living'],
+        confidence: 0.8,
+        supportingEvidence: [{ kind: 'graph_node', id: 'collection:g-living' }],
+      },
+      {
+        claimId: 'claim:old',
+        proposition: 'Old claim.',
+        status: 'superseded',
+        subjectGraphIds: ['field:g-culture'],
+        confidence: 0.2,
+        supersededBy: ['claim:new'],
+        supportingEvidence: [{ kind: 'graph_node', id: 'field:g-culture' }],
+      },
+    ],
+    semanticEdges: [],
+  };
+}
+
+function testGeneration() {
+  const graph = fixtureGraph();
+  const claims = { ...fixtureClaims(), claims: [fixtureClaims().claims[0]] };
+  const kernel = generateWikiKernel({ graph, claims }, {
+    outDir: path.join(TMP, 'wiki'),
+    generatedAt: '2026-07-17T00:00:00.000Z',
+  });
+  const result = writeWikiKernel(kernel, { outDir: path.join(TMP, 'wiki') });
+  const expectedPage = path.join(TMP, 'wiki', pagePathForNode(graph.nodes[0]));
+  if (result.filesWritten !== 7 || !fs.existsSync(expectedPage)) {
+    fail('wiki kernel writes operating docs and graph pages', JSON.stringify(result));
+    return;
+  }
+  const content = fs.readFileSync(expectedPage, 'utf8');
+  if (!content.includes('graphId: "collection:g-living"') || !content.includes('provenanceSourceIds:')) {
+    fail('generated graph pages carry graph IDs and provenance', content);
+    return;
+  }
+  if (!fs.readFileSync(path.join(TMP, 'wiki', 'AGENTS.md'), 'utf8').includes('ingest')) {
+    fail('wiki AGENTS documents mandatory operations');
+    return;
+  }
+  const findings = lintWikiKernel({ wikiDir: path.join(TMP, 'wiki'), graph, claims });
+  if (findings.length > 0) {
+    fail('fresh generated wiki lints cleanly', JSON.stringify(findings, null, 2));
+    return;
+  }
+  ok('wiki generation creates operating docs, index, log, and graph pages');
+}
+
+function testLintFindsBrokenOrphanAndStale() {
+  const graph = fixtureGraph();
+  const claims = fixtureClaims();
+  const wikiDir = path.join(TMP, 'planted');
+  const kernel = generateWikiKernel({ graph, claims }, {
+    outDir: wikiDir,
+    generatedAt: '2026-07-17T00:00:00.000Z',
+  });
+  writeWikiKernel(kernel, { outDir: wikiDir });
+  fs.appendFileSync(path.join(wikiDir, 'index.md'), '\n- [[pages/missing-page|missing]]\n');
+  const orphan = path.join(wikiDir, 'pages', 'fields', 'orphan.md');
+  fs.writeFileSync(orphan, `---
+pageType: graph_node
+graphId: "field:g-culture"
+graphKind: "field"
+status: "observed"
+generatedFrom:
+  - "knowledge/schema/graph.json"
+claimIds:
+  - "claim:old"
+provenanceSourceIds:
+  - "source:test"
+---
+
+# Orphan copy
+`);
+  const findings = lintWikiKernel({ wikiDir, graph, claims });
+  const detectors = new Set(findings.map((finding) => finding.detector));
+  for (const detector of ['broken_link', 'orphan_page', 'stale_claim']) {
+    if (!detectors.has(detector)) {
+      fail(`wiki lint detects ${detector}`, JSON.stringify(findings, null, 2));
+      return;
+    }
+  }
+  ok('wiki lint detects broken links, orphan pages, and stale claims');
+}
+
+function testCli() {
+  const dir = path.join(TMP, 'cli');
+  const graphPath = path.join(TMP, 'graph.json');
+  const claimsPath = path.join(TMP, 'claims.json');
+  fs.writeFileSync(graphPath, JSON.stringify(fixtureGraph(), null, 2));
+  fs.writeFileSync(claimsPath, JSON.stringify({ ...fixtureClaims(), claims: [fixtureClaims().claims[0]] }, null, 2));
+  const generate = spawnSync(process.execPath, [
+    path.join(ROOT, 'scripts/ck3-wiki-kernel'),
+    'generate',
+    '--graph', graphPath,
+    '--claims', claimsPath,
+    '--out', dir,
+    '--generated-at', '2026-07-17T00:00:00.000Z',
+    '--quiet',
+  ], { encoding: 'utf8' });
+  if (generate.status !== 0) {
+    fail('CLI generates wiki kernel', generate.stderr || generate.stdout);
+    return;
+  }
+  const lint = spawnSync(process.execPath, [
+    path.join(ROOT, 'scripts/ck3-wiki-kernel'),
+    'lint',
+    '--wiki', dir,
+    '--graph', graphPath,
+    '--claims', claimsPath,
+    '--quiet',
+  ], { encoding: 'utf8' });
+  if (lint.status !== 0) {
+    fail('CLI lints wiki kernel', lint.stderr || lint.stdout);
+    return;
+  }
+  ok('CLI generates and lints wiki kernel');
+}
+
+testGeneration();
+testLintFindsBrokenOrphanAndStale();
+testCli();
+
+if (failed > 0) {
+  console.error(`\n${failed} wiki-kernel test(s) failed`);
+  process.exit(1);
+}
+
+console.log('\nAll wiki-kernel tests passed');

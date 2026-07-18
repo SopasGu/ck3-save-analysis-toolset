@@ -1,0 +1,87 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import {
+  generateWikiKernel,
+  lintWikiKernel,
+  writeWikiKernel,
+} from './lib/ck3-wiki-kernel.mjs';
+
+function usage() {
+  console.error(`Usage:
+  ck3-wiki-kernel generate --graph PATH --claims PATH --out DIR [--quiet]
+  ck3-wiki-kernel lint --wiki DIR --graph PATH --claims PATH [--quiet]
+
+Builds and validates the durable Markdown wiki kernel from schema graph and
+semantic claim ledgers. This command never reads raw save artifacts.
+`);
+}
+
+function parseArgs(argv) {
+  const args = { _: [] };
+  for (let i = 0; i < argv.length; i++) {
+    const arg = argv[i];
+    if (!arg.startsWith('--')) {
+      args._.push(arg);
+      continue;
+    }
+    const key = arg.slice(2);
+    if (key === 'quiet') {
+      args.quiet = true;
+    } else {
+      args[key] = argv[++i];
+    }
+  }
+  return args;
+}
+
+function readJson(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+}
+
+const args = parseArgs(process.argv.slice(2));
+const command = args._[0];
+
+if (command === 'generate') {
+  if (!args.graph || !args.claims || !args.out) {
+    usage();
+    process.exit(2);
+  }
+  const kernel = generateWikiKernel({
+    graph: readJson(args.graph),
+    claims: readJson(args.claims),
+  }, {
+    outDir: args.out,
+    generatedAt: args['generated-at'],
+  });
+  const result = writeWikiKernel(kernel, { outDir: args.out });
+  if (!args.quiet) {
+    console.error(`Wrote ${result.filesWritten} wiki files to ${result.outDir}`);
+    console.error(JSON.stringify(result.summary, null, 2));
+  }
+  process.exit(0);
+}
+
+if (command === 'lint') {
+  if (!args.wiki || !args.graph || !args.claims) {
+    usage();
+    process.exit(2);
+  }
+  const findings = lintWikiKernel({
+    wikiDir: args.wiki,
+    graph: readJson(args.graph),
+    claims: readJson(args.claims),
+  });
+  if (findings.length > 0) {
+    if (!args.quiet) {
+      for (const finding of findings) {
+        console.error(`${finding.file}: ${finding.detector}: ${finding.message}`);
+      }
+    }
+    process.exit(1);
+  }
+  if (!args.quiet) console.error('Wiki lint passed');
+  process.exit(0);
+}
+
+usage();
+process.exit(2);

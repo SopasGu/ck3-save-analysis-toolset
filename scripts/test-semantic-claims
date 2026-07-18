@@ -1,0 +1,167 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import crypto from 'node:crypto';
+import { spawnSync } from 'node:child_process';
+import {
+  buildSemanticComparisonReport,
+  generateSemanticClaims,
+  validateClaimLedger,
+} from './lib/ck3-semantic-claims.mjs';
+
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const GRAPH = path.join(ROOT, 'knowledge/schema/graph.json');
+const RULES = path.join(ROOT, 'knowledge/claims/semantic-rules.json');
+const CLAIMS = path.join(ROOT, 'knowledge/claims/claims.json');
+const SOURCES = path.join(ROOT, 'knowledge/sources/registry.json');
+const TMP = fs.mkdtempSync(path.join(os.tmpdir(), 'ck3-semantic-claims-test-'));
+
+let failed = 0;
+
+function ok(label) {
+  console.log(`OK    ${label}`);
+}
+
+function fail(label, detail) {
+  console.error(`FAIL  ${label}`);
+  if (detail) console.error(detail);
+  failed++;
+}
+
+function readJson(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+}
+
+function sha256(filePath) {
+  return crypto.createHash('sha256').update(fs.readFileSync(filePath)).digest('hex');
+}
+
+function testClaimLedgerValidates() {
+  const graph = readJson(GRAPH);
+  const claims = readJson(CLAIMS);
+  const errors = validateClaimLedger(claims, graph);
+  if (errors.length > 0) {
+    fail('claim ledger validates against graph IDs', errors.join('\n'));
+    return;
+  }
+  ok('claim ledger validates against graph IDs');
+}
+
+function testSemanticEdgesCiteClaims() {
+  const claims = readJson(CLAIMS);
+  const claimIds = new Set(claims.claims.map((claim) => claim.claimId));
+  for (const edge of claims.semanticEdges) {
+    if (!claimIds.has(edge.claimId)) {
+      fail('semantic edge cites a claim', JSON.stringify(edge));
+      return;
+    }
+  }
+  ok('every semantic edge cites a claim');
+}
+
+function testClaimEvidenceAndUncertainty() {
+  const ledger = readJson(CLAIMS);
+  for (const claim of ledger.claims) {
+    if (!claim.supportingEvidence.some((e) => e.kind === 'graph_node')) {
+      fail('claim has graph evidence', JSON.stringify(claim));
+      return;
+    }
+    if (!claim.uncertainty?.level || !Array.isArray(claim.uncertainty.reasons)) {
+      fail('claim has machine-readable uncertainty', JSON.stringify(claim));
+      return;
+    }
+  }
+  const supported = ledger.claims.find((claim) => claim.status === 'supported');
+  if (!supported?.supportingEvidence.some((e) => e.kind === 'documentation_source')) {
+    fail('supported claim cites documentation source as context', JSON.stringify(supported));
+    return;
+  }
+  ok('claims cite graph evidence, documentation context, and uncertainty');
+}
+
+function testRemovingRulesDoesNotMutateGraph() {
+  const before = sha256(GRAPH);
+  const graph = readJson(GRAPH);
+  const sourceRegistry = readJson(SOURCES);
+  const emptyLedger = generateSemanticClaims({
+    graph,
+    rules: { schemaVersion: 1, rules: [] },
+    sourceRegistry,
+  });
+  const after = sha256(GRAPH);
+  if (before !== after) {
+    fail('removing semantic rules does not alter structural graph', `${before} vs ${after}`);
+    return;
+  }
+  if (emptyLedger.claims.length !== 0 || emptyLedger.semanticEdges.length !== 0) {
+    fail('empty rules produce empty semantic ledger', JSON.stringify(emptyLedger));
+    return;
+  }
+  ok('removing semantic rules does not alter structural observations');
+}
+
+function testComparisonReportBoundary() {
+  const graph = readJson(GRAPH);
+  const ledger = readJson(CLAIMS);
+  const report = buildSemanticComparisonReport({ ledger, graph });
+  if (report.summary.existingReportUsedAsSoleSupport !== false) {
+    fail('existing report behavior is not sole support', JSON.stringify(report.summary));
+    return;
+  }
+  if (!report.notes.some((note) => /not used as support/i.test(note))) {
+    fail('comparison report documents existing-report boundary', JSON.stringify(report.notes));
+    return;
+  }
+  ok('comparison report records existing-report boundary');
+}
+
+function testCliGeneratesDeterministicLedger() {
+  const claimsOut = path.join(TMP, 'claims.json');
+  const reportOut = path.join(TMP, 'report.json');
+  const cli = path.join(ROOT, 'scripts/ck3-semantic-claims');
+  const result = spawnSync('node', [
+    cli,
+    'generate',
+    '--graph', GRAPH,
+    '--rules', RULES,
+    '--sources', SOURCES,
+    '--claims-out', claimsOut,
+    '--report-out', reportOut,
+    '--quiet',
+  ], { encoding: 'utf8' });
+  if (result.status !== 0) {
+    fail('semantic claims CLI exits 0', `status=${result.status}\n${result.stderr}`);
+    return;
+  }
+  const generated = readJson(claimsOut);
+  const committed = readJson(CLAIMS);
+  if (JSON.stringify(generated) !== JSON.stringify(committed)) {
+    fail('semantic claims CLI reproduces committed ledger', JSON.stringify({ generated, committed }).slice(0, 2000));
+    return;
+  }
+  const report = readJson(reportOut);
+  if (report.summary.claims !== committed.claims.length) {
+    fail('semantic claims CLI writes comparison report', JSON.stringify(report.summary));
+    return;
+  }
+  ok('semantic claims CLI reproduces committed ledger and report');
+}
+
+console.log('ck3-semantic-claims self-test');
+console.log('=============================');
+
+testClaimLedgerValidates();
+testSemanticEdgesCiteClaims();
+testClaimEvidenceAndUncertainty();
+testRemovingRulesDoesNotMutateGraph();
+testComparisonReportBoundary();
+testCliGeneratesDeterministicLedger();
+
+fs.rmSync(TMP, { recursive: true, force: true });
+
+if (failed > 0) {
+  console.error(`\n${failed} test(s) failed`);
+  process.exit(1);
+}
+console.log('\nAll semantic-claims tests passed');

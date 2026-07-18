@@ -1,0 +1,237 @@
+{
+  "schemaVersion": 1,
+  "rules": [
+    {
+      "ruleId": "semantic.collection.living-characters",
+      "match": {
+        "nodeKind": "collection",
+        "property": "pointer",
+        "equals": "$.living"
+      },
+      "claim": {
+        "semanticName": "living_character_collection",
+        "semanticKind": "collection_name",
+        "proposition": "The collection at $.living contains records for living characters.",
+        "status": "proposed",
+        "confidence": 0.78,
+        "docTopic": "Characters",
+        "uncertainty": {
+          "level": "medium",
+          "reasons": [
+            "The path name and record volume strongly suggest character records, but this initial rule does not yet inspect installed game definitions."
+          ]
+        },
+        "notes": [
+          "Do not create one durable node per character."
+        ]
+      }
+    },
+    {
+      "ruleId": "semantic.collection.dead-prunable-characters",
+      "match": {
+        "nodeKind": "collection",
+        "property": "pointer",
+        "equals": "$.characters.dead_prunable"
+      },
+      "claim": {
+        "semanticName": "dead_prunable_character_collection",
+        "semanticKind": "collection_name",
+        "proposition": "The collection at $.characters.dead_prunable contains records for dead prunable characters.",
+        "status": "proposed",
+        "confidence": 0.72,
+        "docTopic": "Characters",
+        "uncertainty": {
+          "level": "medium",
+          "reasons": [
+            "The path is explicit, but the exact pruning semantics need documentation or installed-definition support."
+          ]
+        },
+        "notes": []
+      }
+    },
+    {
+      "ruleId": "semantic.collection.dead-unprunable-characters",
+      "match": {
+        "nodeKind": "collection",
+        "property": "pointer",
+        "equals": "$.dead_unprunable"
+      },
+      "claim": {
+        "semanticName": "dead_unprunable_character_collection",
+        "semanticKind": "collection_name",
+        "proposition": "The collection at $.dead_unprunable contains records for dead unprunable characters.",
+        "status": "proposed",
+        "confidence": 0.72,
+        "docTopic": "Characters",
+        "uncertainty": {
+          "level": "medium",
+          "reasons": [
+            "The path is explicit, but the exact unprunable semantics need documentation or installed-definition support."
+          ]
+        },
+        "notes": []
+      }
+    },
+    {
+      "ruleId": "semantic.collection.cultures",
+      "match": {
+        "nodeKind": "collection",
+        "property": "pointer",
+        "equals": "$.culture_manager.cultures"
+      },
+      "claim": {
+        "semanticName": "culture_collection",
+        "semanticKind": "collection_name",
+        "proposition": "The collection at $.culture_manager.cultures contains culture records.",
+        "status": "supported",
+        "confidence": 0.86,
+        "docTopic": "Culture",
+        "uncertainty": {
+          "level": "low",
+          "reasons": [
+            "The structural path names culture_manager.cultures and the CK3 Wiki has a Culture topic."
+          ]
+        },
+        "notes": []
+      }
+    },
+    {
+      "ruleId": "semantic.collection.faiths",
+      "match": {
+        "nodeKind": "collection",
+        "property": "pointer",
+        "equals": "$.religion.faiths"
+      },
+      "claim": {
+        "semanticName": "faith_collection",
+        "semanticKind": "collection_name",
+        "proposition": "The collection at $.religion.faiths contains faith records.",
+        "status": "supported",
+        "confidence": 0.86,
+        "docTopic": "Faith",
+        "uncertainty": {
+          "level": "low",
+          "reasons": [
+            "The structural path names religion.faiths and the CK3 Wiki has a Faith topic."
+          ]
+        },
+        "notes": []
+      }
+    },
+    {
+      "ruleId": "semantic.collection.landed-titles",
+      "match": {
+        "nodeKind": "collection",
+        "property": "pointer",
+        "equals": "$.landed_titles.landed_titles"
+      },
+      "claim": {
+        "semanticName": "landed_title_collection",
+        "semanticKind": "collection_name",
+        "proposition": "The collection at $.landed_titles.landed_titles contains landed title records.",
+        "status": "supported",
+        "confidence": 0.84,
+        "docTopic": "Titles",
+        "uncertainty": {
+          "level": "low",
+          "reasons": [
+            "The structural path names landed_titles.landed_titles and the CK3 Wiki has a Titles topic."
+          ]
+        },
+        "notes": []
+      }
+    },
+    {
+      "ruleId": "semantic.collection.provinces",
+      "match": {
+        "nodeKind": "collection",
+        "property": "pointer",
+        "equals": "$.provinces"
+      },
+      "claim": {
+        "semanticName": "province_collection",
+        "semanticKind": "collection_name",
+        "proposition": "The collection at $.provinces contains province records.",
+        "status": "supported",
+        "confidence": 0.84,
+        "docTopic": "County",
+        "uncertainty": {
+          "level": "low",
+          "reasons": [
+            "The structural path names provinces; CK3 Wiki overview includes County and Barony realm topics, while a dedicated Province page is not in the seed link list."
+          ]
+        },
+        "notes": []
+      }
+    },
+    {
+      "ruleId": "semantic.identity-domain.living-character-ids",
+      "match": {
+        "nodeKind": "identity_domain",
+        "property": "collectionPointer",
+        "equals": "$.living"
+      },
+      "claim": {
+        "semanticName": "living_character_id_domain",
+        "semanticKind": "identity_domain_name",
+        "proposition": "Map keys under $.living are identifiers for living character records.",
+        "status": "proposed",
+        "confidence": 0.78,
+        "docTopic": "Characters",
+        "uncertainty": {
+          "level": "medium",
+          "reasons": [
+            "The key domain is structurally clear, but semantic ID type needs more cross-source validation."
+          ]
+        },
+        "notes": []
+      }
+    },
+    {
+      "ruleId": "semantic.identity-domain.culture-ids",
+      "match": {
+        "nodeKind": "identity_domain",
+        "property": "collectionPointer",
+        "equals": "$.culture_manager.cultures"
+      },
+      "claim": {
+        "semanticName": "culture_id_domain",
+        "semanticKind": "identity_domain_name",
+        "proposition": "Map keys under $.culture_manager.cultures are identifiers for culture records.",
+        "status": "supported",
+        "confidence": 0.86,
+        "docTopic": "Culture",
+        "uncertainty": {
+          "level": "low",
+          "reasons": [
+            "The key domain and collection path both name cultures."
+          ]
+        },
+        "notes": []
+      }
+    },
+    {
+      "ruleId": "semantic.identity-domain.faith-ids",
+      "match": {
+        "nodeKind": "identity_domain",
+        "property": "collectionPointer",
+        "equals": "$.religion.faiths"
+      },
+      "claim": {
+        "semanticName": "faith_id_domain",
+        "semanticKind": "identity_domain_name",
+        "proposition": "Map keys under $.religion.faiths are identifiers for faith records.",
+        "status": "supported",
+        "confidence": 0.86,
+        "docTopic": "Faith",
+        "uncertainty": {
+          "level": "low",
+          "reasons": [
+            "The key domain and collection path both name faiths."
+          ]
+        },
+        "notes": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "summary": {
+    "claims": 10,
+    "semanticEdges": 10,
+    "byStatus": {
+      "proposed": 4,
+      "supported": 6
+    },
+    "bySemanticKind": {
+      "collection_name": 7,
+      "identity_domain_name": 3
+    },
+    "graphNodes": 1684,
+    "graphEdges": 2985,
+    "existingReportCompared": false,
+    "existingReportUsedAsSoleSupport": false
+  },
+  "notes": [
+    "Existing report behavior was intentionally not used as support for this initial claim ledger.",
+    "Semantic claims are generated from durable graph patterns and documentation source metadata only.",
+    "Removing semantic rules does not alter structural graph artifacts."
+  ],
+  "unsupported": [],
+  "disagreements": []
+}
