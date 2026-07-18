@@ -1,0 +1,246 @@
+{
+  "schemaVersion": 1,
+  "description": "Deterministic seed of CK3 Wiki topic pages to register as documentation sources for Task 11. The documentationMeta group (Modding, Jargon, Achievements, Developer diaries, Patches, Downloadable content) is intentionally excluded per owner direction.",
+  "topics": [
+    {
+      "topic": "Beginner's guide",
+      "title": "Beginner's guide",
+      "topicGroup": "gettingStarted"
+    },
+    {
+      "topic": "Mechanics",
+      "title": "Mechanics",
+      "topicGroup": "gettingStarted"
+    },
+    {
+      "topic": "Game rules",
+      "title": "Game rules",
+      "topicGroup": "gettingStarted"
+    },
+    {
+      "topic": "Console commands",
+      "title": "Console commands",
+      "topicGroup": "gettingStarted"
+    },
+    {
+      "topic": "Interesting characters",
+      "title": "Interesting characters",
+      "topicGroup": "gettingStarted"
+    },
+    {
+      "topic": "Characters",
+      "title": "Characters",
+      "topicGroup": "characterSystems"
+    },
+    {
+      "topic": "Attributes",
+      "title": "Attributes",
+      "topicGroup": "characterSystems"
+    },
+    {
+      "topic": "Traits",
+      "title": "Traits",
+      "topicGroup": "characterSystems"
+    },
+    {
+      "topic": "Resources",
+      "title": "Resources",
+      "topicGroup": "characterSystems"
+    },
+    {
+      "topic": "Lifestyle",
+      "title": "Lifestyle",
+      "topicGroup": "characterSystems"
+    },
+    {
+      "topic": "Dynasty",
+      "title": "Dynasty",
+      "topicGroup": "characterSystems"
+    },
+    {
+      "topic": "Schemes",
+      "title": "Schemes",
+      "topicGroup": "characterSystems"
+    },
+    {
+      "topic": "Hooks",
+      "title": "Hooks",
+      "topicGroup": "characterSystems"
+    },
+    {
+      "topic": "Artifacts",
+      "title": "Artifacts",
+      "topicGroup": "characterSystems"
+    },
+    {
+      "topic": "Modifiers",
+      "title": "Modifiers",
+      "topicGroup": "characterSystems"
+    },
+    {
+      "topic": "Council",
+      "title": "Council",
+      "topicGroup": "governance"
+    },
+    {
+      "topic": "Court",
+      "title": "Court",
+      "topicGroup": "governance"
+    },
+    {
+      "topic": "Government",
+      "title": "Government",
+      "topicGroup": "governance"
+    },
+    {
+      "topic": "Laws",
+      "title": "Laws",
+      "topicGroup": "governance"
+    },
+    {
+      "topic": "Prisoners",
+      "title": "Prisoners",
+      "topicGroup": "governance"
+    },
+    {
+      "topic": "Activity",
+      "title": "Activity",
+      "topicGroup": "governance"
+    },
+    {
+      "topic": "Decisions",
+      "title": "Decisions",
+      "topicGroup": "governance"
+    },
+    {
+      "topic": "Power sharing",
+      "title": "Power sharing",
+      "topicGroup": "governance"
+    },
+    {
+      "topic": "Royal court",
+      "title": "Royal court",
+      "topicGroup": "governance"
+    },
+    {
+      "topic": "Adventurer",
+      "title": "Adventurer",
+      "topicGroup": "governance"
+    },
+    {
+      "topic": "Titles",
+      "title": "Titles",
+      "topicGroup": "realm"
+    },
+    {
+      "topic": "Subjects",
+      "title": "Subjects",
+      "topicGroup": "realm"
+    },
+    {
+      "topic": "Building",
+      "title": "Building",
+      "topicGroup": "realm"
+    },
+    {
+      "topic": "Domicile",
+      "title": "Domicile",
+      "topicGroup": "realm"
+    },
+    {
+      "topic": "Great projects",
+      "title": "Great projects",
+      "topicGroup": "realm"
+    },
+    {
+      "topic": "Situation",
+      "title": "Situation",
+      "topicGroup": "realm"
+    },
+    {
+      "topic": "Barony",
+      "title": "Barony",
+      "topicGroup": "realm"
+    },
+    {
+      "topic": "County",
+      "title": "County",
+      "topicGroup": "realm"
+    },
+    {
+      "topic": "Travel",
+      "title": "Travel",
+      "topicGroup": "realm"
+    },
+    {
+      "topic": "Warfare",
+      "title": "Warfare",
+      "topicGroup": "warfare"
+    },
+    {
+      "topic": "Army",
+      "title": "Army",
+      "topicGroup": "warfare"
+    },
+    {
+      "topic": "Knight",
+      "title": "Knight",
+      "topicGroup": "warfare"
+    },
+    {
+      "topic": "Hired forces",
+      "title": "Hired forces",
+      "topicGroup": "warfare"
+    },
+    {
+      "topic": "Casus belli",
+      "title": "Casus belli",
+      "topicGroup": "warfare"
+    },
+    {
+      "topic": "Alliance",
+      "title": "Alliance",
+      "topicGroup": "warfare"
+    },
+    {
+      "topic": "Duel",
+      "title": "Duel",
+      "topicGroup": "warfare"
+    },
+    {
+      "topic": "Faith",
+      "title": "Faith",
+      "topicGroup": "cultureFaith"
+    },
+    {
+      "topic": "Doctrines",
+      "title": "Doctrines",
+      "topicGroup": "cultureFaith"
+    },
+    {
+      "topic": "Tenets",
+      "title": "Tenets",
+      "topicGroup": "cultureFaith"
+    },
+    {
+      "topic": "Holy sites",
+      "title": "Holy sites",
+      "topicGroup": "cultureFaith"
+    },
+    {
+      "topic": "Culture",
+      "title": "Culture",
+      "topicGroup": "cultureFaith"
+    },
+    {
+      "topic": "Traditions",
+      "title": "Traditions",
+      "topicGroup": "cultureFaith"
+    },
+    {
+      "topic": "Innovation",
+      "title": "Innovation",
+      "topicGroup": "cultureFaith"
+    }
+  ]
+}

@@ -34,6 +34,11 @@ const cases = [
     path: path.join(ROOT, 'fixtures/lint/planted/source-path.json'),
     expect: 1,
   },
+  {
+    name: 'planted/uncited-mechanics-claims.json (missing documentation_source evidence)',
+    path: path.join(ROOT, 'fixtures/lint/planted/uncited-mechanics-claims.json'),
+    expect: 1,
+  },
 ];
 
 const oversizedPath = path.join(TMP, 'oversized.json');

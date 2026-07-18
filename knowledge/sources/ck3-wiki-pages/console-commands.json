@@ -1,0 +1,629 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "sourceId": "source:ck3-paradoxwikis-com:console-commands",
+    "kind": "mediawiki_page",
+    "site": {
+      "key": "ck3.paradoxwikis.com",
+      "sitename": "CK3 Wiki",
+      "generator": "MediaWiki 1.39.4",
+      "apiUrl": "https://ck3.paradoxwikis.com/api.php",
+      "server": "https://ck3.paradoxwikis.com",
+      "articlePath": "/$1",
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      }
+    },
+    "page": {
+      "title": "Console commands",
+      "pageId": 368,
+      "canonicalUrl": "https://ck3.paradoxwikis.com/Console_commands",
+      "revisionId": 35014,
+      "parentRevisionId": 34956,
+      "touched": "2026-07-12T15:36:06Z",
+      "revisionTimestamp": "2026-07-12T15:36:06Z",
+      "revisionSha1": "60ee96de917ad5f3b6b755d7594489f347114cc3",
+      "oldidUrl": "https://ck3.paradoxwikis.com/Console_commands?oldid=35014",
+      "length": 52014
+    },
+    "links": [
+      {
+        "title": "3D models",
+        "url": "https://ck3.paradoxwikis.com/3D_models"
+      },
+      {
+        "title": "AI modding",
+        "url": "https://ck3.paradoxwikis.com/AI_modding"
+      },
+      {
+        "title": "All Under Heaven",
+        "url": "https://ck3.paradoxwikis.com/All_Under_Heaven"
+      },
+      {
+        "title": "Bookmarks modding",
+        "url": "https://ck3.paradoxwikis.com/Bookmarks_modding"
+      },
+      {
+        "title": "Character ID",
+        "url": "https://ck3.paradoxwikis.com/Character_ID"
+      },
+      {
+        "title": "Characters modding",
+        "url": "https://ck3.paradoxwikis.com/Characters_modding"
+      },
+      {
+        "title": "Checksum",
+        "url": "https://ck3.paradoxwikis.com/Checksum"
+      },
+      {
+        "title": "Coat of arms modding",
+        "url": "https://ck3.paradoxwikis.com/Coat_of_arms_modding"
+      },
+      {
+        "title": "Commands",
+        "url": "https://ck3.paradoxwikis.com/Commands"
+      },
+      {
+        "title": "Council modding",
+        "url": "https://ck3.paradoxwikis.com/Council_modding"
+      },
+      {
+        "title": "Culture modding",
+        "url": "https://ck3.paradoxwikis.com/Culture_modding"
+      },
+      {
+        "title": "Customizable localization",
+        "url": "https://ck3.paradoxwikis.com/Customizable_localization"
+      },
+      {
+        "title": "Data types",
+        "url": "https://ck3.paradoxwikis.com/Data_types"
+      },
+      {
+        "title": "Decision ID",
+        "url": "https://ck3.paradoxwikis.com/Decision_ID"
+      },
+      {
+        "title": "Decisions modding",
+        "url": "https://ck3.paradoxwikis.com/Decisions_modding"
+      },
+      {
+        "title": "Dynasties modding",
+        "url": "https://ck3.paradoxwikis.com/Dynasties_modding"
+      },
+      {
+        "title": "Effects",
+        "url": "https://ck3.paradoxwikis.com/Effects"
+      },
+      {
+        "title": "Event ID",
+        "url": "https://ck3.paradoxwikis.com/Event_ID"
+      },
+      {
+        "title": "Event modding",
+        "url": "https://ck3.paradoxwikis.com/Event_modding"
+      },
+      {
+        "title": "Exporters",
+        "url": "https://ck3.paradoxwikis.com/Exporters"
+      },
+      {
+        "title": "Fertility",
+        "url": "https://ck3.paradoxwikis.com/Fertility"
+      },
+      {
+        "title": "Flavorization",
+        "url": "https://ck3.paradoxwikis.com/Flavorization"
+      },
+      {
+        "title": "Fonts",
+        "url": "https://ck3.paradoxwikis.com/Fonts"
+      },
+      {
+        "title": "Governments modding",
+        "url": "https://ck3.paradoxwikis.com/Governments_modding"
+      },
+      {
+        "title": "Graphical assets",
+        "url": "https://ck3.paradoxwikis.com/Graphical_assets"
+      },
+      {
+        "title": "Health",
+        "url": "https://ck3.paradoxwikis.com/Health"
+      },
+      {
+        "title": "History modding",
+        "url": "https://ck3.paradoxwikis.com/History_modding"
+      },
+      {
+        "title": "Holdings modding",
+        "url": "https://ck3.paradoxwikis.com/Holdings_modding"
+      },
+      {
+        "title": "Innovation",
+        "url": "https://ck3.paradoxwikis.com/Innovation"
+      },
+      {
+        "title": "Interface",
+        "url": "https://ck3.paradoxwikis.com/Interface"
+      },
+      {
+        "title": "Lifestyles modding",
+        "url": "https://ck3.paradoxwikis.com/Lifestyles_modding"
+      },
+      {
+        "title": "Localization",
+        "url": "https://ck3.paradoxwikis.com/Localization"
+      },
+      {
+        "title": "Map modding",
+        "url": "https://ck3.paradoxwikis.com/Map_modding"
+      },
+      {
+        "title": "Mod compatibility",
+        "url": "https://ck3.paradoxwikis.com/Mod_compatibility"
+      },
+      {
+        "title": "Mod structure",
+        "url": "https://ck3.paradoxwikis.com/Mod_structure"
+      },
+      {
+        "title": "Mod troubleshooting",
+        "url": "https://ck3.paradoxwikis.com/Mod_troubleshooting"
+      },
+      {
+        "title": "Modding",
+        "url": "https://ck3.paradoxwikis.com/Modding"
+      },
+      {
+        "title": "Modding tools",
+        "url": "https://ck3.paradoxwikis.com/Modding_tools"
+      },
+      {
+        "title": "Modifier list",
+        "url": "https://ck3.paradoxwikis.com/Modifier_list"
+      },
+      {
+        "title": "Music modding",
+        "url": "https://ck3.paradoxwikis.com/Music_modding"
+      },
+      {
+        "title": "Nickname ID",
+        "url": "https://ck3.paradoxwikis.com/Nickname_ID"
+      },
+      {
+        "title": "Particles",
+        "url": "https://ck3.paradoxwikis.com/Particles"
+      },
+      {
+        "title": "Patches",
+        "url": "https://ck3.paradoxwikis.com/Patches"
+      },
+      {
+        "title": "Regiments modding",
+        "url": "https://ck3.paradoxwikis.com/Regiments_modding"
+      },
+      {
+        "title": "Religions modding",
+        "url": "https://ck3.paradoxwikis.com/Religions_modding"
+      },
+      {
+        "title": "Roads to Power",
+        "url": "https://ck3.paradoxwikis.com/Roads_to_Power"
+      },
+      {
+        "title": "Royal Court (DLC)",
+        "url": "https://ck3.paradoxwikis.com/Royal_Court_(DLC)"
+      },
+      {
+        "title": "Scopes",
+        "url": "https://ck3.paradoxwikis.com/Scopes"
+      },
+      {
+        "title": "Script values",
+        "url": "https://ck3.paradoxwikis.com/Script_values"
+      },
+      {
+        "title": "Scripting",
+        "url": "https://ck3.paradoxwikis.com/Scripting"
+      },
+      {
+        "title": "Shaders",
+        "url": "https://ck3.paradoxwikis.com/Shaders"
+      },
+      {
+        "title": "Sound modding",
+        "url": "https://ck3.paradoxwikis.com/Sound_modding"
+      },
+      {
+        "title": "Story cycles modding",
+        "url": "https://ck3.paradoxwikis.com/Story_cycles_modding"
+      },
+      {
+        "title": "Stress",
+        "url": "https://ck3.paradoxwikis.com/Stress"
+      },
+      {
+        "title": "Struggle modding",
+        "url": "https://ck3.paradoxwikis.com/Struggle_modding"
+      },
+      {
+        "title": "Terrain modding",
+        "url": "https://ck3.paradoxwikis.com/Terrain_modding"
+      },
+      {
+        "title": "Title modding",
+        "url": "https://ck3.paradoxwikis.com/Title_modding"
+      },
+      {
+        "title": "Trait modding",
+        "url": "https://ck3.paradoxwikis.com/Trait_modding"
+      },
+      {
+        "title": "Traits",
+        "url": "https://ck3.paradoxwikis.com/Traits"
+      },
+      {
+        "title": "Triggers",
+        "url": "https://ck3.paradoxwikis.com/Triggers"
+      },
+      {
+        "title": "Unit models",
+        "url": "https://ck3.paradoxwikis.com/Unit_models"
+      },
+      {
+        "title": "Variables",
+        "url": "https://ck3.paradoxwikis.com/Variables"
+      },
+      {
+        "title": "Weight",
+        "url": "https://ck3.paradoxwikis.com/Weight"
+      }
+    ],
+    "sectionAnchors": [
+      {
+        "index": "1",
+        "toplevel": 1,
+        "anchor": "Debug_mode",
+        "line": "Debug mode"
+      },
+      {
+        "index": "2",
+        "toplevel": 2,
+        "anchor": "Enabling_debug_mode",
+        "line": "Enabling debug mode"
+      },
+      {
+        "index": "3",
+        "toplevel": 3,
+        "anchor": "Mods",
+        "line": "Mods"
+      },
+      {
+        "index": "4",
+        "toplevel": 3,
+        "anchor": "Launcher",
+        "line": "Launcher"
+      },
+      {
+        "index": "5",
+        "toplevel": 3,
+        "anchor": "Steam",
+        "line": "Steam"
+      },
+      {
+        "index": "6",
+        "toplevel": 3,
+        "anchor": "Windows",
+        "line": "Windows"
+      },
+      {
+        "index": "7",
+        "toplevel": 3,
+        "anchor": "GOG",
+        "line": "GOG"
+      },
+      {
+        "index": "8",
+        "toplevel": 3,
+        "anchor": "Xbox_Game_Pass",
+        "line": "Xbox Game Pass"
+      },
+      {
+        "index": "9",
+        "toplevel": 2,
+        "anchor": "Disabling_debug_mode",
+        "line": "Disabling debug mode"
+      },
+      {
+        "index": "10",
+        "toplevel": 1,
+        "anchor": "Debug_info",
+        "line": "Debug info"
+      },
+      {
+        "index": "11",
+        "toplevel": 2,
+        "anchor": "Characters",
+        "line": "Characters"
+      },
+      {
+        "index": "12",
+        "toplevel": 2,
+        "anchor": "Events",
+        "line": "Events"
+      },
+      {
+        "index": "13",
+        "toplevel": 2,
+        "anchor": "Interactions",
+        "line": "Interactions"
+      },
+      {
+        "index": "14",
+        "toplevel": 1,
+        "anchor": "Cheats",
+        "line": "Cheats"
+      },
+      {
+        "index": "15",
+        "toplevel": 2,
+        "anchor": "Spawning_artifacts",
+        "line": "Spawning artifacts"
+      },
+      {
+        "index": "16",
+        "toplevel": 2,
+        "anchor": "Converting_commands",
+        "line": "Converting commands"
+      },
+      {
+        "index": "17",
+        "toplevel": 2,
+        "anchor": "Shattered_World_mode",
+        "line": "Shattered World mode"
+      },
+      {
+        "index": "18",
+        "toplevel": 2,
+        "anchor": "Scripting_commands",
+        "line": "Scripting commands"
+      },
+      {
+        "index": "19",
+        "toplevel": 1,
+        "anchor": "Testing_commands",
+        "line": "Testing commands"
+      },
+      {
+        "index": "20",
+        "toplevel": 1,
+        "anchor": "Trait_tags",
+        "line": "Trait tags"
+      },
+      {
+        "index": "21",
+        "toplevel": 1,
+        "anchor": "Innovation_tags",
+        "line": "Innovation tags"
+      },
+      {
+        "index": "22",
+        "toplevel": 1,
+        "anchor": "See_also",
+        "line": "See also"
+      },
+      {
+        "index": "23",
+        "toplevel": 1,
+        "anchor": "References",
+        "line": "References"
+      }
+    ],
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    }
+  },
+  "registryEntry": {
+    "sourceId": "source:ck3-paradoxwikis-com:console-commands",
+    "kind": "documentation_mediawiki_page",
+    "label": "CK3 Wiki: Console commands",
+    "acquiredAt": "2026-07-18T05:33:08.483Z",
+    "publisher": "CK3 Wiki",
+    "documentType": "mediawiki_page",
+    "topic": "Console commands",
+    "canonicalUrl": "https://ck3.paradoxwikis.com/Console_commands",
+    "oldidUrl": "https://ck3.paradoxwikis.com/Console_commands?oldid=35014",
+    "revision": {
+      "pageId": 368,
+      "revisionId": 35014,
+      "parentRevisionId": 34956,
+      "timestamp": "2026-07-12T15:36:06Z",
+      "sha1": "60ee96de917ad5f3b6b755d7594489f347114cc3"
+    },
+    "content": {
+      "hashAlgorithm": "sha256",
+      "structuralSummarySha256": "8eb6fde05c97253ad91287706158bedba86694115162eef014d4b857eda94efa",
+      "copiedContent": "metadata_and_section_anchors_only"
+    },
+    "scope": {
+      "gameVersions": [
+        "1.19.0.6"
+      ],
+      "dlc": [
+        "ALL_ACTIVE_ASSUMPTION"
+      ],
+      "mods": [],
+      "allDlcActive": true
+    },
+    "licensing": {
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      },
+      "redistribution": "Do not copy whole wiki pages into this repository; store citations, page metadata, and short section anchor titles only."
+    },
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    },
+    "extracted": {
+      "sectionAnchorCount": 23,
+      "sectionAnchors": [
+        {
+          "index": "1",
+          "toplevel": 1,
+          "anchor": "Debug_mode",
+          "line": "Debug mode"
+        },
+        {
+          "index": "2",
+          "toplevel": 2,
+          "anchor": "Enabling_debug_mode",
+          "line": "Enabling debug mode"
+        },
+        {
+          "index": "3",
+          "toplevel": 3,
+          "anchor": "Mods",
+          "line": "Mods"
+        },
+        {
+          "index": "4",
+          "toplevel": 3,
+          "anchor": "Launcher",
+          "line": "Launcher"
+        },
+        {
+          "index": "5",
+          "toplevel": 3,
+          "anchor": "Steam",
+          "line": "Steam"
+        },
+        {
+          "index": "6",
+          "toplevel": 3,
+          "anchor": "Windows",
+          "line": "Windows"
+        },
+        {
+          "index": "7",
+          "toplevel": 3,
+          "anchor": "GOG",
+          "line": "GOG"
+        },
+        {
+          "index": "8",
+          "toplevel": 3,
+          "anchor": "Xbox_Game_Pass",
+          "line": "Xbox Game Pass"
+        },
+        {
+          "index": "9",
+          "toplevel": 2,
+          "anchor": "Disabling_debug_mode",
+          "line": "Disabling debug mode"
+        },
+        {
+          "index": "10",
+          "toplevel": 1,
+          "anchor": "Debug_info",
+          "line": "Debug info"
+        },
+        {
+          "index": "11",
+          "toplevel": 2,
+          "anchor": "Characters",
+          "line": "Characters"
+        },
+        {
+          "index": "12",
+          "toplevel": 2,
+          "anchor": "Events",
+          "line": "Events"
+        },
+        {
+          "index": "13",
+          "toplevel": 2,
+          "anchor": "Interactions",
+          "line": "Interactions"
+        },
+        {
+          "index": "14",
+          "toplevel": 1,
+          "anchor": "Cheats",
+          "line": "Cheats"
+        },
+        {
+          "index": "15",
+          "toplevel": 2,
+          "anchor": "Spawning_artifacts",
+          "line": "Spawning artifacts"
+        },
+        {
+          "index": "16",
+          "toplevel": 2,
+          "anchor": "Converting_commands",
+          "line": "Converting commands"
+        },
+        {
+          "index": "17",
+          "toplevel": 2,
+          "anchor": "Shattered_World_mode",
+          "line": "Shattered World mode"
+        },
+        {
+          "index": "18",
+          "toplevel": 2,
+          "anchor": "Scripting_commands",
+          "line": "Scripting commands"
+        },
+        {
+          "index": "19",
+          "toplevel": 1,
+          "anchor": "Testing_commands",
+          "line": "Testing commands"
+        },
+        {
+          "index": "20",
+          "toplevel": 1,
+          "anchor": "Trait_tags",
+          "line": "Trait tags"
+        },
+        {
+          "index": "21",
+          "toplevel": 1,
+          "anchor": "Innovation_tags",
+          "line": "Innovation tags"
+        },
+        {
+          "index": "22",
+          "toplevel": 1,
+          "anchor": "See_also",
+          "line": "See also"
+        },
+        {
+          "index": "23",
+          "toplevel": 1,
+          "anchor": "References",
+          "line": "References"
+        }
+      ],
+      "pageLength": 52014
+    },
+    "visibility": {
+      "classification": "external",
+      "rawArtifactCommitted": false,
+      "rationale": "External CK3 wiki documentation source for the 'Console commands' mechanics topic. Durable knowledge should cite this page/revision; only metadata + section anchor titles are stored."
+    },
+    "notes": []
+  }
+}

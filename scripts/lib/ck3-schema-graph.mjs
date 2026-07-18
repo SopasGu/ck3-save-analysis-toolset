@@ -43,6 +43,7 @@ export function generateSchemaGraph(inputs, options = {}) {
     shapeCatalog,
     collectionCatalog,
     referenceCatalog,
+    mechanicsCatalog,
   } = inputs;
   const source = selectSource(sourceRegistry, options.sourceId ?? referenceCatalog?.source?.sourceId);
   const sourceId = source?.sourceId ?? options.sourceId ?? null;
@@ -265,6 +266,8 @@ export function generateSchemaGraph(inputs, options = {}) {
     });
   }
 
+  appendMechanicsConceptNodes(builder, mechanicsCatalog);
+
   const graph = {
     schemaVersion: SCHEMA_GRAPH_VERSION,
     generatedAt,
@@ -410,6 +413,66 @@ function provenance(sourceId, observationId) {
 
 function graphId(kind, value) {
   return `${kind}:${hash(value)}`;
+}
+
+function appendMechanicsConceptNodes(builder, mechanicsCatalog) {
+  if (!mechanicsCatalog) return;
+  const concepts = Array.isArray(mechanicsCatalog.concepts) ? mechanicsCatalog.concepts : [];
+  if (concepts.length === 0) return;
+  const seenIds = new Set();
+  for (const concept of concepts) {
+    if (!concept || !concept.id) continue;
+    const nodeId = `mechanics_concept:${concept.id}`;
+    if (seenIds.has(nodeId)) continue;
+    seenIds.add(nodeId);
+    const properties = sortObject({
+      topic: concept.topic ?? concept.label ?? concept.id,
+      topicGroup: concept.topicGroup ?? null,
+      canonicalUrl: concept.canonicalUrl ?? null,
+      oldidUrl: concept.oldidUrl ?? null,
+      sectionAnchorCount: concept.properties?.sectionAnchorCount ?? 0,
+      ...(concept.properties ?? {}),
+    });
+    builder.node({
+      id: nodeId,
+      kind: 'mechanics_concept',
+      label: concept.label ?? concept.id,
+      status: concept.status ?? 'observed',
+      scope: concept.scope ?? { gameVersions: [], dlc: [], mods: [], allDlcActive: false },
+      provenance: [{
+        sourceId: concept.sourceId ?? null,
+        observationId: `mechanics_concept:${concept.id}`,
+        layer: 'mechanics_annotation',
+      }],
+      notes: concept.notes ?? [],
+      properties,
+    });
+  }
+}
+
+export function appendMechanicsConceptsToGraph(graph, mechanicsCatalog) {
+  if (!graph || typeof graph !== 'object') throw new Error('graph must be an object');
+  const existing = new Set((graph.nodes ?? []).map((n) => n.id));
+  const builder = new GraphBuilder({ sourceId: null });
+  // Re-seed existing nodes/edges to keep them in the result.
+  for (const node of graph.nodes ?? []) builder.nodes.set(node.id, node);
+  for (const edge of graph.edges ?? []) builder.edges.set(edge.id, edge);
+  appendMechanicsConceptNodes(builder, mechanicsCatalog);
+  const nodes = builder.sortedNodes();
+  const edges = builder.sortedEdges();
+  return {
+    schemaVersion: graph.schemaVersion ?? SCHEMA_GRAPH_VERSION,
+    generatedAt: graph.generatedAt ?? null,
+    sourceIds: graph.sourceIds ?? [],
+    summary: {
+      nodes: nodes.length,
+      edges: edges.length,
+      nodeKinds: countBy(nodes, (n) => n.kind),
+      edgeKinds: countBy(edges, (e) => e.kind),
+    },
+    nodes,
+    edges,
+  };
 }
 
 function hash(value) {

@@ -1,0 +1,745 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "sourceId": "source:ck3-paradoxwikis-com:lifestyle",
+    "kind": "mediawiki_page",
+    "site": {
+      "key": "ck3.paradoxwikis.com",
+      "sitename": "CK3 Wiki",
+      "generator": "MediaWiki 1.39.4",
+      "apiUrl": "https://ck3.paradoxwikis.com/api.php",
+      "server": "https://ck3.paradoxwikis.com",
+      "articlePath": "/$1",
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      }
+    },
+    "page": {
+      "title": "Lifestyle",
+      "pageId": 169,
+      "canonicalUrl": "https://ck3.paradoxwikis.com/Lifestyle",
+      "revisionId": 35009,
+      "parentRevisionId": 34890,
+      "touched": "2026-07-12T06:17:39Z",
+      "revisionTimestamp": "2026-07-12T06:17:39Z",
+      "revisionSha1": "8f96810696f7f81cc369263d16af1c4d43d25c27",
+      "oldidUrl": "https://ck3.paradoxwikis.com/Lifestyle?oldid=35009",
+      "length": 60027
+    },
+    "links": [
+      {
+        "title": "Achievement",
+        "url": "https://ck3.paradoxwikis.com/Achievement"
+      },
+      {
+        "title": "Activity",
+        "url": "https://ck3.paradoxwikis.com/Activity"
+      },
+      {
+        "title": "Administrator",
+        "url": "https://ck3.paradoxwikis.com/Administrator"
+      },
+      {
+        "title": "Adventurer",
+        "url": "https://ck3.paradoxwikis.com/Adventurer"
+      },
+      {
+        "title": "Alliance",
+        "url": "https://ck3.paradoxwikis.com/Alliance"
+      },
+      {
+        "title": "Architect",
+        "url": "https://ck3.paradoxwikis.com/Architect"
+      },
+      {
+        "title": "Army",
+        "url": "https://ck3.paradoxwikis.com/Army"
+      },
+      {
+        "title": "Artifacts",
+        "url": "https://ck3.paradoxwikis.com/Artifacts"
+      },
+      {
+        "title": "Attributes",
+        "url": "https://ck3.paradoxwikis.com/Attributes"
+      },
+      {
+        "title": "August",
+        "url": "https://ck3.paradoxwikis.com/August"
+      },
+      {
+        "title": "Avaricious",
+        "url": "https://ck3.paradoxwikis.com/Avaricious"
+      },
+      {
+        "title": "Barony",
+        "url": "https://ck3.paradoxwikis.com/Barony"
+      },
+      {
+        "title": "Bookmarks",
+        "url": "https://ck3.paradoxwikis.com/Bookmarks"
+      },
+      {
+        "title": "Buildings",
+        "url": "https://ck3.paradoxwikis.com/Buildings"
+      },
+      {
+        "title": "Casus belli",
+        "url": "https://ck3.paradoxwikis.com/Casus_belli"
+      },
+      {
+        "title": "Character",
+        "url": "https://ck3.paradoxwikis.com/Character"
+      },
+      {
+        "title": "Council",
+        "url": "https://ck3.paradoxwikis.com/Council"
+      },
+      {
+        "title": "County",
+        "url": "https://ck3.paradoxwikis.com/County"
+      },
+      {
+        "title": "Court",
+        "url": "https://ck3.paradoxwikis.com/Court"
+      },
+      {
+        "title": "Culture",
+        "url": "https://ck3.paradoxwikis.com/Culture"
+      },
+      {
+        "title": "Decisions",
+        "url": "https://ck3.paradoxwikis.com/Decisions"
+      },
+      {
+        "title": "Developer diaries",
+        "url": "https://ck3.paradoxwikis.com/Developer_diaries"
+      },
+      {
+        "title": "Diplomat",
+        "url": "https://ck3.paradoxwikis.com/Diplomat"
+      },
+      {
+        "title": "Doctrines",
+        "url": "https://ck3.paradoxwikis.com/Doctrines"
+      },
+      {
+        "title": "Domicile",
+        "url": "https://ck3.paradoxwikis.com/Domicile"
+      },
+      {
+        "title": "Downloadable content",
+        "url": "https://ck3.paradoxwikis.com/Downloadable_content"
+      },
+      {
+        "title": "Duel",
+        "url": "https://ck3.paradoxwikis.com/Duel"
+      },
+      {
+        "title": "Dynasty",
+        "url": "https://ck3.paradoxwikis.com/Dynasty"
+      },
+      {
+        "title": "Faith",
+        "url": "https://ck3.paradoxwikis.com/Faith"
+      },
+      {
+        "title": "Family (relation)",
+        "url": "https://ck3.paradoxwikis.com/Family_(relation)"
+      },
+      {
+        "title": "Form of address",
+        "url": "https://ck3.paradoxwikis.com/Form_of_address"
+      },
+      {
+        "title": "Gallant",
+        "url": "https://ck3.paradoxwikis.com/Gallant"
+      },
+      {
+        "title": "Game rules",
+        "url": "https://ck3.paradoxwikis.com/Game_rules"
+      },
+      {
+        "title": "Government",
+        "url": "https://ck3.paradoxwikis.com/Government"
+      },
+      {
+        "title": "Great projects",
+        "url": "https://ck3.paradoxwikis.com/Great_projects"
+      },
+      {
+        "title": "Hired forces",
+        "url": "https://ck3.paradoxwikis.com/Hired_forces"
+      },
+      {
+        "title": "Holy sites",
+        "url": "https://ck3.paradoxwikis.com/Holy_sites"
+      },
+      {
+        "title": "Hooks",
+        "url": "https://ck3.paradoxwikis.com/Hooks"
+      },
+      {
+        "title": "Innovation",
+        "url": "https://ck3.paradoxwikis.com/Innovation"
+      },
+      {
+        "title": "Interactions",
+        "url": "https://ck3.paradoxwikis.com/Interactions"
+      },
+      {
+        "title": "Interesting characters",
+        "url": "https://ck3.paradoxwikis.com/Interesting_characters"
+      },
+      {
+        "title": "Jargon",
+        "url": "https://ck3.paradoxwikis.com/Jargon"
+      },
+      {
+        "title": "Knight",
+        "url": "https://ck3.paradoxwikis.com/Knight"
+      },
+      {
+        "title": "Laws",
+        "url": "https://ck3.paradoxwikis.com/Laws"
+      },
+      {
+        "title": "Mechanics",
+        "url": "https://ck3.paradoxwikis.com/Mechanics"
+      },
+      {
+        "title": "Modding",
+        "url": "https://ck3.paradoxwikis.com/Modding"
+      },
+      {
+        "title": "Modifiers",
+        "url": "https://ck3.paradoxwikis.com/Modifiers"
+      },
+      {
+        "title": "Overseer",
+        "url": "https://ck3.paradoxwikis.com/Overseer"
+      },
+      {
+        "title": "Patches",
+        "url": "https://ck3.paradoxwikis.com/Patches"
+      },
+      {
+        "title": "Patriarch",
+        "url": "https://ck3.paradoxwikis.com/Patriarch"
+      },
+      {
+        "title": "Power sharing",
+        "url": "https://ck3.paradoxwikis.com/Power_sharing"
+      },
+      {
+        "title": "Prisoner",
+        "url": "https://ck3.paradoxwikis.com/Prisoner"
+      },
+      {
+        "title": "Resources",
+        "url": "https://ck3.paradoxwikis.com/Resources"
+      },
+      {
+        "title": "Roads to Power",
+        "url": "https://ck3.paradoxwikis.com/Roads_to_Power"
+      },
+      {
+        "title": "Royal court",
+        "url": "https://ck3.paradoxwikis.com/Royal_court"
+      },
+      {
+        "title": "Ruler Designer",
+        "url": "https://ck3.paradoxwikis.com/Ruler_Designer"
+      },
+      {
+        "title": "Schemer",
+        "url": "https://ck3.paradoxwikis.com/Schemer"
+      },
+      {
+        "title": "Schemes",
+        "url": "https://ck3.paradoxwikis.com/Schemes"
+      },
+      {
+        "title": "Scholar",
+        "url": "https://ck3.paradoxwikis.com/Scholar"
+      },
+      {
+        "title": "Seducer",
+        "url": "https://ck3.paradoxwikis.com/Seducer"
+      },
+      {
+        "title": "Situation",
+        "url": "https://ck3.paradoxwikis.com/Situation"
+      },
+      {
+        "title": "Skill",
+        "url": "https://ck3.paradoxwikis.com/Skill"
+      },
+      {
+        "title": "Strategist",
+        "url": "https://ck3.paradoxwikis.com/Strategist"
+      },
+      {
+        "title": "Subjects",
+        "url": "https://ck3.paradoxwikis.com/Subjects"
+      },
+      {
+        "title": "Succession",
+        "url": "https://ck3.paradoxwikis.com/Succession"
+      },
+      {
+        "title": "Tenets",
+        "url": "https://ck3.paradoxwikis.com/Tenets"
+      },
+      {
+        "title": "Theologian",
+        "url": "https://ck3.paradoxwikis.com/Theologian"
+      },
+      {
+        "title": "Titles",
+        "url": "https://ck3.paradoxwikis.com/Titles"
+      },
+      {
+        "title": "Torturer",
+        "url": "https://ck3.paradoxwikis.com/Torturer"
+      },
+      {
+        "title": "Tours and Tournaments",
+        "url": "https://ck3.paradoxwikis.com/Tours_and_Tournaments"
+      },
+      {
+        "title": "Traditions",
+        "url": "https://ck3.paradoxwikis.com/Traditions"
+      },
+      {
+        "title": "Trait",
+        "url": "https://ck3.paradoxwikis.com/Trait"
+      },
+      {
+        "title": "Traits",
+        "url": "https://ck3.paradoxwikis.com/Traits"
+      },
+      {
+        "title": "Travel",
+        "url": "https://ck3.paradoxwikis.com/Travel"
+      },
+      {
+        "title": "Wandering Nobles",
+        "url": "https://ck3.paradoxwikis.com/Wandering_Nobles"
+      },
+      {
+        "title": "Warfare",
+        "url": "https://ck3.paradoxwikis.com/Warfare"
+      },
+      {
+        "title": "Whole of Body",
+        "url": "https://ck3.paradoxwikis.com/Whole_of_Body"
+      }
+    ],
+    "sectionAnchors": [
+      {
+        "index": "1",
+        "toplevel": 1,
+        "anchor": "Focuses",
+        "line": "Focuses"
+      },
+      {
+        "index": "2",
+        "toplevel": 2,
+        "anchor": "Education_focuses",
+        "line": "Education focuses"
+      },
+      {
+        "index": "3",
+        "toplevel": 1,
+        "anchor": "Perk_trees",
+        "line": "Perk trees"
+      },
+      {
+        "index": "4",
+        "toplevel": 2,
+        "anchor": "Diplomacy",
+        "line": "Diplomacy"
+      },
+      {
+        "index": "5",
+        "toplevel": 3,
+        "anchor": "Diplomat",
+        "line": "Diplomat"
+      },
+      {
+        "index": "6",
+        "toplevel": 3,
+        "anchor": "August",
+        "line": "August"
+      },
+      {
+        "index": "7",
+        "toplevel": 3,
+        "anchor": "Family_Hierarch",
+        "line": "Family Hierarch"
+      },
+      {
+        "index": "8",
+        "toplevel": 2,
+        "anchor": "Martial",
+        "line": "Martial"
+      },
+      {
+        "index": "9",
+        "toplevel": 3,
+        "anchor": "Strategist",
+        "line": "Strategist"
+      },
+      {
+        "index": "10",
+        "toplevel": 3,
+        "anchor": "Overseer",
+        "line": "Overseer"
+      },
+      {
+        "index": "11",
+        "toplevel": 3,
+        "anchor": "Gallant",
+        "line": "Gallant"
+      },
+      {
+        "index": "12",
+        "toplevel": 2,
+        "anchor": "Stewardship",
+        "line": "Stewardship"
+      },
+      {
+        "index": "13",
+        "toplevel": 3,
+        "anchor": "Avaricious",
+        "line": "Avaricious"
+      },
+      {
+        "index": "14",
+        "toplevel": 3,
+        "anchor": "Architect",
+        "line": "Architect"
+      },
+      {
+        "index": "15",
+        "toplevel": 3,
+        "anchor": "Administrator",
+        "line": "Administrator"
+      },
+      {
+        "index": "16",
+        "toplevel": 2,
+        "anchor": "Intrigue",
+        "line": "Intrigue"
+      },
+      {
+        "index": "17",
+        "toplevel": 3,
+        "anchor": "Schemer",
+        "line": "Schemer"
+      },
+      {
+        "index": "18",
+        "toplevel": 3,
+        "anchor": "Seducer",
+        "line": "Seducer"
+      },
+      {
+        "index": "19",
+        "toplevel": 3,
+        "anchor": "Torturer",
+        "line": "Torturer"
+      },
+      {
+        "index": "20",
+        "toplevel": 2,
+        "anchor": "Learning",
+        "line": "Learning"
+      },
+      {
+        "index": "21",
+        "toplevel": 3,
+        "anchor": "Whole_of_Body",
+        "line": "Whole of Body"
+      },
+      {
+        "index": "22",
+        "toplevel": 3,
+        "anchor": "Scholar",
+        "line": "Scholar"
+      },
+      {
+        "index": "23",
+        "toplevel": 3,
+        "anchor": "Theologian",
+        "line": "Theologian"
+      },
+      {
+        "index": "24",
+        "toplevel": 2,
+        "anchor": "Wandering",
+        "line": "Wandering"
+      },
+      {
+        "index": "25",
+        "toplevel": 3,
+        "anchor": "Inspector",
+        "line": "Inspector"
+      },
+      {
+        "index": "26",
+        "toplevel": 3,
+        "anchor": "Wayfarer",
+        "line": "Wayfarer"
+      },
+      {
+        "index": "27",
+        "toplevel": 3,
+        "anchor": "Voyager",
+        "line": "Voyager"
+      },
+      {
+        "index": "28",
+        "toplevel": 1,
+        "anchor": "References",
+        "line": "References"
+      }
+    ],
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    }
+  },
+  "registryEntry": {
+    "sourceId": "source:ck3-paradoxwikis-com:lifestyle",
+    "kind": "documentation_mediawiki_page",
+    "label": "CK3 Wiki: Lifestyle",
+    "acquiredAt": "2026-07-18T05:33:08.488Z",
+    "publisher": "CK3 Wiki",
+    "documentType": "mediawiki_page",
+    "topic": "Lifestyle",
+    "canonicalUrl": "https://ck3.paradoxwikis.com/Lifestyle",
+    "oldidUrl": "https://ck3.paradoxwikis.com/Lifestyle?oldid=35009",
+    "revision": {
+      "pageId": 169,
+      "revisionId": 35009,
+      "parentRevisionId": 34890,
+      "timestamp": "2026-07-12T06:17:39Z",
+      "sha1": "8f96810696f7f81cc369263d16af1c4d43d25c27"
+    },
+    "content": {
+      "hashAlgorithm": "sha256",
+      "structuralSummarySha256": "4be463bb4ca59f06d1fa0ea876b85006149f6da0ee65eaed56528c527a16c3b2",
+      "copiedContent": "metadata_and_section_anchors_only"
+    },
+    "scope": {
+      "gameVersions": [
+        "1.19.0.6"
+      ],
+      "dlc": [
+        "ALL_ACTIVE_ASSUMPTION"
+      ],
+      "mods": [],
+      "allDlcActive": true
+    },
+    "licensing": {
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      },
+      "redistribution": "Do not copy whole wiki pages into this repository; store citations, page metadata, and short section anchor titles only."
+    },
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    },
+    "extracted": {
+      "sectionAnchorCount": 28,
+      "sectionAnchors": [
+        {
+          "index": "1",
+          "toplevel": 1,
+          "anchor": "Focuses",
+          "line": "Focuses"
+        },
+        {
+          "index": "2",
+          "toplevel": 2,
+          "anchor": "Education_focuses",
+          "line": "Education focuses"
+        },
+        {
+          "index": "3",
+          "toplevel": 1,
+          "anchor": "Perk_trees",
+          "line": "Perk trees"
+        },
+        {
+          "index": "4",
+          "toplevel": 2,
+          "anchor": "Diplomacy",
+          "line": "Diplomacy"
+        },
+        {
+          "index": "5",
+          "toplevel": 3,
+          "anchor": "Diplomat",
+          "line": "Diplomat"
+        },
+        {
+          "index": "6",
+          "toplevel": 3,
+          "anchor": "August",
+          "line": "August"
+        },
+        {
+          "index": "7",
+          "toplevel": 3,
+          "anchor": "Family_Hierarch",
+          "line": "Family Hierarch"
+        },
+        {
+          "index": "8",
+          "toplevel": 2,
+          "anchor": "Martial",
+          "line": "Martial"
+        },
+        {
+          "index": "9",
+          "toplevel": 3,
+          "anchor": "Strategist",
+          "line": "Strategist"
+        },
+        {
+          "index": "10",
+          "toplevel": 3,
+          "anchor": "Overseer",
+          "line": "Overseer"
+        },
+        {
+          "index": "11",
+          "toplevel": 3,
+          "anchor": "Gallant",
+          "line": "Gallant"
+        },
+        {
+          "index": "12",
+          "toplevel": 2,
+          "anchor": "Stewardship",
+          "line": "Stewardship"
+        },
+        {
+          "index": "13",
+          "toplevel": 3,
+          "anchor": "Avaricious",
+          "line": "Avaricious"
+        },
+        {
+          "index": "14",
+          "toplevel": 3,
+          "anchor": "Architect",
+          "line": "Architect"
+        },
+        {
+          "index": "15",
+          "toplevel": 3,
+          "anchor": "Administrator",
+          "line": "Administrator"
+        },
+        {
+          "index": "16",
+          "toplevel": 2,
+          "anchor": "Intrigue",
+          "line": "Intrigue"
+        },
+        {
+          "index": "17",
+          "toplevel": 3,
+          "anchor": "Schemer",
+          "line": "Schemer"
+        },
+        {
+          "index": "18",
+          "toplevel": 3,
+          "anchor": "Seducer",
+          "line": "Seducer"
+        },
+        {
+          "index": "19",
+          "toplevel": 3,
+          "anchor": "Torturer",
+          "line": "Torturer"
+        },
+        {
+          "index": "20",
+          "toplevel": 2,
+          "anchor": "Learning",
+          "line": "Learning"
+        },
+        {
+          "index": "21",
+          "toplevel": 3,
+          "anchor": "Whole_of_Body",
+          "line": "Whole of Body"
+        },
+        {
+          "index": "22",
+          "toplevel": 3,
+          "anchor": "Scholar",
+          "line": "Scholar"
+        },
+        {
+          "index": "23",
+          "toplevel": 3,
+          "anchor": "Theologian",
+          "line": "Theologian"
+        },
+        {
+          "index": "24",
+          "toplevel": 2,
+          "anchor": "Wandering",
+          "line": "Wandering"
+        },
+        {
+          "index": "25",
+          "toplevel": 3,
+          "anchor": "Inspector",
+          "line": "Inspector"
+        },
+        {
+          "index": "26",
+          "toplevel": 3,
+          "anchor": "Wayfarer",
+          "line": "Wayfarer"
+        },
+        {
+          "index": "27",
+          "toplevel": 3,
+          "anchor": "Voyager",
+          "line": "Voyager"
+        },
+        {
+          "index": "28",
+          "toplevel": 1,
+          "anchor": "References",
+          "line": "References"
+        }
+      ],
+      "pageLength": 60027
+    },
+    "visibility": {
+      "classification": "external",
+      "rawArtifactCommitted": false,
+      "rationale": "External CK3 wiki documentation source for the 'Lifestyle' mechanics topic. Durable knowledge should cite this page/revision; only metadata + section anchor titles are stored."
+    },
+    "notes": []
+  }
+}

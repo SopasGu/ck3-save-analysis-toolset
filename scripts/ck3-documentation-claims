@@ -1,0 +1,156 @@
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import {
+  buildProposedClaim,
+  mergeProposedClaims,
+  validateClaimLedger,
+} from './lib/ck3-semantic-claims.mjs';
+
+function printHelp() {
+  console.log(`Usage:
+  ck3-documentation-claims apply --claims PATH --graph PATH --sources PATH --proposed PATH [--overwrite]
+
+Applies operator-authored documentation-driven proposed claims to the existing
+semantic claim ledger. Proposed entries are validated against the durable
+graph IDs and registered documentation sources; duplicates (matching claimId)
+are skipped unless --overwrite is provided.
+
+Proposed entry shape (JSON array):
+  [
+    {
+      "subjectGraphIds": ["collection:g..."],
+      "sourceId": "source:ck3-paradoxwikis-com:culture",
+      "proposition": "The Culture collection ...",
+      "semanticName": "culture_collection_doc",
+      "semanticKind": "collection_name",
+      "confidence": 0.85,
+      "section": "Culture_management",
+      "status": "proposed",
+      "rules": ["documentation.culture_collection_doc"],
+      "uncertainty": { "level": "low", "reasons": ["Section anchor reached."] },
+      "notes": ["Initial proposal from CK3 Wiki Culture page."]
+    }
+  ]
+
+The command never mutates structural graph observations or the source registry.
+`);
+}
+
+function parseArgs(argv) {
+  const args = {
+    subcommand: null,
+    claimsPath: null,
+    graphPath: null,
+    sourcesPath: null,
+    proposedPath: null,
+    outPath: null,
+    overwrite: false,
+    quiet: false,
+  };
+  const knownSubcommands = new Set(['apply']);
+  let flagStart = 0;
+  if (argv.length > 0 && knownSubcommands.has(argv[0])) {
+    args.subcommand = argv[0];
+    flagStart = 1;
+  }
+  for (let i = flagStart; i < argv.length; i++) {
+    const a = argv[i];
+    switch (a) {
+      case '--claims':
+        args.claimsPath = argv[++i];
+        break;
+      case '--graph':
+        args.graphPath = argv[++i];
+        break;
+      case '--sources':
+        args.sourcesPath = argv[++i];
+        break;
+      case '--proposed':
+        args.proposedPath = argv[++i];
+        break;
+      case '--out':
+        args.outPath = argv[++i];
+        break;
+      case '--overwrite':
+        args.overwrite = true;
+        break;
+      case '--quiet':
+      case '-q':
+        args.quiet = true;
+        break;
+      case '--help':
+      case '-h':
+        printHelp();
+        process.exit(0);
+        break;
+      default:
+        console.error(`Unknown argument: ${a}`);
+        printHelp();
+        process.exit(2);
+    }
+  }
+  return args;
+}
+
+function readJson(label, filePath) {
+  if (!filePath) {
+    console.error(`Missing required --${label}`);
+    printHelp();
+    process.exit(2);
+  }
+  if (!fs.existsSync(filePath)) {
+    console.error(`${label} file not found: ${filePath}`);
+    process.exit(2);
+  }
+  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+}
+
+function writeJson(filePath, data) {
+  fs.mkdirSync(path.dirname(path.resolve(filePath)), { recursive: true });
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + '\n');
+}
+
+function main() {
+  const args = parseArgs(process.argv.slice(2));
+  if (args.subcommand !== 'apply') {
+    printHelp();
+    process.exit(args.subcommand ? 2 : 0);
+  }
+  const ledger = readJson('claims', args.claimsPath);
+  const graph = readJson('graph', args.graphPath);
+  const sourceRegistry = readJson('sources', args.sourcesPath);
+  const proposedRaw = readJson('proposed', args.proposedPath);
+  if (!Array.isArray(proposedRaw)) {
+    console.error('--proposed file must contain a JSON array of claim entries');
+    process.exit(2);
+  }
+  const built = [];
+  for (let i = 0; i < proposedRaw.length; i++) {
+    const entry = proposedRaw[i];
+    try {
+      built.push(buildProposedClaim({
+        entry,
+        graph,
+        sourceRegistry,
+        generatedAt: new Date().toISOString(),
+      }));
+    } catch (err) {
+      console.error(`Proposed entry ${i} rejected: ${err.message}`);
+      process.exit(1);
+    }
+  }
+  const merged = mergeProposedClaims(ledger, built, { overwrite: args.overwrite });
+  const errors = validateClaimLedger(merged, graph);
+  if (errors.length > 0) {
+    console.error(`Merged ledger failed validation:\n- ${errors.join('\n- ')}`);
+    process.exit(1);
+  }
+  const outPath = args.outPath ?? args.claimsPath;
+  writeJson(outPath, merged);
+  if (!args.quiet) {
+    console.error(`Applied ${built.length} proposed claims (added=${(merged.proposedAdded ?? []).length}, skipped=${(merged.proposedSkipped ?? []).length}) -> ${outPath}`);
+  }
+}
+
+main();

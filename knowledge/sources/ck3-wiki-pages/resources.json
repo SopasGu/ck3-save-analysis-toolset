@@ -1,0 +1,753 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "sourceId": "source:ck3-paradoxwikis-com:resources",
+    "kind": "mediawiki_page",
+    "site": {
+      "key": "ck3.paradoxwikis.com",
+      "sitename": "CK3 Wiki",
+      "generator": "MediaWiki 1.39.4",
+      "apiUrl": "https://ck3.paradoxwikis.com/api.php",
+      "server": "https://ck3.paradoxwikis.com",
+      "articlePath": "/$1",
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      }
+    },
+    "page": {
+      "title": "Resources",
+      "pageId": 223,
+      "canonicalUrl": "https://ck3.paradoxwikis.com/Resources",
+      "revisionId": 34960,
+      "parentRevisionId": 34881,
+      "touched": "2026-07-14T12:10:02Z",
+      "revisionTimestamp": "2026-07-11T19:22:36Z",
+      "revisionSha1": "64213004a45ae33d06c8ffa9f1dfb72cb114896a",
+      "oldidUrl": "https://ck3.paradoxwikis.com/Resources?oldid=34960",
+      "length": 30313
+    },
+    "links": [
+      {
+        "title": "Achievement",
+        "url": "https://ck3.paradoxwikis.com/Achievement"
+      },
+      {
+        "title": "Activity",
+        "url": "https://ck3.paradoxwikis.com/Activity"
+      },
+      {
+        "title": "Administrative",
+        "url": "https://ck3.paradoxwikis.com/Administrative"
+      },
+      {
+        "title": "Advantage",
+        "url": "https://ck3.paradoxwikis.com/Advantage"
+      },
+      {
+        "title": "Adventurer",
+        "url": "https://ck3.paradoxwikis.com/Adventurer"
+      },
+      {
+        "title": "Adventurers",
+        "url": "https://ck3.paradoxwikis.com/Adventurers"
+      },
+      {
+        "title": "All Under Heaven",
+        "url": "https://ck3.paradoxwikis.com/All_Under_Heaven"
+      },
+      {
+        "title": "Alliance",
+        "url": "https://ck3.paradoxwikis.com/Alliance"
+      },
+      {
+        "title": "Army",
+        "url": "https://ck3.paradoxwikis.com/Army"
+      },
+      {
+        "title": "Artifacts",
+        "url": "https://ck3.paradoxwikis.com/Artifacts"
+      },
+      {
+        "title": "Attributes",
+        "url": "https://ck3.paradoxwikis.com/Attributes"
+      },
+      {
+        "title": "Barony",
+        "url": "https://ck3.paradoxwikis.com/Barony"
+      },
+      {
+        "title": "Bookmarks",
+        "url": "https://ck3.paradoxwikis.com/Bookmarks"
+      },
+      {
+        "title": "Brihadeeswarar Temple",
+        "url": "https://ck3.paradoxwikis.com/Brihadeeswarar_Temple"
+      },
+      {
+        "title": "Buildings",
+        "url": "https://ck3.paradoxwikis.com/Buildings"
+      },
+      {
+        "title": "Camp",
+        "url": "https://ck3.paradoxwikis.com/Camp"
+      },
+      {
+        "title": "Canterbury Cathedral",
+        "url": "https://ck3.paradoxwikis.com/Canterbury_Cathedral"
+      },
+      {
+        "title": "Casus belli",
+        "url": "https://ck3.paradoxwikis.com/Casus_belli"
+      },
+      {
+        "title": "Celestial",
+        "url": "https://ck3.paradoxwikis.com/Celestial"
+      },
+      {
+        "title": "Celibate",
+        "url": "https://ck3.paradoxwikis.com/Celibate"
+      },
+      {
+        "title": "Character",
+        "url": "https://ck3.paradoxwikis.com/Character"
+      },
+      {
+        "title": "Church and State",
+        "url": "https://ck3.paradoxwikis.com/Church_and_State"
+      },
+      {
+        "title": "Cologne Cathedral",
+        "url": "https://ck3.paradoxwikis.com/Cologne_Cathedral"
+      },
+      {
+        "title": "Consecrate Bloodline",
+        "url": "https://ck3.paradoxwikis.com/Consecrate_Bloodline"
+      },
+      {
+        "title": "Council",
+        "url": "https://ck3.paradoxwikis.com/Council"
+      },
+      {
+        "title": "County",
+        "url": "https://ck3.paradoxwikis.com/County"
+      },
+      {
+        "title": "Court",
+        "url": "https://ck3.paradoxwikis.com/Court"
+      },
+      {
+        "title": "Court chaplain",
+        "url": "https://ck3.paradoxwikis.com/Court_chaplain"
+      },
+      {
+        "title": "Culture",
+        "url": "https://ck3.paradoxwikis.com/Culture"
+      },
+      {
+        "title": "Decisions",
+        "url": "https://ck3.paradoxwikis.com/Decisions"
+      },
+      {
+        "title": "Dedicated Pilgrim",
+        "url": "https://ck3.paradoxwikis.com/Dedicated_Pilgrim"
+      },
+      {
+        "title": "Determined Pilgrim",
+        "url": "https://ck3.paradoxwikis.com/Determined_Pilgrim"
+      },
+      {
+        "title": "Developer diaries",
+        "url": "https://ck3.paradoxwikis.com/Developer_diaries"
+      },
+      {
+        "title": "Development",
+        "url": "https://ck3.paradoxwikis.com/Development"
+      },
+      {
+        "title": "Devoted",
+        "url": "https://ck3.paradoxwikis.com/Devoted"
+      },
+      {
+        "title": "Divine Protection",
+        "url": "https://ck3.paradoxwikis.com/Divine_Protection"
+      },
+      {
+        "title": "Doctrines",
+        "url": "https://ck3.paradoxwikis.com/Doctrines"
+      },
+      {
+        "title": "Domicile",
+        "url": "https://ck3.paradoxwikis.com/Domicile"
+      },
+      {
+        "title": "Downloadable content",
+        "url": "https://ck3.paradoxwikis.com/Downloadable_content"
+      },
+      {
+        "title": "Duel",
+        "url": "https://ck3.paradoxwikis.com/Duel"
+      },
+      {
+        "title": "Dynasty",
+        "url": "https://ck3.paradoxwikis.com/Dynasty"
+      },
+      {
+        "title": "Erudition",
+        "url": "https://ck3.paradoxwikis.com/Erudition"
+      },
+      {
+        "title": "Estate",
+        "url": "https://ck3.paradoxwikis.com/Estate"
+      },
+      {
+        "title": "Excommunicated",
+        "url": "https://ck3.paradoxwikis.com/Excommunicated"
+      },
+      {
+        "title": "Faith",
+        "url": "https://ck3.paradoxwikis.com/Faith"
+      },
+      {
+        "title": "Family (relation)",
+        "url": "https://ck3.paradoxwikis.com/Family_(relation)"
+      },
+      {
+        "title": "Form of address",
+        "url": "https://ck3.paradoxwikis.com/Form_of_address"
+      },
+      {
+        "title": "Game rules",
+        "url": "https://ck3.paradoxwikis.com/Game_rules"
+      },
+      {
+        "title": "Go on a Pilgrimage",
+        "url": "https://ck3.paradoxwikis.com/Go_on_a_Pilgrimage"
+      },
+      {
+        "title": "Government",
+        "url": "https://ck3.paradoxwikis.com/Government"
+      },
+      {
+        "title": "Grand Cathedral",
+        "url": "https://ck3.paradoxwikis.com/Grand_Cathedral"
+      },
+      {
+        "title": "Grand Mosque",
+        "url": "https://ck3.paradoxwikis.com/Grand_Mosque"
+      },
+      {
+        "title": "Grand Temple (Indian)",
+        "url": "https://ck3.paradoxwikis.com/Grand_Temple_(Indian)"
+      },
+      {
+        "title": "Grand Temple (other faiths)",
+        "url": "https://ck3.paradoxwikis.com/Grand_Temple_(other_faiths)"
+      },
+      {
+        "title": "Grand Temple (pagan)",
+        "url": "https://ck3.paradoxwikis.com/Grand_Temple_(pagan)"
+      },
+      {
+        "title": "Great Mosque of Cordoba",
+        "url": "https://ck3.paradoxwikis.com/Great_Mosque_of_Cordoba"
+      },
+      {
+        "title": "Great Mosque of Djenne",
+        "url": "https://ck3.paradoxwikis.com/Great_Mosque_of_Djenne"
+      },
+      {
+        "title": "Great Mosque of Mecca",
+        "url": "https://ck3.paradoxwikis.com/Great_Mosque_of_Mecca"
+      },
+      {
+        "title": "Great Mosque of Samarra",
+        "url": "https://ck3.paradoxwikis.com/Great_Mosque_of_Samarra"
+      },
+      {
+        "title": "Great projects",
+        "url": "https://ck3.paradoxwikis.com/Great_projects"
+      },
+      {
+        "title": "Hagia Sophia",
+        "url": "https://ck3.paradoxwikis.com/Hagia_Sophia"
+      },
+      {
+        "title": "Hall of Heroes",
+        "url": "https://ck3.paradoxwikis.com/Hall_of_Heroes"
+      },
+      {
+        "title": "Halq",
+        "url": "https://ck3.paradoxwikis.com/Halq"
+      },
+      {
+        "title": "Head of faith",
+        "url": "https://ck3.paradoxwikis.com/Head_of_faith"
+      },
+      {
+        "title": "Hired forces",
+        "url": "https://ck3.paradoxwikis.com/Hired_forces"
+      },
+      {
+        "title": "Holy order",
+        "url": "https://ck3.paradoxwikis.com/Holy_order"
+      },
+      {
+        "title": "Holy sites",
+        "url": "https://ck3.paradoxwikis.com/Holy_sites"
+      },
+      {
+        "title": "Holy war",
+        "url": "https://ck3.paradoxwikis.com/Holy_war"
+      },
+      {
+        "title": "Hooks",
+        "url": "https://ck3.paradoxwikis.com/Hooks"
+      },
+      {
+        "title": "Humble",
+        "url": "https://ck3.paradoxwikis.com/Humble"
+      },
+      {
+        "title": "Imam Ali Mosque",
+        "url": "https://ck3.paradoxwikis.com/Imam_Ali_Mosque"
+      },
+      {
+        "title": "Innovation",
+        "url": "https://ck3.paradoxwikis.com/Innovation"
+      },
+      {
+        "title": "Interactions",
+        "url": "https://ck3.paradoxwikis.com/Interactions"
+      },
+      {
+        "title": "Interesting characters",
+        "url": "https://ck3.paradoxwikis.com/Interesting_characters"
+      },
+      {
+        "title": "Jargon",
+        "url": "https://ck3.paradoxwikis.com/Jargon"
+      },
+      {
+        "title": "Khans of the Steppe",
+        "url": "https://ck3.paradoxwikis.com/Khans_of_the_Steppe"
+      },
+      {
+        "title": "Knight",
+        "url": "https://ck3.paradoxwikis.com/Knight"
+      },
+      {
+        "title": "Laws",
+        "url": "https://ck3.paradoxwikis.com/Laws"
+      },
+      {
+        "title": "Learning",
+        "url": "https://ck3.paradoxwikis.com/Learning"
+      },
+      {
+        "title": "Levies",
+        "url": "https://ck3.paradoxwikis.com/Levies"
+      },
+      {
+        "title": "Lifestyle",
+        "url": "https://ck3.paradoxwikis.com/Lifestyle"
+      },
+      {
+        "title": "Mahabodhi Temple",
+        "url": "https://ck3.paradoxwikis.com/Mahabodhi_Temple"
+      },
+      {
+        "title": "Mechanics",
+        "url": "https://ck3.paradoxwikis.com/Mechanics"
+      },
+      {
+        "title": "Men-at-arms",
+        "url": "https://ck3.paradoxwikis.com/Men-at-arms"
+      },
+      {
+        "title": "Meritocratic",
+        "url": "https://ck3.paradoxwikis.com/Meritocratic"
+      },
+      {
+        "title": "Meritocratic Khanate",
+        "url": "https://ck3.paradoxwikis.com/Meritocratic_Khanate"
+      },
+      {
+        "title": "Modding",
+        "url": "https://ck3.paradoxwikis.com/Modding"
+      },
+      {
+        "title": "Modifiers",
+        "url": "https://ck3.paradoxwikis.com/Modifiers"
+      },
+      {
+        "title": "Monasteries",
+        "url": "https://ck3.paradoxwikis.com/Monasteries"
+      },
+      {
+        "title": "Notre Dame",
+        "url": "https://ck3.paradoxwikis.com/Notre_Dame"
+      },
+      {
+        "title": "Patches",
+        "url": "https://ck3.paradoxwikis.com/Patches"
+      },
+      {
+        "title": "Pilgrim",
+        "url": "https://ck3.paradoxwikis.com/Pilgrim"
+      },
+      {
+        "title": "Polygamous",
+        "url": "https://ck3.paradoxwikis.com/Polygamous"
+      },
+      {
+        "title": "Possessed",
+        "url": "https://ck3.paradoxwikis.com/Possessed"
+      },
+      {
+        "title": "Power sharing",
+        "url": "https://ck3.paradoxwikis.com/Power_sharing"
+      },
+      {
+        "title": "Prisoner",
+        "url": "https://ck3.paradoxwikis.com/Prisoner"
+      },
+      {
+        "title": "Prophetic Mosque",
+        "url": "https://ck3.paradoxwikis.com/Prophetic_Mosque"
+      },
+      {
+        "title": "Prophetic Visions",
+        "url": "https://ck3.paradoxwikis.com/Prophetic_Visions"
+      },
+      {
+        "title": "Reincarnation (trait)",
+        "url": "https://ck3.paradoxwikis.com/Reincarnation_(trait)"
+      },
+      {
+        "title": "Religious Relations",
+        "url": "https://ck3.paradoxwikis.com/Religious_Relations"
+      },
+      {
+        "title": "Ritsuryō",
+        "url": "https://ck3.paradoxwikis.com/Ritsury%C5%8D"
+      },
+      {
+        "title": "Ritual Hospitality",
+        "url": "https://ck3.paradoxwikis.com/Ritual_Hospitality"
+      },
+      {
+        "title": "Roads to Power",
+        "url": "https://ck3.paradoxwikis.com/Roads_to_Power"
+      },
+      {
+        "title": "Royal court",
+        "url": "https://ck3.paradoxwikis.com/Royal_court"
+      },
+      {
+        "title": "Ruler decisions",
+        "url": "https://ck3.paradoxwikis.com/Ruler_decisions"
+      },
+      {
+        "title": "Ruler Designer",
+        "url": "https://ck3.paradoxwikis.com/Ruler_Designer"
+      },
+      {
+        "title": "Saint",
+        "url": "https://ck3.paradoxwikis.com/Saint"
+      },
+      {
+        "title": "Schemes",
+        "url": "https://ck3.paradoxwikis.com/Schemes"
+      },
+      {
+        "title": "Shwedagon Pagoda",
+        "url": "https://ck3.paradoxwikis.com/Shwedagon_Pagoda"
+      },
+      {
+        "title": "Sin",
+        "url": "https://ck3.paradoxwikis.com/Sin"
+      },
+      {
+        "title": "Situation",
+        "url": "https://ck3.paradoxwikis.com/Situation"
+      },
+      {
+        "title": "Steward of the Sacred River",
+        "url": "https://ck3.paradoxwikis.com/Steward_of_the_Sacred_River"
+      },
+      {
+        "title": "Subjects",
+        "url": "https://ck3.paradoxwikis.com/Subjects"
+      },
+      {
+        "title": "Succession",
+        "url": "https://ck3.paradoxwikis.com/Succession"
+      },
+      {
+        "title": "Succession laws",
+        "url": "https://ck3.paradoxwikis.com/Succession_laws"
+      },
+      {
+        "title": "Take Stewardship of the Sacred River",
+        "url": "https://ck3.paradoxwikis.com/Take_Stewardship_of_the_Sacred_River"
+      },
+      {
+        "title": "Tenets",
+        "url": "https://ck3.paradoxwikis.com/Tenets"
+      },
+      {
+        "title": "Theologian",
+        "url": "https://ck3.paradoxwikis.com/Theologian"
+      },
+      {
+        "title": "Theology",
+        "url": "https://ck3.paradoxwikis.com/Theology"
+      },
+      {
+        "title": "Titles",
+        "url": "https://ck3.paradoxwikis.com/Titles"
+      },
+      {
+        "title": "Traditions",
+        "url": "https://ck3.paradoxwikis.com/Traditions"
+      },
+      {
+        "title": "Traits",
+        "url": "https://ck3.paradoxwikis.com/Traits"
+      },
+      {
+        "title": "Travel",
+        "url": "https://ck3.paradoxwikis.com/Travel"
+      },
+      {
+        "title": "Undertake the Hajj",
+        "url": "https://ck3.paradoxwikis.com/Undertake_the_Hajj"
+      },
+      {
+        "title": "Vassals",
+        "url": "https://ck3.paradoxwikis.com/Vassals"
+      },
+      {
+        "title": "Virtue",
+        "url": "https://ck3.paradoxwikis.com/Virtue"
+      },
+      {
+        "title": "Warfare",
+        "url": "https://ck3.paradoxwikis.com/Warfare"
+      }
+    ],
+    "sectionAnchors": [
+      {
+        "index": "1",
+        "toplevel": 1,
+        "anchor": "Gold",
+        "line": "Gold"
+      },
+      {
+        "index": "2",
+        "toplevel": 2,
+        "anchor": "Treasury",
+        "line": "Treasury"
+      },
+      {
+        "index": "3",
+        "toplevel": 2,
+        "anchor": "Debt",
+        "line": "Debt"
+      },
+      {
+        "index": "4",
+        "toplevel": 1,
+        "anchor": "Prestige",
+        "line": "Prestige"
+      },
+      {
+        "index": "5",
+        "toplevel": 1,
+        "anchor": "Piety",
+        "line": "Piety"
+      },
+      {
+        "index": "6",
+        "toplevel": 2,
+        "anchor": "Monthly_piety",
+        "line": "Monthly piety"
+      },
+      {
+        "index": "7",
+        "toplevel": 3,
+        "anchor": "Factors_affecting_monthly_piety",
+        "line": "Factors affecting monthly piety"
+      },
+      {
+        "index": "8",
+        "toplevel": 1,
+        "anchor": "Influence",
+        "line": "Influence"
+      },
+      {
+        "index": "9",
+        "toplevel": 1,
+        "anchor": "Provisions",
+        "line": "Provisions"
+      },
+      {
+        "index": "10",
+        "toplevel": 1,
+        "anchor": "Herd",
+        "line": "Herd"
+      },
+      {
+        "index": "11",
+        "toplevel": 1,
+        "anchor": "Barter_Goods",
+        "line": "Barter Goods"
+      },
+      {
+        "index": "12",
+        "toplevel": 1,
+        "anchor": "References",
+        "line": "References"
+      }
+    ],
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    }
+  },
+  "registryEntry": {
+    "sourceId": "source:ck3-paradoxwikis-com:resources",
+    "kind": "documentation_mediawiki_page",
+    "label": "CK3 Wiki: Resources",
+    "acquiredAt": "2026-07-18T05:33:08.487Z",
+    "publisher": "CK3 Wiki",
+    "documentType": "mediawiki_page",
+    "topic": "Resources",
+    "canonicalUrl": "https://ck3.paradoxwikis.com/Resources",
+    "oldidUrl": "https://ck3.paradoxwikis.com/Resources?oldid=34960",
+    "revision": {
+      "pageId": 223,
+      "revisionId": 34960,
+      "parentRevisionId": 34881,
+      "timestamp": "2026-07-11T19:22:36Z",
+      "sha1": "64213004a45ae33d06c8ffa9f1dfb72cb114896a"
+    },
+    "content": {
+      "hashAlgorithm": "sha256",
+      "structuralSummarySha256": "01eefa4c21ca84d5e406d73892c00a0045a75c2c55ec4104554cec020a808760",
+      "copiedContent": "metadata_and_section_anchors_only"
+    },
+    "scope": {
+      "gameVersions": [
+        "1.19.0.6"
+      ],
+      "dlc": [
+        "ALL_ACTIVE_ASSUMPTION"
+      ],
+      "mods": [],
+      "allDlcActive": true
+    },
+    "licensing": {
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      },
+      "redistribution": "Do not copy whole wiki pages into this repository; store citations, page metadata, and short section anchor titles only."
+    },
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    },
+    "extracted": {
+      "sectionAnchorCount": 12,
+      "sectionAnchors": [
+        {
+          "index": "1",
+          "toplevel": 1,
+          "anchor": "Gold",
+          "line": "Gold"
+        },
+        {
+          "index": "2",
+          "toplevel": 2,
+          "anchor": "Treasury",
+          "line": "Treasury"
+        },
+        {
+          "index": "3",
+          "toplevel": 2,
+          "anchor": "Debt",
+          "line": "Debt"
+        },
+        {
+          "index": "4",
+          "toplevel": 1,
+          "anchor": "Prestige",
+          "line": "Prestige"
+        },
+        {
+          "index": "5",
+          "toplevel": 1,
+          "anchor": "Piety",
+          "line": "Piety"
+        },
+        {
+          "index": "6",
+          "toplevel": 2,
+          "anchor": "Monthly_piety",
+          "line": "Monthly piety"
+        },
+        {
+          "index": "7",
+          "toplevel": 3,
+          "anchor": "Factors_affecting_monthly_piety",
+          "line": "Factors affecting monthly piety"
+        },
+        {
+          "index": "8",
+          "toplevel": 1,
+          "anchor": "Influence",
+          "line": "Influence"
+        },
+        {
+          "index": "9",
+          "toplevel": 1,
+          "anchor": "Provisions",
+          "line": "Provisions"
+        },
+        {
+          "index": "10",
+          "toplevel": 1,
+          "anchor": "Herd",
+          "line": "Herd"
+        },
+        {
+          "index": "11",
+          "toplevel": 1,
+          "anchor": "Barter_Goods",
+          "line": "Barter Goods"
+        },
+        {
+          "index": "12",
+          "toplevel": 1,
+          "anchor": "References",
+          "line": "References"
+        }
+      ],
+      "pageLength": 30313
+    },
+    "visibility": {
+      "classification": "external",
+      "rawArtifactCommitted": false,
+      "rationale": "External CK3 wiki documentation source for the 'Resources' mechanics topic. Durable knowledge should cite this page/revision; only metadata + section anchor titles are stored."
+    },
+    "notes": []
+  }
+}

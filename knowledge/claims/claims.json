@@ -34,6 +34,33 @@
           "id": "source:ck3-paradoxwikis-com:main-page-links",
           "topic": "Culture",
           "url": "https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070"
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:culture",
+          "topic": "Culture",
+          "url": "https://ck3.paradoxwikis.com/Culture?oldid=34787",
+          "sectionAnchors": [
+            "Culture head",
+            "Cultural acceptance",
+            "Cultural pillars",
+            "Ethos",
+            "Traditions",
+            "New cultures",
+            "Hybrid cultures",
+            "Divergent cultures",
+            "List of cultures",
+            "Nomadic cultures",
+            "North Germanic cultures",
+            "Ancient cultures",
+            "List of unique formable cultures",
+            "Unique divergent cultures",
+            "Unique hybrid cultures",
+            "Culture splits",
+            "Sicilian melting pot",
+            "Harrying of the North",
+            "References"
+          ]
         }
       ],
       "contradictingEvidence": [],
@@ -46,6 +73,8 @@
           "The structural path names culture_manager.cultures and the CK3 Wiki has a Culture topic."
         ]
       },
+      "supersededBy": [],
+      "lastReviewed": null,
       "notes": []
     },
     {
@@ -80,6 +109,33 @@
           "id": "source:ck3-paradoxwikis-com:main-page-links",
           "topic": "Culture",
           "url": "https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070"
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:culture",
+          "topic": "Culture",
+          "url": "https://ck3.paradoxwikis.com/Culture?oldid=34787",
+          "sectionAnchors": [
+            "Culture head",
+            "Cultural acceptance",
+            "Cultural pillars",
+            "Ethos",
+            "Traditions",
+            "New cultures",
+            "Hybrid cultures",
+            "Divergent cultures",
+            "List of cultures",
+            "Nomadic cultures",
+            "North Germanic cultures",
+            "Ancient cultures",
+            "List of unique formable cultures",
+            "Unique divergent cultures",
+            "Unique hybrid cultures",
+            "Culture splits",
+            "Sicilian melting pot",
+            "Harrying of the North",
+            "References"
+          ]
         }
       ],
       "contradictingEvidence": [],
@@ -92,6 +148,8 @@
           "The key domain and collection path both name cultures."
         ]
       },
+      "supersededBy": [],
+      "lastReviewed": null,
       "notes": []
     },
     {
@@ -126,6 +184,33 @@
           "id": "source:ck3-paradoxwikis-com:main-page-links",
           "topic": "Characters",
           "url": "https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070"
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:character",
+          "topic": "Characters",
+          "url": "https://ck3.paradoxwikis.com/Character?oldid=34938",
+          "sectionAnchors": [
+            "Appearance",
+            "Sexual Orientation",
+            "Opinion",
+            "Opinion",
+            "General",
+            "Attraction",
+            "Same Dynasty",
+            "Virtue & Sins",
+            "Faith Hostility",
+            "Relations",
+            "Tyranny",
+            "Diplomatic range",
+            "Nicknames",
+            "AI Personality",
+            "Economic Archetype",
+            "Legends",
+            "Historical legend seeds",
+            "Legitimizing historical seeds",
+            "Decision legend seeds"
+          ]
         }
       ],
       "contradictingEvidence": [],
@@ -138,6 +223,8 @@
           "The path is explicit, but the exact pruning semantics need documentation or installed-definition support."
         ]
       },
+      "supersededBy": [],
+      "lastReviewed": null,
       "notes": []
     },
     {
@@ -172,6 +259,33 @@
           "id": "source:ck3-paradoxwikis-com:main-page-links",
           "topic": "Characters",
           "url": "https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070"
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:character",
+          "topic": "Characters",
+          "url": "https://ck3.paradoxwikis.com/Character?oldid=34938",
+          "sectionAnchors": [
+            "Appearance",
+            "Sexual Orientation",
+            "Opinion",
+            "Opinion",
+            "General",
+            "Attraction",
+            "Same Dynasty",
+            "Virtue & Sins",
+            "Faith Hostility",
+            "Relations",
+            "Tyranny",
+            "Diplomatic range",
+            "Nicknames",
+            "AI Personality",
+            "Economic Archetype",
+            "Legends",
+            "Historical legend seeds",
+            "Legitimizing historical seeds",
+            "Decision legend seeds"
+          ]
         }
       ],
       "contradictingEvidence": [],
@@ -184,6 +298,8 @@
           "The path is explicit, but the exact unprunable semantics need documentation or installed-definition support."
         ]
       },
+      "supersededBy": [],
+      "lastReviewed": null,
       "notes": []
     },
     {
@@ -218,6 +334,29 @@
           "id": "source:ck3-paradoxwikis-com:main-page-links",
           "topic": "Faith",
           "url": "https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070"
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:faith",
+          "topic": "Faith",
+          "url": "https://ck3.paradoxwikis.com/Faith?oldid=35037",
+          "sectionAnchors": [
+            "Fervor",
+            "Faith hostility",
+            "Faith organization",
+            "Virtues and sins",
+            "Head of faith",
+            "Conversion",
+            "New faiths",
+            "Reformation",
+            "Religion",
+            "Abrahamic religions",
+            "Dharmic religions",
+            "Sinitic religions",
+            "Pagan religions",
+            "Single faith religions",
+            "Faiths at the start of the game"
+          ]
         }
       ],
       "contradictingEvidence": [],
@@ -230,6 +369,8 @@
           "The structural path names religion.faiths and the CK3 Wiki has a Faith topic."
         ]
       },
+      "supersededBy": [],
+      "lastReviewed": null,
       "notes": []
     },
     {
@@ -264,6 +405,29 @@
           "id": "source:ck3-paradoxwikis-com:main-page-links",
           "topic": "Faith",
           "url": "https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070"
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:faith",
+          "topic": "Faith",
+          "url": "https://ck3.paradoxwikis.com/Faith?oldid=35037",
+          "sectionAnchors": [
+            "Fervor",
+            "Faith hostility",
+            "Faith organization",
+            "Virtues and sins",
+            "Head of faith",
+            "Conversion",
+            "New faiths",
+            "Reformation",
+            "Religion",
+            "Abrahamic religions",
+            "Dharmic religions",
+            "Sinitic religions",
+            "Pagan religions",
+            "Single faith religions",
+            "Faiths at the start of the game"
+          ]
         }
       ],
       "contradictingEvidence": [],
@@ -276,6 +440,8 @@
           "The key domain and collection path both name faiths."
         ]
       },
+      "supersededBy": [],
+      "lastReviewed": null,
       "notes": []
     },
     {
@@ -310,6 +476,25 @@
           "id": "source:ck3-paradoxwikis-com:main-page-links",
           "topic": "Titles",
           "url": "https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070"
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:titles",
+          "topic": "Titles",
+          "url": "https://ck3.paradoxwikis.com/Titles?oldid=35027",
+          "sectionAnchors": [
+            "Title rank",
+            "Duchy",
+            "De Jure",
+            "Usurpation",
+            "De jure drift",
+            "Claim",
+            "Revocation",
+            "Holding too many titles",
+            "Head of faith titles",
+            "Roman Empire",
+            "References"
+          ]
         }
       ],
       "contradictingEvidence": [],
@@ -322,6 +507,8 @@
           "The structural path names landed_titles.landed_titles and the CK3 Wiki has a Titles topic."
         ]
       },
+      "supersededBy": [],
+      "lastReviewed": null,
       "notes": []
     },
     {
@@ -356,6 +543,33 @@
           "id": "source:ck3-paradoxwikis-com:main-page-links",
           "topic": "Characters",
           "url": "https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070"
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:character",
+          "topic": "Characters",
+          "url": "https://ck3.paradoxwikis.com/Character?oldid=34938",
+          "sectionAnchors": [
+            "Appearance",
+            "Sexual Orientation",
+            "Opinion",
+            "Opinion",
+            "General",
+            "Attraction",
+            "Same Dynasty",
+            "Virtue & Sins",
+            "Faith Hostility",
+            "Relations",
+            "Tyranny",
+            "Diplomatic range",
+            "Nicknames",
+            "AI Personality",
+            "Economic Archetype",
+            "Legends",
+            "Historical legend seeds",
+            "Legitimizing historical seeds",
+            "Decision legend seeds"
+          ]
         }
       ],
       "contradictingEvidence": [],
@@ -368,6 +582,8 @@
           "The path name and record volume strongly suggest character records, but this initial rule does not yet inspect installed game definitions."
         ]
       },
+      "supersededBy": [],
+      "lastReviewed": null,
       "notes": [
         "Do not create one durable node per character."
       ]
@@ -404,6 +620,33 @@
           "id": "source:ck3-paradoxwikis-com:main-page-links",
           "topic": "Characters",
           "url": "https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070"
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:character",
+          "topic": "Characters",
+          "url": "https://ck3.paradoxwikis.com/Character?oldid=34938",
+          "sectionAnchors": [
+            "Appearance",
+            "Sexual Orientation",
+            "Opinion",
+            "Opinion",
+            "General",
+            "Attraction",
+            "Same Dynasty",
+            "Virtue & Sins",
+            "Faith Hostility",
+            "Relations",
+            "Tyranny",
+            "Diplomatic range",
+            "Nicknames",
+            "AI Personality",
+            "Economic Archetype",
+            "Legends",
+            "Historical legend seeds",
+            "Legitimizing historical seeds",
+            "Decision legend seeds"
+          ]
         }
       ],
       "contradictingEvidence": [],
@@ -416,7 +659,2504 @@
           "The key domain is structurally clear, but semantic ID type needs more cross-source validation."
         ]
       },
+      "supersededBy": [],
+      "lastReviewed": null,
       "notes": []
+    },
+    {
+      "claimId": "claim:mechanics_concept_activity:71e54cf2e84b86e7",
+      "proposition": "The Activity page documents a CK3 mechanics concept that is grounded in the durable governance topic group, with citation on oldid https://ck3.paradoxwikis.com/Activity?oldid=34844.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:activity"
+      ],
+      "semanticName": "mechanics_concept_activity",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:activity",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:activity",
+          "topic": "Activity",
+          "url": "https://ck3.paradoxwikis.com/Activity?oldid=34844",
+          "section": "Cost"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.activity"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 16 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept activity."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_adventurer:8bcdc02e15b2d53d",
+      "proposition": "The Adventurer page documents a CK3 mechanics concept that is grounded in the durable governance topic group, with citation on oldid https://ck3.paradoxwikis.com/Adventurer?oldid=35047.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:adventurer"
+      ],
+      "semanticName": "mechanics_concept_adventurer",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:adventurer",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:adventurer",
+          "topic": "Adventurer",
+          "url": "https://ck3.paradoxwikis.com/Adventurer?oldid=35047",
+          "section": "Becoming an Adventurer"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.adventurer"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 19 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept adventurer."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_alliance:704b2a8cc7e720b8",
+      "proposition": "The Alliance page documents a CK3 mechanics concept that is grounded in the durable warfare topic group, with citation on oldid https://ck3.paradoxwikis.com/Alliance?oldid=34843.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:alliance"
+      ],
+      "semanticName": "mechanics_concept_alliance",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:alliance",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:alliance",
+          "topic": "Alliance",
+          "url": "https://ck3.paradoxwikis.com/Alliance?oldid=34843",
+          "section": "Creating an alliance"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.alliance"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 5 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept alliance."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_army:963cf31a8d0beac7",
+      "proposition": "The Army page documents a CK3 mechanics concept that is grounded in the durable warfare topic group, with citation on oldid https://ck3.paradoxwikis.com/Army?oldid=35041.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:army"
+      ],
+      "semanticName": "mechanics_concept_army",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:army",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:army",
+          "topic": "Army",
+          "url": "https://ck3.paradoxwikis.com/Army?oldid=35041",
+          "section": "Stats"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.army"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 23 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept army."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_artifacts:880ed160125a1b8d",
+      "proposition": "The Artifacts page documents a CK3 mechanics concept that is grounded in the durable characterSystems topic group, with citation on oldid https://ck3.paradoxwikis.com/Artifacts?oldid=35011.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:artifacts"
+      ],
+      "semanticName": "mechanics_concept_artifacts",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:artifacts",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:artifacts",
+          "topic": "Artifacts",
+          "url": "https://ck3.paradoxwikis.com/Artifacts?oldid=35011",
+          "section": "Rarity"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.artifacts"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 28 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept artifacts."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_attributes:24464c5df7bd9c95",
+      "proposition": "The Attributes page documents a CK3 mechanics concept that is grounded in the durable characterSystems topic group, with citation on oldid https://ck3.paradoxwikis.com/Attributes?oldid=34884.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:attributes"
+      ],
+      "semanticName": "mechanics_concept_attributes",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:attributes",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:attributes",
+          "topic": "Attributes",
+          "url": "https://ck3.paradoxwikis.com/Attributes?oldid=34884",
+          "section": "Age"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.attributes"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 31 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept attributes."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_barony:721206830701a7f4",
+      "proposition": "The Barony page documents a CK3 mechanics concept that is grounded in the durable realm topic group, with citation on oldid https://ck3.paradoxwikis.com/Barony?oldid=34990.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:barony"
+      ],
+      "semanticName": "mechanics_concept_barony",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:barony",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:barony",
+          "topic": "Barony",
+          "url": "https://ck3.paradoxwikis.com/Barony?oldid=34990",
+          "section": "Capital"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.barony"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 14 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept barony."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_beginner_s_guide:d61e94b7254ab7c0",
+      "proposition": "The Beginner's guide page documents a CK3 mechanics concept that is grounded in the durable gettingStarted topic group, with citation on oldid https://ck3.paradoxwikis.com/Beginner%27s_guide?oldid=34077.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:beginner-s-guide"
+      ],
+      "semanticName": "mechanics_concept_beginner_s_guide",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:beginner-s-guide",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:beginner-s-guide",
+          "topic": "Beginner's guide",
+          "url": "https://ck3.paradoxwikis.com/Beginner%27s_guide?oldid=34077",
+          "section": "Selecting a character"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.beginner-s-guide"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 20 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept beginner-s-guide."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_building:138e6fda6edf4eb0",
+      "proposition": "The Building page documents a CK3 mechanics concept that is grounded in the durable realm topic group, with citation on oldid https://ck3.paradoxwikis.com/Building?oldid=34809.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:building"
+      ],
+      "semanticName": "mechanics_concept_building",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:building",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:building",
+          "topic": "Building",
+          "url": "https://ck3.paradoxwikis.com/Building?oldid=34809",
+          "section": "Construction"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.building"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 15 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept building."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_casus_belli:b32da909534d6bbe",
+      "proposition": "The Casus belli page documents a CK3 mechanics concept that is grounded in the durable warfare topic group, with citation on oldid https://ck3.paradoxwikis.com/Casus_belli?oldid=34380.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:casus-belli"
+      ],
+      "semanticName": "mechanics_concept_casus_belli",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:casus-belli",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:casus-belli",
+          "topic": "Casus belli",
+          "url": "https://ck3.paradoxwikis.com/Casus_belli?oldid=34380",
+          "section": "Independence wars"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.casus-belli"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 29 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept casus-belli."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_characters:85f35d6140475c39",
+      "proposition": "The Characters page documents a CK3 mechanics concept that is grounded in the durable characterSystems topic group, with citation on oldid https://ck3.paradoxwikis.com/Character?oldid=34938.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:characters"
+      ],
+      "semanticName": "mechanics_concept_characters",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:characters",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:character",
+          "topic": "Characters",
+          "url": "https://ck3.paradoxwikis.com/Character?oldid=34938",
+          "section": "Appearance"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.characters"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 19 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept characters."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_console_commands:dd2f910be1bbaab4",
+      "proposition": "The Console commands page documents a CK3 mechanics concept that is grounded in the durable gettingStarted topic group, with citation on oldid https://ck3.paradoxwikis.com/Console_commands?oldid=35014.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:console-commands"
+      ],
+      "semanticName": "mechanics_concept_console_commands",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:console-commands",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:console-commands",
+          "topic": "Console commands",
+          "url": "https://ck3.paradoxwikis.com/Console_commands?oldid=35014",
+          "section": "Debug mode"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.console-commands"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 23 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept console-commands."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_council:b9ba17fe16ed1dcf",
+      "proposition": "The Council page documents a CK3 mechanics concept that is grounded in the durable governance topic group, with citation on oldid https://ck3.paradoxwikis.com/Council?oldid=35055.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:council"
+      ],
+      "semanticName": "mechanics_concept_council",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:council",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:council",
+          "topic": "Council",
+          "url": "https://ck3.paradoxwikis.com/Council?oldid=35055",
+          "section": "Spymaster"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.council"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 13 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept council."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_county:f7c09669c79b9b97",
+      "proposition": "The County page documents a CK3 mechanics concept that is grounded in the durable realm topic group, with citation on oldid https://ck3.paradoxwikis.com/County?oldid=34989.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:county"
+      ],
+      "semanticName": "mechanics_concept_county",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:county",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:county",
+          "topic": "County",
+          "url": "https://ck3.paradoxwikis.com/County?oldid=34989",
+          "section": "Popular opinion"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.county"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 9 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept county."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_court:a53b8a3894951087",
+      "proposition": "The Court page documents a CK3 mechanics concept that is grounded in the durable governance topic group, with citation on oldid https://ck3.paradoxwikis.com/Court?oldid=34630.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:court"
+      ],
+      "semanticName": "mechanics_concept_court",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:court",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:court",
+          "topic": "Court",
+          "url": "https://ck3.paradoxwikis.com/Court?oldid=34630",
+          "section": "Courtiers and followers"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.court"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 16 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept court."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_culture:fa153f12c8d539f4",
+      "proposition": "The Culture page documents a CK3 mechanics concept that is grounded in the durable cultureFaith topic group, with citation on oldid https://ck3.paradoxwikis.com/Culture?oldid=34787.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:culture"
+      ],
+      "semanticName": "mechanics_concept_culture",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:culture",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:culture",
+          "topic": "Culture",
+          "url": "https://ck3.paradoxwikis.com/Culture?oldid=34787",
+          "section": "Culture head"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.culture"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 19 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept culture."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_decisions:e793834d699e5d45",
+      "proposition": "The Decisions page documents a CK3 mechanics concept that is grounded in the durable governance topic group, with citation on oldid https://ck3.paradoxwikis.com/Decisions?oldid=31884.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:decisions"
+      ],
+      "semanticName": "mechanics_concept_decisions",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:decisions",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:decisions",
+          "topic": "Decisions",
+          "url": "https://ck3.paradoxwikis.com/Decisions?oldid=31884"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.decisions"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 0 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept decisions."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_doctrines:42575d979eb6e173",
+      "proposition": "The Doctrines page documents a CK3 mechanics concept that is grounded in the durable cultureFaith topic group, with citation on oldid https://ck3.paradoxwikis.com/Doctrines?oldid=35023.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:doctrines"
+      ],
+      "semanticName": "mechanics_concept_doctrines",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:doctrines",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:doctrines",
+          "topic": "Doctrines",
+          "url": "https://ck3.paradoxwikis.com/Doctrines?oldid=35023",
+          "section": "Main doctrines"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.doctrines"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 8 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept doctrines."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_domicile:c9095afe143ca930",
+      "proposition": "The Domicile page documents a CK3 mechanics concept that is grounded in the durable realm topic group, with citation on oldid https://ck3.paradoxwikis.com/Domicile?oldid=34985.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:domicile"
+      ],
+      "semanticName": "mechanics_concept_domicile",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:domicile",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:domicile",
+          "topic": "Domicile",
+          "url": "https://ck3.paradoxwikis.com/Domicile?oldid=34985",
+          "section": "References"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.domicile"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 1 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept domicile."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_duel:853d48e4f899e4ff",
+      "proposition": "The Duel page documents a CK3 mechanics concept that is grounded in the durable warfare topic group, with citation on oldid https://ck3.paradoxwikis.com/Duel?oldid=34995.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:duel"
+      ],
+      "semanticName": "mechanics_concept_duel",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:duel",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:duel",
+          "topic": "Duel",
+          "url": "https://ck3.paradoxwikis.com/Duel?oldid=34995",
+          "section": "Issuing a challenge"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.duel"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 4 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept duel."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_dynasty:56680ab1d26360c7",
+      "proposition": "The Dynasty page documents a CK3 mechanics concept that is grounded in the durable characterSystems topic group, with citation on oldid https://ck3.paradoxwikis.com/Dynasty?oldid=35054.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:dynasty"
+      ],
+      "semanticName": "mechanics_concept_dynasty",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:dynasty",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:dynasty",
+          "topic": "Dynasty",
+          "url": "https://ck3.paradoxwikis.com/Dynasty?oldid=35054",
+          "section": "Houses"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.dynasty"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 21 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept dynasty."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_faith:a78d0424ce81e25a",
+      "proposition": "The Faith page documents a CK3 mechanics concept that is grounded in the durable cultureFaith topic group, with citation on oldid https://ck3.paradoxwikis.com/Faith?oldid=35037.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:faith"
+      ],
+      "semanticName": "mechanics_concept_faith",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:faith",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:faith",
+          "topic": "Faith",
+          "url": "https://ck3.paradoxwikis.com/Faith?oldid=35037",
+          "section": "Fervor"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.faith"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 15 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept faith."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_game_rules:f14063e30fa29b35",
+      "proposition": "The Game rules page documents a CK3 mechanics concept that is grounded in the durable gettingStarted topic group, with citation on oldid https://ck3.paradoxwikis.com/Game_rules?oldid=34952.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:game-rules"
+      ],
+      "semanticName": "mechanics_concept_game_rules",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:game-rules",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:game-rules",
+          "topic": "Game rules",
+          "url": "https://ck3.paradoxwikis.com/Game_rules?oldid=34952",
+          "section": "Difficulty"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.game-rules"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 9 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept game-rules."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_government:8fd6ae5d9e3e4074",
+      "proposition": "The Government page documents a CK3 mechanics concept that is grounded in the durable governance topic group, with citation on oldid https://ck3.paradoxwikis.com/Government?oldid=34967.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:government"
+      ],
+      "semanticName": "mechanics_concept_government",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:government",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:government",
+          "topic": "Government",
+          "url": "https://ck3.paradoxwikis.com/Government?oldid=34967",
+          "section": "Landed governments"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.government"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 10 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept government."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_great_projects:1b04132b7cd032af",
+      "proposition": "The Great projects page documents a CK3 mechanics concept that is grounded in the durable realm topic group, with citation on oldid https://ck3.paradoxwikis.com/Great_projects?oldid=34951.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:great-projects"
+      ],
+      "semanticName": "mechanics_concept_great_projects",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:great-projects",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:great-projects",
+          "topic": "Great projects",
+          "url": "https://ck3.paradoxwikis.com/Great_projects?oldid=34951",
+          "section": "Develop Communities"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.great-projects"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 3 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept great-projects."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_hired_forces:6b8b582ff0e8c4e6",
+      "proposition": "The Hired forces page documents a CK3 mechanics concept that is grounded in the durable warfare topic group, with citation on oldid https://ck3.paradoxwikis.com/Hired_forces?oldid=34994.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:hired-forces"
+      ],
+      "semanticName": "mechanics_concept_hired_forces",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:hired-forces",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:hired-forces",
+          "topic": "Hired forces",
+          "url": "https://ck3.paradoxwikis.com/Hired_forces?oldid=34994",
+          "section": "Mercenaries"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.hired-forces"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 5 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept hired-forces."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_holy_sites:83e9d4c7dee4544b",
+      "proposition": "The Holy sites page documents a CK3 mechanics concept that is grounded in the durable cultureFaith topic group, with citation on oldid https://ck3.paradoxwikis.com/Holy_sites?oldid=34957.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:holy-sites"
+      ],
+      "semanticName": "mechanics_concept_holy_sites",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:holy-sites",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:holy-sites",
+          "topic": "Holy sites",
+          "url": "https://ck3.paradoxwikis.com/Holy_sites?oldid=34957",
+          "section": "List of holy sites"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.holy-sites"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 4 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept holy-sites."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_hooks:faf512c67b98c491",
+      "proposition": "The Hooks page documents a CK3 mechanics concept that is grounded in the durable characterSystems topic group, with citation on oldid https://ck3.paradoxwikis.com/Hooks?oldid=34509.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:hooks"
+      ],
+      "semanticName": "mechanics_concept_hooks",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:hooks",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:hooks",
+          "topic": "Hooks",
+          "url": "https://ck3.paradoxwikis.com/Hooks?oldid=34509",
+          "section": "Weak hooks"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.hooks"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 7 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept hooks."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_innovation:7292eb6e8f496af0",
+      "proposition": "The Innovation page documents a CK3 mechanics concept that is grounded in the durable cultureFaith topic group, with citation on oldid https://ck3.paradoxwikis.com/Innovation?oldid=34955.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:innovation"
+      ],
+      "semanticName": "mechanics_concept_innovation",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:innovation",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:innovation",
+          "topic": "Innovation",
+          "url": "https://ck3.paradoxwikis.com/Innovation?oldid=34955",
+          "section": "Eras"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.innovation"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 25 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept innovation."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_interesting_characters:a95ce791d247f768",
+      "proposition": "The Interesting characters page documents a CK3 mechanics concept that is grounded in the durable gettingStarted topic group, with citation on oldid https://ck3.paradoxwikis.com/Interesting_characters?oldid=34343.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:interesting-characters"
+      ],
+      "semanticName": "mechanics_concept_interesting_characters",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:interesting-characters",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:interesting-characters",
+          "topic": "Interesting characters",
+          "url": "https://ck3.paradoxwikis.com/Interesting_characters?oldid=34343",
+          "section": "867 start"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.interesting-characters"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 305 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept interesting-characters."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_knight:03412cfd95a64b02",
+      "proposition": "The Knight page documents a CK3 mechanics concept that is grounded in the durable warfare topic group, with citation on oldid https://ck3.paradoxwikis.com/Knight?oldid=34696.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:knight"
+      ],
+      "semanticName": "mechanics_concept_knight",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:knight",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:knight",
+          "topic": "Knight",
+          "url": "https://ck3.paradoxwikis.com/Knight?oldid=34696",
+          "section": "Cultural alternatives"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.knight"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 9 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept knight."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_laws:7d4d4ebea7d63f35",
+      "proposition": "The Laws page documents a CK3 mechanics concept that is grounded in the durable governance topic group, with citation on oldid https://ck3.paradoxwikis.com/Laws?oldid=34965.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:laws"
+      ],
+      "semanticName": "mechanics_concept_laws",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:laws",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:laws",
+          "topic": "Laws",
+          "url": "https://ck3.paradoxwikis.com/Laws?oldid=34965",
+          "section": "Borders Wars Policy"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.laws"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 7 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept laws."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_lifestyle:fd913aed0b630ef3",
+      "proposition": "The Lifestyle page documents a CK3 mechanics concept that is grounded in the durable characterSystems topic group, with citation on oldid https://ck3.paradoxwikis.com/Lifestyle?oldid=35009.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:lifestyle"
+      ],
+      "semanticName": "mechanics_concept_lifestyle",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:lifestyle",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:lifestyle",
+          "topic": "Lifestyle",
+          "url": "https://ck3.paradoxwikis.com/Lifestyle?oldid=35009",
+          "section": "Focuses"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.lifestyle"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 28 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept lifestyle."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_mechanics:0b87405ae7cd23b1",
+      "proposition": "The Mechanics page documents a CK3 mechanics concept that is grounded in the durable gettingStarted topic group, with citation on oldid https://ck3.paradoxwikis.com/Mechanics?oldid=22574.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:mechanics"
+      ],
+      "semanticName": "mechanics_concept_mechanics",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:mechanics",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:mechanics",
+          "topic": "Mechanics",
+          "url": "https://ck3.paradoxwikis.com/Mechanics?oldid=22574",
+          "section": "Characters"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.mechanics"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 5 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept mechanics."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_modifiers:3f9d9739842e1327",
+      "proposition": "The Modifiers page documents a CK3 mechanics concept that is grounded in the durable characterSystems topic group, with citation on oldid https://ck3.paradoxwikis.com/Modifiers?oldid=34963.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:modifiers"
+      ],
+      "semanticName": "mechanics_concept_modifiers",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:modifiers",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:modifiers",
+          "topic": "Modifiers",
+          "url": "https://ck3.paradoxwikis.com/Modifiers?oldid=34963",
+          "section": "Permanent dynasty modifiers"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.modifiers"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 24 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept modifiers."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_power_sharing:32b39e9a06266f40",
+      "proposition": "The Power sharing page documents a CK3 mechanics concept that is grounded in the durable governance topic group, with citation on oldid https://ck3.paradoxwikis.com/Power_sharing?oldid=34386.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:power-sharing"
+      ],
+      "semanticName": "mechanics_concept_power_sharing",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:power-sharing",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:power-sharing",
+          "topic": "Power sharing",
+          "url": "https://ck3.paradoxwikis.com/Power_sharing?oldid=34386",
+          "section": "Mandates"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.power-sharing"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 9 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept power-sharing."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_prisoners:dca5e141e1fb05ee",
+      "proposition": "The Prisoners page documents a CK3 mechanics concept that is grounded in the durable governance topic group, with citation on oldid https://ck3.paradoxwikis.com/Prisoner?oldid=34964.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:prisoners"
+      ],
+      "semanticName": "mechanics_concept_prisoners",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:prisoners",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:prisoner",
+          "topic": "Prisoners",
+          "url": "https://ck3.paradoxwikis.com/Prisoner?oldid=34964",
+          "section": "Prisoner value"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.prisoners"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 13 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept prisoners."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_resources:0b4d463ed390ad99",
+      "proposition": "The Resources page documents a CK3 mechanics concept that is grounded in the durable characterSystems topic group, with citation on oldid https://ck3.paradoxwikis.com/Resources?oldid=34960.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:resources"
+      ],
+      "semanticName": "mechanics_concept_resources",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:resources",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:resources",
+          "topic": "Resources",
+          "url": "https://ck3.paradoxwikis.com/Resources?oldid=34960",
+          "section": "Gold"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.resources"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 12 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept resources."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_royal_court:90c16dd604bc722a",
+      "proposition": "The Royal court page documents a CK3 mechanics concept that is grounded in the durable governance topic group, with citation on oldid https://ck3.paradoxwikis.com/Royal_court?oldid=34370.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:royal-court"
+      ],
+      "semanticName": "mechanics_concept_royal_court",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:royal-court",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:royal-court",
+          "topic": "Royal court",
+          "url": "https://ck3.paradoxwikis.com/Royal_court?oldid=34370",
+          "section": "DLC mechanics"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.royal-court"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 10 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept royal-court."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_schemes:5cd81dc6b26dc437",
+      "proposition": "The Schemes page documents a CK3 mechanics concept that is grounded in the durable characterSystems topic group, with citation on oldid https://ck3.paradoxwikis.com/Schemes?oldid=34962.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:schemes"
+      ],
+      "semanticName": "mechanics_concept_schemes",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:schemes",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:schemes",
+          "topic": "Schemes",
+          "url": "https://ck3.paradoxwikis.com/Schemes?oldid=34962",
+          "section": "Scheme mechanics"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.schemes"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 16 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept schemes."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_situation:eb72530556da1b2a",
+      "proposition": "The Situation page documents a CK3 mechanics concept that is grounded in the durable realm topic group, with citation on oldid https://ck3.paradoxwikis.com/Situation?oldid=34991.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:situation"
+      ],
+      "semanticName": "mechanics_concept_situation",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:situation",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:situation",
+          "topic": "Situation",
+          "url": "https://ck3.paradoxwikis.com/Situation?oldid=34991",
+          "section": "Natural disasters"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.situation"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 9 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept situation."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_subjects:89578fb51232e1ec",
+      "proposition": "The Subjects page documents a CK3 mechanics concept that is grounded in the durable realm topic group, with citation on oldid https://ck3.paradoxwikis.com/Subjects?oldid=35050.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:subjects"
+      ],
+      "semanticName": "mechanics_concept_subjects",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:subjects",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:subjects",
+          "topic": "Subjects",
+          "url": "https://ck3.paradoxwikis.com/Subjects?oldid=35050",
+          "section": "Vassals"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.subjects"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 21 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept subjects."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_tenets:0aa84eee24a8b4ac",
+      "proposition": "The Tenets page documents a CK3 mechanics concept that is grounded in the durable cultureFaith topic group, with citation on oldid https://ck3.paradoxwikis.com/Tenet?oldid=35036.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:tenets"
+      ],
+      "semanticName": "mechanics_concept_tenets",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:tenets",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:tenet",
+          "topic": "Tenets",
+          "url": "https://ck3.paradoxwikis.com/Tenet?oldid=35036",
+          "section": "Common tenets"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.tenets"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 5 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept tenets."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_titles:97d13f3371b08e38",
+      "proposition": "The Titles page documents a CK3 mechanics concept that is grounded in the durable realm topic group, with citation on oldid https://ck3.paradoxwikis.com/Titles?oldid=35027.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:titles"
+      ],
+      "semanticName": "mechanics_concept_titles",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:titles",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:titles",
+          "topic": "Titles",
+          "url": "https://ck3.paradoxwikis.com/Titles?oldid=35027",
+          "section": "Title rank"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.titles"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 11 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept titles."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_traditions:0f48599bb861fc6c",
+      "proposition": "The Traditions page documents a CK3 mechanics concept that is grounded in the durable cultureFaith topic group, with citation on oldid https://ck3.paradoxwikis.com/Traditions?oldid=34856.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:traditions"
+      ],
+      "semanticName": "mechanics_concept_traditions",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:traditions",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:traditions",
+          "topic": "Traditions",
+          "url": "https://ck3.paradoxwikis.com/Traditions?oldid=34856",
+          "section": "Realm traditions"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.traditions"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 6 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept traditions."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_traits:ec09cb698ac92ece",
+      "proposition": "The Traits page documents a CK3 mechanics concept that is grounded in the durable characterSystems topic group, with citation on oldid https://ck3.paradoxwikis.com/Traits?oldid=34781.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:traits"
+      ],
+      "semanticName": "mechanics_concept_traits",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:traits",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:traits",
+          "topic": "Traits",
+          "url": "https://ck3.paradoxwikis.com/Traits?oldid=34781",
+          "section": "Personality traits"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.traits"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 25 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept traits."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_travel:772d1f7b0fe48d2c",
+      "proposition": "The Travel page documents a CK3 mechanics concept that is grounded in the durable realm topic group, with citation on oldid https://ck3.paradoxwikis.com/Travel?oldid=34414.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:travel"
+      ],
+      "semanticName": "mechanics_concept_travel",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:travel",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:travel",
+          "topic": "Travel",
+          "url": "https://ck3.paradoxwikis.com/Travel?oldid=34414",
+          "section": "Mechanics"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.travel"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 7 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept travel."
+      ]
+    },
+    {
+      "claimId": "claim:mechanics_concept_warfare:fbbbd126905b1e8b",
+      "proposition": "The Warfare page documents a CK3 mechanics concept that is grounded in the durable warfare topic group, with citation on oldid https://ck3.paradoxwikis.com/Warfare?oldid=35008.",
+      "status": "proposed",
+      "subjectGraphIds": [
+        "mechanics_concept:warfare"
+      ],
+      "semanticName": "mechanics_concept_warfare",
+      "semanticKind": "mechanics_concept",
+      "confidence": 0.85,
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "supportingEvidence": [
+        {
+          "kind": "graph_node",
+          "id": "mechanics_concept:warfare",
+          "graphKind": "mechanics_concept",
+          "pointer": null
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:warfare",
+          "topic": "Warfare",
+          "url": "https://ck3.paradoxwikis.com/Warfare?oldid=35008",
+          "section": "Battles"
+        }
+      ],
+      "contradictingEvidence": [],
+      "rules": [
+        "documentation.mechanics_concept.warfare"
+      ],
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "Source revision pinned; 21 anchored section titles available.",
+          "Mechanics annotation grounded in operator-curated concept table."
+        ]
+      },
+      "supersededBy": [],
+      "lastReviewed": null,
+      "notes": [
+        "Initial documentation-anchored proposed claim for mechanics_concept warfare."
+      ]
     },
     {
       "claimId": "claim:province_collection:8b906452294e8194",
@@ -450,6 +3190,23 @@
           "id": "source:ck3-paradoxwikis-com:main-page-links",
           "topic": "County",
           "url": "https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070"
+        },
+        {
+          "kind": "documentation_source",
+          "id": "source:ck3-paradoxwikis-com:county",
+          "topic": "County",
+          "url": "https://ck3.paradoxwikis.com/County?oldid=34989",
+          "sectionAnchors": [
+            "Popular opinion",
+            "Control",
+            "Development",
+            "Development growth",
+            "Sources of development growth:",
+            "Corruption",
+            "Fomented Revolts",
+            "Siberian permafrost",
+            "References"
+          ]
         }
       ],
       "contradictingEvidence": [],
@@ -462,10 +3219,28 @@
           "The structural path names provinces; CK3 Wiki overview includes County and Barony realm topics, while a dedicated Province page is not in the seed link list."
         ]
       },
+      "supersededBy": [],
+      "lastReviewed": null,
       "notes": []
     }
   ],
   "semanticEdges": [
+    {
+      "id": "semantic_edge:0d6cb9a5f7c58c3e",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_characters:85f35d6140475c39",
+      "from": "claim:mechanics_concept_characters:85f35d6140475c39",
+      "to": "mechanics_concept:characters",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:1deec6d30d1064fe",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_hired_forces:6b8b582ff0e8c4e6",
+      "from": "claim:mechanics_concept_hired_forces:6b8b582ff0e8c4e6",
+      "to": "mechanics_concept:hired-forces",
+      "status": "proposed"
+    },
     {
       "id": "semantic_edge:214a97fa7180e39a",
       "kind": "names_graph_item",
@@ -475,12 +3250,84 @@
       "status": "supported"
     },
     {
+      "id": "semantic_edge:26136e6df3f0a2f8",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_council:b9ba17fe16ed1dcf",
+      "from": "claim:mechanics_concept_council:b9ba17fe16ed1dcf",
+      "to": "mechanics_concept:council",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:27066de639d8707e",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_army:963cf31a8d0beac7",
+      "from": "claim:mechanics_concept_army:963cf31a8d0beac7",
+      "to": "mechanics_concept:army",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:2958ceecf3b70bed",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_culture:fa153f12c8d539f4",
+      "from": "claim:mechanics_concept_culture:fa153f12c8d539f4",
+      "to": "mechanics_concept:culture",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:2f3d8f25e012bae5",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_dynasty:56680ab1d26360c7",
+      "from": "claim:mechanics_concept_dynasty:56680ab1d26360c7",
+      "to": "mechanics_concept:dynasty",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:3416b8a439e1ba40",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_attributes:24464c5df7bd9c95",
+      "from": "claim:mechanics_concept_attributes:24464c5df7bd9c95",
+      "to": "mechanics_concept:attributes",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:38ef4b2334a009f8",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_console_commands:dd2f910be1bbaab4",
+      "from": "claim:mechanics_concept_console_commands:dd2f910be1bbaab4",
+      "to": "mechanics_concept:console-commands",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:3a5505623158ac39",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_activity:71e54cf2e84b86e7",
+      "from": "claim:mechanics_concept_activity:71e54cf2e84b86e7",
+      "to": "mechanics_concept:activity",
+      "status": "proposed"
+    },
+    {
       "id": "semantic_edge:4721f3c6307825a6",
       "kind": "names_graph_item",
       "claimId": "claim:faith_id_domain:1c477813e723574d",
       "from": "claim:faith_id_domain:1c477813e723574d",
       "to": "identity_domain:gc82ec019be47d615",
       "status": "supported"
+    },
+    {
+      "id": "semantic_edge:4a0f7206a7ef1256",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_artifacts:880ed160125a1b8d",
+      "from": "claim:mechanics_concept_artifacts:880ed160125a1b8d",
+      "to": "mechanics_concept:artifacts",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:4fb51ee2f6fd2ad1",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_adventurer:8bcdc02e15b2d53d",
+      "from": "claim:mechanics_concept_adventurer:8bcdc02e15b2d53d",
+      "to": "mechanics_concept:adventurer",
+      "status": "proposed"
     },
     {
       "id": "semantic_edge:519acd91280add59",
@@ -499,12 +3346,156 @@
       "status": "proposed"
     },
     {
+      "id": "semantic_edge:60e3178d2b0c9215",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_royal_court:90c16dd604bc722a",
+      "from": "claim:mechanics_concept_royal_court:90c16dd604bc722a",
+      "to": "mechanics_concept:royal-court",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:63a18ab3c11483ed",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_modifiers:3f9d9739842e1327",
+      "from": "claim:mechanics_concept_modifiers:3f9d9739842e1327",
+      "to": "mechanics_concept:modifiers",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:6824821d3f699d5f",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_prisoners:dca5e141e1fb05ee",
+      "from": "claim:mechanics_concept_prisoners:dca5e141e1fb05ee",
+      "to": "mechanics_concept:prisoners",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:68b47739c286d7ac",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_holy_sites:83e9d4c7dee4544b",
+      "from": "claim:mechanics_concept_holy_sites:83e9d4c7dee4544b",
+      "to": "mechanics_concept:holy-sites",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:6a68538b5d460fb3",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_decisions:e793834d699e5d45",
+      "from": "claim:mechanics_concept_decisions:e793834d699e5d45",
+      "to": "mechanics_concept:decisions",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:6aeec2f9fa456460",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_subjects:89578fb51232e1ec",
+      "from": "claim:mechanics_concept_subjects:89578fb51232e1ec",
+      "to": "mechanics_concept:subjects",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:70c00d9ba5b93259",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_travel:772d1f7b0fe48d2c",
+      "from": "claim:mechanics_concept_travel:772d1f7b0fe48d2c",
+      "to": "mechanics_concept:travel",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:71774e4a63ea7ec6",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_traditions:0f48599bb861fc6c",
+      "from": "claim:mechanics_concept_traditions:0f48599bb861fc6c",
+      "to": "mechanics_concept:traditions",
+      "status": "proposed"
+    },
+    {
       "id": "semantic_edge:781447ca006265ed",
       "kind": "names_graph_item",
       "claimId": "claim:culture_collection:97ed97b7cd238e8a",
       "from": "claim:culture_collection:97ed97b7cd238e8a",
       "to": "collection:gbd504da3e7ac6dd3",
       "status": "supported"
+    },
+    {
+      "id": "semantic_edge:7d137e66e5aafbbb",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_hooks:faf512c67b98c491",
+      "from": "claim:mechanics_concept_hooks:faf512c67b98c491",
+      "to": "mechanics_concept:hooks",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:7fb91df938f859c1",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_beginner_s_guide:d61e94b7254ab7c0",
+      "from": "claim:mechanics_concept_beginner_s_guide:d61e94b7254ab7c0",
+      "to": "mechanics_concept:beginner-s-guide",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:8a6721a027e08460",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_barony:721206830701a7f4",
+      "from": "claim:mechanics_concept_barony:721206830701a7f4",
+      "to": "mechanics_concept:barony",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:8eac1453e0366034",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_court:a53b8a3894951087",
+      "from": "claim:mechanics_concept_court:a53b8a3894951087",
+      "to": "mechanics_concept:court",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:907965563efc8cc6",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_innovation:7292eb6e8f496af0",
+      "from": "claim:mechanics_concept_innovation:7292eb6e8f496af0",
+      "to": "mechanics_concept:innovation",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:92b819b3ca7f7c07",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_building:138e6fda6edf4eb0",
+      "from": "claim:mechanics_concept_building:138e6fda6edf4eb0",
+      "to": "mechanics_concept:building",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:9c4b203ab61bc553",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_warfare:fbbbd126905b1e8b",
+      "from": "claim:mechanics_concept_warfare:fbbbd126905b1e8b",
+      "to": "mechanics_concept:warfare",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:9e1e4fddadf4ff36",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_government:8fd6ae5d9e3e4074",
+      "from": "claim:mechanics_concept_government:8fd6ae5d9e3e4074",
+      "to": "mechanics_concept:government",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:9fadbb868084bcc3",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_mechanics:0b87405ae7cd23b1",
+      "from": "claim:mechanics_concept_mechanics:0b87405ae7cd23b1",
+      "to": "mechanics_concept:mechanics",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:a7d6c020928e347c",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_titles:97d13f3371b08e38",
+      "from": "claim:mechanics_concept_titles:97d13f3371b08e38",
+      "to": "mechanics_concept:titles",
+      "status": "proposed"
     },
     {
       "id": "semantic_edge:a8f40134d165c309",
@@ -515,11 +3506,91 @@
       "status": "supported"
     },
     {
+      "id": "semantic_edge:aaedc129501e77ba",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_game_rules:f14063e30fa29b35",
+      "from": "claim:mechanics_concept_game_rules:f14063e30fa29b35",
+      "to": "mechanics_concept:game-rules",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:ac51e14d043d2de3",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_great_projects:1b04132b7cd032af",
+      "from": "claim:mechanics_concept_great_projects:1b04132b7cd032af",
+      "to": "mechanics_concept:great-projects",
+      "status": "proposed"
+    },
+    {
       "id": "semantic_edge:b1591a37d9550fef",
       "kind": "names_graph_item",
       "claimId": "claim:living_character_collection:383d7c10fee8dc76",
       "from": "claim:living_character_collection:383d7c10fee8dc76",
       "to": "collection:g30298488a18b66f7",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:b938030bca843c8a",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_county:f7c09669c79b9b97",
+      "from": "claim:mechanics_concept_county:f7c09669c79b9b97",
+      "to": "mechanics_concept:county",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:b9d6fc216dd93c4c",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_alliance:704b2a8cc7e720b8",
+      "from": "claim:mechanics_concept_alliance:704b2a8cc7e720b8",
+      "to": "mechanics_concept:alliance",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:baba98c7373c25d6",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_resources:0b4d463ed390ad99",
+      "from": "claim:mechanics_concept_resources:0b4d463ed390ad99",
+      "to": "mechanics_concept:resources",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:be7de6b84c4da0ec",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_laws:7d4d4ebea7d63f35",
+      "from": "claim:mechanics_concept_laws:7d4d4ebea7d63f35",
+      "to": "mechanics_concept:laws",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:c8f989612198f9b2",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_interesting_characters:a95ce791d247f768",
+      "from": "claim:mechanics_concept_interesting_characters:a95ce791d247f768",
+      "to": "mechanics_concept:interesting-characters",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:d645a447a5810ac9",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_doctrines:42575d979eb6e173",
+      "from": "claim:mechanics_concept_doctrines:42575d979eb6e173",
+      "to": "mechanics_concept:doctrines",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:d8103c1b8ba0056f",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_tenets:0aa84eee24a8b4ac",
+      "from": "claim:mechanics_concept_tenets:0aa84eee24a8b4ac",
+      "to": "mechanics_concept:tenets",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:db8b875ae6e89b5b",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_lifestyle:fd913aed0b630ef3",
+      "from": "claim:mechanics_concept_lifestyle:fd913aed0b630ef3",
+      "to": "mechanics_concept:lifestyle",
       "status": "proposed"
     },
     {
@@ -531,6 +3602,14 @@
       "status": "proposed"
     },
     {
+      "id": "semantic_edge:e35d499b23692a03",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_situation:eb72530556da1b2a",
+      "from": "claim:mechanics_concept_situation:eb72530556da1b2a",
+      "to": "mechanics_concept:situation",
+      "status": "proposed"
+    },
+    {
       "id": "semantic_edge:e59b9143b2070875",
       "kind": "names_graph_item",
       "claimId": "claim:province_collection:8b906452294e8194",
@@ -539,12 +3618,127 @@
       "status": "supported"
     },
     {
+      "id": "semantic_edge:e7efcac3b7204d4b",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_faith:a78d0424ce81e25a",
+      "from": "claim:mechanics_concept_faith:a78d0424ce81e25a",
+      "to": "mechanics_concept:faith",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:e7f3c8f8ad393469",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_traits:ec09cb698ac92ece",
+      "from": "claim:mechanics_concept_traits:ec09cb698ac92ece",
+      "to": "mechanics_concept:traits",
+      "status": "proposed"
+    },
+    {
       "id": "semantic_edge:e9f59af63f829f6e",
       "kind": "names_graph_item",
       "claimId": "claim:landed_title_collection:33e7cb703816c09a",
       "from": "claim:landed_title_collection:33e7cb703816c09a",
       "to": "collection:g741a913d0af45d7a",
       "status": "supported"
+    },
+    {
+      "id": "semantic_edge:eaa05a25e184db37",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_power_sharing:32b39e9a06266f40",
+      "from": "claim:mechanics_concept_power_sharing:32b39e9a06266f40",
+      "to": "mechanics_concept:power-sharing",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:edf3dc00e431bd05",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_schemes:5cd81dc6b26dc437",
+      "from": "claim:mechanics_concept_schemes:5cd81dc6b26dc437",
+      "to": "mechanics_concept:schemes",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:f2976cbd9d3e8b0e",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_domicile:c9095afe143ca930",
+      "from": "claim:mechanics_concept_domicile:c9095afe143ca930",
+      "to": "mechanics_concept:domicile",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:f9183a3f18c41dac",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_duel:853d48e4f899e4ff",
+      "from": "claim:mechanics_concept_duel:853d48e4f899e4ff",
+      "to": "mechanics_concept:duel",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:fd3afc1a1a093849",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_knight:03412cfd95a64b02",
+      "from": "claim:mechanics_concept_knight:03412cfd95a64b02",
+      "to": "mechanics_concept:knight",
+      "status": "proposed"
+    },
+    {
+      "id": "semantic_edge:fe5331da35de81e2",
+      "kind": "names_graph_item",
+      "claimId": "claim:mechanics_concept_casus_belli:b32da909534d6bbe",
+      "from": "claim:mechanics_concept_casus_belli:b32da909534d6bbe",
+      "to": "mechanics_concept:casus-belli",
+      "status": "proposed"
     }
-  ]
+  ],
+  "proposedAdded": [
+    "claim:mechanics_concept_activity:71e54cf2e84b86e7",
+    "claim:mechanics_concept_adventurer:8bcdc02e15b2d53d",
+    "claim:mechanics_concept_alliance:704b2a8cc7e720b8",
+    "claim:mechanics_concept_army:963cf31a8d0beac7",
+    "claim:mechanics_concept_artifacts:880ed160125a1b8d",
+    "claim:mechanics_concept_attributes:24464c5df7bd9c95",
+    "claim:mechanics_concept_barony:721206830701a7f4",
+    "claim:mechanics_concept_beginner_s_guide:d61e94b7254ab7c0",
+    "claim:mechanics_concept_building:138e6fda6edf4eb0",
+    "claim:mechanics_concept_casus_belli:b32da909534d6bbe",
+    "claim:mechanics_concept_characters:85f35d6140475c39",
+    "claim:mechanics_concept_console_commands:dd2f910be1bbaab4",
+    "claim:mechanics_concept_council:b9ba17fe16ed1dcf",
+    "claim:mechanics_concept_county:f7c09669c79b9b97",
+    "claim:mechanics_concept_court:a53b8a3894951087",
+    "claim:mechanics_concept_culture:fa153f12c8d539f4",
+    "claim:mechanics_concept_decisions:e793834d699e5d45",
+    "claim:mechanics_concept_doctrines:42575d979eb6e173",
+    "claim:mechanics_concept_domicile:c9095afe143ca930",
+    "claim:mechanics_concept_duel:853d48e4f899e4ff",
+    "claim:mechanics_concept_dynasty:56680ab1d26360c7",
+    "claim:mechanics_concept_faith:a78d0424ce81e25a",
+    "claim:mechanics_concept_game_rules:f14063e30fa29b35",
+    "claim:mechanics_concept_government:8fd6ae5d9e3e4074",
+    "claim:mechanics_concept_great_projects:1b04132b7cd032af",
+    "claim:mechanics_concept_hired_forces:6b8b582ff0e8c4e6",
+    "claim:mechanics_concept_holy_sites:83e9d4c7dee4544b",
+    "claim:mechanics_concept_hooks:faf512c67b98c491",
+    "claim:mechanics_concept_innovation:7292eb6e8f496af0",
+    "claim:mechanics_concept_interesting_characters:a95ce791d247f768",
+    "claim:mechanics_concept_knight:03412cfd95a64b02",
+    "claim:mechanics_concept_laws:7d4d4ebea7d63f35",
+    "claim:mechanics_concept_lifestyle:fd913aed0b630ef3",
+    "claim:mechanics_concept_mechanics:0b87405ae7cd23b1",
+    "claim:mechanics_concept_modifiers:3f9d9739842e1327",
+    "claim:mechanics_concept_power_sharing:32b39e9a06266f40",
+    "claim:mechanics_concept_prisoners:dca5e141e1fb05ee",
+    "claim:mechanics_concept_resources:0b4d463ed390ad99",
+    "claim:mechanics_concept_royal_court:90c16dd604bc722a",
+    "claim:mechanics_concept_schemes:5cd81dc6b26dc437",
+    "claim:mechanics_concept_situation:eb72530556da1b2a",
+    "claim:mechanics_concept_subjects:89578fb51232e1ec",
+    "claim:mechanics_concept_tenets:0aa84eee24a8b4ac",
+    "claim:mechanics_concept_titles:97d13f3371b08e38",
+    "claim:mechanics_concept_traditions:0f48599bb861fc6c",
+    "claim:mechanics_concept_traits:ec09cb698ac92ece",
+    "claim:mechanics_concept_travel:772d1f7b0fe48d2c",
+    "claim:mechanics_concept_warfare:fbbbd126905b1e8b"
+  ],
+  "proposedSkipped": []
 }

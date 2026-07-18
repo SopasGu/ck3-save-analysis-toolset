@@ -1,0 +1,777 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "sourceId": "source:ck3-paradoxwikis-com:army",
+    "kind": "mediawiki_page",
+    "site": {
+      "key": "ck3.paradoxwikis.com",
+      "sitename": "CK3 Wiki",
+      "generator": "MediaWiki 1.39.4",
+      "apiUrl": "https://ck3.paradoxwikis.com/api.php",
+      "server": "https://ck3.paradoxwikis.com",
+      "articlePath": "/$1",
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      }
+    },
+    "page": {
+      "title": "Army",
+      "pageId": 1135,
+      "canonicalUrl": "https://ck3.paradoxwikis.com/Army",
+      "revisionId": 35041,
+      "parentRevisionId": 34993,
+      "touched": "2026-07-14T11:07:53Z",
+      "revisionTimestamp": "2026-07-14T11:07:53Z",
+      "revisionSha1": "ad1684c3be9770e25cfe81dcd80bb64683220232",
+      "oldidUrl": "https://ck3.paradoxwikis.com/Army?oldid=35041",
+      "length": 86621
+    },
+    "links": [
+      {
+        "title": "Achievement",
+        "url": "https://ck3.paradoxwikis.com/Achievement"
+      },
+      {
+        "title": "Activity",
+        "url": "https://ck3.paradoxwikis.com/Activity"
+      },
+      {
+        "title": "Administrative",
+        "url": "https://ck3.paradoxwikis.com/Administrative"
+      },
+      {
+        "title": "Advanced Bowmaking",
+        "url": "https://ck3.paradoxwikis.com/Advanced_Bowmaking"
+      },
+      {
+        "title": "Adventurer",
+        "url": "https://ck3.paradoxwikis.com/Adventurer"
+      },
+      {
+        "title": "All Under Heaven",
+        "url": "https://ck3.paradoxwikis.com/All_Under_Heaven"
+      },
+      {
+        "title": "Alliance",
+        "url": "https://ck3.paradoxwikis.com/Alliance"
+      },
+      {
+        "title": "Arched Saddle",
+        "url": "https://ck3.paradoxwikis.com/Arched_Saddle"
+      },
+      {
+        "title": "Artifacts",
+        "url": "https://ck3.paradoxwikis.com/Artifacts"
+      },
+      {
+        "title": "Attributes",
+        "url": "https://ck3.paradoxwikis.com/Attributes"
+      },
+      {
+        "title": "Barony",
+        "url": "https://ck3.paradoxwikis.com/Barony"
+      },
+      {
+        "title": "Bombards (innovation)",
+        "url": "https://ck3.paradoxwikis.com/Bombards_(innovation)"
+      },
+      {
+        "title": "Bookmarks",
+        "url": "https://ck3.paradoxwikis.com/Bookmarks"
+      },
+      {
+        "title": "Buildings",
+        "url": "https://ck3.paradoxwikis.com/Buildings"
+      },
+      {
+        "title": "Caballeros",
+        "url": "https://ck3.paradoxwikis.com/Caballeros"
+      },
+      {
+        "title": "Casus belli",
+        "url": "https://ck3.paradoxwikis.com/Casus_belli"
+      },
+      {
+        "title": "Character",
+        "url": "https://ck3.paradoxwikis.com/Character"
+      },
+      {
+        "title": "Characters",
+        "url": "https://ck3.paradoxwikis.com/Characters"
+      },
+      {
+        "title": "Council",
+        "url": "https://ck3.paradoxwikis.com/Council"
+      },
+      {
+        "title": "County",
+        "url": "https://ck3.paradoxwikis.com/County"
+      },
+      {
+        "title": "Court",
+        "url": "https://ck3.paradoxwikis.com/Court"
+      },
+      {
+        "title": "Courtiers",
+        "url": "https://ck3.paradoxwikis.com/Courtiers"
+      },
+      {
+        "title": "Culture",
+        "url": "https://ck3.paradoxwikis.com/Culture"
+      },
+      {
+        "title": "Decisions",
+        "url": "https://ck3.paradoxwikis.com/Decisions"
+      },
+      {
+        "title": "Desert",
+        "url": "https://ck3.paradoxwikis.com/Desert"
+      },
+      {
+        "title": "Desert Mountains",
+        "url": "https://ck3.paradoxwikis.com/Desert_Mountains"
+      },
+      {
+        "title": "Desert Tactics",
+        "url": "https://ck3.paradoxwikis.com/Desert_Tactics"
+      },
+      {
+        "title": "Developer diaries",
+        "url": "https://ck3.paradoxwikis.com/Developer_diaries"
+      },
+      {
+        "title": "Doctrines",
+        "url": "https://ck3.paradoxwikis.com/Doctrines"
+      },
+      {
+        "title": "Domicile",
+        "url": "https://ck3.paradoxwikis.com/Domicile"
+      },
+      {
+        "title": "Downloadable content",
+        "url": "https://ck3.paradoxwikis.com/Downloadable_content"
+      },
+      {
+        "title": "Drylands",
+        "url": "https://ck3.paradoxwikis.com/Drylands"
+      },
+      {
+        "title": "Duel",
+        "url": "https://ck3.paradoxwikis.com/Duel"
+      },
+      {
+        "title": "Dynasty",
+        "url": "https://ck3.paradoxwikis.com/Dynasty"
+      },
+      {
+        "title": "Elephantry",
+        "url": "https://ck3.paradoxwikis.com/Elephantry"
+      },
+      {
+        "title": "Faith",
+        "url": "https://ck3.paradoxwikis.com/Faith"
+      },
+      {
+        "title": "Family (relation)",
+        "url": "https://ck3.paradoxwikis.com/Family_(relation)"
+      },
+      {
+        "title": "Farmlands",
+        "url": "https://ck3.paradoxwikis.com/Farmlands"
+      },
+      {
+        "title": "Floodplains",
+        "url": "https://ck3.paradoxwikis.com/Floodplains"
+      },
+      {
+        "title": "Forest",
+        "url": "https://ck3.paradoxwikis.com/Forest"
+      },
+      {
+        "title": "Form of address",
+        "url": "https://ck3.paradoxwikis.com/Form_of_address"
+      },
+      {
+        "title": "Game rules",
+        "url": "https://ck3.paradoxwikis.com/Game_rules"
+      },
+      {
+        "title": "Government",
+        "url": "https://ck3.paradoxwikis.com/Government"
+      },
+      {
+        "title": "Great projects",
+        "url": "https://ck3.paradoxwikis.com/Great_projects"
+      },
+      {
+        "title": "Harsh Winter",
+        "url": "https://ck3.paradoxwikis.com/Harsh_Winter"
+      },
+      {
+        "title": "Hills",
+        "url": "https://ck3.paradoxwikis.com/Hills"
+      },
+      {
+        "title": "Hired forces",
+        "url": "https://ck3.paradoxwikis.com/Hired_forces"
+      },
+      {
+        "title": "Hobbies",
+        "url": "https://ck3.paradoxwikis.com/Hobbies"
+      },
+      {
+        "title": "Holy sites",
+        "url": "https://ck3.paradoxwikis.com/Holy_sites"
+      },
+      {
+        "title": "Hooks",
+        "url": "https://ck3.paradoxwikis.com/Hooks"
+      },
+      {
+        "title": "Innovation",
+        "url": "https://ck3.paradoxwikis.com/Innovation"
+      },
+      {
+        "title": "Interactions",
+        "url": "https://ck3.paradoxwikis.com/Interactions"
+      },
+      {
+        "title": "Interesting characters",
+        "url": "https://ck3.paradoxwikis.com/Interesting_characters"
+      },
+      {
+        "title": "Jargon",
+        "url": "https://ck3.paradoxwikis.com/Jargon"
+      },
+      {
+        "title": "Jungle",
+        "url": "https://ck3.paradoxwikis.com/Jungle"
+      },
+      {
+        "title": "Khans of the Steppe",
+        "url": "https://ck3.paradoxwikis.com/Khans_of_the_Steppe"
+      },
+      {
+        "title": "Knight",
+        "url": "https://ck3.paradoxwikis.com/Knight"
+      },
+      {
+        "title": "Laws",
+        "url": "https://ck3.paradoxwikis.com/Laws"
+      },
+      {
+        "title": "Legacy of Persia",
+        "url": "https://ck3.paradoxwikis.com/Legacy_of_Persia"
+      },
+      {
+        "title": "Legionnaires",
+        "url": "https://ck3.paradoxwikis.com/Legionnaires"
+      },
+      {
+        "title": "Lifestyle",
+        "url": "https://ck3.paradoxwikis.com/Lifestyle"
+      },
+      {
+        "title": "Mangonels (innovation)",
+        "url": "https://ck3.paradoxwikis.com/Mangonels_(innovation)"
+      },
+      {
+        "title": "Mechanics",
+        "url": "https://ck3.paradoxwikis.com/Mechanics"
+      },
+      {
+        "title": "Modding",
+        "url": "https://ck3.paradoxwikis.com/Modding"
+      },
+      {
+        "title": "Modifiers",
+        "url": "https://ck3.paradoxwikis.com/Modifiers"
+      },
+      {
+        "title": "Mountains",
+        "url": "https://ck3.paradoxwikis.com/Mountains"
+      },
+      {
+        "title": "Normal Winter",
+        "url": "https://ck3.paradoxwikis.com/Normal_Winter"
+      },
+      {
+        "title": "Northern Lords",
+        "url": "https://ck3.paradoxwikis.com/Northern_Lords"
+      },
+      {
+        "title": "Oasis",
+        "url": "https://ck3.paradoxwikis.com/Oasis"
+      },
+      {
+        "title": "Onager",
+        "url": "https://ck3.paradoxwikis.com/Onager"
+      },
+      {
+        "title": "Patches",
+        "url": "https://ck3.paradoxwikis.com/Patches"
+      },
+      {
+        "title": "Plains",
+        "url": "https://ck3.paradoxwikis.com/Plains"
+      },
+      {
+        "title": "Power sharing",
+        "url": "https://ck3.paradoxwikis.com/Power_sharing"
+      },
+      {
+        "title": "Prisoner",
+        "url": "https://ck3.paradoxwikis.com/Prisoner"
+      },
+      {
+        "title": "Quilted Armor",
+        "url": "https://ck3.paradoxwikis.com/Quilted_Armor"
+      },
+      {
+        "title": "Resources",
+        "url": "https://ck3.paradoxwikis.com/Resources"
+      },
+      {
+        "title": "Roads to Power",
+        "url": "https://ck3.paradoxwikis.com/Roads_to_Power"
+      },
+      {
+        "title": "Royal court",
+        "url": "https://ck3.paradoxwikis.com/Royal_court"
+      },
+      {
+        "title": "Ruler Designer",
+        "url": "https://ck3.paradoxwikis.com/Ruler_Designer"
+      },
+      {
+        "title": "Sahel Horsemen",
+        "url": "https://ck3.paradoxwikis.com/Sahel_Horsemen"
+      },
+      {
+        "title": "Schemes",
+        "url": "https://ck3.paradoxwikis.com/Schemes"
+      },
+      {
+        "title": "Situation",
+        "url": "https://ck3.paradoxwikis.com/Situation"
+      },
+      {
+        "title": "Steppe",
+        "url": "https://ck3.paradoxwikis.com/Steppe"
+      },
+      {
+        "title": "Subjects",
+        "url": "https://ck3.paradoxwikis.com/Subjects"
+      },
+      {
+        "title": "Succession",
+        "url": "https://ck3.paradoxwikis.com/Succession"
+      },
+      {
+        "title": "Taiga",
+        "url": "https://ck3.paradoxwikis.com/Taiga"
+      },
+      {
+        "title": "Tenets",
+        "url": "https://ck3.paradoxwikis.com/Tenets"
+      },
+      {
+        "title": "Terraced Hills",
+        "url": "https://ck3.paradoxwikis.com/Terraced_Hills"
+      },
+      {
+        "title": "Terrain",
+        "url": "https://ck3.paradoxwikis.com/Terrain"
+      },
+      {
+        "title": "Titles",
+        "url": "https://ck3.paradoxwikis.com/Titles"
+      },
+      {
+        "title": "Tours and Tournaments",
+        "url": "https://ck3.paradoxwikis.com/Tours_and_Tournaments"
+      },
+      {
+        "title": "Traditions",
+        "url": "https://ck3.paradoxwikis.com/Traditions"
+      },
+      {
+        "title": "Traits",
+        "url": "https://ck3.paradoxwikis.com/Traits"
+      },
+      {
+        "title": "Travel",
+        "url": "https://ck3.paradoxwikis.com/Travel"
+      },
+      {
+        "title": "Trebuchet",
+        "url": "https://ck3.paradoxwikis.com/Trebuchet"
+      },
+      {
+        "title": "Vassals",
+        "url": "https://ck3.paradoxwikis.com/Vassals"
+      },
+      {
+        "title": "War Camels",
+        "url": "https://ck3.paradoxwikis.com/War_Camels"
+      },
+      {
+        "title": "Warfare",
+        "url": "https://ck3.paradoxwikis.com/Warfare"
+      },
+      {
+        "title": "Wetlands",
+        "url": "https://ck3.paradoxwikis.com/Wetlands"
+      },
+      {
+        "title": "Zweihanders",
+        "url": "https://ck3.paradoxwikis.com/Zweihanders"
+      }
+    ],
+    "sectionAnchors": [
+      {
+        "index": "1",
+        "toplevel": 1,
+        "anchor": "Stats",
+        "line": "Stats"
+      },
+      {
+        "index": "2",
+        "toplevel": 2,
+        "anchor": "Damage_dealing",
+        "line": "Damage dealing"
+      },
+      {
+        "index": "3",
+        "toplevel": 1,
+        "anchor": "Rallying_and_Disbanding_Armies",
+        "line": "Rallying and Disbanding Armies"
+      },
+      {
+        "index": "4",
+        "toplevel": 1,
+        "anchor": "Reinforcing_Armies",
+        "line": "Reinforcing Armies"
+      },
+      {
+        "index": "5",
+        "toplevel": 1,
+        "anchor": "Quality",
+        "line": "Quality"
+      },
+      {
+        "index": "6",
+        "toplevel": 1,
+        "anchor": "Commander",
+        "line": "Commander"
+      },
+      {
+        "index": "7",
+        "toplevel": 1,
+        "anchor": "Knights",
+        "line": "Knights"
+      },
+      {
+        "index": "8",
+        "toplevel": 1,
+        "anchor": "Basic_soldiers",
+        "line": "Basic soldiers"
+      },
+      {
+        "index": "9",
+        "toplevel": 1,
+        "anchor": "Men-at-Arms",
+        "line": "Men-at-Arms"
+      },
+      {
+        "index": "10",
+        "toplevel": 2,
+        "anchor": "Regular",
+        "line": "Regular"
+      },
+      {
+        "index": "11",
+        "toplevel": 2,
+        "anchor": "Traditional",
+        "line": "Traditional"
+      },
+      {
+        "index": "12",
+        "toplevel": 2,
+        "anchor": "Regional",
+        "line": "Regional"
+      },
+      {
+        "index": "13",
+        "toplevel": 2,
+        "anchor": "Cultural",
+        "line": "Cultural"
+      },
+      {
+        "index": "14",
+        "toplevel": 2,
+        "anchor": "Dynastic",
+        "line": "Dynastic"
+      },
+      {
+        "index": "15",
+        "toplevel": 2,
+        "anchor": "Siege_weapons",
+        "line": "Siege weapons"
+      },
+      {
+        "index": "16",
+        "toplevel": 2,
+        "anchor": "Retinue",
+        "line": "Retinue"
+      },
+      {
+        "index": "17",
+        "toplevel": 2,
+        "anchor": "Outcasts",
+        "line": "Outcasts"
+      },
+      {
+        "index": "18",
+        "toplevel": 2,
+        "anchor": "Nomadic",
+        "line": "Nomadic"
+      },
+      {
+        "index": "19",
+        "toplevel": 1,
+        "anchor": "Supply",
+        "line": "Supply"
+      },
+      {
+        "index": "20",
+        "toplevel": 2,
+        "anchor": "Supply_limit",
+        "line": "Supply limit"
+      },
+      {
+        "index": "21",
+        "toplevel": 1,
+        "anchor": "Attrition",
+        "line": "Attrition"
+      },
+      {
+        "index": "22",
+        "toplevel": 1,
+        "anchor": "Special_soldiers",
+        "line": "Special soldiers"
+      },
+      {
+        "index": "23",
+        "toplevel": 1,
+        "anchor": "References",
+        "line": "References"
+      }
+    ],
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    }
+  },
+  "registryEntry": {
+    "sourceId": "source:ck3-paradoxwikis-com:army",
+    "kind": "documentation_mediawiki_page",
+    "label": "CK3 Wiki: Army",
+    "acquiredAt": "2026-07-18T05:33:08.498Z",
+    "publisher": "CK3 Wiki",
+    "documentType": "mediawiki_page",
+    "topic": "Army",
+    "canonicalUrl": "https://ck3.paradoxwikis.com/Army",
+    "oldidUrl": "https://ck3.paradoxwikis.com/Army?oldid=35041",
+    "revision": {
+      "pageId": 1135,
+      "revisionId": 35041,
+      "parentRevisionId": 34993,
+      "timestamp": "2026-07-14T11:07:53Z",
+      "sha1": "ad1684c3be9770e25cfe81dcd80bb64683220232"
+    },
+    "content": {
+      "hashAlgorithm": "sha256",
+      "structuralSummarySha256": "15c9f79207097bc5521cc58dae22f9f6b948054ca732024f7b076a08f87b80c4",
+      "copiedContent": "metadata_and_section_anchors_only"
+    },
+    "scope": {
+      "gameVersions": [
+        "1.19.0.6"
+      ],
+      "dlc": [
+        "ALL_ACTIVE_ASSUMPTION"
+      ],
+      "mods": [],
+      "allDlcActive": true
+    },
+    "licensing": {
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      },
+      "redistribution": "Do not copy whole wiki pages into this repository; store citations, page metadata, and short section anchor titles only."
+    },
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    },
+    "extracted": {
+      "sectionAnchorCount": 23,
+      "sectionAnchors": [
+        {
+          "index": "1",
+          "toplevel": 1,
+          "anchor": "Stats",
+          "line": "Stats"
+        },
+        {
+          "index": "2",
+          "toplevel": 2,
+          "anchor": "Damage_dealing",
+          "line": "Damage dealing"
+        },
+        {
+          "index": "3",
+          "toplevel": 1,
+          "anchor": "Rallying_and_Disbanding_Armies",
+          "line": "Rallying and Disbanding Armies"
+        },
+        {
+          "index": "4",
+          "toplevel": 1,
+          "anchor": "Reinforcing_Armies",
+          "line": "Reinforcing Armies"
+        },
+        {
+          "index": "5",
+          "toplevel": 1,
+          "anchor": "Quality",
+          "line": "Quality"
+        },
+        {
+          "index": "6",
+          "toplevel": 1,
+          "anchor": "Commander",
+          "line": "Commander"
+        },
+        {
+          "index": "7",
+          "toplevel": 1,
+          "anchor": "Knights",
+          "line": "Knights"
+        },
+        {
+          "index": "8",
+          "toplevel": 1,
+          "anchor": "Basic_soldiers",
+          "line": "Basic soldiers"
+        },
+        {
+          "index": "9",
+          "toplevel": 1,
+          "anchor": "Men-at-Arms",
+          "line": "Men-at-Arms"
+        },
+        {
+          "index": "10",
+          "toplevel": 2,
+          "anchor": "Regular",
+          "line": "Regular"
+        },
+        {
+          "index": "11",
+          "toplevel": 2,
+          "anchor": "Traditional",
+          "line": "Traditional"
+        },
+        {
+          "index": "12",
+          "toplevel": 2,
+          "anchor": "Regional",
+          "line": "Regional"
+        },
+        {
+          "index": "13",
+          "toplevel": 2,
+          "anchor": "Cultural",
+          "line": "Cultural"
+        },
+        {
+          "index": "14",
+          "toplevel": 2,
+          "anchor": "Dynastic",
+          "line": "Dynastic"
+        },
+        {
+          "index": "15",
+          "toplevel": 2,
+          "anchor": "Siege_weapons",
+          "line": "Siege weapons"
+        },
+        {
+          "index": "16",
+          "toplevel": 2,
+          "anchor": "Retinue",
+          "line": "Retinue"
+        },
+        {
+          "index": "17",
+          "toplevel": 2,
+          "anchor": "Outcasts",
+          "line": "Outcasts"
+        },
+        {
+          "index": "18",
+          "toplevel": 2,
+          "anchor": "Nomadic",
+          "line": "Nomadic"
+        },
+        {
+          "index": "19",
+          "toplevel": 1,
+          "anchor": "Supply",
+          "line": "Supply"
+        },
+        {
+          "index": "20",
+          "toplevel": 2,
+          "anchor": "Supply_limit",
+          "line": "Supply limit"
+        },
+        {
+          "index": "21",
+          "toplevel": 1,
+          "anchor": "Attrition",
+          "line": "Attrition"
+        },
+        {
+          "index": "22",
+          "toplevel": 1,
+          "anchor": "Special_soldiers",
+          "line": "Special soldiers"
+        },
+        {
+          "index": "23",
+          "toplevel": 1,
+          "anchor": "References",
+          "line": "References"
+        }
+      ],
+      "pageLength": 86621
+    },
+    "visibility": {
+      "classification": "external",
+      "rawArtifactCommitted": false,
+      "rationale": "External CK3 wiki documentation source for the 'Army' mechanics topic. Durable knowledge should cite this page/revision; only metadata + section anchor titles are stored."
+    },
+    "notes": []
+  }
+}

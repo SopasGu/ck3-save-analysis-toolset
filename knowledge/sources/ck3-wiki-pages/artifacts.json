@@ -1,0 +1,721 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "sourceId": "source:ck3-paradoxwikis-com:artifacts",
+    "kind": "mediawiki_page",
+    "site": {
+      "key": "ck3.paradoxwikis.com",
+      "sitename": "CK3 Wiki",
+      "generator": "MediaWiki 1.39.4",
+      "apiUrl": "https://ck3.paradoxwikis.com/api.php",
+      "server": "https://ck3.paradoxwikis.com",
+      "articlePath": "/$1",
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      }
+    },
+    "page": {
+      "title": "Artifacts",
+      "pageId": 2874,
+      "canonicalUrl": "https://ck3.paradoxwikis.com/Artifacts",
+      "revisionId": 35011,
+      "parentRevisionId": 34621,
+      "touched": "2026-07-12T06:27:16Z",
+      "revisionTimestamp": "2026-07-12T06:27:16Z",
+      "revisionSha1": "acad1b91ba88021ddd86cdec7d241f2ad0d8ea8e",
+      "oldidUrl": "https://ck3.paradoxwikis.com/Artifacts?oldid=35011",
+      "length": 118509
+    },
+    "links": [
+      {
+        "title": "Achievement",
+        "url": "https://ck3.paradoxwikis.com/Achievement"
+      },
+      {
+        "title": "Activity",
+        "url": "https://ck3.paradoxwikis.com/Activity"
+      },
+      {
+        "title": "Adventurer",
+        "url": "https://ck3.paradoxwikis.com/Adventurer"
+      },
+      {
+        "title": "All Under Heaven",
+        "url": "https://ck3.paradoxwikis.com/All_Under_Heaven"
+      },
+      {
+        "title": "Alliance",
+        "url": "https://ck3.paradoxwikis.com/Alliance"
+      },
+      {
+        "title": "Army",
+        "url": "https://ck3.paradoxwikis.com/Army"
+      },
+      {
+        "title": "Attributes",
+        "url": "https://ck3.paradoxwikis.com/Attributes"
+      },
+      {
+        "title": "Barony",
+        "url": "https://ck3.paradoxwikis.com/Barony"
+      },
+      {
+        "title": "Bookmarks",
+        "url": "https://ck3.paradoxwikis.com/Bookmarks"
+      },
+      {
+        "title": "Buildings",
+        "url": "https://ck3.paradoxwikis.com/Buildings"
+      },
+      {
+        "title": "Casus belli",
+        "url": "https://ck3.paradoxwikis.com/Casus_belli"
+      },
+      {
+        "title": "Character",
+        "url": "https://ck3.paradoxwikis.com/Character"
+      },
+      {
+        "title": "Coronations",
+        "url": "https://ck3.paradoxwikis.com/Coronations"
+      },
+      {
+        "title": "Council",
+        "url": "https://ck3.paradoxwikis.com/Council"
+      },
+      {
+        "title": "County",
+        "url": "https://ck3.paradoxwikis.com/County"
+      },
+      {
+        "title": "Court",
+        "url": "https://ck3.paradoxwikis.com/Court"
+      },
+      {
+        "title": "Culture",
+        "url": "https://ck3.paradoxwikis.com/Culture"
+      },
+      {
+        "title": "Decisions",
+        "url": "https://ck3.paradoxwikis.com/Decisions"
+      },
+      {
+        "title": "Developer diaries",
+        "url": "https://ck3.paradoxwikis.com/Developer_diaries"
+      },
+      {
+        "title": "Doctrines",
+        "url": "https://ck3.paradoxwikis.com/Doctrines"
+      },
+      {
+        "title": "Domicile",
+        "url": "https://ck3.paradoxwikis.com/Domicile"
+      },
+      {
+        "title": "Downloadable content",
+        "url": "https://ck3.paradoxwikis.com/Downloadable_content"
+      },
+      {
+        "title": "Duel",
+        "url": "https://ck3.paradoxwikis.com/Duel"
+      },
+      {
+        "title": "Dynasty",
+        "url": "https://ck3.paradoxwikis.com/Dynasty"
+      },
+      {
+        "title": "Faith",
+        "url": "https://ck3.paradoxwikis.com/Faith"
+      },
+      {
+        "title": "Family (relation)",
+        "url": "https://ck3.paradoxwikis.com/Family_(relation)"
+      },
+      {
+        "title": "Fate of Iberia",
+        "url": "https://ck3.paradoxwikis.com/Fate_of_Iberia"
+      },
+      {
+        "title": "Form of address",
+        "url": "https://ck3.paradoxwikis.com/Form_of_address"
+      },
+      {
+        "title": "Friends and Foes",
+        "url": "https://ck3.paradoxwikis.com/Friends_and_Foes"
+      },
+      {
+        "title": "Game rules",
+        "url": "https://ck3.paradoxwikis.com/Game_rules"
+      },
+      {
+        "title": "Government",
+        "url": "https://ck3.paradoxwikis.com/Government"
+      },
+      {
+        "title": "Grand Tournament",
+        "url": "https://ck3.paradoxwikis.com/Grand_Tournament"
+      },
+      {
+        "title": "Great projects",
+        "url": "https://ck3.paradoxwikis.com/Great_projects"
+      },
+      {
+        "title": "Hired forces",
+        "url": "https://ck3.paradoxwikis.com/Hired_forces"
+      },
+      {
+        "title": "Holy sites",
+        "url": "https://ck3.paradoxwikis.com/Holy_sites"
+      },
+      {
+        "title": "Hooks",
+        "url": "https://ck3.paradoxwikis.com/Hooks"
+      },
+      {
+        "title": "Innovation",
+        "url": "https://ck3.paradoxwikis.com/Innovation"
+      },
+      {
+        "title": "Interactions",
+        "url": "https://ck3.paradoxwikis.com/Interactions"
+      },
+      {
+        "title": "Interesting characters",
+        "url": "https://ck3.paradoxwikis.com/Interesting_characters"
+      },
+      {
+        "title": "Jargon",
+        "url": "https://ck3.paradoxwikis.com/Jargon"
+      },
+      {
+        "title": "Khans of the Steppe",
+        "url": "https://ck3.paradoxwikis.com/Khans_of_the_Steppe"
+      },
+      {
+        "title": "Knight",
+        "url": "https://ck3.paradoxwikis.com/Knight"
+      },
+      {
+        "title": "Laws",
+        "url": "https://ck3.paradoxwikis.com/Laws"
+      },
+      {
+        "title": "Legacy of Persia",
+        "url": "https://ck3.paradoxwikis.com/Legacy_of_Persia"
+      },
+      {
+        "title": "Legends of the Dead",
+        "url": "https://ck3.paradoxwikis.com/Legends_of_the_Dead"
+      },
+      {
+        "title": "Lifestyle",
+        "url": "https://ck3.paradoxwikis.com/Lifestyle"
+      },
+      {
+        "title": "Mechanics",
+        "url": "https://ck3.paradoxwikis.com/Mechanics"
+      },
+      {
+        "title": "Modding",
+        "url": "https://ck3.paradoxwikis.com/Modding"
+      },
+      {
+        "title": "Modifiers",
+        "url": "https://ck3.paradoxwikis.com/Modifiers"
+      },
+      {
+        "title": "Patches",
+        "url": "https://ck3.paradoxwikis.com/Patches"
+      },
+      {
+        "title": "Power sharing",
+        "url": "https://ck3.paradoxwikis.com/Power_sharing"
+      },
+      {
+        "title": "Prisoner",
+        "url": "https://ck3.paradoxwikis.com/Prisoner"
+      },
+      {
+        "title": "Resources",
+        "url": "https://ck3.paradoxwikis.com/Resources"
+      },
+      {
+        "title": "Roads to Power",
+        "url": "https://ck3.paradoxwikis.com/Roads_to_Power"
+      },
+      {
+        "title": "Royal court",
+        "url": "https://ck3.paradoxwikis.com/Royal_court"
+      },
+      {
+        "title": "Royal Court",
+        "url": "https://ck3.paradoxwikis.com/Royal_Court"
+      },
+      {
+        "title": "Royal Court (DLC)",
+        "url": "https://ck3.paradoxwikis.com/Royal_Court_(DLC)"
+      },
+      {
+        "title": "Ruler Designer",
+        "url": "https://ck3.paradoxwikis.com/Ruler_Designer"
+      },
+      {
+        "title": "Schemes",
+        "url": "https://ck3.paradoxwikis.com/Schemes"
+      },
+      {
+        "title": "Situation",
+        "url": "https://ck3.paradoxwikis.com/Situation"
+      },
+      {
+        "title": "Steppe",
+        "url": "https://ck3.paradoxwikis.com/Steppe"
+      },
+      {
+        "title": "Subjects",
+        "url": "https://ck3.paradoxwikis.com/Subjects"
+      },
+      {
+        "title": "Succession",
+        "url": "https://ck3.paradoxwikis.com/Succession"
+      },
+      {
+        "title": "Tenets",
+        "url": "https://ck3.paradoxwikis.com/Tenets"
+      },
+      {
+        "title": "Titles",
+        "url": "https://ck3.paradoxwikis.com/Titles"
+      },
+      {
+        "title": "Tours and Tournaments",
+        "url": "https://ck3.paradoxwikis.com/Tours_and_Tournaments"
+      },
+      {
+        "title": "Traditions",
+        "url": "https://ck3.paradoxwikis.com/Traditions"
+      },
+      {
+        "title": "Traits",
+        "url": "https://ck3.paradoxwikis.com/Traits"
+      },
+      {
+        "title": "Travel",
+        "url": "https://ck3.paradoxwikis.com/Travel"
+      },
+      {
+        "title": "Wandering Nobles",
+        "url": "https://ck3.paradoxwikis.com/Wandering_Nobles"
+      },
+      {
+        "title": "Warfare",
+        "url": "https://ck3.paradoxwikis.com/Warfare"
+      }
+    ],
+    "sectionAnchors": [
+      {
+        "index": "1",
+        "toplevel": 1,
+        "anchor": "Rarity",
+        "line": "Rarity"
+      },
+      {
+        "index": "2",
+        "toplevel": 1,
+        "anchor": "Creating_artifacts",
+        "line": "Creating artifacts"
+      },
+      {
+        "index": "3",
+        "toplevel": 2,
+        "anchor": "Hunt_trophies",
+        "line": "Hunt trophies"
+      },
+      {
+        "index": "4",
+        "toplevel": 2,
+        "anchor": "Inspirations",
+        "line": "Inspirations"
+      },
+      {
+        "index": "5",
+        "toplevel": 2,
+        "anchor": "Travels_journal",
+        "line": "Travels journal"
+      },
+      {
+        "index": "6",
+        "toplevel": 2,
+        "anchor": "Icons",
+        "line": "Icons"
+      },
+      {
+        "index": "7",
+        "toplevel": 1,
+        "anchor": "Historical_artifacts",
+        "line": "Historical artifacts"
+      },
+      {
+        "index": "8",
+        "toplevel": 2,
+        "anchor": "Byzantine_artifacts",
+        "line": "Byzantine artifacts"
+      },
+      {
+        "index": "9",
+        "toplevel": 2,
+        "anchor": "Holy_Roman_artifacts",
+        "line": "Holy Roman artifacts"
+      },
+      {
+        "index": "10",
+        "toplevel": 2,
+        "anchor": "Shia_artifacts",
+        "line": "Shia artifacts"
+      },
+      {
+        "index": "11",
+        "toplevel": 2,
+        "anchor": "Pagan_Kingdom_artifacts",
+        "line": "Pagan Kingdom artifacts"
+      },
+      {
+        "index": "12",
+        "toplevel": 2,
+        "anchor": "Hegemony_of_China_artifacts",
+        "line": "Hegemony of China artifacts"
+      },
+      {
+        "index": "13",
+        "toplevel": 2,
+        "anchor": "Swords_of_El_Cid",
+        "line": "Swords of El Cid"
+      },
+      {
+        "index": "14",
+        "toplevel": 2,
+        "anchor": "Bells_of_Santiago",
+        "line": "Bells of Santiago"
+      },
+      {
+        "index": "15",
+        "toplevel": 2,
+        "anchor": "The_Double-Moon_Tome",
+        "line": "The Double-Moon Tome"
+      },
+      {
+        "index": "16",
+        "toplevel": 2,
+        "anchor": "Adventure_artifacts",
+        "line": "Adventure artifacts"
+      },
+      {
+        "index": "17",
+        "toplevel": 3,
+        "anchor": "Holy_relics",
+        "line": "Holy relics"
+      },
+      {
+        "index": "18",
+        "toplevel": 2,
+        "anchor": "Coronation_artifacts",
+        "line": "Coronation artifacts"
+      },
+      {
+        "index": "19",
+        "toplevel": 2,
+        "anchor": "Easter_egg_artifacts",
+        "line": "Easter egg artifacts"
+      },
+      {
+        "index": "20",
+        "toplevel": 1,
+        "anchor": "Dynasty_banners",
+        "line": "Dynasty banners"
+      },
+      {
+        "index": "21",
+        "toplevel": 1,
+        "anchor": "Mummification_artifacts",
+        "line": "Mummification artifacts"
+      },
+      {
+        "index": "22",
+        "toplevel": 1,
+        "anchor": "Travel_itineraries",
+        "line": "Travel itineraries"
+      },
+      {
+        "index": "23",
+        "toplevel": 1,
+        "anchor": "Paizas",
+        "line": "Paizas"
+      },
+      {
+        "index": "24",
+        "toplevel": 1,
+        "anchor": "Talismans",
+        "line": "Talismans"
+      },
+      {
+        "index": "25",
+        "toplevel": 1,
+        "anchor": "Cranial_trophies",
+        "line": "Cranial trophies"
+      },
+      {
+        "index": "26",
+        "toplevel": 1,
+        "anchor": "Improving_artifacts",
+        "line": "Improving artifacts"
+      },
+      {
+        "index": "27",
+        "toplevel": 2,
+        "anchor": "Courtier_improves_artifact",
+        "line": "Courtier improves artifact"
+      },
+      {
+        "index": "28",
+        "toplevel": 1,
+        "anchor": "References",
+        "line": "References"
+      }
+    ],
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    }
+  },
+  "registryEntry": {
+    "sourceId": "source:ck3-paradoxwikis-com:artifacts",
+    "kind": "documentation_mediawiki_page",
+    "label": "CK3 Wiki: Artifacts",
+    "acquiredAt": "2026-07-18T05:33:08.489Z",
+    "publisher": "CK3 Wiki",
+    "documentType": "mediawiki_page",
+    "topic": "Artifacts",
+    "canonicalUrl": "https://ck3.paradoxwikis.com/Artifacts",
+    "oldidUrl": "https://ck3.paradoxwikis.com/Artifacts?oldid=35011",
+    "revision": {
+      "pageId": 2874,
+      "revisionId": 35011,
+      "parentRevisionId": 34621,
+      "timestamp": "2026-07-12T06:27:16Z",
+      "sha1": "acad1b91ba88021ddd86cdec7d241f2ad0d8ea8e"
+    },
+    "content": {
+      "hashAlgorithm": "sha256",
+      "structuralSummarySha256": "c47384fa3fe5dfe5a797ff9700118093eccf493aeb2cf60332fa6af72eb9cf37",
+      "copiedContent": "metadata_and_section_anchors_only"
+    },
+    "scope": {
+      "gameVersions": [
+        "1.19.0.6"
+      ],
+      "dlc": [
+        "ALL_ACTIVE_ASSUMPTION"
+      ],
+      "mods": [],
+      "allDlcActive": true
+    },
+    "licensing": {
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      },
+      "redistribution": "Do not copy whole wiki pages into this repository; store citations, page metadata, and short section anchor titles only."
+    },
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    },
+    "extracted": {
+      "sectionAnchorCount": 28,
+      "sectionAnchors": [
+        {
+          "index": "1",
+          "toplevel": 1,
+          "anchor": "Rarity",
+          "line": "Rarity"
+        },
+        {
+          "index": "2",
+          "toplevel": 1,
+          "anchor": "Creating_artifacts",
+          "line": "Creating artifacts"
+        },
+        {
+          "index": "3",
+          "toplevel": 2,
+          "anchor": "Hunt_trophies",
+          "line": "Hunt trophies"
+        },
+        {
+          "index": "4",
+          "toplevel": 2,
+          "anchor": "Inspirations",
+          "line": "Inspirations"
+        },
+        {
+          "index": "5",
+          "toplevel": 2,
+          "anchor": "Travels_journal",
+          "line": "Travels journal"
+        },
+        {
+          "index": "6",
+          "toplevel": 2,
+          "anchor": "Icons",
+          "line": "Icons"
+        },
+        {
+          "index": "7",
+          "toplevel": 1,
+          "anchor": "Historical_artifacts",
+          "line": "Historical artifacts"
+        },
+        {
+          "index": "8",
+          "toplevel": 2,
+          "anchor": "Byzantine_artifacts",
+          "line": "Byzantine artifacts"
+        },
+        {
+          "index": "9",
+          "toplevel": 2,
+          "anchor": "Holy_Roman_artifacts",
+          "line": "Holy Roman artifacts"
+        },
+        {
+          "index": "10",
+          "toplevel": 2,
+          "anchor": "Shia_artifacts",
+          "line": "Shia artifacts"
+        },
+        {
+          "index": "11",
+          "toplevel": 2,
+          "anchor": "Pagan_Kingdom_artifacts",
+          "line": "Pagan Kingdom artifacts"
+        },
+        {
+          "index": "12",
+          "toplevel": 2,
+          "anchor": "Hegemony_of_China_artifacts",
+          "line": "Hegemony of China artifacts"
+        },
+        {
+          "index": "13",
+          "toplevel": 2,
+          "anchor": "Swords_of_El_Cid",
+          "line": "Swords of El Cid"
+        },
+        {
+          "index": "14",
+          "toplevel": 2,
+          "anchor": "Bells_of_Santiago",
+          "line": "Bells of Santiago"
+        },
+        {
+          "index": "15",
+          "toplevel": 2,
+          "anchor": "The_Double-Moon_Tome",
+          "line": "The Double-Moon Tome"
+        },
+        {
+          "index": "16",
+          "toplevel": 2,
+          "anchor": "Adventure_artifacts",
+          "line": "Adventure artifacts"
+        },
+        {
+          "index": "17",
+          "toplevel": 3,
+          "anchor": "Holy_relics",
+          "line": "Holy relics"
+        },
+        {
+          "index": "18",
+          "toplevel": 2,
+          "anchor": "Coronation_artifacts",
+          "line": "Coronation artifacts"
+        },
+        {
+          "index": "19",
+          "toplevel": 2,
+          "anchor": "Easter_egg_artifacts",
+          "line": "Easter egg artifacts"
+        },
+        {
+          "index": "20",
+          "toplevel": 1,
+          "anchor": "Dynasty_banners",
+          "line": "Dynasty banners"
+        },
+        {
+          "index": "21",
+          "toplevel": 1,
+          "anchor": "Mummification_artifacts",
+          "line": "Mummification artifacts"
+        },
+        {
+          "index": "22",
+          "toplevel": 1,
+          "anchor": "Travel_itineraries",
+          "line": "Travel itineraries"
+        },
+        {
+          "index": "23",
+          "toplevel": 1,
+          "anchor": "Paizas",
+          "line": "Paizas"
+        },
+        {
+          "index": "24",
+          "toplevel": 1,
+          "anchor": "Talismans",
+          "line": "Talismans"
+        },
+        {
+          "index": "25",
+          "toplevel": 1,
+          "anchor": "Cranial_trophies",
+          "line": "Cranial trophies"
+        },
+        {
+          "index": "26",
+          "toplevel": 1,
+          "anchor": "Improving_artifacts",
+          "line": "Improving artifacts"
+        },
+        {
+          "index": "27",
+          "toplevel": 2,
+          "anchor": "Courtier_improves_artifact",
+          "line": "Courtier improves artifact"
+        },
+        {
+          "index": "28",
+          "toplevel": 1,
+          "anchor": "References",
+          "line": "References"
+        }
+      ],
+      "pageLength": 118509
+    },
+    "visibility": {
+      "classification": "external",
+      "rawArtifactCommitted": false,
+      "rationale": "External CK3 wiki documentation source for the 'Artifacts' mechanics topic. Durable knowledge should cite this page/revision; only metadata + section anchor titles are stored."
+    },
+    "notes": []
+  }
+}

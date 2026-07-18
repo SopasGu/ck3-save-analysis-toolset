@@ -1,0 +1,665 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "sourceId": "source:ck3-paradoxwikis-com:subjects",
+    "kind": "mediawiki_page",
+    "site": {
+      "key": "ck3.paradoxwikis.com",
+      "sitename": "CK3 Wiki",
+      "generator": "MediaWiki 1.39.4",
+      "apiUrl": "https://ck3.paradoxwikis.com/api.php",
+      "server": "https://ck3.paradoxwikis.com",
+      "articlePath": "/$1",
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      }
+    },
+    "page": {
+      "title": "Subjects",
+      "pageId": 5742,
+      "canonicalUrl": "https://ck3.paradoxwikis.com/Subjects",
+      "revisionId": 35050,
+      "parentRevisionId": 34917,
+      "touched": "2026-07-14T11:54:19Z",
+      "revisionTimestamp": "2026-07-14T11:54:19Z",
+      "revisionSha1": "54e290320c74201d8f16003d15e79646a8fa0db7",
+      "oldidUrl": "https://ck3.paradoxwikis.com/Subjects?oldid=35050",
+      "length": 45586
+    },
+    "links": [
+      {
+        "title": "Achievement",
+        "url": "https://ck3.paradoxwikis.com/Achievement"
+      },
+      {
+        "title": "Activity",
+        "url": "https://ck3.paradoxwikis.com/Activity"
+      },
+      {
+        "title": "Adventurer",
+        "url": "https://ck3.paradoxwikis.com/Adventurer"
+      },
+      {
+        "title": "All Under Heaven",
+        "url": "https://ck3.paradoxwikis.com/All_Under_Heaven"
+      },
+      {
+        "title": "Alliance",
+        "url": "https://ck3.paradoxwikis.com/Alliance"
+      },
+      {
+        "title": "Army",
+        "url": "https://ck3.paradoxwikis.com/Army"
+      },
+      {
+        "title": "Artifacts",
+        "url": "https://ck3.paradoxwikis.com/Artifacts"
+      },
+      {
+        "title": "Attributes",
+        "url": "https://ck3.paradoxwikis.com/Attributes"
+      },
+      {
+        "title": "Bannus",
+        "url": "https://ck3.paradoxwikis.com/Bannus"
+      },
+      {
+        "title": "Barony",
+        "url": "https://ck3.paradoxwikis.com/Barony"
+      },
+      {
+        "title": "Battlements",
+        "url": "https://ck3.paradoxwikis.com/Battlements"
+      },
+      {
+        "title": "Bloc",
+        "url": "https://ck3.paradoxwikis.com/Bloc"
+      },
+      {
+        "title": "Bookmarks",
+        "url": "https://ck3.paradoxwikis.com/Bookmarks"
+      },
+      {
+        "title": "Buildings",
+        "url": "https://ck3.paradoxwikis.com/Buildings"
+      },
+      {
+        "title": "Casus belli",
+        "url": "https://ck3.paradoxwikis.com/Casus_belli"
+      },
+      {
+        "title": "Character",
+        "url": "https://ck3.paradoxwikis.com/Character"
+      },
+      {
+        "title": "Coinage",
+        "url": "https://ck3.paradoxwikis.com/Coinage"
+      },
+      {
+        "title": "Council",
+        "url": "https://ck3.paradoxwikis.com/Council"
+      },
+      {
+        "title": "County",
+        "url": "https://ck3.paradoxwikis.com/County"
+      },
+      {
+        "title": "Court",
+        "url": "https://ck3.paradoxwikis.com/Court"
+      },
+      {
+        "title": "Culture",
+        "url": "https://ck3.paradoxwikis.com/Culture"
+      },
+      {
+        "title": "Decisions",
+        "url": "https://ck3.paradoxwikis.com/Decisions"
+      },
+      {
+        "title": "Developer diaries",
+        "url": "https://ck3.paradoxwikis.com/Developer_diaries"
+      },
+      {
+        "title": "Divine Right",
+        "url": "https://ck3.paradoxwikis.com/Divine_Right"
+      },
+      {
+        "title": "Doctrines",
+        "url": "https://ck3.paradoxwikis.com/Doctrines"
+      },
+      {
+        "title": "Domicile",
+        "url": "https://ck3.paradoxwikis.com/Domicile"
+      },
+      {
+        "title": "Downloadable content",
+        "url": "https://ck3.paradoxwikis.com/Downloadable_content"
+      },
+      {
+        "title": "Duel",
+        "url": "https://ck3.paradoxwikis.com/Duel"
+      },
+      {
+        "title": "Dynasty",
+        "url": "https://ck3.paradoxwikis.com/Dynasty"
+      },
+      {
+        "title": "Elective succession",
+        "url": "https://ck3.paradoxwikis.com/Elective_succession"
+      },
+      {
+        "title": "Faith",
+        "url": "https://ck3.paradoxwikis.com/Faith"
+      },
+      {
+        "title": "Fame",
+        "url": "https://ck3.paradoxwikis.com/Fame"
+      },
+      {
+        "title": "Family (relation)",
+        "url": "https://ck3.paradoxwikis.com/Family_(relation)"
+      },
+      {
+        "title": "Form of address",
+        "url": "https://ck3.paradoxwikis.com/Form_of_address"
+      },
+      {
+        "title": "Game rules",
+        "url": "https://ck3.paradoxwikis.com/Game_rules"
+      },
+      {
+        "title": "Government",
+        "url": "https://ck3.paradoxwikis.com/Government"
+      },
+      {
+        "title": "Great projects",
+        "url": "https://ck3.paradoxwikis.com/Great_projects"
+      },
+      {
+        "title": "Head of faith",
+        "url": "https://ck3.paradoxwikis.com/Head_of_faith"
+      },
+      {
+        "title": "Hired forces",
+        "url": "https://ck3.paradoxwikis.com/Hired_forces"
+      },
+      {
+        "title": "Holy sites",
+        "url": "https://ck3.paradoxwikis.com/Holy_sites"
+      },
+      {
+        "title": "Hooks",
+        "url": "https://ck3.paradoxwikis.com/Hooks"
+      },
+      {
+        "title": "Imprisoned",
+        "url": "https://ck3.paradoxwikis.com/Imprisoned"
+      },
+      {
+        "title": "Innovation",
+        "url": "https://ck3.paradoxwikis.com/Innovation"
+      },
+      {
+        "title": "Interactions",
+        "url": "https://ck3.paradoxwikis.com/Interactions"
+      },
+      {
+        "title": "Interesting characters",
+        "url": "https://ck3.paradoxwikis.com/Interesting_characters"
+      },
+      {
+        "title": "Jargon",
+        "url": "https://ck3.paradoxwikis.com/Jargon"
+      },
+      {
+        "title": "Khans of the Steppe",
+        "url": "https://ck3.paradoxwikis.com/Khans_of_the_Steppe"
+      },
+      {
+        "title": "Knight",
+        "url": "https://ck3.paradoxwikis.com/Knight"
+      },
+      {
+        "title": "Laws",
+        "url": "https://ck3.paradoxwikis.com/Laws"
+      },
+      {
+        "title": "Lifestyle",
+        "url": "https://ck3.paradoxwikis.com/Lifestyle"
+      },
+      {
+        "title": "Mechanics",
+        "url": "https://ck3.paradoxwikis.com/Mechanics"
+      },
+      {
+        "title": "Modding",
+        "url": "https://ck3.paradoxwikis.com/Modding"
+      },
+      {
+        "title": "Modifiers",
+        "url": "https://ck3.paradoxwikis.com/Modifiers"
+      },
+      {
+        "title": "Patches",
+        "url": "https://ck3.paradoxwikis.com/Patches"
+      },
+      {
+        "title": "Power sharing",
+        "url": "https://ck3.paradoxwikis.com/Power_sharing"
+      },
+      {
+        "title": "Prisoner",
+        "url": "https://ck3.paradoxwikis.com/Prisoner"
+      },
+      {
+        "title": "Resources",
+        "url": "https://ck3.paradoxwikis.com/Resources"
+      },
+      {
+        "title": "Ritsuryō",
+        "url": "https://ck3.paradoxwikis.com/Ritsury%C5%8D"
+      },
+      {
+        "title": "Roads to Power",
+        "url": "https://ck3.paradoxwikis.com/Roads_to_Power"
+      },
+      {
+        "title": "Royal court",
+        "url": "https://ck3.paradoxwikis.com/Royal_court"
+      },
+      {
+        "title": "Ruler Designer",
+        "url": "https://ck3.paradoxwikis.com/Ruler_Designer"
+      },
+      {
+        "title": "Schemes",
+        "url": "https://ck3.paradoxwikis.com/Schemes"
+      },
+      {
+        "title": "Scutage",
+        "url": "https://ck3.paradoxwikis.com/Scutage"
+      },
+      {
+        "title": "Situation",
+        "url": "https://ck3.paradoxwikis.com/Situation"
+      },
+      {
+        "title": "Succession",
+        "url": "https://ck3.paradoxwikis.com/Succession"
+      },
+      {
+        "title": "Succession law",
+        "url": "https://ck3.paradoxwikis.com/Succession_law"
+      },
+      {
+        "title": "Sway scheme",
+        "url": "https://ck3.paradoxwikis.com/Sway_scheme"
+      },
+      {
+        "title": "Tenets",
+        "url": "https://ck3.paradoxwikis.com/Tenets"
+      },
+      {
+        "title": "Terrified",
+        "url": "https://ck3.paradoxwikis.com/Terrified"
+      },
+      {
+        "title": "Titles",
+        "url": "https://ck3.paradoxwikis.com/Titles"
+      },
+      {
+        "title": "Traditions",
+        "url": "https://ck3.paradoxwikis.com/Traditions"
+      },
+      {
+        "title": "Traits",
+        "url": "https://ck3.paradoxwikis.com/Traits"
+      },
+      {
+        "title": "Travel",
+        "url": "https://ck3.paradoxwikis.com/Travel"
+      },
+      {
+        "title": "Tyranny",
+        "url": "https://ck3.paradoxwikis.com/Tyranny"
+      },
+      {
+        "title": "Vassal",
+        "url": "https://ck3.paradoxwikis.com/Vassal"
+      },
+      {
+        "title": "Warfare",
+        "url": "https://ck3.paradoxwikis.com/Warfare"
+      },
+      {
+        "title": "Weak hook",
+        "url": "https://ck3.paradoxwikis.com/Weak_hook"
+      },
+      {
+        "title": "White peace",
+        "url": "https://ck3.paradoxwikis.com/White_peace"
+      }
+    ],
+    "sectionAnchors": [
+      {
+        "index": "1",
+        "toplevel": 1,
+        "anchor": "Vassals",
+        "line": "Vassals"
+      },
+      {
+        "index": "2",
+        "toplevel": 2,
+        "anchor": "Vassal_limit",
+        "line": "Vassal limit"
+      },
+      {
+        "index": "3",
+        "toplevel": 2,
+        "anchor": "Vassal_directives",
+        "line": "Vassal directives"
+      },
+      {
+        "index": "4",
+        "toplevel": 2,
+        "anchor": "Powerful_vassals",
+        "line": "Powerful vassals"
+      },
+      {
+        "index": "5",
+        "toplevel": 2,
+        "anchor": "Vassal_stances",
+        "line": "Vassal stances"
+      },
+      {
+        "index": "6",
+        "toplevel": 2,
+        "anchor": "Vassal_contracts",
+        "line": "Vassal contracts"
+      },
+      {
+        "index": "7",
+        "toplevel": 3,
+        "anchor": "Rights",
+        "line": "Rights"
+      },
+      {
+        "index": "8",
+        "toplevel": 3,
+        "anchor": "Special_contract",
+        "line": "Special contract"
+      },
+      {
+        "index": "9",
+        "toplevel": 3,
+        "anchor": "Obligations",
+        "line": "Obligations"
+      },
+      {
+        "index": "10",
+        "toplevel": 2,
+        "anchor": "Base_obligations",
+        "line": "Base obligations"
+      },
+      {
+        "index": "11",
+        "toplevel": 2,
+        "anchor": "Factions",
+        "line": "Factions"
+      },
+      {
+        "index": "12",
+        "toplevel": 3,
+        "anchor": "Civil_wars",
+        "line": "Civil wars"
+      },
+      {
+        "index": "13",
+        "toplevel": 3,
+        "anchor": "Vassal_factions",
+        "line": "Vassal factions"
+      },
+      {
+        "index": "14",
+        "toplevel": 3,
+        "anchor": "Popular_factions",
+        "line": "Popular factions"
+      },
+      {
+        "index": "15",
+        "toplevel": 1,
+        "anchor": "Tributaries",
+        "line": "Tributaries"
+      },
+      {
+        "index": "16",
+        "toplevel": 2,
+        "anchor": "Pay_tribute",
+        "line": "Pay tribute"
+      },
+      {
+        "index": "17",
+        "toplevel": 2,
+        "anchor": "Hegemonic_tributaries",
+        "line": "Hegemonic tributaries"
+      },
+      {
+        "index": "18",
+        "toplevel": 3,
+        "anchor": "Tributaries_of_China",
+        "line": "Tributaries of China"
+      },
+      {
+        "index": "19",
+        "toplevel": 1,
+        "anchor": "Lessees",
+        "line": "Lessees"
+      },
+      {
+        "index": "20",
+        "toplevel": 2,
+        "anchor": "Realm_priests",
+        "line": "Realm priests"
+      },
+      {
+        "index": "21",
+        "toplevel": 1,
+        "anchor": "References",
+        "line": "References"
+      }
+    ],
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    }
+  },
+  "registryEntry": {
+    "sourceId": "source:ck3-paradoxwikis-com:subjects",
+    "kind": "documentation_mediawiki_page",
+    "label": "CK3 Wiki: Subjects",
+    "acquiredAt": "2026-07-18T05:33:08.494Z",
+    "publisher": "CK3 Wiki",
+    "documentType": "mediawiki_page",
+    "topic": "Subjects",
+    "canonicalUrl": "https://ck3.paradoxwikis.com/Subjects",
+    "oldidUrl": "https://ck3.paradoxwikis.com/Subjects?oldid=35050",
+    "revision": {
+      "pageId": 5742,
+      "revisionId": 35050,
+      "parentRevisionId": 34917,
+      "timestamp": "2026-07-14T11:54:19Z",
+      "sha1": "54e290320c74201d8f16003d15e79646a8fa0db7"
+    },
+    "content": {
+      "hashAlgorithm": "sha256",
+      "structuralSummarySha256": "519efab65547e6f76c161120d357ed547e0c98ca7b5a25a8397e721b22ce3e12",
+      "copiedContent": "metadata_and_section_anchors_only"
+    },
+    "scope": {
+      "gameVersions": [
+        "1.19.0.6"
+      ],
+      "dlc": [
+        "ALL_ACTIVE_ASSUMPTION"
+      ],
+      "mods": [],
+      "allDlcActive": true
+    },
+    "licensing": {
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      },
+      "redistribution": "Do not copy whole wiki pages into this repository; store citations, page metadata, and short section anchor titles only."
+    },
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    },
+    "extracted": {
+      "sectionAnchorCount": 21,
+      "sectionAnchors": [
+        {
+          "index": "1",
+          "toplevel": 1,
+          "anchor": "Vassals",
+          "line": "Vassals"
+        },
+        {
+          "index": "2",
+          "toplevel": 2,
+          "anchor": "Vassal_limit",
+          "line": "Vassal limit"
+        },
+        {
+          "index": "3",
+          "toplevel": 2,
+          "anchor": "Vassal_directives",
+          "line": "Vassal directives"
+        },
+        {
+          "index": "4",
+          "toplevel": 2,
+          "anchor": "Powerful_vassals",
+          "line": "Powerful vassals"
+        },
+        {
+          "index": "5",
+          "toplevel": 2,
+          "anchor": "Vassal_stances",
+          "line": "Vassal stances"
+        },
+        {
+          "index": "6",
+          "toplevel": 2,
+          "anchor": "Vassal_contracts",
+          "line": "Vassal contracts"
+        },
+        {
+          "index": "7",
+          "toplevel": 3,
+          "anchor": "Rights",
+          "line": "Rights"
+        },
+        {
+          "index": "8",
+          "toplevel": 3,
+          "anchor": "Special_contract",
+          "line": "Special contract"
+        },
+        {
+          "index": "9",
+          "toplevel": 3,
+          "anchor": "Obligations",
+          "line": "Obligations"
+        },
+        {
+          "index": "10",
+          "toplevel": 2,
+          "anchor": "Base_obligations",
+          "line": "Base obligations"
+        },
+        {
+          "index": "11",
+          "toplevel": 2,
+          "anchor": "Factions",
+          "line": "Factions"
+        },
+        {
+          "index": "12",
+          "toplevel": 3,
+          "anchor": "Civil_wars",
+          "line": "Civil wars"
+        },
+        {
+          "index": "13",
+          "toplevel": 3,
+          "anchor": "Vassal_factions",
+          "line": "Vassal factions"
+        },
+        {
+          "index": "14",
+          "toplevel": 3,
+          "anchor": "Popular_factions",
+          "line": "Popular factions"
+        },
+        {
+          "index": "15",
+          "toplevel": 1,
+          "anchor": "Tributaries",
+          "line": "Tributaries"
+        },
+        {
+          "index": "16",
+          "toplevel": 2,
+          "anchor": "Pay_tribute",
+          "line": "Pay tribute"
+        },
+        {
+          "index": "17",
+          "toplevel": 2,
+          "anchor": "Hegemonic_tributaries",
+          "line": "Hegemonic tributaries"
+        },
+        {
+          "index": "18",
+          "toplevel": 3,
+          "anchor": "Tributaries_of_China",
+          "line": "Tributaries of China"
+        },
+        {
+          "index": "19",
+          "toplevel": 1,
+          "anchor": "Lessees",
+          "line": "Lessees"
+        },
+        {
+          "index": "20",
+          "toplevel": 2,
+          "anchor": "Realm_priests",
+          "line": "Realm priests"
+        },
+        {
+          "index": "21",
+          "toplevel": 1,
+          "anchor": "References",
+          "line": "References"
+        }
+      ],
+      "pageLength": 45586
+    },
+    "visibility": {
+      "classification": "external",
+      "rawArtifactCommitted": false,
+      "rationale": "External CK3 wiki documentation source for the 'Subjects' mechanics topic. Durable knowledge should cite this page/revision; only metadata + section anchor titles are stored."
+    },
+    "notes": []
+  }
+}

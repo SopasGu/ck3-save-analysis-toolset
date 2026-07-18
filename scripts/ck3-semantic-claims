@@ -2,36 +2,77 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {
+  augmentClaimsWithPerTopicSources,
+  buildProposedClaim,
   buildSemanticComparisonReport,
   generateSemanticClaims,
+  mergeProposedClaims,
+  promoteClaim,
   validateClaimLedger,
 } from './lib/ck3-semantic-claims.mjs';
 
 function printHelp() {
-  console.log(`Usage: ck3-semantic-claims generate --graph PATH --rules PATH --sources PATH [options]
+  console.log(`Usage:
+  ck3-semantic-claims generate --graph PATH --rules PATH --sources PATH [options]
+  ck3-semantic-claims propose  --claims PATH --graph PATH --sources PATH --proposed PATH [options]
+  ck3-semantic-claims promote  --claims PATH --claim-id ID --to STATUS [--superseded-by ID]...
+  ck3-semantic-claims augment  --claims PATH --sources PATH [--section-first-only]
 
-Generates semantic claim proposals from durable schema graph patterns. This
-command never reads raw save artifacts and never mutates structural graph
-observations.
+Generate, propose, promote, and augment semantic claims. None of these commands
+mutate structural graph observations.
 
-Options:
+generate options:
   --claims-out PATH      Write claim ledger JSON
   --report-out PATH      Write comparison/report JSON
+  --quiet                Suppress progress on stderr
+
+propose options:
+  --proposed PATH        JSON array of proposed claim entries (operator-authored)
+  --out PATH             Where to write the merged ledger (default: in-place --claims)
+  --overwrite            Replace existing claims with matching claimId
+  --quiet                Suppress progress on stderr
+
+promote options:
+  --claim-id ID          Claim to update
+  --to STATUS            Target status (must be a member of CLAIM_STATUSES)
+  --superseded-by ID     One or more claim IDs that supersede this one
+  --review-note TEXT     Free-text review note
+  --out PATH             Where to write the updated ledger (default: in-place --claims)
+  --quiet                Suppress progress on stderr
+
+augment options:
+  --sources PATH         Source registry path
+  --section-first-only   When present, emit a single 'section' anchor field per topic
+  --out PATH             Where to write the augmented ledger (default: in-place --claims)
   --quiet                Suppress progress on stderr
 `);
 }
 
 function parseArgs(argv) {
   const args = {
-    subcommand: argv[0] ?? null,
+    subcommand: null,
     graph: null,
     rules: null,
     sources: null,
+    claimsPath: null,
     claimsOut: null,
     reportOut: null,
+    proposed: null,
+    overwrite: false,
+    claimIdValue: null,
+    toStatus: null,
+    supersededBy: [],
+    reviewNote: null,
+    sectionFirstOnly: false,
     quiet: false,
   };
-  for (let i = 1; i < argv.length; i++) {
+  const knownSubcommands = new Set(['generate', 'propose', 'promote', 'augment']);
+  let flagStart = 0;
+  if (argv.length > 0 && knownSubcommands.has(argv[0])) {
+    args.subcommand = argv[0];
+    flagStart = 1;
+  }
+  for (let i = flagStart; i < argv.length; i++) {
     const a = argv[i];
     switch (a) {
       case '--graph':
@@ -43,11 +84,38 @@ function parseArgs(argv) {
       case '--sources':
         args.sources = argv[++i];
         break;
+      case '--claims':
+        args.claimsPath = argv[++i];
+        break;
       case '--claims-out':
         args.claimsOut = argv[++i];
         break;
       case '--report-out':
         args.reportOut = argv[++i];
+        break;
+      case '--proposed':
+        args.proposed = argv[++i];
+        break;
+      case '--out':
+        args.claimsOut = argv[++i];
+        break;
+      case '--overwrite':
+        args.overwrite = true;
+        break;
+      case '--claim-id':
+        args.claimIdValue = argv[++i];
+        break;
+      case '--to':
+        args.toStatus = argv[++i];
+        break;
+      case '--superseded-by':
+        args.supersededBy.push(argv[++i]);
+        break;
+      case '--review-note':
+        args.reviewNote = argv[++i];
+        break;
+      case '--section-first-only':
+        args.sectionFirstOnly = true;
         break;
       case '--quiet':
       case '-q':
@@ -70,6 +138,7 @@ function parseArgs(argv) {
 function readJson(label, filePath) {
   if (!filePath) {
     console.error(`Missing required --${label}`);
+    printHelp();
     process.exit(2);
   }
   if (!fs.existsSync(filePath)) {
@@ -84,12 +153,7 @@ function writeJson(filePath, data) {
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + '\n');
 }
 
-function main() {
-  const args = parseArgs(process.argv.slice(2));
-  if (args.subcommand !== 'generate') {
-    printHelp();
-    process.exit(args.subcommand ? 2 : 0);
-  }
+function cmdGenerate(args) {
   const graph = readJson('graph', args.graph);
   const rules = readJson('rules', args.rules);
   const sourceRegistry = readJson('sources', args.sources);
@@ -102,10 +166,101 @@ function main() {
   const report = buildSemanticComparisonReport({ ledger, graph });
   if (args.claimsOut) writeJson(args.claimsOut, ledger);
   if (args.reportOut) writeJson(args.reportOut, report);
+  if (!args.quiet) {
+    if (args.claimsOut) console.error(`Generated ${ledger.claims.length} semantic claims -> ${args.claimsOut}`);
+    if (args.reportOut) console.error(`Wrote comparison report -> ${args.reportOut}`);
+  }
   if (!args.claimsOut && !args.reportOut) {
     process.stdout.write(JSON.stringify({ ledger, report }, null, 2) + '\n');
-  } else if (!args.quiet) {
-    process.stderr.write(`Generated ${ledger.claims.length} semantic claims\n`);
+  }
+}
+
+function cmdPropose(args) {
+  const ledger = readJson('claims', args.claimsPath);
+  const graph = readJson('graph', args.graph);
+  const sourceRegistry = readJson('sources', args.sources);
+  const proposed = readJson('proposed', args.proposed);
+  const built = proposed.map((entry) => buildProposedClaim({
+    entry,
+    graph,
+    sourceRegistry,
+    generatedAt: new Date().toISOString(),
+  }));
+  const merged = mergeProposedClaims(ledger, built, { overwrite: args.overwrite });
+  const errors = validateClaimLedger(merged, graph);
+  if (errors.length > 0) {
+    console.error(`Proposed claim merge failed validation:\n- ${errors.join('\n- ')}`);
+    process.exit(1);
+  }
+  const outPath = args.claimsOut ?? args.claimsPath;
+  writeJson(outPath, merged);
+  if (!args.quiet) {
+    console.error(`Proposed ${built.length} claims (added=${(merged.proposedAdded ?? []).length}, skipped=${(merged.proposedSkipped ?? []).length}) -> ${outPath}`);
+  }
+}
+
+function cmdPromote(args) {
+  if (!args.claimIdValue) {
+    console.error('promote requires --claim-id');
+    process.exit(2);
+  }
+  if (!args.toStatus) {
+    console.error('promote requires --to STATUS');
+    process.exit(2);
+  }
+  const ledger = readJson('claims', args.claimsPath);
+  const next = promoteClaim(ledger, args.claimIdValue, args.toStatus, {
+    supersededBy: args.supersededBy,
+    reviewNote: args.reviewNote,
+  });
+  const errors = validateClaimLedger(next);
+  if (errors.length > 0) {
+    console.error(`Promote failed validation:\n- ${errors.join('\n- ')}`);
+    process.exit(1);
+  }
+  const outPath = args.claimsOut ?? args.claimsPath;
+  writeJson(outPath, next);
+  if (!args.quiet) {
+    console.error(`Promoted ${args.claimIdValue}: ${next.previousStatus} -> ${args.toStatus} -> ${outPath}`);
+  }
+}
+
+function cmdAugment(args) {
+  const ledger = readJson('claims', args.claimsPath);
+  const sourceRegistry = readJson('sources', args.sources);
+  const augmented = augmentClaimsWithPerTopicSources(ledger, sourceRegistry, {
+    sectionFirstOnly: args.sectionFirstOnly,
+  });
+  const errors = validateClaimLedger(augmented);
+  if (errors.length > 0) {
+    console.error(`Augmented ledger failed validation:\n- ${errors.join('\n- ')}`);
+    process.exit(1);
+  }
+  const outPath = args.claimsOut ?? args.claimsPath;
+  writeJson(outPath, augmented);
+  if (!args.quiet) {
+    console.error(`Augmented ${augmented.augmented ?? 0} claims with per-topic documentation sources -> ${outPath}`);
+  }
+}
+
+function main() {
+  const args = parseArgs(process.argv.slice(2));
+  switch (args.subcommand) {
+    case 'generate':
+      cmdGenerate(args);
+      return;
+    case 'propose':
+      cmdPropose(args);
+      return;
+    case 'promote':
+      cmdPromote(args);
+      return;
+    case 'augment':
+      cmdAugment(args);
+      return;
+    default:
+      printHelp();
+      process.exit(args.subcommand ? 2 : 0);
   }
 }
 

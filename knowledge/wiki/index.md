@@ -1,7 +1,7 @@
 ---
 pageType: index
 wikiKernelVersion: 1
-generatedAt: "2026-07-18T04:45:00.000Z"
+generatedAt: "2026-07-18T05:39:01.748Z"
 generatedFrom:
   - "knowledge/schema/graph.json"
   - "knowledge/claims/claims.json"
@@ -13,9 +13,9 @@ This wiki summarizes generalized CK3 save structure from the durable schema grap
 
 ## Summary
 
-- Graph nodes: 1684
+- Graph nodes: 1732
 - Graph edges: 2985
-- Wiki graph pages: 1426
+- Wiki graph pages: 1474
 
 ## Collection
 
@@ -1454,3 +1454,60 @@ This wiki summarizes generalized CK3 save structure from the durable schema grap
 - [[pages/identity-domains/identity-domain-gd68d662a573ead1e|used_punishments]] - `identity_domain:gd68d662a573ead1e`
 - [[pages/identity-domains/identity-domain-g8531d608fb010dc2|war_coordinator_db]] - `identity_domain:g8531d608fb010dc2`
 - [[pages/identity-domains/identity-domain-g587dbd503d2a097f|war_plan_db]] - `identity_domain:g587dbd503d2a097f`
+
+## Mechanics Concept
+
+- CharacterSystems (10):
+    - [[pages/mechanics/mechanics-concept-artifacts|Artifacts]] - `mechanics_concept:artifacts`
+    - [[pages/mechanics/mechanics-concept-attributes|Attributes]] - `mechanics_concept:attributes`
+    - [[pages/mechanics/mechanics-concept-characters|Characters]] - `mechanics_concept:characters`
+    - [[pages/mechanics/mechanics-concept-dynasty|Dynasty]] - `mechanics_concept:dynasty`
+    - [[pages/mechanics/mechanics-concept-hooks|Hooks]] - `mechanics_concept:hooks`
+    - [[pages/mechanics/mechanics-concept-lifestyle|Lifestyle]] - `mechanics_concept:lifestyle`
+    - [[pages/mechanics/mechanics-concept-modifiers|Modifiers]] - `mechanics_concept:modifiers`
+    - [[pages/mechanics/mechanics-concept-resources|Resources]] - `mechanics_concept:resources`
+    - [[pages/mechanics/mechanics-concept-schemes|Schemes]] - `mechanics_concept:schemes`
+    - [[pages/mechanics/mechanics-concept-traits|Traits]] - `mechanics_concept:traits`
+- CultureFaith (7):
+    - [[pages/mechanics/mechanics-concept-culture|Culture]] - `mechanics_concept:culture`
+    - [[pages/mechanics/mechanics-concept-doctrines|Doctrines]] - `mechanics_concept:doctrines`
+    - [[pages/mechanics/mechanics-concept-faith|Faith]] - `mechanics_concept:faith`
+    - [[pages/mechanics/mechanics-concept-holy-sites|Holy sites]] - `mechanics_concept:holy-sites`
+    - [[pages/mechanics/mechanics-concept-innovation|Innovation]] - `mechanics_concept:innovation`
+    - [[pages/mechanics/mechanics-concept-tenets|Tenets]] - `mechanics_concept:tenets`
+    - [[pages/mechanics/mechanics-concept-traditions|Traditions]] - `mechanics_concept:traditions`
+- GettingStarted (5):
+    - [[pages/mechanics/mechanics-concept-beginner-s-guide|Beginner's guide]] - `mechanics_concept:beginner-s-guide`
+    - [[pages/mechanics/mechanics-concept-console-commands|Console commands]] - `mechanics_concept:console-commands`
+    - [[pages/mechanics/mechanics-concept-game-rules|Game rules]] - `mechanics_concept:game-rules`
+    - [[pages/mechanics/mechanics-concept-interesting-characters|Interesting characters]] - `mechanics_concept:interesting-characters`
+    - [[pages/mechanics/mechanics-concept-mechanics|Mechanics]] - `mechanics_concept:mechanics`
+- Governance (10):
+    - [[pages/mechanics/mechanics-concept-activity|Activity]] - `mechanics_concept:activity`
+    - [[pages/mechanics/mechanics-concept-adventurer|Adventurer]] - `mechanics_concept:adventurer`
+    - [[pages/mechanics/mechanics-concept-council|Council]] - `mechanics_concept:council`
+    - [[pages/mechanics/mechanics-concept-court|Court]] - `mechanics_concept:court`
+    - [[pages/mechanics/mechanics-concept-decisions|Decisions]] - `mechanics_concept:decisions`
+    - [[pages/mechanics/mechanics-concept-government|Government]] - `mechanics_concept:government`
+    - [[pages/mechanics/mechanics-concept-laws|Laws]] - `mechanics_concept:laws`
+    - [[pages/mechanics/mechanics-concept-power-sharing|Power sharing]] - `mechanics_concept:power-sharing`
+    - [[pages/mechanics/mechanics-concept-prisoners|Prisoners]] - `mechanics_concept:prisoners`
+    - [[pages/mechanics/mechanics-concept-royal-court|Royal court]] - `mechanics_concept:royal-court`
+- Realm (9):
+    - [[pages/mechanics/mechanics-concept-barony|Barony]] - `mechanics_concept:barony`
+    - [[pages/mechanics/mechanics-concept-building|Building]] - `mechanics_concept:building`
+    - [[pages/mechanics/mechanics-concept-county|County]] - `mechanics_concept:county`
+    - [[pages/mechanics/mechanics-concept-domicile|Domicile]] - `mechanics_concept:domicile`
+    - [[pages/mechanics/mechanics-concept-great-projects|Great projects]] - `mechanics_concept:great-projects`
+    - [[pages/mechanics/mechanics-concept-situation|Situation]] - `mechanics_concept:situation`
+    - [[pages/mechanics/mechanics-concept-subjects|Subjects]] - `mechanics_concept:subjects`
+    - [[pages/mechanics/mechanics-concept-titles|Titles]] - `mechanics_concept:titles`
+    - [[pages/mechanics/mechanics-concept-travel|Travel]] - `mechanics_concept:travel`
+- Warfare (7):
+    - [[pages/mechanics/mechanics-concept-alliance|Alliance]] - `mechanics_concept:alliance`
+    - [[pages/mechanics/mechanics-concept-army|Army]] - `mechanics_concept:army`
+    - [[pages/mechanics/mechanics-concept-casus-belli|Casus belli]] - `mechanics_concept:casus-belli`
+    - [[pages/mechanics/mechanics-concept-duel|Duel]] - `mechanics_concept:duel`
+    - [[pages/mechanics/mechanics-concept-hired-forces|Hired forces]] - `mechanics_concept:hired-forces`
+    - [[pages/mechanics/mechanics-concept-knight|Knight]] - `mechanics_concept:knight`
+    - [[pages/mechanics/mechanics-concept-warfare|Warfare]] - `mechanics_concept:warfare`

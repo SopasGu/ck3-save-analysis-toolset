@@ -8,6 +8,7 @@ export const WIKI_PAGE_KINDS = {
   record_type: 'record-types',
   field: 'fields',
   identity_domain: 'identity-domains',
+  mechanics_concept: 'mechanics',
 };
 
 const REQUIRED_SOURCE_FILES = [
@@ -118,6 +119,14 @@ export function lintWikiKernel({ wikiDir, graph, claims }) {
     if (!linkedTargets.has(rel)) {
       findings.push({ detector: 'orphan_page', file: rel, message: 'Graph node page is not linked from any other wiki page' });
     }
+    if (meta.graphKind === 'mechanics_concept') {
+      if (!Array.isArray(meta.claimIds) || meta.claimIds.length === 0) {
+        findings.push({ detector: 'mechanics_missing_claim', file: rel, message: 'Mechanics page must list at least one claimId' });
+      }
+      if (!Array.isArray(meta.provenanceSourceIds) || meta.provenanceSourceIds.length === 0) {
+        findings.push({ detector: 'mechanics_missing_source', file: rel, message: 'Mechanics page must list at least one sourceId' });
+      }
+    }
     for (const claimId of meta.claimIds ?? []) {
       const claim = claimsById.get(claimId);
       if (!claim) {
@@ -215,10 +224,22 @@ function renderIndex({ graph, graphNodes, generatedAt, pageByGraphId }) {
   for (const [kind, directory] of Object.entries(WIKI_PAGE_KINDS)) {
     const nodes = byKind.get(kind) ?? [];
     lines.push('', `## ${title(kind)}`, '');
-    for (const node of nodes) {
-      lines.push(`- [[${trimMd(pageByGraphId.get(node.id))}|${escapePipe(node.label ?? node.id)}]] - \`${node.id}\``);
+    if (kind === 'mechanics_concept') {
+      const grouped = groupBy(nodes, (node) => node.properties?.topicGroup ?? 'unassigned');
+      for (const [topicGroup, group] of [...grouped.entries()].sort(([a], [b]) => a.localeCompare(b))) {
+        lines.push(`- ${title(topicGroup)} (${group.length}):`);
+        for (const node of group.slice(0, 40)) {
+          lines.push(`    - [[${trimMd(pageByGraphId.get(node.id))}|${escapePipe(node.label ?? node.id)}]] - \`${node.id}\``);
+        }
+        if (group.length > 40) lines.push(`    - ...and ${group.length - 40} more`);
+      }
+    } else if (nodes.length === 0) {
+      lines.push('- None yet.');
+    } else {
+      for (const node of nodes) {
+        lines.push(`- [[${trimMd(pageByGraphId.get(node.id))}|${escapePipe(node.label ?? node.id)}]] - \`${node.id}\``);
+      }
     }
-    if (nodes.length === 0) lines.push('- None yet.');
   }
 
   return `${lines.join('\n')}\n`;
@@ -270,6 +291,14 @@ function renderNodePage({ node, claims, relatedLinks, generatedAt }) {
     '',
   ];
   if (pointer) lines.push(`Pointer: \`${pointer}\``, '');
+  if (node.kind === 'mechanics_concept') {
+    if (props.topicGroup) lines.push(`Topic group: \`${props.topicGroup}\``, '');
+    if (props.topic) lines.push(`Topic: \`${props.topic}\``, '');
+    if (props.oldidUrl) lines.push(`Citation: ${props.oldidUrl}`, '');
+    if (props.sectionAnchorCount !== undefined && props.sectionAnchorCount !== null) {
+      lines.push(`Anchored section count: \`${props.sectionAnchorCount}\``, '');
+    }
+  }
   lines.push('## Evidence', '');
   for (const sourceId of sourceIds) {
     lines.push(`- Source: \`${sourceId}\``);
@@ -289,7 +318,9 @@ function renderNodePage({ node, claims, relatedLinks, generatedAt }) {
 
   lines.push('', '## Claims', '');
   if (claims.length === 0) {
-    lines.push('- No semantic claims currently cite this graph node.');
+    lines.push(node.kind === 'mechanics_concept'
+      ? '- No semantic claims currently cite this mechanics concept. Add a proposed claim via `scripts/ck3-documentation-claims`.'
+      : '- No semantic claims currently cite this graph node.');
   } else {
     for (const claim of claims) {
       lines.push(`- \`${claim.claimId}\` (${claim.status}, confidence ${claim.confidence}): ${claim.proposition}`);

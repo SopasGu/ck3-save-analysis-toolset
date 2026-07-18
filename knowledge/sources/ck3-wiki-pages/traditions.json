@@ -1,0 +1,537 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "sourceId": "source:ck3-paradoxwikis-com:traditions",
+    "kind": "mediawiki_page",
+    "site": {
+      "key": "ck3.paradoxwikis.com",
+      "sitename": "CK3 Wiki",
+      "generator": "MediaWiki 1.39.4",
+      "apiUrl": "https://ck3.paradoxwikis.com/api.php",
+      "server": "https://ck3.paradoxwikis.com",
+      "articlePath": "/$1",
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      }
+    },
+    "page": {
+      "title": "Traditions",
+      "pageId": 2876,
+      "canonicalUrl": "https://ck3.paradoxwikis.com/Traditions",
+      "revisionId": 34856,
+      "parentRevisionId": 34848,
+      "touched": "2026-07-09T14:21:17Z",
+      "revisionTimestamp": "2026-07-09T09:41:37Z",
+      "revisionSha1": "9b94b5e87df1aeaa14d6ae4e35269a01f854422f",
+      "oldidUrl": "https://ck3.paradoxwikis.com/Traditions?oldid=34856",
+      "length": 211378
+    },
+    "links": [
+      {
+        "title": "Achievement",
+        "url": "https://ck3.paradoxwikis.com/Achievement"
+      },
+      {
+        "title": "Activity",
+        "url": "https://ck3.paradoxwikis.com/Activity"
+      },
+      {
+        "title": "Adoption",
+        "url": "https://ck3.paradoxwikis.com/Adoption"
+      },
+      {
+        "title": "Adventurer",
+        "url": "https://ck3.paradoxwikis.com/Adventurer"
+      },
+      {
+        "title": "All Under Heaven",
+        "url": "https://ck3.paradoxwikis.com/All_Under_Heaven"
+      },
+      {
+        "title": "Alliance",
+        "url": "https://ck3.paradoxwikis.com/Alliance"
+      },
+      {
+        "title": "Army",
+        "url": "https://ck3.paradoxwikis.com/Army"
+      },
+      {
+        "title": "Artifacts",
+        "url": "https://ck3.paradoxwikis.com/Artifacts"
+      },
+      {
+        "title": "Attributes",
+        "url": "https://ck3.paradoxwikis.com/Attributes"
+      },
+      {
+        "title": "Barony",
+        "url": "https://ck3.paradoxwikis.com/Barony"
+      },
+      {
+        "title": "Battlements",
+        "url": "https://ck3.paradoxwikis.com/Battlements"
+      },
+      {
+        "title": "Bookmarks",
+        "url": "https://ck3.paradoxwikis.com/Bookmarks"
+      },
+      {
+        "title": "Building",
+        "url": "https://ck3.paradoxwikis.com/Building"
+      },
+      {
+        "title": "Buildings",
+        "url": "https://ck3.paradoxwikis.com/Buildings"
+      },
+      {
+        "title": "Casus belli",
+        "url": "https://ck3.paradoxwikis.com/Casus_belli"
+      },
+      {
+        "title": "Character",
+        "url": "https://ck3.paradoxwikis.com/Character"
+      },
+      {
+        "title": "Character decisions",
+        "url": "https://ck3.paradoxwikis.com/Character_decisions"
+      },
+      {
+        "title": "Council",
+        "url": "https://ck3.paradoxwikis.com/Council"
+      },
+      {
+        "title": "County",
+        "url": "https://ck3.paradoxwikis.com/County"
+      },
+      {
+        "title": "County buildings",
+        "url": "https://ck3.paradoxwikis.com/County_buildings"
+      },
+      {
+        "title": "Court",
+        "url": "https://ck3.paradoxwikis.com/Court"
+      },
+      {
+        "title": "Culture",
+        "url": "https://ck3.paradoxwikis.com/Culture"
+      },
+      {
+        "title": "Decisions",
+        "url": "https://ck3.paradoxwikis.com/Decisions"
+      },
+      {
+        "title": "Desert",
+        "url": "https://ck3.paradoxwikis.com/Desert"
+      },
+      {
+        "title": "Desert Mountains",
+        "url": "https://ck3.paradoxwikis.com/Desert_Mountains"
+      },
+      {
+        "title": "Developer diaries",
+        "url": "https://ck3.paradoxwikis.com/Developer_diaries"
+      },
+      {
+        "title": "Dharmic Pacifism",
+        "url": "https://ck3.paradoxwikis.com/Dharmic_Pacifism"
+      },
+      {
+        "title": "Doctrines",
+        "url": "https://ck3.paradoxwikis.com/Doctrines"
+      },
+      {
+        "title": "Domicile",
+        "url": "https://ck3.paradoxwikis.com/Domicile"
+      },
+      {
+        "title": "Downloadable content",
+        "url": "https://ck3.paradoxwikis.com/Downloadable_content"
+      },
+      {
+        "title": "Drylands",
+        "url": "https://ck3.paradoxwikis.com/Drylands"
+      },
+      {
+        "title": "Duchy buildings",
+        "url": "https://ck3.paradoxwikis.com/Duchy_buildings"
+      },
+      {
+        "title": "Duel",
+        "url": "https://ck3.paradoxwikis.com/Duel"
+      },
+      {
+        "title": "Dynasty",
+        "url": "https://ck3.paradoxwikis.com/Dynasty"
+      },
+      {
+        "title": "Economic buildings",
+        "url": "https://ck3.paradoxwikis.com/Economic_buildings"
+      },
+      {
+        "title": "Faith",
+        "url": "https://ck3.paradoxwikis.com/Faith"
+      },
+      {
+        "title": "Family (relation)",
+        "url": "https://ck3.paradoxwikis.com/Family_(relation)"
+      },
+      {
+        "title": "Farmlands",
+        "url": "https://ck3.paradoxwikis.com/Farmlands"
+      },
+      {
+        "title": "Fate of Iberia",
+        "url": "https://ck3.paradoxwikis.com/Fate_of_Iberia"
+      },
+      {
+        "title": "Floodplains",
+        "url": "https://ck3.paradoxwikis.com/Floodplains"
+      },
+      {
+        "title": "Form of address",
+        "url": "https://ck3.paradoxwikis.com/Form_of_address"
+      },
+      {
+        "title": "Fortification buildings",
+        "url": "https://ck3.paradoxwikis.com/Fortification_buildings"
+      },
+      {
+        "title": "Game rules",
+        "url": "https://ck3.paradoxwikis.com/Game_rules"
+      },
+      {
+        "title": "Government",
+        "url": "https://ck3.paradoxwikis.com/Government"
+      },
+      {
+        "title": "Great projects",
+        "url": "https://ck3.paradoxwikis.com/Great_projects"
+      },
+      {
+        "title": "Hills",
+        "url": "https://ck3.paradoxwikis.com/Hills"
+      },
+      {
+        "title": "Hired forces",
+        "url": "https://ck3.paradoxwikis.com/Hired_forces"
+      },
+      {
+        "title": "Holy sites",
+        "url": "https://ck3.paradoxwikis.com/Holy_sites"
+      },
+      {
+        "title": "Hooks",
+        "url": "https://ck3.paradoxwikis.com/Hooks"
+      },
+      {
+        "title": "Innovation",
+        "url": "https://ck3.paradoxwikis.com/Innovation"
+      },
+      {
+        "title": "Interactions",
+        "url": "https://ck3.paradoxwikis.com/Interactions"
+      },
+      {
+        "title": "Interesting characters",
+        "url": "https://ck3.paradoxwikis.com/Interesting_characters"
+      },
+      {
+        "title": "Jargon",
+        "url": "https://ck3.paradoxwikis.com/Jargon"
+      },
+      {
+        "title": "Jungle",
+        "url": "https://ck3.paradoxwikis.com/Jungle"
+      },
+      {
+        "title": "Khans of the Steppe",
+        "url": "https://ck3.paradoxwikis.com/Khans_of_the_Steppe"
+      },
+      {
+        "title": "Knight",
+        "url": "https://ck3.paradoxwikis.com/Knight"
+      },
+      {
+        "title": "Laws",
+        "url": "https://ck3.paradoxwikis.com/Laws"
+      },
+      {
+        "title": "Legacy of Persia",
+        "url": "https://ck3.paradoxwikis.com/Legacy_of_Persia"
+      },
+      {
+        "title": "Legends of the Dead",
+        "url": "https://ck3.paradoxwikis.com/Legends_of_the_Dead"
+      },
+      {
+        "title": "Lifestyle",
+        "url": "https://ck3.paradoxwikis.com/Lifestyle"
+      },
+      {
+        "title": "Mechanics",
+        "url": "https://ck3.paradoxwikis.com/Mechanics"
+      },
+      {
+        "title": "Military buildings",
+        "url": "https://ck3.paradoxwikis.com/Military_buildings"
+      },
+      {
+        "title": "Modding",
+        "url": "https://ck3.paradoxwikis.com/Modding"
+      },
+      {
+        "title": "Modifiers",
+        "url": "https://ck3.paradoxwikis.com/Modifiers"
+      },
+      {
+        "title": "Mountains",
+        "url": "https://ck3.paradoxwikis.com/Mountains"
+      },
+      {
+        "title": "Mounted Samurai",
+        "url": "https://ck3.paradoxwikis.com/Mounted_Samurai"
+      },
+      {
+        "title": "Nomadic capital",
+        "url": "https://ck3.paradoxwikis.com/Nomadic_capital"
+      },
+      {
+        "title": "Northern Lords",
+        "url": "https://ck3.paradoxwikis.com/Northern_Lords"
+      },
+      {
+        "title": "Pacifism",
+        "url": "https://ck3.paradoxwikis.com/Pacifism"
+      },
+      {
+        "title": "Patches",
+        "url": "https://ck3.paradoxwikis.com/Patches"
+      },
+      {
+        "title": "Power sharing",
+        "url": "https://ck3.paradoxwikis.com/Power_sharing"
+      },
+      {
+        "title": "Prisoner",
+        "url": "https://ck3.paradoxwikis.com/Prisoner"
+      },
+      {
+        "title": "Resources",
+        "url": "https://ck3.paradoxwikis.com/Resources"
+      },
+      {
+        "title": "Roads to Power",
+        "url": "https://ck3.paradoxwikis.com/Roads_to_Power"
+      },
+      {
+        "title": "Royal court",
+        "url": "https://ck3.paradoxwikis.com/Royal_court"
+      },
+      {
+        "title": "Royal Court (DLC)",
+        "url": "https://ck3.paradoxwikis.com/Royal_Court_(DLC)"
+      },
+      {
+        "title": "Ruler decisions",
+        "url": "https://ck3.paradoxwikis.com/Ruler_decisions"
+      },
+      {
+        "title": "Ruler Designer",
+        "url": "https://ck3.paradoxwikis.com/Ruler_Designer"
+      },
+      {
+        "title": "Samurai",
+        "url": "https://ck3.paradoxwikis.com/Samurai"
+      },
+      {
+        "title": "Schemes",
+        "url": "https://ck3.paradoxwikis.com/Schemes"
+      },
+      {
+        "title": "Situation",
+        "url": "https://ck3.paradoxwikis.com/Situation"
+      },
+      {
+        "title": "Subjects",
+        "url": "https://ck3.paradoxwikis.com/Subjects"
+      },
+      {
+        "title": "Succession",
+        "url": "https://ck3.paradoxwikis.com/Succession"
+      },
+      {
+        "title": "Tenets",
+        "url": "https://ck3.paradoxwikis.com/Tenets"
+      },
+      {
+        "title": "Terraced Hills",
+        "url": "https://ck3.paradoxwikis.com/Terraced_Hills"
+      },
+      {
+        "title": "Titles",
+        "url": "https://ck3.paradoxwikis.com/Titles"
+      },
+      {
+        "title": "Tours and Tournaments",
+        "url": "https://ck3.paradoxwikis.com/Tours_and_Tournaments"
+      },
+      {
+        "title": "Traits",
+        "url": "https://ck3.paradoxwikis.com/Traits"
+      },
+      {
+        "title": "Travel",
+        "url": "https://ck3.paradoxwikis.com/Travel"
+      },
+      {
+        "title": "Warfare",
+        "url": "https://ck3.paradoxwikis.com/Warfare"
+      },
+      {
+        "title": "Wetlands",
+        "url": "https://ck3.paradoxwikis.com/Wetlands"
+      }
+    ],
+    "sectionAnchors": [
+      {
+        "index": "1",
+        "toplevel": 1,
+        "anchor": "Realm_traditions",
+        "line": "Realm traditions"
+      },
+      {
+        "index": "2",
+        "toplevel": 1,
+        "anchor": "Warfare_traditions",
+        "line": "Warfare traditions"
+      },
+      {
+        "index": "3",
+        "toplevel": 1,
+        "anchor": "Social_traditions",
+        "line": "Social traditions"
+      },
+      {
+        "index": "4",
+        "toplevel": 1,
+        "anchor": "Ritual_traditions",
+        "line": "Ritual traditions"
+      },
+      {
+        "index": "5",
+        "toplevel": 1,
+        "anchor": "Regional_traditions",
+        "line": "Regional traditions"
+      },
+      {
+        "index": "6",
+        "toplevel": 1,
+        "anchor": "References",
+        "line": "References"
+      }
+    ],
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    }
+  },
+  "registryEntry": {
+    "sourceId": "source:ck3-paradoxwikis-com:traditions",
+    "kind": "documentation_mediawiki_page",
+    "label": "CK3 Wiki: Traditions",
+    "acquiredAt": "2026-07-18T05:33:08.502Z",
+    "publisher": "CK3 Wiki",
+    "documentType": "mediawiki_page",
+    "topic": "Traditions",
+    "canonicalUrl": "https://ck3.paradoxwikis.com/Traditions",
+    "oldidUrl": "https://ck3.paradoxwikis.com/Traditions?oldid=34856",
+    "revision": {
+      "pageId": 2876,
+      "revisionId": 34856,
+      "parentRevisionId": 34848,
+      "timestamp": "2026-07-09T09:41:37Z",
+      "sha1": "9b94b5e87df1aeaa14d6ae4e35269a01f854422f"
+    },
+    "content": {
+      "hashAlgorithm": "sha256",
+      "structuralSummarySha256": "641ffe6a57a3c39942064693a93a7d1f8754a8225a48a00567ede3b3949882de",
+      "copiedContent": "metadata_and_section_anchors_only"
+    },
+    "scope": {
+      "gameVersions": [
+        "1.19.0.6"
+      ],
+      "dlc": [
+        "ALL_ACTIVE_ASSUMPTION"
+      ],
+      "mods": [],
+      "allDlcActive": true
+    },
+    "licensing": {
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      },
+      "redistribution": "Do not copy whole wiki pages into this repository; store citations, page metadata, and short section anchor titles only."
+    },
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    },
+    "extracted": {
+      "sectionAnchorCount": 6,
+      "sectionAnchors": [
+        {
+          "index": "1",
+          "toplevel": 1,
+          "anchor": "Realm_traditions",
+          "line": "Realm traditions"
+        },
+        {
+          "index": "2",
+          "toplevel": 1,
+          "anchor": "Warfare_traditions",
+          "line": "Warfare traditions"
+        },
+        {
+          "index": "3",
+          "toplevel": 1,
+          "anchor": "Social_traditions",
+          "line": "Social traditions"
+        },
+        {
+          "index": "4",
+          "toplevel": 1,
+          "anchor": "Ritual_traditions",
+          "line": "Ritual traditions"
+        },
+        {
+          "index": "5",
+          "toplevel": 1,
+          "anchor": "Regional_traditions",
+          "line": "Regional traditions"
+        },
+        {
+          "index": "6",
+          "toplevel": 1,
+          "anchor": "References",
+          "line": "References"
+        }
+      ],
+      "pageLength": 211378
+    },
+    "visibility": {
+      "classification": "external",
+      "rawArtifactCommitted": false,
+      "rationale": "External CK3 wiki documentation source for the 'Traditions' mechanics topic. Durable knowledge should cite this page/revision; only metadata + section anchor titles are stored."
+    },
+    "notes": []
+  }
+}

@@ -6,7 +6,9 @@ import {
   DEFAULT_MIN_DELAY_MS,
   DEFAULT_USER_AGENT,
   buildMediaWikiRegistryEntry,
+  buildMediaWikiTopicRegistryEntry,
   fetchMediaWikiPageSource,
+  selectMediaWikiTopicGroup,
 } from './lib/ck3-mediawiki-source.mjs';
 import {
   addOrUpdateSource,
@@ -17,26 +19,33 @@ import {
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const DEFAULT_CACHE = path.join(ROOT, 'state/mediawiki-cache/ck3.paradoxwikis.com');
 const DEFAULT_REGISTRY = path.join(ROOT, 'knowledge/sources/registry.json');
+const DEFAULT_PAGE_OUT_DIR = path.join(ROOT, 'knowledge/sources/ck3-wiki-pages');
 
 function printHelp() {
   console.log(`Usage:
   ck3-wiki-source fetch-page --title TITLE [options]
+  ck3-wiki-source fetch-pages --seed PATH [options]
 
-Fetch and summarize a single CK3 Wiki MediaWiki page as a documentation source.
-Requests are serial, cached, and default to a conservative delay.
+Fetch and summarize CK3 Wiki MediaWiki pages as documentation sources. Requests
+are serial, cached, and default to a conservative delay. Only metadata and
+section anchor titles are stored; lead paragraph text is never committed.
 
 Options:
   --api-url URL          MediaWiki API endpoint (default: CK3 Paradox Wiki)
   --cache-dir PATH       Local API response cache (default: state/mediawiki-cache/...)
   --registry PATH        Source registry path (default: knowledge/sources/registry.json)
-  --out PATH             Write source summary JSON to PATH
+  --out PATH             Write single-page source summary JSON to PATH
   --register             Add/update the source registry entry
   --all-dlc-active       Record scope assumption that all CK3 DLC is active
-  --game-version TEXT    Optional game-version scope
+  --game-version TEXT    Optional game-version scope (repeatable)
+  --skip-existing        When fetching pages from a seed, skip titles already registered
   --min-delay-ms N       Minimum delay between uncached requests (default: ${DEFAULT_MIN_DELAY_MS})
   --user-agent TEXT      Explicit User-Agent / Api-User-Agent
+  --pages-dir PATH       Where to write per-page summaries (default: knowledge/sources/ck3-wiki-pages)
   --quiet                Suppress progress on stderr
-`);
+
+` +
+  `\nSeed file format (JSON):\n  [{ "topic": "Culture", "title": "Culture", "topicGroup": "cultureFaith" }, ...]\n`);
 }
 
 function parseArgs(argv) {
@@ -49,16 +58,22 @@ function parseArgs(argv) {
     out: null,
     register: false,
     allDlcActive: false,
-    gameVersion: null,
+    gameVersions: [],
     minDelayMs: DEFAULT_MIN_DELAY_MS,
     userAgent: DEFAULT_USER_AGENT,
     quiet: false,
+    seed: null,
+    skipExisting: false,
+    pagesDir: DEFAULT_PAGE_OUT_DIR,
   };
-  for (let i = 1; i < argv.length; i++) {
+  for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     switch (a) {
       case '--title':
         args.title = argv[++i];
+        break;
+      case '--seed':
+        args.seed = argv[++i];
         break;
       case '--api-url':
         args.apiUrl = argv[++i];
@@ -79,13 +94,19 @@ function parseArgs(argv) {
         args.allDlcActive = true;
         break;
       case '--game-version':
-        args.gameVersion = argv[++i];
+        args.gameVersions.push(argv[++i]);
         break;
       case '--min-delay-ms':
         args.minDelayMs = parseInt(argv[++i], 10);
         break;
       case '--user-agent':
         args.userAgent = argv[++i];
+        break;
+      case '--pages-dir':
+        args.pagesDir = argv[++i];
+        break;
+      case '--skip-existing':
+        args.skipExisting = true;
         break;
       case '--quiet':
       case '-q':
@@ -105,12 +126,15 @@ function parseArgs(argv) {
   return args;
 }
 
-async function main() {
-  const args = parseArgs(process.argv.slice(2));
-  if (args.subcommand !== 'fetch-page') {
-    printHelp();
-    process.exit(args.subcommand ? 2 : 0);
-  }
+function slugify(text) {
+  return String(text)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 80);
+}
+
+async function fetchAndRegisterSingle(args) {
   if (!args.title) {
     console.error('fetch-page requires --title');
     process.exit(2);
@@ -122,18 +146,18 @@ async function main() {
     userAgent: args.userAgent,
     minDelayMs: args.minDelayMs,
   });
-  const entry = buildMediaWikiRegistryEntry(source, {
-    allDlcActive: args.allDlcActive,
-    gameVersions: args.gameVersion ? [args.gameVersion] : [],
-    notes: [
-      'Task 11 groundwork source. Use this documentation page as context for proposed claims only; do not let it alter structural observations.',
-    ],
-  });
-  const output = {
-    schemaVersion: 1,
-    source,
-    registryEntry: entry,
-  };
+  const isTopicPage = !!selectMediaWikiTopicGroup(args.title);
+  const entry = isTopicPage
+    ? buildMediaWikiTopicRegistryEntry(source, {
+        topic: selectMediaWikiTopicGroup(args.title),
+        allDlcActive: args.allDlcActive,
+        gameVersions: args.gameVersions,
+      })
+    : buildMediaWikiRegistryEntry(source, {
+        allDlcActive: args.allDlcActive,
+        gameVersions: args.gameVersions,
+      });
+  const output = { schemaVersion: 1, source, registryEntry: entry };
   if (args.out) {
     fs.mkdirSync(path.dirname(path.resolve(args.out)), { recursive: true });
     fs.writeFileSync(args.out, JSON.stringify(output, null, 2) + '\n');
@@ -149,6 +173,115 @@ async function main() {
   if (!args.out) {
     process.stdout.write(JSON.stringify(output, null, 2) + '\n');
   }
+}
+
+async function fetchAndRegisterSeed(args) {
+  if (!args.seed) {
+    console.error('fetch-pages requires --seed');
+    process.exit(2);
+  }
+  if (!fs.existsSync(args.seed)) {
+    console.error(`Seed file not found: ${args.seed}`);
+    process.exit(2);
+  }
+  const seedRaw = JSON.parse(fs.readFileSync(args.seed, 'utf8'));
+  const seedEntries = Array.isArray(seedRaw) ? seedRaw : (Array.isArray(seedRaw?.topics) ? seedRaw.topics : null);
+  if (!seedEntries) {
+    console.error('Seed file must contain a JSON array or an object with a "topics" array of { topic, title, topicGroup? }');
+    process.exit(2);
+  }
+  // Always load the existing registry to preserve non-documentation sources
+  // (e.g., Rakaly save specimens). `--skip-existing` only affects whether we
+  // re-fetch and overwrite documentation_mediawiki_page entries with matching
+  // sourceIds.
+  const registry = loadRegistry(args.registry);
+  const registered = new Set(registry.sources.map((s) => s.sourceId));
+  fs.mkdirSync(args.pagesDir, { recursive: true });
+  const summary = {
+    seedCount: seedEntries.length,
+    fetched: 0,
+    skipped: 0,
+    failed: 0,
+    registered: [],
+  };
+  for (let i = 0; i < seedEntries.length; i++) {
+    const entry = seedEntries[i];
+    const title = entry.title ?? entry.topic ?? null;
+    if (!title) {
+      console.error(`Seed entry ${i} missing title`);
+      summary.failed++;
+      continue;
+    }
+    const sourceId = `source:ck3-paradoxwikis-com:${slugify(title)}`;
+    if (args.skipExisting && registered.has(sourceId)) {
+      summary.skipped++;
+      if (!args.quiet) {
+        process.stderr.write(`[${i + 1}/${seedEntries.length}] skip-existing ${title}\n`);
+      }
+      continue;
+    }
+    try {
+      const source = await fetchMediaWikiPageSource({
+        apiUrl: args.apiUrl,
+        title,
+        cacheDir: args.cacheDir,
+        userAgent: args.userAgent,
+        minDelayMs: args.minDelayMs,
+        fetchSections: true,
+      });
+      const topicGroup = entry.topicGroup ?? selectMediaWikiTopicGroup(title);
+      const registryEntry = topicGroup
+        ? buildMediaWikiTopicRegistryEntry(source, {
+            topic: entry.topic ?? topicGroup,
+            allDlcActive: args.allDlcActive,
+            gameVersions: args.gameVersions,
+          })
+        : buildMediaWikiRegistryEntry(source, {
+            allDlcActive: args.allDlcActive,
+            gameVersions: args.gameVersions,
+          });
+      addOrUpdateSource(registry, registryEntry);
+      const pageFile = path.join(args.pagesDir, `${slugify(title)}.json`);
+      fs.writeFileSync(
+        pageFile,
+        JSON.stringify({ schemaVersion: 1, source, registryEntry }, null, 2) + '\n',
+      );
+      summary.fetched++;
+      summary.registered.push({ title, sourceId: registryEntry.sourceId });
+      if (!args.quiet) {
+        process.stderr.write(`[${i + 1}/${seedEntries.length}] fetched ${title} -> ${registryEntry.sourceId}\n`);
+      }
+    } catch (err) {
+      summary.failed++;
+      console.error(`[${i + 1}/${seedEntries.length}] failed ${title}: ${err.message}`);
+    }
+  }
+  saveRegistry(args.registry, registry);
+  if (!args.quiet) {
+    process.stderr.write(
+      `Registered ${summary.registered.length} sources (skipped=${summary.skipped}, failed=${summary.failed}) to ${args.registry}\n`,
+    );
+  }
+  if (args.out) {
+    fs.mkdirSync(path.dirname(path.resolve(args.out)), { recursive: true });
+    fs.writeFileSync(args.out, JSON.stringify(summary, null, 2) + '\n');
+  } else {
+    process.stdout.write(JSON.stringify(summary, null, 2) + '\n');
+  }
+}
+
+async function main() {
+  const args = parseArgs(process.argv.slice(2));
+  if (args.subcommand === 'fetch-page') {
+    await fetchAndRegisterSingle(args);
+    return;
+  }
+  if (args.subcommand === 'fetch-pages') {
+    await fetchAndRegisterSeed(args);
+    return;
+  }
+  printHelp();
+  process.exit(args.subcommand ? 2 : 0);
 }
 
 main().catch((err) => {

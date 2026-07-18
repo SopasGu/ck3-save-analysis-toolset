@@ -1,0 +1,553 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "sourceId": "source:ck3-paradoxwikis-com:barony",
+    "kind": "mediawiki_page",
+    "site": {
+      "key": "ck3.paradoxwikis.com",
+      "sitename": "CK3 Wiki",
+      "generator": "MediaWiki 1.39.4",
+      "apiUrl": "https://ck3.paradoxwikis.com/api.php",
+      "server": "https://ck3.paradoxwikis.com",
+      "articlePath": "/$1",
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      }
+    },
+    "page": {
+      "title": "Barony",
+      "pageId": 1130,
+      "canonicalUrl": "https://ck3.paradoxwikis.com/Barony",
+      "revisionId": 34990,
+      "parentRevisionId": 34898,
+      "touched": "2026-07-11T19:28:31Z",
+      "revisionTimestamp": "2026-07-11T19:28:31Z",
+      "revisionSha1": "b2575d85a668746bb7db0f32603f532d4fdd4514",
+      "oldidUrl": "https://ck3.paradoxwikis.com/Barony?oldid=34990",
+      "length": 27460
+    },
+    "links": [
+      {
+        "title": "Achievement",
+        "url": "https://ck3.paradoxwikis.com/Achievement"
+      },
+      {
+        "title": "Activity",
+        "url": "https://ck3.paradoxwikis.com/Activity"
+      },
+      {
+        "title": "Adventurer",
+        "url": "https://ck3.paradoxwikis.com/Adventurer"
+      },
+      {
+        "title": "All Under Heaven",
+        "url": "https://ck3.paradoxwikis.com/All_Under_Heaven"
+      },
+      {
+        "title": "Alliance",
+        "url": "https://ck3.paradoxwikis.com/Alliance"
+      },
+      {
+        "title": "Army",
+        "url": "https://ck3.paradoxwikis.com/Army"
+      },
+      {
+        "title": "Artifacts",
+        "url": "https://ck3.paradoxwikis.com/Artifacts"
+      },
+      {
+        "title": "Attributes",
+        "url": "https://ck3.paradoxwikis.com/Attributes"
+      },
+      {
+        "title": "Battlements",
+        "url": "https://ck3.paradoxwikis.com/Battlements"
+      },
+      {
+        "title": "Bookmarks",
+        "url": "https://ck3.paradoxwikis.com/Bookmarks"
+      },
+      {
+        "title": "Buildings",
+        "url": "https://ck3.paradoxwikis.com/Buildings"
+      },
+      {
+        "title": "Casus belli",
+        "url": "https://ck3.paradoxwikis.com/Casus_belli"
+      },
+      {
+        "title": "Character",
+        "url": "https://ck3.paradoxwikis.com/Character"
+      },
+      {
+        "title": "City Planning",
+        "url": "https://ck3.paradoxwikis.com/City_Planning"
+      },
+      {
+        "title": "Council",
+        "url": "https://ck3.paradoxwikis.com/Council"
+      },
+      {
+        "title": "County",
+        "url": "https://ck3.paradoxwikis.com/County"
+      },
+      {
+        "title": "Court",
+        "url": "https://ck3.paradoxwikis.com/Court"
+      },
+      {
+        "title": "Cranes",
+        "url": "https://ck3.paradoxwikis.com/Cranes"
+      },
+      {
+        "title": "Culture",
+        "url": "https://ck3.paradoxwikis.com/Culture"
+      },
+      {
+        "title": "Decisions",
+        "url": "https://ck3.paradoxwikis.com/Decisions"
+      },
+      {
+        "title": "Developer diaries",
+        "url": "https://ck3.paradoxwikis.com/Developer_diaries"
+      },
+      {
+        "title": "Doctrines",
+        "url": "https://ck3.paradoxwikis.com/Doctrines"
+      },
+      {
+        "title": "Domicile",
+        "url": "https://ck3.paradoxwikis.com/Domicile"
+      },
+      {
+        "title": "Downloadable content",
+        "url": "https://ck3.paradoxwikis.com/Downloadable_content"
+      },
+      {
+        "title": "Duel",
+        "url": "https://ck3.paradoxwikis.com/Duel"
+      },
+      {
+        "title": "Dynasty",
+        "url": "https://ck3.paradoxwikis.com/Dynasty"
+      },
+      {
+        "title": "Faith",
+        "url": "https://ck3.paradoxwikis.com/Faith"
+      },
+      {
+        "title": "Family (relation)",
+        "url": "https://ck3.paradoxwikis.com/Family_(relation)"
+      },
+      {
+        "title": "Form of address",
+        "url": "https://ck3.paradoxwikis.com/Form_of_address"
+      },
+      {
+        "title": "Game rules",
+        "url": "https://ck3.paradoxwikis.com/Game_rules"
+      },
+      {
+        "title": "Government",
+        "url": "https://ck3.paradoxwikis.com/Government"
+      },
+      {
+        "title": "Great projects",
+        "url": "https://ck3.paradoxwikis.com/Great_projects"
+      },
+      {
+        "title": "Hired forces",
+        "url": "https://ck3.paradoxwikis.com/Hired_forces"
+      },
+      {
+        "title": "Hoardings",
+        "url": "https://ck3.paradoxwikis.com/Hoardings"
+      },
+      {
+        "title": "Holy sites",
+        "url": "https://ck3.paradoxwikis.com/Holy_sites"
+      },
+      {
+        "title": "Hooks",
+        "url": "https://ck3.paradoxwikis.com/Hooks"
+      },
+      {
+        "title": "Innovation",
+        "url": "https://ck3.paradoxwikis.com/Innovation"
+      },
+      {
+        "title": "Interactions",
+        "url": "https://ck3.paradoxwikis.com/Interactions"
+      },
+      {
+        "title": "Interesting characters",
+        "url": "https://ck3.paradoxwikis.com/Interesting_characters"
+      },
+      {
+        "title": "Jargon",
+        "url": "https://ck3.paradoxwikis.com/Jargon"
+      },
+      {
+        "title": "Khans of the Steppe",
+        "url": "https://ck3.paradoxwikis.com/Khans_of_the_Steppe"
+      },
+      {
+        "title": "Knight",
+        "url": "https://ck3.paradoxwikis.com/Knight"
+      },
+      {
+        "title": "Laws",
+        "url": "https://ck3.paradoxwikis.com/Laws"
+      },
+      {
+        "title": "Legends of the Dead",
+        "url": "https://ck3.paradoxwikis.com/Legends_of_the_Dead"
+      },
+      {
+        "title": "Lifestyle",
+        "url": "https://ck3.paradoxwikis.com/Lifestyle"
+      },
+      {
+        "title": "Machicolations",
+        "url": "https://ck3.paradoxwikis.com/Machicolations"
+      },
+      {
+        "title": "Manorialism",
+        "url": "https://ck3.paradoxwikis.com/Manorialism"
+      },
+      {
+        "title": "Mechanics",
+        "url": "https://ck3.paradoxwikis.com/Mechanics"
+      },
+      {
+        "title": "Modding",
+        "url": "https://ck3.paradoxwikis.com/Modding"
+      },
+      {
+        "title": "Modifiers",
+        "url": "https://ck3.paradoxwikis.com/Modifiers"
+      },
+      {
+        "title": "Mottes",
+        "url": "https://ck3.paradoxwikis.com/Mottes"
+      },
+      {
+        "title": "Nomadic",
+        "url": "https://ck3.paradoxwikis.com/Nomadic"
+      },
+      {
+        "title": "Nomadic capital",
+        "url": "https://ck3.paradoxwikis.com/Nomadic_capital"
+      },
+      {
+        "title": "Patches",
+        "url": "https://ck3.paradoxwikis.com/Patches"
+      },
+      {
+        "title": "Planned Assemblies",
+        "url": "https://ck3.paradoxwikis.com/Planned_Assemblies"
+      },
+      {
+        "title": "Power sharing",
+        "url": "https://ck3.paradoxwikis.com/Power_sharing"
+      },
+      {
+        "title": "Prisoner",
+        "url": "https://ck3.paradoxwikis.com/Prisoner"
+      },
+      {
+        "title": "Resources",
+        "url": "https://ck3.paradoxwikis.com/Resources"
+      },
+      {
+        "title": "Royal court",
+        "url": "https://ck3.paradoxwikis.com/Royal_court"
+      },
+      {
+        "title": "Ruler Designer",
+        "url": "https://ck3.paradoxwikis.com/Ruler_Designer"
+      },
+      {
+        "title": "Schemes",
+        "url": "https://ck3.paradoxwikis.com/Schemes"
+      },
+      {
+        "title": "Situation",
+        "url": "https://ck3.paradoxwikis.com/Situation"
+      },
+      {
+        "title": "Subjects",
+        "url": "https://ck3.paradoxwikis.com/Subjects"
+      },
+      {
+        "title": "Succession",
+        "url": "https://ck3.paradoxwikis.com/Succession"
+      },
+      {
+        "title": "Tenets",
+        "url": "https://ck3.paradoxwikis.com/Tenets"
+      },
+      {
+        "title": "Titles",
+        "url": "https://ck3.paradoxwikis.com/Titles"
+      },
+      {
+        "title": "Traditions",
+        "url": "https://ck3.paradoxwikis.com/Traditions"
+      },
+      {
+        "title": "Traits",
+        "url": "https://ck3.paradoxwikis.com/Traits"
+      },
+      {
+        "title": "Travel",
+        "url": "https://ck3.paradoxwikis.com/Travel"
+      },
+      {
+        "title": "Warfare",
+        "url": "https://ck3.paradoxwikis.com/Warfare"
+      },
+      {
+        "title": "Windmills",
+        "url": "https://ck3.paradoxwikis.com/Windmills"
+      }
+    ],
+    "sectionAnchors": [
+      {
+        "index": "1",
+        "toplevel": 1,
+        "anchor": "Capital",
+        "line": "Capital"
+      },
+      {
+        "index": "2",
+        "toplevel": 1,
+        "anchor": "Holdings",
+        "line": "Holdings"
+      },
+      {
+        "index": "3",
+        "toplevel": 2,
+        "anchor": "Castle",
+        "line": "Castle"
+      },
+      {
+        "index": "4",
+        "toplevel": 2,
+        "anchor": "City",
+        "line": "City"
+      },
+      {
+        "index": "5",
+        "toplevel": 2,
+        "anchor": "Temple",
+        "line": "Temple"
+      },
+      {
+        "index": "6",
+        "toplevel": 2,
+        "anchor": "Tribe",
+        "line": "Tribe"
+      },
+      {
+        "index": "7",
+        "toplevel": 2,
+        "anchor": "Temple_Citadel",
+        "line": "Temple Citadel"
+      },
+      {
+        "index": "8",
+        "toplevel": 2,
+        "anchor": "Nomadic_Settlement",
+        "line": "Nomadic Settlement"
+      },
+      {
+        "index": "9",
+        "toplevel": 2,
+        "anchor": "Herder_Pens",
+        "line": "Herder Pens"
+      },
+      {
+        "index": "10",
+        "toplevel": 2,
+        "anchor": "Razing_holdings",
+        "line": "Razing holdings"
+      },
+      {
+        "index": "11",
+        "toplevel": 1,
+        "anchor": "Terrain",
+        "line": "Terrain"
+      },
+      {
+        "index": "12",
+        "toplevel": 1,
+        "anchor": "Winter",
+        "line": "Winter"
+      },
+      {
+        "index": "13",
+        "toplevel": 1,
+        "anchor": "Plagues",
+        "line": "Plagues"
+      },
+      {
+        "index": "14",
+        "toplevel": 1,
+        "anchor": "References",
+        "line": "References"
+      }
+    ],
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    }
+  },
+  "registryEntry": {
+    "sourceId": "source:ck3-paradoxwikis-com:barony",
+    "kind": "documentation_mediawiki_page",
+    "label": "CK3 Wiki: Barony",
+    "acquiredAt": "2026-07-18T05:33:08.496Z",
+    "publisher": "CK3 Wiki",
+    "documentType": "mediawiki_page",
+    "topic": "Barony",
+    "canonicalUrl": "https://ck3.paradoxwikis.com/Barony",
+    "oldidUrl": "https://ck3.paradoxwikis.com/Barony?oldid=34990",
+    "revision": {
+      "pageId": 1130,
+      "revisionId": 34990,
+      "parentRevisionId": 34898,
+      "timestamp": "2026-07-11T19:28:31Z",
+      "sha1": "b2575d85a668746bb7db0f32603f532d4fdd4514"
+    },
+    "content": {
+      "hashAlgorithm": "sha256",
+      "structuralSummarySha256": "8ab442f1309abc210bca93f5d2a1522fd2115035e6fba1672ea6e3d669df8761",
+      "copiedContent": "metadata_and_section_anchors_only"
+    },
+    "scope": {
+      "gameVersions": [
+        "1.19.0.6"
+      ],
+      "dlc": [
+        "ALL_ACTIVE_ASSUMPTION"
+      ],
+      "mods": [],
+      "allDlcActive": true
+    },
+    "licensing": {
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      },
+      "redistribution": "Do not copy whole wiki pages into this repository; store citations, page metadata, and short section anchor titles only."
+    },
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    },
+    "extracted": {
+      "sectionAnchorCount": 14,
+      "sectionAnchors": [
+        {
+          "index": "1",
+          "toplevel": 1,
+          "anchor": "Capital",
+          "line": "Capital"
+        },
+        {
+          "index": "2",
+          "toplevel": 1,
+          "anchor": "Holdings",
+          "line": "Holdings"
+        },
+        {
+          "index": "3",
+          "toplevel": 2,
+          "anchor": "Castle",
+          "line": "Castle"
+        },
+        {
+          "index": "4",
+          "toplevel": 2,
+          "anchor": "City",
+          "line": "City"
+        },
+        {
+          "index": "5",
+          "toplevel": 2,
+          "anchor": "Temple",
+          "line": "Temple"
+        },
+        {
+          "index": "6",
+          "toplevel": 2,
+          "anchor": "Tribe",
+          "line": "Tribe"
+        },
+        {
+          "index": "7",
+          "toplevel": 2,
+          "anchor": "Temple_Citadel",
+          "line": "Temple Citadel"
+        },
+        {
+          "index": "8",
+          "toplevel": 2,
+          "anchor": "Nomadic_Settlement",
+          "line": "Nomadic Settlement"
+        },
+        {
+          "index": "9",
+          "toplevel": 2,
+          "anchor": "Herder_Pens",
+          "line": "Herder Pens"
+        },
+        {
+          "index": "10",
+          "toplevel": 2,
+          "anchor": "Razing_holdings",
+          "line": "Razing holdings"
+        },
+        {
+          "index": "11",
+          "toplevel": 1,
+          "anchor": "Terrain",
+          "line": "Terrain"
+        },
+        {
+          "index": "12",
+          "toplevel": 1,
+          "anchor": "Winter",
+          "line": "Winter"
+        },
+        {
+          "index": "13",
+          "toplevel": 1,
+          "anchor": "Plagues",
+          "line": "Plagues"
+        },
+        {
+          "index": "14",
+          "toplevel": 1,
+          "anchor": "References",
+          "line": "References"
+        }
+      ],
+      "pageLength": 27460
+    },
+    "visibility": {
+      "classification": "external",
+      "rawArtifactCommitted": false,
+      "rationale": "External CK3 wiki documentation source for the 'Barony' mechanics topic. Durable knowledge should cite this page/revision; only metadata + section anchor titles are stored."
+    },
+    "notes": []
+  }
+}

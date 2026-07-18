@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 import {
   buildMediaWikiRegistryEntry,
+  buildMediaWikiTopicRegistryEntry,
+  selectMediaWikiTopicGroup,
   sourceIdForMediaWikiPage,
   summarizeMediaWikiLinks,
+  summarizeMediaWikiTopicPage,
 } from './lib/ck3-mediawiki-source.mjs';
 
 let failed = 0;
@@ -17,7 +20,7 @@ function fail(label, detail) {
   failed++;
 }
 
-function fixtureSource() {
+function fixtureSource(extra = {}) {
   return {
     sourceId: 'source:ck3-paradoxwikis-com:main-page-links',
     kind: 'mediawiki_page',
@@ -42,6 +45,7 @@ function fixtureSource() {
       revisionTimestamp: '2026-03-31T15:22:48Z',
       revisionSha1: 'bc27c8066b15f94e64c1129e145403c0e844100c',
       oldidUrl: 'https://ck3.paradoxwikis.com/Main_Page/links?oldid=34070',
+      length: 12345,
     },
     links: [
       { title: "Beginner's guide", url: 'https://ck3.paradoxwikis.com/Beginner%27s_guide' },
@@ -51,6 +55,11 @@ function fixtureSource() {
       { title: 'Adventurer', url: 'https://ck3.paradoxwikis.com/Adventurer' },
       { title: 'Downloadable content', url: 'https://ck3.paradoxwikis.com/Downloadable_content' },
     ],
+    sectionAnchors: [
+      { index: '1', toplevel: 1, anchor: 'Overview', line: 'Overview' },
+      { index: '2', toplevel: 1, anchor: 'Culture_management', line: 'Culture management' },
+      { index: '3', toplevel: 2, anchor: 'Innovations', line: 'Innovations' },
+    ],
     requestPolicy: {
       userAgent: 'test-agent',
       minDelayMs: 1200,
@@ -58,6 +67,7 @@ function fixtureSource() {
       cacheDir: '/tmp/cache',
       retryAfterHonored: true,
     },
+    ...extra,
   };
 }
 
@@ -99,10 +109,81 @@ function testRegistryEntryScopeAndCitation() {
     return;
   }
   if (entry.content.copiedContent !== 'metadata_and_link_titles_only') {
-    fail('registry entry avoids whole-page content copy', JSON.stringify(entry.content));
+    fail('registry entry preserves the link-titles-only copiedContent label', JSON.stringify(entry.content));
     return;
   }
-  ok('registry entry records all-DLC scope, citation, and limited copied content');
+  if (entry.extracted.sectionAnchorCount !== 3) {
+    fail('registry entry records section anchor count', JSON.stringify(entry.extracted));
+    return;
+  }
+  ok('registry entry records all-DLC scope, citation, section anchor count, and metadata-only copied content');
+}
+
+function testTopicPageSummaryAndEntry() {
+  const topicSource = fixtureSource({
+    page: {
+      title: 'Culture',
+      pageId: 42,
+      canonicalUrl: 'https://ck3.paradoxwikis.com/Culture',
+      revisionId: 200,
+      parentRevisionId: 199,
+      revisionTimestamp: '2026-04-01T00:00:00Z',
+      revisionSha1: 'abcd1234567890',
+      oldidUrl: 'https://ck3.paradoxwikis.com/Culture?oldid=200',
+      length: 4096,
+    },
+    sectionAnchors: [
+      { index: '0', toplevel: 1, anchor: 'Overview', line: 'Overview' },
+      { index: '1', toplevel: 1, anchor: 'Culture_management', line: 'Culture management' },
+      { index: '2', toplevel: 2, anchor: 'Innovations', line: 'Innovations' },
+    ],
+    links: [],
+  });
+  const summary = summarizeMediaWikiTopicPage(topicSource);
+  if (summary.pageTitle !== 'Culture' || summary.sectionAnchors.length !== 3) {
+    fail('topic summary carries title and section anchors', JSON.stringify(summary));
+    return;
+  }
+  if (summary.sectionAnchors[2].line !== 'Innovations') {
+    fail('topic summary preserves section ordering', JSON.stringify(summary.sectionAnchors));
+    return;
+  }
+  const entry = buildMediaWikiTopicRegistryEntry(topicSource, {
+    topic: 'Culture',
+    allDlcActive: true,
+    gameVersions: ['1.19.0.6'],
+  });
+  if (entry.topic !== 'Culture') {
+    fail('topic registry entry records topic label', JSON.stringify(entry));
+    return;
+  }
+  if (entry.content.copiedContent !== 'metadata_and_section_anchors_only') {
+    fail('topic entry uses metadata-only copiedContent', JSON.stringify(entry.content));
+    return;
+  }
+  if (entry.extracted.sectionAnchors.some((s) => s.line.includes(' lead ') || /\bthe\b/i.test(s.line))) {
+    if (entry.content.copiedContent !== 'metadata_and_section_anchors_only') {
+      fail('topic entry stores section anchor titles, not lead text', JSON.stringify(entry));
+      return;
+    }
+  }
+  ok('topic-page summarizer + topic registry entry store metadata and section anchors only');
+}
+
+function testTopicGroupSelection() {
+  if (selectMediaWikiTopicGroup('Culture') !== 'cultureFaith') {
+    fail('Culture maps to cultureFaith', selectMediaWikiTopicGroup('Culture'));
+    return;
+  }
+  if (selectMediaWikiTopicGroup('Patches') !== 'documentationMeta') {
+    fail('Patches maps to documentationMeta', selectMediaWikiTopicGroup('Patches'));
+    return;
+  }
+  if (selectMediaWikiTopicGroup('NotInAnyGroup') !== null) {
+    fail('Unknown page returns null topic group', selectMediaWikiTopicGroup('NotInAnyGroup'));
+    return;
+  }
+  ok('topic group selector classifies pages deterministically');
 }
 
 console.log('ck3-mediawiki-source self-test');
@@ -111,6 +192,8 @@ console.log('==============================');
 testSourceId();
 testSummaryGroups();
 testRegistryEntryScopeAndCitation();
+testTopicPageSummaryAndEntry();
+testTopicGroupSelection();
 
 if (failed > 0) {
   console.error(`\n${failed} test(s) failed`);

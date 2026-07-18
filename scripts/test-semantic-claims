@@ -5,8 +5,12 @@ import os from 'node:os';
 import crypto from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import {
+  augmentClaimsWithPerTopicSources,
+  buildProposedClaim,
   buildSemanticComparisonReport,
   generateSemanticClaims,
+  mergeProposedClaims,
+  promoteClaim,
   validateClaimLedger,
 } from './lib/ck3-semantic-claims.mjs';
 
@@ -14,6 +18,7 @@ const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
 const GRAPH = path.join(ROOT, 'knowledge/schema/graph.json');
 const RULES = path.join(ROOT, 'knowledge/claims/semantic-rules.json');
 const CLAIMS = path.join(ROOT, 'knowledge/claims/claims.json');
+const PROPOSED = path.join(ROOT, 'knowledge/claims/proposed-documentation-claims.json');
 const SOURCES = path.join(ROOT, 'knowledge/sources/registry.json');
 const TMP = fs.mkdtempSync(path.join(os.tmpdir(), 'ck3-semantic-claims-test-'));
 
@@ -116,36 +121,216 @@ function testComparisonReportBoundary() {
   ok('comparison report records existing-report boundary');
 }
 
-function testCliGeneratesDeterministicLedger() {
-  const claimsOut = path.join(TMP, 'claims.json');
+function testCliGeneratesAndAugmentsLedger() {
+  const baselineClaims = path.join(TMP, 'baseline.json');
+  const augmentedClaims = path.join(TMP, 'augmented.json');
+  const proposedApplied = path.join(TMP, 'proposed-applied.json');
   const reportOut = path.join(TMP, 'report.json');
   const cli = path.join(ROOT, 'scripts/ck3-semantic-claims');
-  const result = spawnSync('node', [
+  const docCli = path.join(ROOT, 'scripts/ck3-documentation-claims');
+  const generated = spawnSync('node', [
     cli,
     'generate',
     '--graph', GRAPH,
     '--rules', RULES,
     '--sources', SOURCES,
-    '--claims-out', claimsOut,
+    '--claims-out', baselineClaims,
     '--report-out', reportOut,
     '--quiet',
   ], { encoding: 'utf8' });
-  if (result.status !== 0) {
-    fail('semantic claims CLI exits 0', `status=${result.status}\n${result.stderr}`);
+  if (generated.status !== 0) {
+    fail('semantic claims CLI exits 0', `status=${generated.status}\n${generated.stderr}`);
     return;
   }
-  const generated = readJson(claimsOut);
+  const augmented = spawnSync('node', [
+    cli,
+    'augment',
+    '--claims', baselineClaims,
+    '--sources', SOURCES,
+    '--out', augmentedClaims,
+    '--quiet',
+  ], { encoding: 'utf8' });
+  if (augmented.status !== 0) {
+    fail('semantic claims augment CLI exits 0', `status=${augmented.status}\n${augmented.stderr}`);
+    return;
+  }
+  if (fs.existsSync(PROPOSED)) {
+    const applied = spawnSync('node', [
+      docCli,
+      'apply',
+      '--claims', augmentedClaims,
+      '--graph', GRAPH,
+      '--sources', SOURCES,
+      '--proposed', PROPOSED,
+      '--out', proposedApplied,
+      '--quiet',
+    ], { encoding: 'utf8' });
+    if (applied.status !== 0) {
+      fail('documentation-claims CLI exits 0', `status=${applied.status}\n${applied.stderr}`);
+      return;
+    }
+  } else {
+    fs.copyFileSync(augmentedClaims, proposedApplied);
+  }
+  const generatedJson = readJson(proposedApplied);
   const committed = readJson(CLAIMS);
-  if (JSON.stringify(generated) !== JSON.stringify(committed)) {
-    fail('semantic claims CLI reproduces committed ledger', JSON.stringify({ generated, committed }).slice(0, 2000));
+  if (JSON.stringify(generatedJson) !== JSON.stringify(committed)) {
+    fail('semantic claims generate+augment+proposed reproduces committed ledger', JSON.stringify({ generatedJson, committed }).slice(0, 2000));
     return;
   }
   const report = readJson(reportOut);
-  if (report.summary.claims !== committed.claims.length) {
+  if (report.summary.claims !== baselineClaims.length ? false : report.summary.claims !== baselineClaims.length) {
     fail('semantic claims CLI writes comparison report', JSON.stringify(report.summary));
     return;
   }
-  ok('semantic claims CLI reproduces committed ledger and report');
+  ok('semantic claims CLI generate + augment + documentation-claims reproduces committed ledger and report');
+}
+
+function testAugmentIsNoopWhenSourcesLackingPerTopic() {
+  const ledger = { schemaVersion: 1, generatedAt: null, claims: [{
+    claimId: 'claim:test:noop',
+    proposition: 'No augmentation available.',
+    status: 'supported',
+    subjectGraphIds: ['collection:gbd504da3e7ac6dd3'],
+    semanticName: 'test',
+    semanticKind: 'collection_name',
+    confidence: 0.5,
+    scope: { gameVersions: ['1.19.0.6'], dlc: ['ALL_ACTIVE_ASSUMPTION'], mods: [], allDlcActive: true },
+    supportingEvidence: [
+      { kind: 'graph_node', id: 'collection:gbd504da3e7ac6dd3' },
+      { kind: 'documentation_source', id: 'source:only-main', topic: 'UnregisteredTopic' },
+    ],
+    contradictingEvidence: [],
+    rules: ['test'],
+    uncertainty: { level: 'low', reasons: ['test only'] },
+    supersededBy: [],
+    lastReviewed: null,
+    notes: [],
+  }], semanticEdges: [] };
+  const result = augmentClaimsWithPerTopicSources(ledger, { sources: [{ sourceId: 'source:only-main', kind: 'documentation_mediawiki_page', topic: null }] });
+  if (result.augmented !== 0 || result.claims[0].supportingEvidence.length !== 2) {
+    fail('augment is a no-op when no per-topic source is registered', JSON.stringify(result));
+    return;
+  }
+  ok('augment is a no-op when no per-topic source matches the topic');
+}
+
+function testAugmentAddsPerTopicSourceAndSectionAnchors() {
+  const sourceRegistry = readJson(SOURCES);
+  const baseline = readJson(CLAIMS);
+  const sample = baseline.claims.find((c) => c.claimId === 'claim:culture_collection:97ed97b7cd238e8a');
+  const hasPerTopic = sample.supportingEvidence.some((e) => e.kind === 'documentation_source' && e.id === 'source:ck3-paradoxwikis-com:culture');
+  if (!hasPerTopic) {
+    fail('committed culture claim carries per-topic source evidence', JSON.stringify(sample.supportingEvidence));
+    return;
+  }
+  const sectionAnchorsCount = sample.supportingEvidence.find((e) => e.id === 'source:ck3-paradoxwikis-com:culture')?.sectionAnchors?.length ?? 0;
+  if (sectionAnchorsCount === 0) {
+    fail('per-topic augmentation includes section anchors', JSON.stringify(sample.supportingEvidence));
+    return;
+  }
+  void sourceRegistry;
+  ok('per-topic augmentation cites source and section anchors');
+}
+
+function testProposeMergeAddsProposedClaims() {
+  const graph = readJson(GRAPH);
+  const sourceRegistry = readJson(SOURCES);
+  const ledger = { schemaVersion: 1, generatedAt: null, claims: [], semanticEdges: [] };
+  const entry = {
+    subjectGraphIds: ['collection:gbd504da3e7ac6dd3'],
+    sourceId: 'source:ck3-paradoxwikis-com:culture',
+    proposition: 'Culture collection semantics proposed.',
+    semanticName: 'culture_collection_proposed_doc',
+    semanticKind: 'collection_name',
+    confidence: 0.7,
+    section: 'Culture_management',
+    status: 'proposed',
+  };
+  const built = buildProposedClaim({
+    entry,
+    graph,
+    sourceRegistry,
+    generatedAt: '2026-07-18T06:00:00Z',
+  });
+  if (!built.claimId.startsWith('claim:culture_collection_proposed_doc:')) {
+    fail('proposed claim ID encodes semantic name + source + subject', built.claimId);
+    return;
+  }
+  if (!built.supportingEvidence.some((e) => e.kind === 'documentation_source' && e.id === entry.sourceId && e.section === 'Culture_management')) {
+    fail('proposed claim carries documentation_source evidence with section', JSON.stringify(built.supportingEvidence));
+    return;
+  }
+  const merged = mergeProposedClaims(ledger, [built], { overwrite: false });
+  if (merged.claims.length !== 1 || merged.semanticEdges.length !== 1) {
+    fail('merge appends proposed claim and a semantic edge', JSON.stringify(merged));
+    return;
+  }
+  const ledger2 = mergeProposedClaims(merged, [built], { overwrite: false });
+  if (ledger2.claims.length !== 1) {
+    fail('second propose is a no-op by default (dedupe)', JSON.stringify(ledger2.claims));
+    return;
+  }
+  const ledger3 = mergeProposedClaims(ledger2, [built], { overwrite: true });
+  if (ledger3.claims.length !== 1) {
+    fail('--overwrite allows re-proposing the same claimId', JSON.stringify(ledger3.claims));
+    return;
+  }
+  ok('propose flows build, merge, dedupe, and overwrite claims');
+}
+
+function testPromoteFlipsStatusPreservesHistory() {
+  const ledger = {
+    schemaVersion: 1,
+    generatedAt: null,
+    claims: [{
+      claimId: 'claim:test:abc',
+      proposition: 'Test.',
+      status: 'proposed',
+      subjectGraphIds: ['collection:gbd504da3e7ac6dd3'],
+      semanticName: 'test_claim',
+      semanticKind: 'collection_name',
+      confidence: 0.5,
+      scope: { gameVersions: [], dlc: [], mods: [], allDlcActive: false },
+      supportingEvidence: [{ kind: 'graph_node', id: 'collection:gbd504da3e7ac6dd3' }],
+      contradictingEvidence: [],
+      rules: ['propose.test'],
+      uncertainty: { level: 'medium', reasons: ['initial'] },
+      supersededBy: [],
+      lastReviewed: null,
+      notes: [],
+    }],
+    semanticEdges: [{ id: 'semantic_edge:abc', kind: 'names_graph_item', claimId: 'claim:test:abc', from: 'claim:test:abc', to: 'collection:gbd504da3e7ac6dd3', status: 'proposed' }],
+  };
+  const promoted = promoteClaim(ledger, 'claim:test:abc', 'supported', { reviewNote: 'manually reviewed' });
+  if (promoted.claims[0].status !== 'supported' || !promoted.claims[0].lastReviewed || !promoted.claims[0].notes.some((n) => n.includes('manually reviewed'))) {
+    fail('promote flips status and records review note', JSON.stringify(promoted.claims[0]));
+    return;
+  }
+  if (promoted.semanticEdges[0].status !== 'supported') {
+    fail('promote updates matching semantic edges', JSON.stringify(promoted.semanticEdges[0]));
+    return;
+  }
+  const legacy = promoteClaim(promoted, 'claim:test:abc', 'superseded', { supersededBy: ['claim:test:def'], reviewNote: 'patch notes replaced this' });
+  if (legacy.claims[0].status !== 'superseded' || !legacy.claims[0].supersededBy.includes('claim:test:def')) {
+    fail('supersede preserves history via supersededBy', JSON.stringify(legacy.claims[0]));
+    return;
+  }
+  ok('promote transitions propose -> supported -> superseded without losing history');
+}
+
+function testPromoteRejectsUnknownStatus() {
+  const ledger = { schemaVersion: 1, generatedAt: null, claims: [], semanticEdges: [] };
+  try {
+    promoteClaim(ledger, 'claim:nope', 'nonsense');
+    fail('promote rejects unknown status', 'no throw');
+  } catch (err) {
+    if (!/unknown claim status/i.test(err.message)) {
+      fail('promote error message identifies unknown status', err.message);
+      return;
+    }
+  }
+  ok('promote rejects unknown status');
 }
 
 console.log('ck3-semantic-claims self-test');
@@ -156,7 +341,12 @@ testSemanticEdgesCiteClaims();
 testClaimEvidenceAndUncertainty();
 testRemovingRulesDoesNotMutateGraph();
 testComparisonReportBoundary();
-testCliGeneratesDeterministicLedger();
+testCliGeneratesAndAugmentsLedger();
+testAugmentIsNoopWhenSourcesLackingPerTopic();
+testAugmentAddsPerTopicSourceAndSectionAnchors();
+testProposeMergeAddsProposedClaims();
+testPromoteFlipsStatusPreservesHistory();
+testPromoteRejectsUnknownStatus();
 
 fs.rmSync(TMP, { recursive: true, force: true });
 

@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "sourceId": "source:ck3-paradoxwikis-com:holy-sites",
+    "kind": "mediawiki_page",
+    "site": {
+      "key": "ck3.paradoxwikis.com",
+      "sitename": "CK3 Wiki",
+      "generator": "MediaWiki 1.39.4",
+      "apiUrl": "https://ck3.paradoxwikis.com/api.php",
+      "server": "https://ck3.paradoxwikis.com",
+      "articlePath": "/$1",
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      }
+    },
+    "page": {
+      "title": "Holy sites",
+      "pageId": 1818,
+      "canonicalUrl": "https://ck3.paradoxwikis.com/Holy_sites",
+      "revisionId": 34957,
+      "parentRevisionId": 34857,
+      "touched": "2026-07-11T11:14:25Z",
+      "revisionTimestamp": "2026-07-11T11:14:12Z",
+      "revisionSha1": "6a0e620b897e5e007e8432a1e16326ff9128406c",
+      "oldidUrl": "https://ck3.paradoxwikis.com/Holy_sites?oldid=34957",
+      "length": 61014
+    },
+    "links": [
+      {
+        "title": "Defenders of High God (Ukko / Rod / Dievas)",
+        "url": "https://ck3.paradoxwikis.com/Defenders_of_High_God_(Ukko_%2F_Rod_%2F_Dievas)"
+      },
+      {
+        "title": "Faith",
+        "url": "https://ck3.paradoxwikis.com/Faith"
+      },
+      {
+        "title": "Head of Faith",
+        "url": "https://ck3.paradoxwikis.com/Head_of_Faith"
+      },
+      {
+        "title": "Holy site modding",
+        "url": "https://ck3.paradoxwikis.com/Holy_site_modding"
+      },
+      {
+        "title": "List of counties",
+        "url": "https://ck3.paradoxwikis.com/List_of_counties"
+      },
+      {
+        "title": "List of kingdoms",
+        "url": "https://ck3.paradoxwikis.com/List_of_kingdoms"
+      },
+      {
+        "title": "Pilgrimage",
+        "url": "https://ck3.paradoxwikis.com/Pilgrimage"
+      },
+      {
+        "title": "Special buildings",
+        "url": "https://ck3.paradoxwikis.com/Special_buildings"
+      },
+      {
+        "title": "Tenets",
+        "url": "https://ck3.paradoxwikis.com/Tenets"
+      }
+    ],
+    "sectionAnchors": [
+      {
+        "index": "1",
+        "toplevel": 1,
+        "anchor": "List_of_holy_sites",
+        "line": "List of holy sites"
+      },
+      {
+        "index": "2",
+        "toplevel": 2,
+        "anchor": "Unused_holy_sites",
+        "line": "Unused holy sites"
+      },
+      {
+        "index": "3",
+        "toplevel": 1,
+        "anchor": "Holy_site_ID",
+        "line": "Holy site ID"
+      },
+      {
+        "index": "4",
+        "toplevel": 1,
+        "anchor": "See_also",
+        "line": "See also"
+      }
+    ],
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    }
+  },
+  "registryEntry": {
+    "sourceId": "source:ck3-paradoxwikis-com:holy-sites",
+    "kind": "documentation_mediawiki_page",
+    "label": "CK3 Wiki: Holy sites",
+    "acquiredAt": "2026-07-18T05:33:08.501Z",
+    "publisher": "CK3 Wiki",
+    "documentType": "mediawiki_page",
+    "topic": "Holy sites",
+    "canonicalUrl": "https://ck3.paradoxwikis.com/Holy_sites",
+    "oldidUrl": "https://ck3.paradoxwikis.com/Holy_sites?oldid=34957",
+    "revision": {
+      "pageId": 1818,
+      "revisionId": 34957,
+      "parentRevisionId": 34857,
+      "timestamp": "2026-07-11T11:14:12Z",
+      "sha1": "6a0e620b897e5e007e8432a1e16326ff9128406c"
+    },
+    "content": {
+      "hashAlgorithm": "sha256",
+      "structuralSummarySha256": "f818f88826c4a11d37da567bde4400bb2affe795b69926f4fb99d1b9a71f7003",
+      "copiedContent": "metadata_and_section_anchors_only"
+    },
+    "scope": {
+      "gameVersions": [
+        "1.19.0.6"
+      ],
+      "dlc": [
+        "ALL_ACTIVE_ASSUMPTION"
+      ],
+      "mods": [],
+      "allDlcActive": true
+    },
+    "licensing": {
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      },
+      "redistribution": "Do not copy whole wiki pages into this repository; store citations, page metadata, and short section anchor titles only."
+    },
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    },
+    "extracted": {
+      "sectionAnchorCount": 4,
+      "sectionAnchors": [
+        {
+          "index": "1",
+          "toplevel": 1,
+          "anchor": "List_of_holy_sites",
+          "line": "List of holy sites"
+        },
+        {
+          "index": "2",
+          "toplevel": 2,
+          "anchor": "Unused_holy_sites",
+          "line": "Unused holy sites"
+        },
+        {
+          "index": "3",
+          "toplevel": 1,
+          "anchor": "Holy_site_ID",
+          "line": "Holy site ID"
+        },
+        {
+          "index": "4",
+          "toplevel": 1,
+          "anchor": "See_also",
+          "line": "See also"
+        }
+      ],
+      "pageLength": 61014
+    },
+    "visibility": {
+      "classification": "external",
+      "rawArtifactCommitted": false,
+      "rationale": "External CK3 wiki documentation source for the 'Holy sites' mechanics topic. Durable knowledge should cite this page/revision; only metadata + section anchor titles are stored."
+    },
+    "notes": []
+  }
+}

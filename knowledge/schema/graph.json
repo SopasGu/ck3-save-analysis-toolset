@@ -1,16 +1,17 @@
 {
   "schemaVersion": 1,
-  "generatedAt": null,
+  "generatedAt": "2026-07-18T05:38:39.548Z",
   "sourceIds": [
     "source:rakaly-specimen-451e9bb9cff734cc"
   ],
   "summary": {
-    "nodes": 1684,
+    "nodes": 1732,
     "edges": 2985,
     "nodeKinds": {
       "collection": 430,
       "field": 663,
       "identity_domain": 76,
+      "mechanics_concept": 48,
       "record_type": 257,
       "shape_variant": 257,
       "source_document": 1
@@ -31342,6 +31343,1590 @@
           "numeric_string"
         ],
         "populationCount": 438
+      }
+    },
+    {
+      "id": "mechanics_concept:activity",
+      "kind": "mechanics_concept",
+      "label": "Activity",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:activity",
+          "observationId": "mechanics_concept:activity",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Activity",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Activity?oldid=34844",
+        "pageId": 3281,
+        "revisionId": 34844,
+        "sectionAnchorCount": 16,
+        "topic": "Activity",
+        "topicGroup": "governance"
+      }
+    },
+    {
+      "id": "mechanics_concept:adventurer",
+      "kind": "mechanics_concept",
+      "label": "Adventurer",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:adventurer",
+          "observationId": "mechanics_concept:adventurer",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Adventurer",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Adventurer?oldid=35047",
+        "pageId": 4819,
+        "revisionId": 35047,
+        "sectionAnchorCount": 19,
+        "topic": "Adventurer",
+        "topicGroup": "governance"
+      }
+    },
+    {
+      "id": "mechanics_concept:alliance",
+      "kind": "mechanics_concept",
+      "label": "Alliance",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:alliance",
+          "observationId": "mechanics_concept:alliance",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Alliance",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Alliance?oldid=34843",
+        "pageId": 987,
+        "revisionId": 34843,
+        "sectionAnchorCount": 5,
+        "topic": "Alliance",
+        "topicGroup": "warfare"
+      }
+    },
+    {
+      "id": "mechanics_concept:army",
+      "kind": "mechanics_concept",
+      "label": "Army",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:army",
+          "observationId": "mechanics_concept:army",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Army",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Army?oldid=35041",
+        "pageId": 1135,
+        "revisionId": 35041,
+        "sectionAnchorCount": 23,
+        "topic": "Army",
+        "topicGroup": "warfare"
+      }
+    },
+    {
+      "id": "mechanics_concept:artifacts",
+      "kind": "mechanics_concept",
+      "label": "Artifacts",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:artifacts",
+          "observationId": "mechanics_concept:artifacts",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Artifacts",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Artifacts?oldid=35011",
+        "pageId": 2874,
+        "revisionId": 35011,
+        "sectionAnchorCount": 28,
+        "topic": "Artifacts",
+        "topicGroup": "characterSystems"
+      }
+    },
+    {
+      "id": "mechanics_concept:attributes",
+      "kind": "mechanics_concept",
+      "label": "Attributes",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:attributes",
+          "observationId": "mechanics_concept:attributes",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Attributes",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Attributes?oldid=34884",
+        "pageId": 1136,
+        "revisionId": 34884,
+        "sectionAnchorCount": 31,
+        "topic": "Attributes",
+        "topicGroup": "characterSystems"
+      }
+    },
+    {
+      "id": "mechanics_concept:barony",
+      "kind": "mechanics_concept",
+      "label": "Barony",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:barony",
+          "observationId": "mechanics_concept:barony",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Barony",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Barony?oldid=34990",
+        "pageId": 1130,
+        "revisionId": 34990,
+        "sectionAnchorCount": 14,
+        "topic": "Barony",
+        "topicGroup": "realm"
+      }
+    },
+    {
+      "id": "mechanics_concept:beginner-s-guide",
+      "kind": "mechanics_concept",
+      "label": "Beginner's guide",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:beginner-s-guide",
+          "observationId": "mechanics_concept:beginner-s-guide",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Beginner%27s_guide",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Beginner%27s_guide?oldid=34077",
+        "pageId": 1022,
+        "revisionId": 34077,
+        "sectionAnchorCount": 20,
+        "topic": "Beginner's guide",
+        "topicGroup": "gettingStarted"
+      }
+    },
+    {
+      "id": "mechanics_concept:building",
+      "kind": "mechanics_concept",
+      "label": "Building",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:building",
+          "observationId": "mechanics_concept:building",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Building",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Building?oldid=34809",
+        "pageId": 1743,
+        "revisionId": 34809,
+        "sectionAnchorCount": 15,
+        "topic": "Building",
+        "topicGroup": "realm"
+      }
+    },
+    {
+      "id": "mechanics_concept:casus-belli",
+      "kind": "mechanics_concept",
+      "label": "Casus belli",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:casus-belli",
+          "observationId": "mechanics_concept:casus-belli",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Casus_belli",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Casus_belli?oldid=34380",
+        "pageId": 233,
+        "revisionId": 34380,
+        "sectionAnchorCount": 29,
+        "topic": "Casus belli",
+        "topicGroup": "warfare"
+      }
+    },
+    {
+      "id": "mechanics_concept:characters",
+      "kind": "mechanics_concept",
+      "label": "Characters",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:character",
+          "observationId": "mechanics_concept:characters",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Character",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Character?oldid=34938",
+        "pageId": 221,
+        "revisionId": 34938,
+        "sectionAnchorCount": 19,
+        "topic": "Characters",
+        "topicGroup": "characterSystems"
+      }
+    },
+    {
+      "id": "mechanics_concept:console-commands",
+      "kind": "mechanics_concept",
+      "label": "Console commands",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:console-commands",
+          "observationId": "mechanics_concept:console-commands",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Console_commands",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Console_commands?oldid=35014",
+        "pageId": 368,
+        "revisionId": 35014,
+        "sectionAnchorCount": 23,
+        "topic": "Console commands",
+        "topicGroup": "gettingStarted"
+      }
+    },
+    {
+      "id": "mechanics_concept:council",
+      "kind": "mechanics_concept",
+      "label": "Council",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:council",
+          "observationId": "mechanics_concept:council",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Council",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Council?oldid=35055",
+        "pageId": 174,
+        "revisionId": 35055,
+        "sectionAnchorCount": 13,
+        "topic": "Council",
+        "topicGroup": "governance"
+      }
+    },
+    {
+      "id": "mechanics_concept:county",
+      "kind": "mechanics_concept",
+      "label": "County",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:county",
+          "observationId": "mechanics_concept:county",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/County",
+        "oldidUrl": "https://ck3.paradoxwikis.com/County?oldid=34989",
+        "pageId": 997,
+        "revisionId": 34989,
+        "sectionAnchorCount": 9,
+        "topic": "County",
+        "topicGroup": "realm"
+      }
+    },
+    {
+      "id": "mechanics_concept:court",
+      "kind": "mechanics_concept",
+      "label": "Court",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:court",
+          "observationId": "mechanics_concept:court",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Court",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Court?oldid=34630",
+        "pageId": 230,
+        "revisionId": 34630,
+        "sectionAnchorCount": 16,
+        "topic": "Court",
+        "topicGroup": "governance"
+      }
+    },
+    {
+      "id": "mechanics_concept:culture",
+      "kind": "mechanics_concept",
+      "label": "Culture",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:culture",
+          "observationId": "mechanics_concept:culture",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Culture",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Culture?oldid=34787",
+        "pageId": 181,
+        "revisionId": 34787,
+        "sectionAnchorCount": 19,
+        "topic": "Culture",
+        "topicGroup": "cultureFaith"
+      }
+    },
+    {
+      "id": "mechanics_concept:decisions",
+      "kind": "mechanics_concept",
+      "label": "Decisions",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:decisions",
+          "observationId": "mechanics_concept:decisions",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Decisions",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Decisions?oldid=31884",
+        "pageId": 5453,
+        "revisionId": 31884,
+        "sectionAnchorCount": 0,
+        "topic": "Decisions",
+        "topicGroup": "governance"
+      }
+    },
+    {
+      "id": "mechanics_concept:doctrines",
+      "kind": "mechanics_concept",
+      "label": "Doctrines",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:doctrines",
+          "observationId": "mechanics_concept:doctrines",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Doctrines",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Doctrines?oldid=35023",
+        "pageId": 237,
+        "revisionId": 35023,
+        "sectionAnchorCount": 8,
+        "topic": "Doctrines",
+        "topicGroup": "cultureFaith"
+      }
+    },
+    {
+      "id": "mechanics_concept:domicile",
+      "kind": "mechanics_concept",
+      "label": "Domicile",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:domicile",
+          "observationId": "mechanics_concept:domicile",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Domicile",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Domicile?oldid=34985",
+        "pageId": 6037,
+        "revisionId": 34985,
+        "sectionAnchorCount": 1,
+        "topic": "Domicile",
+        "topicGroup": "realm"
+      }
+    },
+    {
+      "id": "mechanics_concept:duel",
+      "kind": "mechanics_concept",
+      "label": "Duel",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:duel",
+          "observationId": "mechanics_concept:duel",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Duel",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Duel?oldid=34995",
+        "pageId": 2644,
+        "revisionId": 34995,
+        "sectionAnchorCount": 4,
+        "topic": "Duel",
+        "topicGroup": "warfare"
+      }
+    },
+    {
+      "id": "mechanics_concept:dynasty",
+      "kind": "mechanics_concept",
+      "label": "Dynasty",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:dynasty",
+          "observationId": "mechanics_concept:dynasty",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Dynasty",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Dynasty?oldid=35054",
+        "pageId": 170,
+        "revisionId": 35054,
+        "sectionAnchorCount": 21,
+        "topic": "Dynasty",
+        "topicGroup": "characterSystems"
+      }
+    },
+    {
+      "id": "mechanics_concept:faith",
+      "kind": "mechanics_concept",
+      "label": "Faith",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:faith",
+          "observationId": "mechanics_concept:faith",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Faith",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Faith?oldid=35037",
+        "pageId": 227,
+        "revisionId": 35037,
+        "sectionAnchorCount": 15,
+        "topic": "Faith",
+        "topicGroup": "cultureFaith"
+      }
+    },
+    {
+      "id": "mechanics_concept:game-rules",
+      "kind": "mechanics_concept",
+      "label": "Game rules",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:game-rules",
+          "observationId": "mechanics_concept:game-rules",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Game_rules",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Game_rules?oldid=34952",
+        "pageId": 889,
+        "revisionId": 34952,
+        "sectionAnchorCount": 9,
+        "topic": "Game rules",
+        "topicGroup": "gettingStarted"
+      }
+    },
+    {
+      "id": "mechanics_concept:government",
+      "kind": "mechanics_concept",
+      "label": "Government",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:government",
+          "observationId": "mechanics_concept:government",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Government",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Government?oldid=34967",
+        "pageId": 179,
+        "revisionId": 34967,
+        "sectionAnchorCount": 10,
+        "topic": "Government",
+        "topicGroup": "governance"
+      }
+    },
+    {
+      "id": "mechanics_concept:great-projects",
+      "kind": "mechanics_concept",
+      "label": "Great projects",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:great-projects",
+          "observationId": "mechanics_concept:great-projects",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Great_projects",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Great_projects?oldid=34951",
+        "pageId": 6423,
+        "revisionId": 34951,
+        "sectionAnchorCount": 3,
+        "topic": "Great projects",
+        "topicGroup": "realm"
+      }
+    },
+    {
+      "id": "mechanics_concept:hired-forces",
+      "kind": "mechanics_concept",
+      "label": "Hired forces",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:hired-forces",
+          "observationId": "mechanics_concept:hired-forces",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Hired_forces",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Hired_forces?oldid=34994",
+        "pageId": 1132,
+        "revisionId": 34994,
+        "sectionAnchorCount": 5,
+        "topic": "Hired forces",
+        "topicGroup": "warfare"
+      }
+    },
+    {
+      "id": "mechanics_concept:holy-sites",
+      "kind": "mechanics_concept",
+      "label": "Holy sites",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:holy-sites",
+          "observationId": "mechanics_concept:holy-sites",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Holy_sites",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Holy_sites?oldid=34957",
+        "pageId": 1818,
+        "revisionId": 34957,
+        "sectionAnchorCount": 4,
+        "topic": "Holy sites",
+        "topicGroup": "cultureFaith"
+      }
+    },
+    {
+      "id": "mechanics_concept:hooks",
+      "kind": "mechanics_concept",
+      "label": "Hooks",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:hooks",
+          "observationId": "mechanics_concept:hooks",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Hooks",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Hooks?oldid=34509",
+        "pageId": 4578,
+        "revisionId": 34509,
+        "sectionAnchorCount": 7,
+        "topic": "Hooks",
+        "topicGroup": "characterSystems"
+      }
+    },
+    {
+      "id": "mechanics_concept:innovation",
+      "kind": "mechanics_concept",
+      "label": "Innovation",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:innovation",
+          "observationId": "mechanics_concept:innovation",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Innovation",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Innovation?oldid=34955",
+        "pageId": 1256,
+        "revisionId": 34955,
+        "sectionAnchorCount": 25,
+        "topic": "Innovation",
+        "topicGroup": "cultureFaith"
+      }
+    },
+    {
+      "id": "mechanics_concept:interesting-characters",
+      "kind": "mechanics_concept",
+      "label": "Interesting characters",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:interesting-characters",
+          "observationId": "mechanics_concept:interesting-characters",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Interesting_characters",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Interesting_characters?oldid=34343",
+        "pageId": 1327,
+        "revisionId": 34343,
+        "sectionAnchorCount": 305,
+        "topic": "Interesting characters",
+        "topicGroup": "gettingStarted"
+      }
+    },
+    {
+      "id": "mechanics_concept:knight",
+      "kind": "mechanics_concept",
+      "label": "Knight",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:knight",
+          "observationId": "mechanics_concept:knight",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Knight",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Knight?oldid=34696",
+        "pageId": 1357,
+        "revisionId": 34696,
+        "sectionAnchorCount": 9,
+        "topic": "Knight",
+        "topicGroup": "warfare"
+      }
+    },
+    {
+      "id": "mechanics_concept:laws",
+      "kind": "mechanics_concept",
+      "label": "Laws",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:laws",
+          "observationId": "mechanics_concept:laws",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Laws",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Laws?oldid=34965",
+        "pageId": 228,
+        "revisionId": 34965,
+        "sectionAnchorCount": 7,
+        "topic": "Laws",
+        "topicGroup": "governance"
+      }
+    },
+    {
+      "id": "mechanics_concept:lifestyle",
+      "kind": "mechanics_concept",
+      "label": "Lifestyle",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:lifestyle",
+          "observationId": "mechanics_concept:lifestyle",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Lifestyle",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Lifestyle?oldid=35009",
+        "pageId": 169,
+        "revisionId": 35009,
+        "sectionAnchorCount": 28,
+        "topic": "Lifestyle",
+        "topicGroup": "characterSystems"
+      }
+    },
+    {
+      "id": "mechanics_concept:mechanics",
+      "kind": "mechanics_concept",
+      "label": "Mechanics",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:mechanics",
+          "observationId": "mechanics_concept:mechanics",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Mechanics",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Mechanics?oldid=22574",
+        "pageId": 1330,
+        "revisionId": 22574,
+        "sectionAnchorCount": 5,
+        "topic": "Mechanics",
+        "topicGroup": "gettingStarted"
+      }
+    },
+    {
+      "id": "mechanics_concept:modifiers",
+      "kind": "mechanics_concept",
+      "label": "Modifiers",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:modifiers",
+          "observationId": "mechanics_concept:modifiers",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Modifiers",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Modifiers?oldid=34963",
+        "pageId": 778,
+        "revisionId": 34963,
+        "sectionAnchorCount": 24,
+        "topic": "Modifiers",
+        "topicGroup": "characterSystems"
+      }
+    },
+    {
+      "id": "mechanics_concept:power-sharing",
+      "kind": "mechanics_concept",
+      "label": "Power sharing",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:power-sharing",
+          "observationId": "mechanics_concept:power-sharing",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Power_sharing",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Power_sharing?oldid=34386",
+        "pageId": 3410,
+        "revisionId": 34386,
+        "sectionAnchorCount": 9,
+        "topic": "Power sharing",
+        "topicGroup": "governance"
+      }
+    },
+    {
+      "id": "mechanics_concept:prisoners",
+      "kind": "mechanics_concept",
+      "label": "Prisoners",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:prisoner",
+          "observationId": "mechanics_concept:prisoners",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Prisoner",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Prisoner?oldid=34964",
+        "pageId": 1408,
+        "revisionId": 34964,
+        "sectionAnchorCount": 13,
+        "topic": "Prisoners",
+        "topicGroup": "governance"
+      }
+    },
+    {
+      "id": "mechanics_concept:resources",
+      "kind": "mechanics_concept",
+      "label": "Resources",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:resources",
+          "observationId": "mechanics_concept:resources",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Resources",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Resources?oldid=34960",
+        "pageId": 223,
+        "revisionId": 34960,
+        "sectionAnchorCount": 12,
+        "topic": "Resources",
+        "topicGroup": "characterSystems"
+      }
+    },
+    {
+      "id": "mechanics_concept:royal-court",
+      "kind": "mechanics_concept",
+      "label": "Royal court",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:royal-court",
+          "observationId": "mechanics_concept:royal-court",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Royal_court",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Royal_court?oldid=34370",
+        "pageId": 2875,
+        "revisionId": 34370,
+        "sectionAnchorCount": 10,
+        "topic": "Royal court",
+        "topicGroup": "governance"
+      }
+    },
+    {
+      "id": "mechanics_concept:schemes",
+      "kind": "mechanics_concept",
+      "label": "Schemes",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:schemes",
+          "observationId": "mechanics_concept:schemes",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Schemes",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Schemes?oldid=34962",
+        "pageId": 175,
+        "revisionId": 34962,
+        "sectionAnchorCount": 16,
+        "topic": "Schemes",
+        "topicGroup": "characterSystems"
+      }
+    },
+    {
+      "id": "mechanics_concept:situation",
+      "kind": "mechanics_concept",
+      "label": "Situation",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:situation",
+          "observationId": "mechanics_concept:situation",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Situation",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Situation?oldid=34991",
+        "pageId": 3029,
+        "revisionId": 34991,
+        "sectionAnchorCount": 9,
+        "topic": "Situation",
+        "topicGroup": "realm"
+      }
+    },
+    {
+      "id": "mechanics_concept:subjects",
+      "kind": "mechanics_concept",
+      "label": "Subjects",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:subjects",
+          "observationId": "mechanics_concept:subjects",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Subjects",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Subjects?oldid=35050",
+        "pageId": 5742,
+        "revisionId": 35050,
+        "sectionAnchorCount": 21,
+        "topic": "Subjects",
+        "topicGroup": "realm"
+      }
+    },
+    {
+      "id": "mechanics_concept:tenets",
+      "kind": "mechanics_concept",
+      "label": "Tenets",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:tenet",
+          "observationId": "mechanics_concept:tenets",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Tenet",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Tenet?oldid=35036",
+        "pageId": 1215,
+        "revisionId": 35036,
+        "sectionAnchorCount": 5,
+        "topic": "Tenets",
+        "topicGroup": "cultureFaith"
+      }
+    },
+    {
+      "id": "mechanics_concept:titles",
+      "kind": "mechanics_concept",
+      "label": "Titles",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:titles",
+          "observationId": "mechanics_concept:titles",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Titles",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Titles?oldid=35027",
+        "pageId": 239,
+        "revisionId": 35027,
+        "sectionAnchorCount": 11,
+        "topic": "Titles",
+        "topicGroup": "realm"
+      }
+    },
+    {
+      "id": "mechanics_concept:traditions",
+      "kind": "mechanics_concept",
+      "label": "Traditions",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:traditions",
+          "observationId": "mechanics_concept:traditions",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Traditions",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Traditions?oldid=34856",
+        "pageId": 2876,
+        "revisionId": 34856,
+        "sectionAnchorCount": 6,
+        "topic": "Traditions",
+        "topicGroup": "cultureFaith"
+      }
+    },
+    {
+      "id": "mechanics_concept:traits",
+      "kind": "mechanics_concept",
+      "label": "Traits",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:traits",
+          "observationId": "mechanics_concept:traits",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Traits",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Traits?oldid=34781",
+        "pageId": 168,
+        "revisionId": 34781,
+        "sectionAnchorCount": 25,
+        "topic": "Traits",
+        "topicGroup": "characterSystems"
+      }
+    },
+    {
+      "id": "mechanics_concept:travel",
+      "kind": "mechanics_concept",
+      "label": "Travel",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:travel",
+          "observationId": "mechanics_concept:travel",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Travel",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Travel?oldid=34414",
+        "pageId": 4879,
+        "revisionId": 34414,
+        "sectionAnchorCount": 7,
+        "topic": "Travel",
+        "topicGroup": "realm"
+      }
+    },
+    {
+      "id": "mechanics_concept:warfare",
+      "kind": "mechanics_concept",
+      "label": "Warfare",
+      "status": "observed",
+      "scope": {
+        "gameVersions": [
+          "1.19.0.6"
+        ],
+        "dlc": [
+          "ALL_ACTIVE_ASSUMPTION"
+        ],
+        "mods": [],
+        "allDlcActive": true
+      },
+      "provenance": [
+        {
+          "sourceId": "source:ck3-paradoxwikis-com:warfare",
+          "observationId": "mechanics_concept:warfare",
+          "layer": "mechanics_annotation"
+        }
+      ],
+      "notes": [],
+      "properties": {
+        "canonicalUrl": "https://ck3.paradoxwikis.com/Warfare",
+        "oldidUrl": "https://ck3.paradoxwikis.com/Warfare?oldid=35008",
+        "pageId": 173,
+        "revisionId": 35008,
+        "sectionAnchorCount": 21,
+        "topic": "Warfare",
+        "topicGroup": "warfare"
       }
     },
     {

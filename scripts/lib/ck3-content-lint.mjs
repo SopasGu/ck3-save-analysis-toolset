@@ -124,6 +124,54 @@ export function lintFile(filePath, options = {}) {
     }
   }
 
+  if (filePath.endsWith('.json') && /\bclaims\.json$/.test(filePath)) {
+    findings.push(...lintClaimLedger(filePath, content, options));
+  }
+
+  return findings;
+}
+
+export function lintClaimLedger(filePath, content, options = {}) {
+  const findings = [];
+  let parsed;
+  try {
+    parsed = JSON.parse(content);
+  } catch (err) {
+    return findings;
+  }
+  const claims = Array.isArray(parsed?.claims) ? parsed.claims : [];
+  const mechanicsKinds = new Set(['collection_name', 'identity_domain_name', 'field_name', 'record_type_name', 'mechanics_concept']);
+  const statusesRequiringDocumentation = new Set(['supported', 'partially_supported']);
+
+  for (let i = 0; i < claims.length; i++) {
+    const claim = claims[i];
+    if (!claim || typeof claim !== 'object') continue;
+    const status = claim.status;
+    const kind = claim.semanticKind;
+    const scope = claim.scope ?? {};
+    const evidence = Array.isArray(claim.supportingEvidence) ? claim.supportingEvidence : [];
+    const hasDocEvidence = evidence.some((e) => e && e.kind === 'documentation_source');
+    const versions = Array.isArray(scope.gameVersions) ? scope.gameVersions : [];
+
+    if (statusesRequiringDocumentation.has(status) && mechanicsKinds.has(kind) && !hasDocEvidence) {
+      findings.push({
+        file: filePath,
+        detector: 'uncited_mechanics_claim',
+        message: `claim[${i}] ${claim.claimId ?? ''} status=${status} semanticKind=${kind} is missing documentation_source evidence`,
+      });
+    }
+
+    if ((status === 'proposed' || status === 'supported' || status === 'partially_supported')
+        && versions.length === 0
+        && kind !== undefined
+        && mechanicsKinds.has(kind)) {
+      findings.push({
+        file: filePath,
+        detector: 'missing_version_scope',
+        message: `claim[${i}] ${claim.claimId ?? ''} status=${status} has empty scope.gameVersions`,
+      });
+    }
+  }
   return findings;
 }
 

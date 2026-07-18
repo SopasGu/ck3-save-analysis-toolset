@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "claims": [
+    {
+      "claimId": "claim:test:uncited",
+      "proposition": "Test",
+      "status": "supported",
+      "subjectGraphIds": ["collection:foo"],
+      "semanticName": "test_claim",
+      "semanticKind": "collection_name",
+      "confidence": 0.6,
+      "scope": { "gameVersions": ["1.19.0.6"], "dlc": ["ALL_ACTIVE_ASSUMPTION"], "mods": [], "allDlcActive": true },
+      "supportingEvidence": [
+        { "kind": "graph_node", "id": "collection:foo" }
+      ],
+      "contradictingEvidence": [],
+      "rules": ["r"],
+      "uncertainty": { "level": "low", "reasons": ["x"] }
+    }
+  ]
+}

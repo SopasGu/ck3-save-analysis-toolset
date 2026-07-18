@@ -1,0 +1,429 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "sourceId": "source:ck3-paradoxwikis-com:beginner-s-guide",
+    "kind": "mediawiki_page",
+    "site": {
+      "key": "ck3.paradoxwikis.com",
+      "sitename": "CK3 Wiki",
+      "generator": "MediaWiki 1.39.4",
+      "apiUrl": "https://ck3.paradoxwikis.com/api.php",
+      "server": "https://ck3.paradoxwikis.com",
+      "articlePath": "/$1",
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      }
+    },
+    "page": {
+      "title": "Beginner's guide",
+      "pageId": 1022,
+      "canonicalUrl": "https://ck3.paradoxwikis.com/Beginner%27s_guide",
+      "revisionId": 34077,
+      "parentRevisionId": 30340,
+      "touched": "2026-04-20T13:22:30Z",
+      "revisionTimestamp": "2026-03-31T18:58:57Z",
+      "revisionSha1": "537d058cef3315a84347dd0424f4b33f65328b5c",
+      "oldidUrl": "https://ck3.paradoxwikis.com/Beginner%27s_guide?oldid=34077",
+      "length": 28203
+    },
+    "links": [
+      {
+        "title": "Alliance",
+        "url": "https://ck3.paradoxwikis.com/Alliance"
+      },
+      {
+        "title": "Attributes",
+        "url": "https://ck3.paradoxwikis.com/Attributes"
+      },
+      {
+        "title": "Character",
+        "url": "https://ck3.paradoxwikis.com/Character"
+      },
+      {
+        "title": "Council",
+        "url": "https://ck3.paradoxwikis.com/Council"
+      },
+      {
+        "title": "Court",
+        "url": "https://ck3.paradoxwikis.com/Court"
+      },
+      {
+        "title": "Court Chaplain",
+        "url": "https://ck3.paradoxwikis.com/Court_Chaplain"
+      },
+      {
+        "title": "Crusader Kings III",
+        "url": "https://ck3.paradoxwikis.com/Crusader_Kings_III"
+      },
+      {
+        "title": "Dynasty",
+        "url": "https://ck3.paradoxwikis.com/Dynasty"
+      },
+      {
+        "title": "Faith",
+        "url": "https://ck3.paradoxwikis.com/Faith"
+      },
+      {
+        "title": "Government",
+        "url": "https://ck3.paradoxwikis.com/Government"
+      },
+      {
+        "title": "Innovation",
+        "url": "https://ck3.paradoxwikis.com/Innovation"
+      },
+      {
+        "title": "Interactions",
+        "url": "https://ck3.paradoxwikis.com/Interactions"
+      },
+      {
+        "title": "Laws",
+        "url": "https://ck3.paradoxwikis.com/Laws"
+      },
+      {
+        "title": "Lifestyle",
+        "url": "https://ck3.paradoxwikis.com/Lifestyle"
+      },
+      {
+        "title": "Marriage",
+        "url": "https://ck3.paradoxwikis.com/Marriage"
+      },
+      {
+        "title": "Realm",
+        "url": "https://ck3.paradoxwikis.com/Realm"
+      },
+      {
+        "title": "Resources",
+        "url": "https://ck3.paradoxwikis.com/Resources"
+      },
+      {
+        "title": "Schemes",
+        "url": "https://ck3.paradoxwikis.com/Schemes"
+      },
+      {
+        "title": "Succession",
+        "url": "https://ck3.paradoxwikis.com/Succession"
+      },
+      {
+        "title": "Titles",
+        "url": "https://ck3.paradoxwikis.com/Titles"
+      },
+      {
+        "title": "Traits",
+        "url": "https://ck3.paradoxwikis.com/Traits"
+      },
+      {
+        "title": "Vassals",
+        "url": "https://ck3.paradoxwikis.com/Vassals"
+      }
+    ],
+    "sectionAnchors": [
+      {
+        "index": "1",
+        "toplevel": 1,
+        "anchor": "Selecting_a_character",
+        "line": "Selecting a character"
+      },
+      {
+        "index": "2",
+        "toplevel": 1,
+        "anchor": "Before_unpausing",
+        "line": "Before unpausing"
+      },
+      {
+        "index": "3",
+        "toplevel": 2,
+        "anchor": "Choosing_a_lifestyle",
+        "line": "Choosing a lifestyle"
+      },
+      {
+        "index": "4",
+        "toplevel": 2,
+        "anchor": "Marriage",
+        "line": "Marriage"
+      },
+      {
+        "index": "5",
+        "toplevel": 2,
+        "anchor": "Educating_children",
+        "line": "Educating children"
+      },
+      {
+        "index": "6",
+        "toplevel": 2,
+        "anchor": "Managing_your_titles",
+        "line": "Managing your titles"
+      },
+      {
+        "index": "7",
+        "toplevel": 2,
+        "anchor": "Foreign_affairs",
+        "line": "Foreign affairs"
+      },
+      {
+        "index": "8",
+        "toplevel": 2,
+        "anchor": "Status_of_innovations",
+        "line": "Status of innovations"
+      },
+      {
+        "index": "9",
+        "toplevel": 1,
+        "anchor": "Early_game",
+        "line": "Early game"
+      },
+      {
+        "index": "10",
+        "toplevel": 2,
+        "anchor": "Domestic_affairs",
+        "line": "Domestic affairs"
+      },
+      {
+        "index": "11",
+        "toplevel": 3,
+        "anchor": "Feudal_Contracts",
+        "line": "Feudal Contracts"
+      },
+      {
+        "index": "12",
+        "toplevel": 3,
+        "anchor": "Becoming_Rightful_Liege",
+        "line": "Becoming Rightful Liege"
+      },
+      {
+        "index": "13",
+        "toplevel": 2,
+        "anchor": "Deal_with_Factions_as_Liege",
+        "line": "Deal with Factions as Liege"
+      },
+      {
+        "index": "14",
+        "toplevel": 2,
+        "anchor": "Use_Factions_as_Vassal",
+        "line": "Use Factions as Vassal"
+      },
+      {
+        "index": "15",
+        "toplevel": 1,
+        "anchor": "Preparing_for_succession",
+        "line": "Preparing for succession"
+      },
+      {
+        "index": "16",
+        "toplevel": 1,
+        "anchor": "Follow-up",
+        "line": "Follow-up"
+      },
+      {
+        "index": "17",
+        "toplevel": 2,
+        "anchor": "Authority",
+        "line": "Authority"
+      },
+      {
+        "index": "18",
+        "toplevel": 2,
+        "anchor": "Succession",
+        "line": "Succession"
+      },
+      {
+        "index": "19",
+        "toplevel": 3,
+        "anchor": "Exclusive_to_HRE",
+        "line": "Exclusive to HRE"
+      },
+      {
+        "index": "20",
+        "toplevel": 2,
+        "anchor": "Dynasty",
+        "line": "Dynasty"
+      }
+    ],
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    }
+  },
+  "registryEntry": {
+    "sourceId": "source:ck3-paradoxwikis-com:beginner-s-guide",
+    "kind": "documentation_mediawiki_page",
+    "label": "CK3 Wiki: Beginner's guide",
+    "acquiredAt": "2026-07-18T05:33:08.480Z",
+    "publisher": "CK3 Wiki",
+    "documentType": "mediawiki_page",
+    "topic": "Beginner's guide",
+    "canonicalUrl": "https://ck3.paradoxwikis.com/Beginner%27s_guide",
+    "oldidUrl": "https://ck3.paradoxwikis.com/Beginner%27s_guide?oldid=34077",
+    "revision": {
+      "pageId": 1022,
+      "revisionId": 34077,
+      "parentRevisionId": 30340,
+      "timestamp": "2026-03-31T18:58:57Z",
+      "sha1": "537d058cef3315a84347dd0424f4b33f65328b5c"
+    },
+    "content": {
+      "hashAlgorithm": "sha256",
+      "structuralSummarySha256": "906f93fdcd42e31e7b4bf19507bb47bc3242f6fb7142f4306cbc9cfbb9f81b0a",
+      "copiedContent": "metadata_and_section_anchors_only"
+    },
+    "scope": {
+      "gameVersions": [
+        "1.19.0.6"
+      ],
+      "dlc": [
+        "ALL_ACTIVE_ASSUMPTION"
+      ],
+      "mods": [],
+      "allDlcActive": true
+    },
+    "licensing": {
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      },
+      "redistribution": "Do not copy whole wiki pages into this repository; store citations, page metadata, and short section anchor titles only."
+    },
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    },
+    "extracted": {
+      "sectionAnchorCount": 20,
+      "sectionAnchors": [
+        {
+          "index": "1",
+          "toplevel": 1,
+          "anchor": "Selecting_a_character",
+          "line": "Selecting a character"
+        },
+        {
+          "index": "2",
+          "toplevel": 1,
+          "anchor": "Before_unpausing",
+          "line": "Before unpausing"
+        },
+        {
+          "index": "3",
+          "toplevel": 2,
+          "anchor": "Choosing_a_lifestyle",
+          "line": "Choosing a lifestyle"
+        },
+        {
+          "index": "4",
+          "toplevel": 2,
+          "anchor": "Marriage",
+          "line": "Marriage"
+        },
+        {
+          "index": "5",
+          "toplevel": 2,
+          "anchor": "Educating_children",
+          "line": "Educating children"
+        },
+        {
+          "index": "6",
+          "toplevel": 2,
+          "anchor": "Managing_your_titles",
+          "line": "Managing your titles"
+        },
+        {
+          "index": "7",
+          "toplevel": 2,
+          "anchor": "Foreign_affairs",
+          "line": "Foreign affairs"
+        },
+        {
+          "index": "8",
+          "toplevel": 2,
+          "anchor": "Status_of_innovations",
+          "line": "Status of innovations"
+        },
+        {
+          "index": "9",
+          "toplevel": 1,
+          "anchor": "Early_game",
+          "line": "Early game"
+        },
+        {
+          "index": "10",
+          "toplevel": 2,
+          "anchor": "Domestic_affairs",
+          "line": "Domestic affairs"
+        },
+        {
+          "index": "11",
+          "toplevel": 3,
+          "anchor": "Feudal_Contracts",
+          "line": "Feudal Contracts"
+        },
+        {
+          "index": "12",
+          "toplevel": 3,
+          "anchor": "Becoming_Rightful_Liege",
+          "line": "Becoming Rightful Liege"
+        },
+        {
+          "index": "13",
+          "toplevel": 2,
+          "anchor": "Deal_with_Factions_as_Liege",
+          "line": "Deal with Factions as Liege"
+        },
+        {
+          "index": "14",
+          "toplevel": 2,
+          "anchor": "Use_Factions_as_Vassal",
+          "line": "Use Factions as Vassal"
+        },
+        {
+          "index": "15",
+          "toplevel": 1,
+          "anchor": "Preparing_for_succession",
+          "line": "Preparing for succession"
+        },
+        {
+          "index": "16",
+          "toplevel": 1,
+          "anchor": "Follow-up",
+          "line": "Follow-up"
+        },
+        {
+          "index": "17",
+          "toplevel": 2,
+          "anchor": "Authority",
+          "line": "Authority"
+        },
+        {
+          "index": "18",
+          "toplevel": 2,
+          "anchor": "Succession",
+          "line": "Succession"
+        },
+        {
+          "index": "19",
+          "toplevel": 3,
+          "anchor": "Exclusive_to_HRE",
+          "line": "Exclusive to HRE"
+        },
+        {
+          "index": "20",
+          "toplevel": 2,
+          "anchor": "Dynasty",
+          "line": "Dynasty"
+        }
+      ],
+      "pageLength": 28203
+    },
+    "visibility": {
+      "classification": "external",
+      "rawArtifactCommitted": false,
+      "rationale": "External CK3 wiki documentation source for the 'Beginner's guide' mechanics topic. Durable knowledge should cite this page/revision; only metadata + section anchor titles are stored."
+    },
+    "notes": []
+  }
+}

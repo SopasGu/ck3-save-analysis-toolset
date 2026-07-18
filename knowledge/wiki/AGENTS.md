@@ -17,6 +17,7 @@ This directory is the durable Markdown wiki for the CK3 evidence graph project. 
 - `pages/record-types/*.md` - generalized record-type pages.
 - `pages/fields/*.md` - generalized field pages.
 - `pages/identity-domains/*.md` - generalized identity-domain pages.
+- `pages/mechanics/*.md` - documentation-anchored mechanics_concept pages.
 
 ## Frontmatter Rules
 

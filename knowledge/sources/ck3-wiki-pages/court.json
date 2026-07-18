@@ -1,0 +1,569 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "sourceId": "source:ck3-paradoxwikis-com:court",
+    "kind": "mediawiki_page",
+    "site": {
+      "key": "ck3.paradoxwikis.com",
+      "sitename": "CK3 Wiki",
+      "generator": "MediaWiki 1.39.4",
+      "apiUrl": "https://ck3.paradoxwikis.com/api.php",
+      "server": "https://ck3.paradoxwikis.com",
+      "articlePath": "/$1",
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      }
+    },
+    "page": {
+      "title": "Court",
+      "pageId": 230,
+      "canonicalUrl": "https://ck3.paradoxwikis.com/Court",
+      "revisionId": 34630,
+      "parentRevisionId": 34495,
+      "touched": "2026-05-20T00:53:33Z",
+      "revisionTimestamp": "2026-05-08T22:39:45Z",
+      "revisionSha1": "f30ebb0d37ee1623a1adeeff018286d99052e656",
+      "oldidUrl": "https://ck3.paradoxwikis.com/Court?oldid=34630",
+      "length": 129444
+    },
+    "links": [
+      {
+        "title": "Achievement",
+        "url": "https://ck3.paradoxwikis.com/Achievement"
+      },
+      {
+        "title": "Activity",
+        "url": "https://ck3.paradoxwikis.com/Activity"
+      },
+      {
+        "title": "Adventurer",
+        "url": "https://ck3.paradoxwikis.com/Adventurer"
+      },
+      {
+        "title": "All Under Heaven",
+        "url": "https://ck3.paradoxwikis.com/All_Under_Heaven"
+      },
+      {
+        "title": "Alliance",
+        "url": "https://ck3.paradoxwikis.com/Alliance"
+      },
+      {
+        "title": "Army",
+        "url": "https://ck3.paradoxwikis.com/Army"
+      },
+      {
+        "title": "Artifacts",
+        "url": "https://ck3.paradoxwikis.com/Artifacts"
+      },
+      {
+        "title": "Attributes",
+        "url": "https://ck3.paradoxwikis.com/Attributes"
+      },
+      {
+        "title": "Barony",
+        "url": "https://ck3.paradoxwikis.com/Barony"
+      },
+      {
+        "title": "Bookmarks",
+        "url": "https://ck3.paradoxwikis.com/Bookmarks"
+      },
+      {
+        "title": "Buildings",
+        "url": "https://ck3.paradoxwikis.com/Buildings"
+      },
+      {
+        "title": "Casus belli",
+        "url": "https://ck3.paradoxwikis.com/Casus_belli"
+      },
+      {
+        "title": "Character",
+        "url": "https://ck3.paradoxwikis.com/Character"
+      },
+      {
+        "title": "Council",
+        "url": "https://ck3.paradoxwikis.com/Council"
+      },
+      {
+        "title": "County",
+        "url": "https://ck3.paradoxwikis.com/County"
+      },
+      {
+        "title": "Culture",
+        "url": "https://ck3.paradoxwikis.com/Culture"
+      },
+      {
+        "title": "Decisions",
+        "url": "https://ck3.paradoxwikis.com/Decisions"
+      },
+      {
+        "title": "Developer diaries",
+        "url": "https://ck3.paradoxwikis.com/Developer_diaries"
+      },
+      {
+        "title": "Doctrines",
+        "url": "https://ck3.paradoxwikis.com/Doctrines"
+      },
+      {
+        "title": "Domicile",
+        "url": "https://ck3.paradoxwikis.com/Domicile"
+      },
+      {
+        "title": "Downloadable content",
+        "url": "https://ck3.paradoxwikis.com/Downloadable_content"
+      },
+      {
+        "title": "Duel",
+        "url": "https://ck3.paradoxwikis.com/Duel"
+      },
+      {
+        "title": "Dynasty",
+        "url": "https://ck3.paradoxwikis.com/Dynasty"
+      },
+      {
+        "title": "Event",
+        "url": "https://ck3.paradoxwikis.com/Event"
+      },
+      {
+        "title": "Faith",
+        "url": "https://ck3.paradoxwikis.com/Faith"
+      },
+      {
+        "title": "Family (relation)",
+        "url": "https://ck3.paradoxwikis.com/Family_(relation)"
+      },
+      {
+        "title": "Form of address",
+        "url": "https://ck3.paradoxwikis.com/Form_of_address"
+      },
+      {
+        "title": "Game rules",
+        "url": "https://ck3.paradoxwikis.com/Game_rules"
+      },
+      {
+        "title": "Government",
+        "url": "https://ck3.paradoxwikis.com/Government"
+      },
+      {
+        "title": "Great projects",
+        "url": "https://ck3.paradoxwikis.com/Great_projects"
+      },
+      {
+        "title": "Hired forces",
+        "url": "https://ck3.paradoxwikis.com/Hired_forces"
+      },
+      {
+        "title": "Holy sites",
+        "url": "https://ck3.paradoxwikis.com/Holy_sites"
+      },
+      {
+        "title": "Hooks",
+        "url": "https://ck3.paradoxwikis.com/Hooks"
+      },
+      {
+        "title": "Innovation",
+        "url": "https://ck3.paradoxwikis.com/Innovation"
+      },
+      {
+        "title": "Interactions",
+        "url": "https://ck3.paradoxwikis.com/Interactions"
+      },
+      {
+        "title": "Interesting characters",
+        "url": "https://ck3.paradoxwikis.com/Interesting_characters"
+      },
+      {
+        "title": "Jargon",
+        "url": "https://ck3.paradoxwikis.com/Jargon"
+      },
+      {
+        "title": "Khans of the Steppe",
+        "url": "https://ck3.paradoxwikis.com/Khans_of_the_Steppe"
+      },
+      {
+        "title": "Knight",
+        "url": "https://ck3.paradoxwikis.com/Knight"
+      },
+      {
+        "title": "Laws",
+        "url": "https://ck3.paradoxwikis.com/Laws"
+      },
+      {
+        "title": "Legacy of Persia",
+        "url": "https://ck3.paradoxwikis.com/Legacy_of_Persia"
+      },
+      {
+        "title": "Legends of the Dead",
+        "url": "https://ck3.paradoxwikis.com/Legends_of_the_Dead"
+      },
+      {
+        "title": "Lifestyle",
+        "url": "https://ck3.paradoxwikis.com/Lifestyle"
+      },
+      {
+        "title": "Mechanics",
+        "url": "https://ck3.paradoxwikis.com/Mechanics"
+      },
+      {
+        "title": "Minor title decision",
+        "url": "https://ck3.paradoxwikis.com/Minor_title_decision"
+      },
+      {
+        "title": "Modding",
+        "url": "https://ck3.paradoxwikis.com/Modding"
+      },
+      {
+        "title": "Modifiers",
+        "url": "https://ck3.paradoxwikis.com/Modifiers"
+      },
+      {
+        "title": "Patches",
+        "url": "https://ck3.paradoxwikis.com/Patches"
+      },
+      {
+        "title": "Power sharing",
+        "url": "https://ck3.paradoxwikis.com/Power_sharing"
+      },
+      {
+        "title": "Prisoner",
+        "url": "https://ck3.paradoxwikis.com/Prisoner"
+      },
+      {
+        "title": "Resources",
+        "url": "https://ck3.paradoxwikis.com/Resources"
+      },
+      {
+        "title": "Roads to Power",
+        "url": "https://ck3.paradoxwikis.com/Roads_to_Power"
+      },
+      {
+        "title": "Royal court",
+        "url": "https://ck3.paradoxwikis.com/Royal_court"
+      },
+      {
+        "title": "Royal Court (DLC)",
+        "url": "https://ck3.paradoxwikis.com/Royal_Court_(DLC)"
+      },
+      {
+        "title": "Ruler Designer",
+        "url": "https://ck3.paradoxwikis.com/Ruler_Designer"
+      },
+      {
+        "title": "Schemes",
+        "url": "https://ck3.paradoxwikis.com/Schemes"
+      },
+      {
+        "title": "Seduction scheme",
+        "url": "https://ck3.paradoxwikis.com/Seduction_scheme"
+      },
+      {
+        "title": "Situation",
+        "url": "https://ck3.paradoxwikis.com/Situation"
+      },
+      {
+        "title": "Subjects",
+        "url": "https://ck3.paradoxwikis.com/Subjects"
+      },
+      {
+        "title": "Succession",
+        "url": "https://ck3.paradoxwikis.com/Succession"
+      },
+      {
+        "title": "Tenets",
+        "url": "https://ck3.paradoxwikis.com/Tenets"
+      },
+      {
+        "title": "Title",
+        "url": "https://ck3.paradoxwikis.com/Title"
+      },
+      {
+        "title": "Titles",
+        "url": "https://ck3.paradoxwikis.com/Titles"
+      },
+      {
+        "title": "Tours and Tournaments",
+        "url": "https://ck3.paradoxwikis.com/Tours_and_Tournaments"
+      },
+      {
+        "title": "Traditions",
+        "url": "https://ck3.paradoxwikis.com/Traditions"
+      },
+      {
+        "title": "Traits",
+        "url": "https://ck3.paradoxwikis.com/Traits"
+      },
+      {
+        "title": "Travel",
+        "url": "https://ck3.paradoxwikis.com/Travel"
+      },
+      {
+        "title": "Wards and Wardens",
+        "url": "https://ck3.paradoxwikis.com/Wards_and_Wardens"
+      },
+      {
+        "title": "Warfare",
+        "url": "https://ck3.paradoxwikis.com/Warfare"
+      }
+    ],
+    "sectionAnchors": [
+      {
+        "index": "1",
+        "toplevel": 1,
+        "anchor": "Courtiers_and_followers",
+        "line": "Courtiers and followers"
+      },
+      {
+        "index": "2",
+        "toplevel": 2,
+        "anchor": "Hostages",
+        "line": "Hostages"
+      },
+      {
+        "index": "3",
+        "toplevel": 1,
+        "anchor": "Guests",
+        "line": "Guests"
+      },
+      {
+        "index": "4",
+        "toplevel": 1,
+        "anchor": "Court_positions",
+        "line": "Court positions"
+      },
+      {
+        "index": "5",
+        "toplevel": 2,
+        "anchor": "Aptitude",
+        "line": "Aptitude"
+      },
+      {
+        "index": "6",
+        "toplevel": 2,
+        "anchor": "Recruit_for_a_Court_Position",
+        "line": "Recruit for a Court Position"
+      },
+      {
+        "index": "7",
+        "toplevel": 2,
+        "anchor": "Common_positions",
+        "line": "Common positions"
+      },
+      {
+        "index": "8",
+        "toplevel": 2,
+        "anchor": "Ruler_positions",
+        "line": "Ruler positions"
+      },
+      {
+        "index": "9",
+        "toplevel": 3,
+        "anchor": "Duke_positions",
+        "line": "Duke positions"
+      },
+      {
+        "index": "10",
+        "toplevel": 3,
+        "anchor": "King_positions",
+        "line": "King positions"
+      },
+      {
+        "index": "11",
+        "toplevel": 3,
+        "anchor": "Emperor_positions",
+        "line": "Emperor positions"
+      },
+      {
+        "index": "12",
+        "toplevel": 3,
+        "anchor": "Hegemon_positions",
+        "line": "Hegemon positions"
+      },
+      {
+        "index": "13",
+        "toplevel": 3,
+        "anchor": "Nomadic_positions",
+        "line": "Nomadic positions"
+      },
+      {
+        "index": "14",
+        "toplevel": 2,
+        "anchor": "Officers",
+        "line": "Officers"
+      },
+      {
+        "index": "15",
+        "toplevel": 3,
+        "anchor": "Captains",
+        "line": "Captains"
+      },
+      {
+        "index": "16",
+        "toplevel": 1,
+        "anchor": "References",
+        "line": "References"
+      }
+    ],
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    }
+  },
+  "registryEntry": {
+    "sourceId": "source:ck3-paradoxwikis-com:court",
+    "kind": "documentation_mediawiki_page",
+    "label": "CK3 Wiki: Court",
+    "acquiredAt": "2026-07-18T05:33:08.491Z",
+    "publisher": "CK3 Wiki",
+    "documentType": "mediawiki_page",
+    "topic": "Court",
+    "canonicalUrl": "https://ck3.paradoxwikis.com/Court",
+    "oldidUrl": "https://ck3.paradoxwikis.com/Court?oldid=34630",
+    "revision": {
+      "pageId": 230,
+      "revisionId": 34630,
+      "parentRevisionId": 34495,
+      "timestamp": "2026-05-08T22:39:45Z",
+      "sha1": "f30ebb0d37ee1623a1adeeff018286d99052e656"
+    },
+    "content": {
+      "hashAlgorithm": "sha256",
+      "structuralSummarySha256": "ff101d1d75be3294e7f497dfcb28ba359d2161020edc6b1754d50e313ea94cf9",
+      "copiedContent": "metadata_and_section_anchors_only"
+    },
+    "scope": {
+      "gameVersions": [
+        "1.19.0.6"
+      ],
+      "dlc": [
+        "ALL_ACTIVE_ASSUMPTION"
+      ],
+      "mods": [],
+      "allDlcActive": true
+    },
+    "licensing": {
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      },
+      "redistribution": "Do not copy whole wiki pages into this repository; store citations, page metadata, and short section anchor titles only."
+    },
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    },
+    "extracted": {
+      "sectionAnchorCount": 16,
+      "sectionAnchors": [
+        {
+          "index": "1",
+          "toplevel": 1,
+          "anchor": "Courtiers_and_followers",
+          "line": "Courtiers and followers"
+        },
+        {
+          "index": "2",
+          "toplevel": 2,
+          "anchor": "Hostages",
+          "line": "Hostages"
+        },
+        {
+          "index": "3",
+          "toplevel": 1,
+          "anchor": "Guests",
+          "line": "Guests"
+        },
+        {
+          "index": "4",
+          "toplevel": 1,
+          "anchor": "Court_positions",
+          "line": "Court positions"
+        },
+        {
+          "index": "5",
+          "toplevel": 2,
+          "anchor": "Aptitude",
+          "line": "Aptitude"
+        },
+        {
+          "index": "6",
+          "toplevel": 2,
+          "anchor": "Recruit_for_a_Court_Position",
+          "line": "Recruit for a Court Position"
+        },
+        {
+          "index": "7",
+          "toplevel": 2,
+          "anchor": "Common_positions",
+          "line": "Common positions"
+        },
+        {
+          "index": "8",
+          "toplevel": 2,
+          "anchor": "Ruler_positions",
+          "line": "Ruler positions"
+        },
+        {
+          "index": "9",
+          "toplevel": 3,
+          "anchor": "Duke_positions",
+          "line": "Duke positions"
+        },
+        {
+          "index": "10",
+          "toplevel": 3,
+          "anchor": "King_positions",
+          "line": "King positions"
+        },
+        {
+          "index": "11",
+          "toplevel": 3,
+          "anchor": "Emperor_positions",
+          "line": "Emperor positions"
+        },
+        {
+          "index": "12",
+          "toplevel": 3,
+          "anchor": "Hegemon_positions",
+          "line": "Hegemon positions"
+        },
+        {
+          "index": "13",
+          "toplevel": 3,
+          "anchor": "Nomadic_positions",
+          "line": "Nomadic positions"
+        },
+        {
+          "index": "14",
+          "toplevel": 2,
+          "anchor": "Officers",
+          "line": "Officers"
+        },
+        {
+          "index": "15",
+          "toplevel": 3,
+          "anchor": "Captains",
+          "line": "Captains"
+        },
+        {
+          "index": "16",
+          "toplevel": 1,
+          "anchor": "References",
+          "line": "References"
+        }
+      ],
+      "pageLength": 129444
+    },
+    "visibility": {
+      "classification": "external",
+      "rawArtifactCommitted": false,
+      "rationale": "External CK3 wiki documentation source for the 'Court' mechanics topic. Durable knowledge should cite this page/revision; only metadata + section anchor titles are stored."
+    },
+    "notes": []
+  }
+}

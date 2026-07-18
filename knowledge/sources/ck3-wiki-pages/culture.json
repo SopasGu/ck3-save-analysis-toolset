@@ -1,0 +1,1261 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "sourceId": "source:ck3-paradoxwikis-com:culture",
+    "kind": "mediawiki_page",
+    "site": {
+      "key": "ck3.paradoxwikis.com",
+      "sitename": "CK3 Wiki",
+      "generator": "MediaWiki 1.39.4",
+      "apiUrl": "https://ck3.paradoxwikis.com/api.php",
+      "server": "https://ck3.paradoxwikis.com",
+      "articlePath": "/$1",
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      }
+    },
+    "page": {
+      "title": "Culture",
+      "pageId": 181,
+      "canonicalUrl": "https://ck3.paradoxwikis.com/Culture",
+      "revisionId": 34787,
+      "parentRevisionId": 34503,
+      "touched": "2026-06-22T09:57:26Z",
+      "revisionTimestamp": "2026-06-22T09:57:26Z",
+      "revisionSha1": "f92fe91ee98819d6835bef709a1e39b2a85cf844",
+      "oldidUrl": "https://ck3.paradoxwikis.com/Culture?oldid=34787",
+      "length": 133053
+    },
+    "links": [
+      {
+        "title": "Achievement",
+        "url": "https://ck3.paradoxwikis.com/Achievement"
+      },
+      {
+        "title": "Activity",
+        "url": "https://ck3.paradoxwikis.com/Activity"
+      },
+      {
+        "title": "Adaptive Skirmishers",
+        "url": "https://ck3.paradoxwikis.com/Adaptive_Skirmishers"
+      },
+      {
+        "title": "Adventurer",
+        "url": "https://ck3.paradoxwikis.com/Adventurer"
+      },
+      {
+        "title": "African Tolerance",
+        "url": "https://ck3.paradoxwikis.com/African_Tolerance"
+      },
+      {
+        "title": "Agrarian",
+        "url": "https://ck3.paradoxwikis.com/Agrarian"
+      },
+      {
+        "title": "All Under Heaven",
+        "url": "https://ck3.paradoxwikis.com/All_Under_Heaven"
+      },
+      {
+        "title": "Alliance",
+        "url": "https://ck3.paradoxwikis.com/Alliance"
+      },
+      {
+        "title": "Amharic Highlanders",
+        "url": "https://ck3.paradoxwikis.com/Amharic_Highlanders"
+      },
+      {
+        "title": "Ancient Miners",
+        "url": "https://ck3.paradoxwikis.com/Ancient_Miners"
+      },
+      {
+        "title": "Army",
+        "url": "https://ck3.paradoxwikis.com/Army"
+      },
+      {
+        "title": "Artifacts",
+        "url": "https://ck3.paradoxwikis.com/Artifacts"
+      },
+      {
+        "title": "Astute Diplomats",
+        "url": "https://ck3.paradoxwikis.com/Astute_Diplomats"
+      },
+      {
+        "title": "Attributes",
+        "url": "https://ck3.paradoxwikis.com/Attributes"
+      },
+      {
+        "title": "Audacious Cadets",
+        "url": "https://ck3.paradoxwikis.com/Audacious_Cadets"
+      },
+      {
+        "title": "Avid Falconers",
+        "url": "https://ck3.paradoxwikis.com/Avid_Falconers"
+      },
+      {
+        "title": "Barony",
+        "url": "https://ck3.paradoxwikis.com/Barony"
+      },
+      {
+        "title": "Battlefield Looters",
+        "url": "https://ck3.paradoxwikis.com/Battlefield_Looters"
+      },
+      {
+        "title": "Beacon of Learning",
+        "url": "https://ck3.paradoxwikis.com/Beacon_of_Learning"
+      },
+      {
+        "title": "Bookmarks",
+        "url": "https://ck3.paradoxwikis.com/Bookmarks"
+      },
+      {
+        "title": "Bound by Faith",
+        "url": "https://ck3.paradoxwikis.com/Bound_by_Faith"
+      },
+      {
+        "title": "Buildings",
+        "url": "https://ck3.paradoxwikis.com/Buildings"
+      },
+      {
+        "title": "Bush Hunting",
+        "url": "https://ck3.paradoxwikis.com/Bush_Hunting"
+      },
+      {
+        "title": "By the Sword",
+        "url": "https://ck3.paradoxwikis.com/By_the_Sword"
+      },
+      {
+        "title": "Byzantine Traditions",
+        "url": "https://ck3.paradoxwikis.com/Byzantine_Traditions"
+      },
+      {
+        "title": "Caravaneers",
+        "url": "https://ck3.paradoxwikis.com/Caravaneers"
+      },
+      {
+        "title": "Castle Keepers",
+        "url": "https://ck3.paradoxwikis.com/Castle_Keepers"
+      },
+      {
+        "title": "Casus belli",
+        "url": "https://ck3.paradoxwikis.com/Casus_belli"
+      },
+      {
+        "title": "Caucasian Wolves",
+        "url": "https://ck3.paradoxwikis.com/Caucasian_Wolves"
+      },
+      {
+        "title": "Chanson de Geste",
+        "url": "https://ck3.paradoxwikis.com/Chanson_de_Geste"
+      },
+      {
+        "title": "Character",
+        "url": "https://ck3.paradoxwikis.com/Character"
+      },
+      {
+        "title": "Charismatic",
+        "url": "https://ck3.paradoxwikis.com/Charismatic"
+      },
+      {
+        "title": "Charitable",
+        "url": "https://ck3.paradoxwikis.com/Charitable"
+      },
+      {
+        "title": "Chivalry",
+        "url": "https://ck3.paradoxwikis.com/Chivalry"
+      },
+      {
+        "title": "City Keepers",
+        "url": "https://ck3.paradoxwikis.com/City_Keepers"
+      },
+      {
+        "title": "Coastal Warriors",
+        "url": "https://ck3.paradoxwikis.com/Coastal_Warriors"
+      },
+      {
+        "title": "Collective Lands",
+        "url": "https://ck3.paradoxwikis.com/Collective_Lands"
+      },
+      {
+        "title": "Concubines",
+        "url": "https://ck3.paradoxwikis.com/Concubines"
+      },
+      {
+        "title": "Council",
+        "url": "https://ck3.paradoxwikis.com/Council"
+      },
+      {
+        "title": "County",
+        "url": "https://ck3.paradoxwikis.com/County"
+      },
+      {
+        "title": "Court",
+        "url": "https://ck3.paradoxwikis.com/Court"
+      },
+      {
+        "title": "Court Eunuchs",
+        "url": "https://ck3.paradoxwikis.com/Court_Eunuchs"
+      },
+      {
+        "title": "Culinary Artists",
+        "url": "https://ck3.paradoxwikis.com/Culinary_Artists"
+      },
+      {
+        "title": "Cultivated Sophistication",
+        "url": "https://ck3.paradoxwikis.com/Cultivated_Sophistication"
+      },
+      {
+        "title": "Culture",
+        "url": "https://ck3.paradoxwikis.com/Culture"
+      },
+      {
+        "title": "Culture Blending",
+        "url": "https://ck3.paradoxwikis.com/Culture_Blending"
+      },
+      {
+        "title": "Decisions",
+        "url": "https://ck3.paradoxwikis.com/Decisions"
+      },
+      {
+        "title": "Defensive Tactics",
+        "url": "https://ck3.paradoxwikis.com/Defensive_Tactics"
+      },
+      {
+        "title": "Desert Ribats",
+        "url": "https://ck3.paradoxwikis.com/Desert_Ribats"
+      },
+      {
+        "title": "Desert Travelers",
+        "url": "https://ck3.paradoxwikis.com/Desert_Travelers"
+      },
+      {
+        "title": "Developer diaries",
+        "url": "https://ck3.paradoxwikis.com/Developer_diaries"
+      },
+      {
+        "title": "Devoted Horsemanship",
+        "url": "https://ck3.paradoxwikis.com/Devoted_Horsemanship"
+      },
+      {
+        "title": "Dexterous Fishermen",
+        "url": "https://ck3.paradoxwikis.com/Dexterous_Fishermen"
+      },
+      {
+        "title": "Diasporic",
+        "url": "https://ck3.paradoxwikis.com/Diasporic"
+      },
+      {
+        "title": "Doctrines",
+        "url": "https://ck3.paradoxwikis.com/Doctrines"
+      },
+      {
+        "title": "Domicile",
+        "url": "https://ck3.paradoxwikis.com/Domicile"
+      },
+      {
+        "title": "Downloadable content",
+        "url": "https://ck3.paradoxwikis.com/Downloadable_content"
+      },
+      {
+        "title": "Druzhina",
+        "url": "https://ck3.paradoxwikis.com/Druzhina"
+      },
+      {
+        "title": "Dryland Dwellers",
+        "url": "https://ck3.paradoxwikis.com/Dryland_Dwellers"
+      },
+      {
+        "title": "Duel",
+        "url": "https://ck3.paradoxwikis.com/Duel"
+      },
+      {
+        "title": "Dynasty",
+        "url": "https://ck3.paradoxwikis.com/Dynasty"
+      },
+      {
+        "title": "Eastern Roman Legacy",
+        "url": "https://ck3.paradoxwikis.com/Eastern_Roman_Legacy"
+      },
+      {
+        "title": "Enlightened Magnates",
+        "url": "https://ck3.paradoxwikis.com/Enlightened_Magnates"
+      },
+      {
+        "title": "Equal Inheritance",
+        "url": "https://ck3.paradoxwikis.com/Equal_Inheritance"
+      },
+      {
+        "title": "Equitable",
+        "url": "https://ck3.paradoxwikis.com/Equitable"
+      },
+      {
+        "title": "Esteemed Hospitality",
+        "url": "https://ck3.paradoxwikis.com/Esteemed_Hospitality"
+      },
+      {
+        "title": "Expert Artisans",
+        "url": "https://ck3.paradoxwikis.com/Expert_Artisans"
+      },
+      {
+        "title": "Eye for an Eye",
+        "url": "https://ck3.paradoxwikis.com/Eye_for_an_Eye"
+      },
+      {
+        "title": "Faith",
+        "url": "https://ck3.paradoxwikis.com/Faith"
+      },
+      {
+        "title": "Family (relation)",
+        "url": "https://ck3.paradoxwikis.com/Family_(relation)"
+      },
+      {
+        "title": "Family Business",
+        "url": "https://ck3.paradoxwikis.com/Family_Business"
+      },
+      {
+        "title": "Fate of Iberia",
+        "url": "https://ck3.paradoxwikis.com/Fate_of_Iberia"
+      },
+      {
+        "title": "Fervent Temple Builders",
+        "url": "https://ck3.paradoxwikis.com/Fervent_Temple_Builders"
+      },
+      {
+        "title": "Fierce Independence",
+        "url": "https://ck3.paradoxwikis.com/Fierce_Independence"
+      },
+      {
+        "title": "Forbearing",
+        "url": "https://ck3.paradoxwikis.com/Forbearing"
+      },
+      {
+        "title": "Forest Fighters",
+        "url": "https://ck3.paradoxwikis.com/Forest_Fighters"
+      },
+      {
+        "title": "Forest Folk",
+        "url": "https://ck3.paradoxwikis.com/Forest_Folk"
+      },
+      {
+        "title": "Forest Wardens",
+        "url": "https://ck3.paradoxwikis.com/Forest_Wardens"
+      },
+      {
+        "title": "Form of address",
+        "url": "https://ck3.paradoxwikis.com/Form_of_address"
+      },
+      {
+        "title": "Form of Address",
+        "url": "https://ck3.paradoxwikis.com/Form_of_Address"
+      },
+      {
+        "title": "Formation Fighting Experts",
+        "url": "https://ck3.paradoxwikis.com/Formation_Fighting_Experts"
+      },
+      {
+        "title": "Frequent Festivities",
+        "url": "https://ck3.paradoxwikis.com/Frequent_Festivities"
+      },
+      {
+        "title": "Frontier Warriors",
+        "url": "https://ck3.paradoxwikis.com/Frontier_Warriors"
+      },
+      {
+        "title": "Frugal Armorers",
+        "url": "https://ck3.paradoxwikis.com/Frugal_Armorers"
+      },
+      {
+        "title": "Futuwaa",
+        "url": "https://ck3.paradoxwikis.com/Futuwaa"
+      },
+      {
+        "title": "Game rules",
+        "url": "https://ck3.paradoxwikis.com/Game_rules"
+      },
+      {
+        "title": "Garden Architects",
+        "url": "https://ck3.paradoxwikis.com/Garden_Architects"
+      },
+      {
+        "title": "Garuda Warriors",
+        "url": "https://ck3.paradoxwikis.com/Garuda_Warriors"
+      },
+      {
+        "title": "Government",
+        "url": "https://ck3.paradoxwikis.com/Government"
+      },
+      {
+        "title": "Great projects",
+        "url": "https://ck3.paradoxwikis.com/Great_projects"
+      },
+      {
+        "title": "Hereditary Hierarchy",
+        "url": "https://ck3.paradoxwikis.com/Hereditary_Hierarchy"
+      },
+      {
+        "title": "Hidden Cities",
+        "url": "https://ck3.paradoxwikis.com/Hidden_Cities"
+      },
+      {
+        "title": "Highland Warriors",
+        "url": "https://ck3.paradoxwikis.com/Highland_Warriors"
+      },
+      {
+        "title": "Hill Dwellers",
+        "url": "https://ck3.paradoxwikis.com/Hill_Dwellers"
+      },
+      {
+        "title": "Himalayan Settlers",
+        "url": "https://ck3.paradoxwikis.com/Himalayan_Settlers"
+      },
+      {
+        "title": "Hirds",
+        "url": "https://ck3.paradoxwikis.com/Hirds"
+      },
+      {
+        "title": "Hired forces",
+        "url": "https://ck3.paradoxwikis.com/Hired_forces"
+      },
+      {
+        "title": "Hit-and-Run Tacticians",
+        "url": "https://ck3.paradoxwikis.com/Hit-and-Run_Tacticians"
+      },
+      {
+        "title": "Holy sites",
+        "url": "https://ck3.paradoxwikis.com/Holy_sites"
+      },
+      {
+        "title": "Hooks",
+        "url": "https://ck3.paradoxwikis.com/Hooks"
+      },
+      {
+        "title": "Horse Breeders",
+        "url": "https://ck3.paradoxwikis.com/Horse_Breeders"
+      },
+      {
+        "title": "Horse Lords",
+        "url": "https://ck3.paradoxwikis.com/Horse_Lords"
+      },
+      {
+        "title": "Hydraulic Builders",
+        "url": "https://ck3.paradoxwikis.com/Hydraulic_Builders"
+      },
+      {
+        "title": "Imperial Tagmata",
+        "url": "https://ck3.paradoxwikis.com/Imperial_Tagmata"
+      },
+      {
+        "title": "Indomitable Azatani",
+        "url": "https://ck3.paradoxwikis.com/Indomitable_Azatani"
+      },
+      {
+        "title": "Industrious",
+        "url": "https://ck3.paradoxwikis.com/Industrious"
+      },
+      {
+        "title": "Innovation",
+        "url": "https://ck3.paradoxwikis.com/Innovation"
+      },
+      {
+        "title": "Interactions",
+        "url": "https://ck3.paradoxwikis.com/Interactions"
+      },
+      {
+        "title": "Interesting characters",
+        "url": "https://ck3.paradoxwikis.com/Interesting_characters"
+      },
+      {
+        "title": "Iron Cavalry",
+        "url": "https://ck3.paradoxwikis.com/Iron_Cavalry"
+      },
+      {
+        "title": "Irrigation Experts",
+        "url": "https://ck3.paradoxwikis.com/Irrigation_Experts"
+      },
+      {
+        "title": "Isolationist",
+        "url": "https://ck3.paradoxwikis.com/Isolationist"
+      },
+      {
+        "title": "Jargon",
+        "url": "https://ck3.paradoxwikis.com/Jargon"
+      },
+      {
+        "title": "Jirga",
+        "url": "https://ck3.paradoxwikis.com/Jirga"
+      },
+      {
+        "title": "Jungle Warriors",
+        "url": "https://ck3.paradoxwikis.com/Jungle_Warriors"
+      },
+      {
+        "title": "Khadga Puja",
+        "url": "https://ck3.paradoxwikis.com/Khadga_Puja"
+      },
+      {
+        "title": "Khans of the Steppe",
+        "url": "https://ck3.paradoxwikis.com/Khans_of_the_Steppe"
+      },
+      {
+        "title": "Knight",
+        "url": "https://ck3.paradoxwikis.com/Knight"
+      },
+      {
+        "title": "Konni Raids",
+        "url": "https://ck3.paradoxwikis.com/Konni_Raids"
+      },
+      {
+        "title": "Land of the Bow",
+        "url": "https://ck3.paradoxwikis.com/Land_of_the_Bow"
+      },
+      {
+        "title": "Laws",
+        "url": "https://ck3.paradoxwikis.com/Laws"
+      },
+      {
+        "title": "Legacy of Persia",
+        "url": "https://ck3.paradoxwikis.com/Legacy_of_Persia"
+      },
+      {
+        "title": "Legalistic",
+        "url": "https://ck3.paradoxwikis.com/Legalistic"
+      },
+      {
+        "title": "Life is just a Joke",
+        "url": "https://ck3.paradoxwikis.com/Life_is_just_a_Joke"
+      },
+      {
+        "title": "Lifestyle",
+        "url": "https://ck3.paradoxwikis.com/Lifestyle"
+      },
+      {
+        "title": "Longbow Competitions",
+        "url": "https://ck3.paradoxwikis.com/Longbow_Competitions"
+      },
+      {
+        "title": "Lords of the Elephant",
+        "url": "https://ck3.paradoxwikis.com/Lords_of_the_Elephant"
+      },
+      {
+        "title": "Loyal Subjects",
+        "url": "https://ck3.paradoxwikis.com/Loyal_Subjects"
+      },
+      {
+        "title": "Malleable Invaders",
+        "url": "https://ck3.paradoxwikis.com/Malleable_Invaders"
+      },
+      {
+        "title": "Malleable Subjects",
+        "url": "https://ck3.paradoxwikis.com/Malleable_Subjects"
+      },
+      {
+        "title": "Marital Ceremonies",
+        "url": "https://ck3.paradoxwikis.com/Marital_Ceremonies"
+      },
+      {
+        "title": "Maritime Mercantilism",
+        "url": "https://ck3.paradoxwikis.com/Maritime_Mercantilism"
+      },
+      {
+        "title": "Martial Admiration",
+        "url": "https://ck3.paradoxwikis.com/Martial_Admiration"
+      },
+      {
+        "title": "Matriarchal",
+        "url": "https://ck3.paradoxwikis.com/Matriarchal"
+      },
+      {
+        "title": "Mechanics",
+        "url": "https://ck3.paradoxwikis.com/Mechanics"
+      },
+      {
+        "title": "Medicinal Herbalists",
+        "url": "https://ck3.paradoxwikis.com/Medicinal_Herbalists"
+      },
+      {
+        "title": "Mendicant Mystics",
+        "url": "https://ck3.paradoxwikis.com/Mendicant_Mystics"
+      },
+      {
+        "title": "Merciful Blindings",
+        "url": "https://ck3.paradoxwikis.com/Merciful_Blindings"
+      },
+      {
+        "title": "Metalworkers",
+        "url": "https://ck3.paradoxwikis.com/Metalworkers"
+      },
+      {
+        "title": "Modding",
+        "url": "https://ck3.paradoxwikis.com/Modding"
+      },
+      {
+        "title": "Modest",
+        "url": "https://ck3.paradoxwikis.com/Modest"
+      },
+      {
+        "title": "Modifiers",
+        "url": "https://ck3.paradoxwikis.com/Modifiers"
+      },
+      {
+        "title": "Monastic Communities",
+        "url": "https://ck3.paradoxwikis.com/Monastic_Communities"
+      },
+      {
+        "title": "Monogamous",
+        "url": "https://ck3.paradoxwikis.com/Monogamous"
+      },
+      {
+        "title": "Mountain Herding",
+        "url": "https://ck3.paradoxwikis.com/Mountain_Herding"
+      },
+      {
+        "title": "Mountain Homes",
+        "url": "https://ck3.paradoxwikis.com/Mountain_Homes"
+      },
+      {
+        "title": "Mountain Skirmishing",
+        "url": "https://ck3.paradoxwikis.com/Mountain_Skirmishing"
+      },
+      {
+        "title": "Mountaineer Ruralism",
+        "url": "https://ck3.paradoxwikis.com/Mountaineer_Ruralism"
+      },
+      {
+        "title": "Mountaineers",
+        "url": "https://ck3.paradoxwikis.com/Mountaineers"
+      },
+      {
+        "title": "Mubarizun",
+        "url": "https://ck3.paradoxwikis.com/Mubarizun"
+      },
+      {
+        "title": "Musical Theorists",
+        "url": "https://ck3.paradoxwikis.com/Musical_Theorists"
+      },
+      {
+        "title": "Mystical Ancestors",
+        "url": "https://ck3.paradoxwikis.com/Mystical_Ancestors"
+      },
+      {
+        "title": "Noble Adoption",
+        "url": "https://ck3.paradoxwikis.com/Noble_Adoption"
+      },
+      {
+        "title": "Northern Lords",
+        "url": "https://ck3.paradoxwikis.com/Northern_Lords"
+      },
+      {
+        "title": "Northern Stories",
+        "url": "https://ck3.paradoxwikis.com/Northern_Stories"
+      },
+      {
+        "title": "Only the Strong",
+        "url": "https://ck3.paradoxwikis.com/Only_the_Strong"
+      },
+      {
+        "title": "Pacifists",
+        "url": "https://ck3.paradoxwikis.com/Pacifists"
+      },
+      {
+        "title": "Palace Politics",
+        "url": "https://ck3.paradoxwikis.com/Palace_Politics"
+      },
+      {
+        "title": "Parochialism",
+        "url": "https://ck3.paradoxwikis.com/Parochialism"
+      },
+      {
+        "title": "Pastorialists",
+        "url": "https://ck3.paradoxwikis.com/Pastorialists"
+      },
+      {
+        "title": "Patches",
+        "url": "https://ck3.paradoxwikis.com/Patches"
+      },
+      {
+        "title": "Performative Honor",
+        "url": "https://ck3.paradoxwikis.com/Performative_Honor"
+      },
+      {
+        "title": "Philosopher Culture",
+        "url": "https://ck3.paradoxwikis.com/Philosopher_Culture"
+      },
+      {
+        "title": "Polders",
+        "url": "https://ck3.paradoxwikis.com/Polders"
+      },
+      {
+        "title": "Polygamous",
+        "url": "https://ck3.paradoxwikis.com/Polygamous"
+      },
+      {
+        "title": "Power sharing",
+        "url": "https://ck3.paradoxwikis.com/Power_sharing"
+      },
+      {
+        "title": "Practiced Pirates",
+        "url": "https://ck3.paradoxwikis.com/Practiced_Pirates"
+      },
+      {
+        "title": "Pragmatic Creed",
+        "url": "https://ck3.paradoxwikis.com/Pragmatic_Creed"
+      },
+      {
+        "title": "Prisoner",
+        "url": "https://ck3.paradoxwikis.com/Prisoner"
+      },
+      {
+        "title": "Prolific Hunters",
+        "url": "https://ck3.paradoxwikis.com/Prolific_Hunters"
+      },
+      {
+        "title": "Quarrelsome",
+        "url": "https://ck3.paradoxwikis.com/Quarrelsome"
+      },
+      {
+        "title": "Recognition of Talent",
+        "url": "https://ck3.paradoxwikis.com/Recognition_of_Talent"
+      },
+      {
+        "title": "Refined Poetry",
+        "url": "https://ck3.paradoxwikis.com/Refined_Poetry"
+      },
+      {
+        "title": "Religion",
+        "url": "https://ck3.paradoxwikis.com/Religion"
+      },
+      {
+        "title": "Religion Blending",
+        "url": "https://ck3.paradoxwikis.com/Religion_Blending"
+      },
+      {
+        "title": "Religious Patronage",
+        "url": "https://ck3.paradoxwikis.com/Religious_Patronage"
+      },
+      {
+        "title": "Republican Legacy",
+        "url": "https://ck3.paradoxwikis.com/Republican_Legacy"
+      },
+      {
+        "title": "Resources",
+        "url": "https://ck3.paradoxwikis.com/Resources"
+      },
+      {
+        "title": "Ritualized Friendship",
+        "url": "https://ck3.paradoxwikis.com/Ritualized_Friendship"
+      },
+      {
+        "title": "Roads to Power",
+        "url": "https://ck3.paradoxwikis.com/Roads_to_Power"
+      },
+      {
+        "title": "Roman Ceremonies",
+        "url": "https://ck3.paradoxwikis.com/Roman_Ceremonies"
+      },
+      {
+        "title": "Royal Army",
+        "url": "https://ck3.paradoxwikis.com/Royal_Army"
+      },
+      {
+        "title": "Royal court",
+        "url": "https://ck3.paradoxwikis.com/Royal_court"
+      },
+      {
+        "title": "Royal Court (DLC)",
+        "url": "https://ck3.paradoxwikis.com/Royal_Court_(DLC)"
+      },
+      {
+        "title": "Ruler decisions",
+        "url": "https://ck3.paradoxwikis.com/Ruler_decisions"
+      },
+      {
+        "title": "Ruler Designer",
+        "url": "https://ck3.paradoxwikis.com/Ruler_Designer"
+      },
+      {
+        "title": "Ruling Caste",
+        "url": "https://ck3.paradoxwikis.com/Ruling_Caste"
+      },
+      {
+        "title": "Runestone Raisers",
+        "url": "https://ck3.paradoxwikis.com/Runestone_Raisers"
+      },
+      {
+        "title": "Sacred Groves",
+        "url": "https://ck3.paradoxwikis.com/Sacred_Groves"
+      },
+      {
+        "title": "Sacred Hunts",
+        "url": "https://ck3.paradoxwikis.com/Sacred_Hunts"
+      },
+      {
+        "title": "Sacred Mountains",
+        "url": "https://ck3.paradoxwikis.com/Sacred_Mountains"
+      },
+      {
+        "title": "Saharan Nomads",
+        "url": "https://ck3.paradoxwikis.com/Saharan_Nomads"
+      },
+      {
+        "title": "Schemes",
+        "url": "https://ck3.paradoxwikis.com/Schemes"
+      },
+      {
+        "title": "Seafarers",
+        "url": "https://ck3.paradoxwikis.com/Seafarers"
+      },
+      {
+        "title": "Situation",
+        "url": "https://ck3.paradoxwikis.com/Situation"
+      },
+      {
+        "title": "Sorcerous Metallurgy",
+        "url": "https://ck3.paradoxwikis.com/Sorcerous_Metallurgy"
+      },
+      {
+        "title": "Stalwart Defenders",
+        "url": "https://ck3.paradoxwikis.com/Stalwart_Defenders"
+      },
+      {
+        "title": "Stand and Fight!",
+        "url": "https://ck3.paradoxwikis.com/Stand_and_Fight!"
+      },
+      {
+        "title": "State Ransoming",
+        "url": "https://ck3.paradoxwikis.com/State_Ransoming"
+      },
+      {
+        "title": "Staunch Traditionalists",
+        "url": "https://ck3.paradoxwikis.com/Staunch_Traditionalists"
+      },
+      {
+        "title": "Steppe Tolerance",
+        "url": "https://ck3.paradoxwikis.com/Steppe_Tolerance"
+      },
+      {
+        "title": "Storytellers",
+        "url": "https://ck3.paradoxwikis.com/Storytellers"
+      },
+      {
+        "title": "Strong Believers",
+        "url": "https://ck3.paradoxwikis.com/Strong_Believers"
+      },
+      {
+        "title": "Strong Kinship",
+        "url": "https://ck3.paradoxwikis.com/Strong_Kinship"
+      },
+      {
+        "title": "Struggle",
+        "url": "https://ck3.paradoxwikis.com/Struggle"
+      },
+      {
+        "title": "Subjects",
+        "url": "https://ck3.paradoxwikis.com/Subjects"
+      },
+      {
+        "title": "Succession",
+        "url": "https://ck3.paradoxwikis.com/Succession"
+      },
+      {
+        "title": "Swords for Hire",
+        "url": "https://ck3.paradoxwikis.com/Swords_for_Hire"
+      },
+      {
+        "title": "Tabletop Warriors",
+        "url": "https://ck3.paradoxwikis.com/Tabletop_Warriors"
+      },
+      {
+        "title": "Tenets",
+        "url": "https://ck3.paradoxwikis.com/Tenets"
+      },
+      {
+        "title": "The Witenagemot",
+        "url": "https://ck3.paradoxwikis.com/The_Witenagemot"
+      },
+      {
+        "title": "Ting-Meet",
+        "url": "https://ck3.paradoxwikis.com/Ting-Meet"
+      },
+      {
+        "title": "Titles",
+        "url": "https://ck3.paradoxwikis.com/Titles"
+      },
+      {
+        "title": "Tours and Tournaments",
+        "url": "https://ck3.paradoxwikis.com/Tours_and_Tournaments"
+      },
+      {
+        "title": "Traditions",
+        "url": "https://ck3.paradoxwikis.com/Traditions"
+      },
+      {
+        "title": "Traits",
+        "url": "https://ck3.paradoxwikis.com/Traits"
+      },
+      {
+        "title": "Travel",
+        "url": "https://ck3.paradoxwikis.com/Travel"
+      },
+      {
+        "title": "Tribal Unity",
+        "url": "https://ck3.paradoxwikis.com/Tribal_Unity"
+      },
+      {
+        "title": "Tribes of the North",
+        "url": "https://ck3.paradoxwikis.com/Tribes_of_the_North"
+      },
+      {
+        "title": "Upland Skirmishing",
+        "url": "https://ck3.paradoxwikis.com/Upland_Skirmishing"
+      },
+      {
+        "title": "Vegetarians",
+        "url": "https://ck3.paradoxwikis.com/Vegetarians"
+      },
+      {
+        "title": "Visigothic Codes",
+        "url": "https://ck3.paradoxwikis.com/Visigothic_Codes"
+      },
+      {
+        "title": "Warfare",
+        "url": "https://ck3.paradoxwikis.com/Warfare"
+      },
+      {
+        "title": "Warrior Culture",
+        "url": "https://ck3.paradoxwikis.com/Warrior_Culture"
+      },
+      {
+        "title": "Warrior Priests",
+        "url": "https://ck3.paradoxwikis.com/Warrior_Priests"
+      },
+      {
+        "title": "Warrior Queens",
+        "url": "https://ck3.paradoxwikis.com/Warrior_Queens"
+      },
+      {
+        "title": "Warriors by Merit",
+        "url": "https://ck3.paradoxwikis.com/Warriors_by_Merit"
+      },
+      {
+        "title": "Warriors of the Dry",
+        "url": "https://ck3.paradoxwikis.com/Warriors_of_the_Dry"
+      },
+      {
+        "title": "Water Rituals",
+        "url": "https://ck3.paradoxwikis.com/Water_Rituals"
+      },
+      {
+        "title": "Wetlanders",
+        "url": "https://ck3.paradoxwikis.com/Wetlanders"
+      },
+      {
+        "title": "Winter Warriors",
+        "url": "https://ck3.paradoxwikis.com/Winter_Warriors"
+      },
+      {
+        "title": "Wolves of the Deep Steppe",
+        "url": "https://ck3.paradoxwikis.com/Wolves_of_the_Deep_Steppe"
+      },
+      {
+        "title": "Xenophilic",
+        "url": "https://ck3.paradoxwikis.com/Xenophilic"
+      }
+    ],
+    "sectionAnchors": [
+      {
+        "index": "1",
+        "toplevel": 1,
+        "anchor": "Culture_head",
+        "line": "Culture head"
+      },
+      {
+        "index": "2",
+        "toplevel": 1,
+        "anchor": "Cultural_acceptance",
+        "line": "Cultural acceptance"
+      },
+      {
+        "index": "3",
+        "toplevel": 1,
+        "anchor": "Cultural_pillars",
+        "line": "Cultural pillars"
+      },
+      {
+        "index": "4",
+        "toplevel": 2,
+        "anchor": "Ethos",
+        "line": "Ethos"
+      },
+      {
+        "index": "5",
+        "toplevel": 1,
+        "anchor": "Traditions",
+        "line": "Traditions"
+      },
+      {
+        "index": "6",
+        "toplevel": 1,
+        "anchor": "New_cultures",
+        "line": "New cultures"
+      },
+      {
+        "index": "7",
+        "toplevel": 2,
+        "anchor": "Hybrid_cultures",
+        "line": "Hybrid cultures"
+      },
+      {
+        "index": "8",
+        "toplevel": 2,
+        "anchor": "Divergent_cultures",
+        "line": "Divergent cultures"
+      },
+      {
+        "index": "9",
+        "toplevel": 1,
+        "anchor": "List_of_cultures",
+        "line": "List of cultures"
+      },
+      {
+        "index": "10",
+        "toplevel": 2,
+        "anchor": "Nomadic_cultures",
+        "line": "Nomadic cultures"
+      },
+      {
+        "index": "11",
+        "toplevel": 2,
+        "anchor": "North_Germanic_cultures",
+        "line": "North Germanic cultures"
+      },
+      {
+        "index": "12",
+        "toplevel": 2,
+        "anchor": "Ancient_cultures",
+        "line": "Ancient cultures"
+      },
+      {
+        "index": "13",
+        "toplevel": 1,
+        "anchor": "List_of_unique_formable_cultures",
+        "line": "List of unique formable cultures"
+      },
+      {
+        "index": "14",
+        "toplevel": 2,
+        "anchor": "Unique_divergent_cultures",
+        "line": "Unique divergent cultures"
+      },
+      {
+        "index": "15",
+        "toplevel": 2,
+        "anchor": "Unique_hybrid_cultures",
+        "line": "Unique hybrid cultures"
+      },
+      {
+        "index": "16",
+        "toplevel": 1,
+        "anchor": "Culture_splits",
+        "line": "Culture splits"
+      },
+      {
+        "index": "17",
+        "toplevel": 1,
+        "anchor": "Sicilian_melting_pot",
+        "line": "Sicilian melting pot"
+      },
+      {
+        "index": "18",
+        "toplevel": 1,
+        "anchor": "Harrying_of_the_North",
+        "line": "Harrying of the North"
+      },
+      {
+        "index": "19",
+        "toplevel": 1,
+        "anchor": "References",
+        "line": "References"
+      }
+    ],
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    }
+  },
+  "registryEntry": {
+    "sourceId": "source:ck3-paradoxwikis-com:culture",
+    "kind": "documentation_mediawiki_page",
+    "label": "CK3 Wiki: Culture",
+    "acquiredAt": "2026-07-18T05:33:08.501Z",
+    "publisher": "CK3 Wiki",
+    "documentType": "mediawiki_page",
+    "topic": "Culture",
+    "canonicalUrl": "https://ck3.paradoxwikis.com/Culture",
+    "oldidUrl": "https://ck3.paradoxwikis.com/Culture?oldid=34787",
+    "revision": {
+      "pageId": 181,
+      "revisionId": 34787,
+      "parentRevisionId": 34503,
+      "timestamp": "2026-06-22T09:57:26Z",
+      "sha1": "f92fe91ee98819d6835bef709a1e39b2a85cf844"
+    },
+    "content": {
+      "hashAlgorithm": "sha256",
+      "structuralSummarySha256": "5dfe8f34a818e09bfc5d86d566a7a74721453cd61053196f52fc55e81150ca20",
+      "copiedContent": "metadata_and_section_anchors_only"
+    },
+    "scope": {
+      "gameVersions": [
+        "1.19.0.6"
+      ],
+      "dlc": [
+        "ALL_ACTIVE_ASSUMPTION"
+      ],
+      "mods": [],
+      "allDlcActive": true
+    },
+    "licensing": {
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      },
+      "redistribution": "Do not copy whole wiki pages into this repository; store citations, page metadata, and short section anchor titles only."
+    },
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    },
+    "extracted": {
+      "sectionAnchorCount": 19,
+      "sectionAnchors": [
+        {
+          "index": "1",
+          "toplevel": 1,
+          "anchor": "Culture_head",
+          "line": "Culture head"
+        },
+        {
+          "index": "2",
+          "toplevel": 1,
+          "anchor": "Cultural_acceptance",
+          "line": "Cultural acceptance"
+        },
+        {
+          "index": "3",
+          "toplevel": 1,
+          "anchor": "Cultural_pillars",
+          "line": "Cultural pillars"
+        },
+        {
+          "index": "4",
+          "toplevel": 2,
+          "anchor": "Ethos",
+          "line": "Ethos"
+        },
+        {
+          "index": "5",
+          "toplevel": 1,
+          "anchor": "Traditions",
+          "line": "Traditions"
+        },
+        {
+          "index": "6",
+          "toplevel": 1,
+          "anchor": "New_cultures",
+          "line": "New cultures"
+        },
+        {
+          "index": "7",
+          "toplevel": 2,
+          "anchor": "Hybrid_cultures",
+          "line": "Hybrid cultures"
+        },
+        {
+          "index": "8",
+          "toplevel": 2,
+          "anchor": "Divergent_cultures",
+          "line": "Divergent cultures"
+        },
+        {
+          "index": "9",
+          "toplevel": 1,
+          "anchor": "List_of_cultures",
+          "line": "List of cultures"
+        },
+        {
+          "index": "10",
+          "toplevel": 2,
+          "anchor": "Nomadic_cultures",
+          "line": "Nomadic cultures"
+        },
+        {
+          "index": "11",
+          "toplevel": 2,
+          "anchor": "North_Germanic_cultures",
+          "line": "North Germanic cultures"
+        },
+        {
+          "index": "12",
+          "toplevel": 2,
+          "anchor": "Ancient_cultures",
+          "line": "Ancient cultures"
+        },
+        {
+          "index": "13",
+          "toplevel": 1,
+          "anchor": "List_of_unique_formable_cultures",
+          "line": "List of unique formable cultures"
+        },
+        {
+          "index": "14",
+          "toplevel": 2,
+          "anchor": "Unique_divergent_cultures",
+          "line": "Unique divergent cultures"
+        },
+        {
+          "index": "15",
+          "toplevel": 2,
+          "anchor": "Unique_hybrid_cultures",
+          "line": "Unique hybrid cultures"
+        },
+        {
+          "index": "16",
+          "toplevel": 1,
+          "anchor": "Culture_splits",
+          "line": "Culture splits"
+        },
+        {
+          "index": "17",
+          "toplevel": 1,
+          "anchor": "Sicilian_melting_pot",
+          "line": "Sicilian melting pot"
+        },
+        {
+          "index": "18",
+          "toplevel": 1,
+          "anchor": "Harrying_of_the_North",
+          "line": "Harrying of the North"
+        },
+        {
+          "index": "19",
+          "toplevel": 1,
+          "anchor": "References",
+          "line": "References"
+        }
+      ],
+      "pageLength": 133053
+    },
+    "visibility": {
+      "classification": "external",
+      "rawArtifactCommitted": false,
+      "rationale": "External CK3 wiki documentation source for the 'Culture' mechanics topic. Durable knowledge should cite this page/revision; only metadata + section anchor titles are stored."
+    },
+    "notes": []
+  }
+}

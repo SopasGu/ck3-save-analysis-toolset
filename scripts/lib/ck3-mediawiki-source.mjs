@@ -17,6 +17,7 @@ export async function fetchMediaWikiPageSource({
   cacheDir,
   userAgent = DEFAULT_USER_AGENT,
   minDelayMs = DEFAULT_MIN_DELAY_MS,
+  fetchSections = false,
 } = {}) {
   if (!title) throw new Error('title is required');
   const client = new MediaWikiClient({ apiUrl, cacheDir, userAgent, minDelayMs });
@@ -53,6 +54,13 @@ export async function fetchMediaWikiPageSource({
     }))
     .sort((a, b) => a.title.localeCompare(b.title));
   const siteKey = new URL(apiUrl).hostname.replace(/^www\./, '');
+  const sectionAnchors = fetchSections
+    ? await fetchMediaWikiPageSections({
+        client,
+        apiUrl,
+        title: page.title,
+      })
+    : [];
 
   return {
     sourceId: sourceIdForMediaWikiPage(siteKey, page.title),
@@ -76,8 +84,10 @@ export async function fetchMediaWikiPageSource({
       revisionTimestamp: revision?.timestamp ?? null,
       revisionSha1: revision?.sha1 ?? null,
       oldidUrl: revision?.revid ? `${canonicalUrl}?oldid=${revision.revid}` : canonicalUrl,
+      length: page.length ?? null,
     },
     links,
+    sectionAnchors,
     requestPolicy: {
       userAgent,
       minDelayMs,
@@ -86,6 +96,26 @@ export async function fetchMediaWikiPageSource({
       retryAfterHonored: true,
     },
   };
+}
+
+export async function fetchMediaWikiPageSections({ client, title }) {
+  const data = await client.get({
+    action: 'parse',
+    page: title,
+    prop: 'sections',
+    format: 'json',
+    formatversion: '2',
+  });
+  const sections = data.parse?.sections ?? [];
+  return sections
+    .map((section, idx) => ({
+      index: section.index ?? idx,
+      toplevel: section.toclevel ?? null,
+      anchor: String(section.anchor ?? '').trim(),
+      line: String(section.line ?? '').trim(),
+    }))
+    .filter((section) => section.line.length > 0)
+    .sort((a, b) => Number(a.index) - Number(b.index));
 }
 
 export function summarizeMediaWikiLinks(source) {
@@ -176,6 +206,7 @@ export function buildMediaWikiRegistryEntry(source, options = {}) {
     revisionId: source.page.revisionId,
     revisionSha1: source.page.revisionSha1,
     links: source.links.map((link) => link.title),
+    sectionAnchors: (source.sectionAnchors ?? []).map((s) => s.line),
   });
   return {
     sourceId: source.sourceId,
@@ -212,6 +243,7 @@ export function buildMediaWikiRegistryEntry(source, options = {}) {
     requestPolicy: source.requestPolicy,
     extracted: {
       linkCount: source.links.length,
+      sectionAnchorCount: (source.sectionAnchors ?? []).length,
       topicGroups: Object.fromEntries(
         Object.entries(summary).map(([group, links]) => [group, links.map((link) => link.title)]),
       ),
@@ -223,6 +255,163 @@ export function buildMediaWikiRegistryEntry(source, options = {}) {
     },
     notes: options.notes ?? [],
   };
+}
+
+export function summarizeMediaWikiTopicPage(source) {
+  const sectionAnchors = (source.sectionAnchors ?? []).map((section) => ({
+    index: section.index,
+    toplevel: section.toplevel,
+    anchor: section.anchor,
+    line: section.line,
+  }));
+  const sectionLines = sectionAnchors.map((section) => section.line);
+  const hash = hashStableJson({
+    site: source.site.key,
+    title: source.page.title,
+    revisionId: source.page.revisionId,
+    revisionSha1: source.page.revisionSha1,
+    sectionLines,
+  });
+  return {
+    siteKey: source.site.key,
+    pageTitle: source.page.title,
+    pageId: source.page.pageId,
+    revisionId: source.page.revisionId,
+    revisionSha1: source.page.revisionSha1,
+    revisionTimestamp: source.page.revisionTimestamp,
+    canonicalUrl: source.page.canonicalUrl,
+    oldidUrl: source.page.oldidUrl,
+    pageLength: source.page.length ?? null,
+    sectionAnchors,
+    structuralSummaryHash: hash,
+  };
+}
+
+export function buildMediaWikiTopicRegistryEntry(source, options = {}) {
+  if (!options.topic) throw new Error('buildMediaWikiTopicRegistryEntry requires options.topic');
+  const summary = summarizeMediaWikiTopicPage(source);
+  return {
+    sourceId: source.sourceId,
+    kind: 'documentation_mediawiki_page',
+    label: options.label ?? `${source.site.sitename}: ${source.page.title}`,
+    acquiredAt: options.acquiredAt ?? new Date().toISOString(),
+    publisher: source.site.sitename,
+    documentType: 'mediawiki_page',
+    topic: options.topic,
+    canonicalUrl: source.page.canonicalUrl,
+    oldidUrl: source.page.oldidUrl,
+    revision: {
+      pageId: source.page.pageId,
+      revisionId: source.page.revisionId,
+      parentRevisionId: source.page.parentRevisionId,
+      timestamp: source.page.revisionTimestamp,
+      sha1: source.page.revisionSha1,
+    },
+    content: {
+      hashAlgorithm: 'sha256',
+      structuralSummarySha256: summary.structuralSummaryHash,
+      copiedContent: 'metadata_and_section_anchors_only',
+    },
+    scope: {
+      gameVersions: options.gameVersions ?? [],
+      dlc: options.allDlcActive ? ['ALL_ACTIVE_ASSUMPTION'] : (options.dlc ?? []),
+      mods: options.mods ?? [],
+      allDlcActive: Boolean(options.allDlcActive),
+    },
+    licensing: {
+      rights: source.site.rights,
+      redistribution: 'Do not copy whole wiki pages into this repository; store citations, page metadata, and short section anchor titles only.',
+    },
+    requestPolicy: source.requestPolicy,
+    extracted: {
+      sectionAnchorCount: summary.sectionAnchors.length,
+      sectionAnchors: summary.sectionAnchors,
+      pageLength: summary.pageLength,
+    },
+    visibility: {
+      classification: 'external',
+      rawArtifactCommitted: false,
+      rationale: `External CK3 wiki documentation source for the '${options.topic}' mechanics topic. Durable knowledge should cite this page/revision; only metadata + section anchor titles are stored.`,
+    },
+    notes: options.notes ?? [],
+  };
+}
+
+export function selectMediaWikiTopicGroup(title) {
+  const groups = {
+    gettingStarted: [
+      "Beginner's guide",
+      'Mechanics',
+      'Game rules',
+      'Console commands',
+      'Interesting characters',
+    ],
+    characterSystems: [
+      'Characters',
+      'Attributes',
+      'Traits',
+      'Resources',
+      'Lifestyle',
+      'Dynasty',
+      'Schemes',
+      'Hooks',
+      'Artifacts',
+      'Modifiers',
+    ],
+    governance: [
+      'Council',
+      'Court',
+      'Government',
+      'Laws',
+      'Prisoners',
+      'Activity',
+      'Decisions',
+      'Power sharing',
+      'Royal court',
+      'Adventurer',
+    ],
+    realm: [
+      'Titles',
+      'Subjects',
+      'Building',
+      'Domicile',
+      'Great projects',
+      'Situation',
+      'Barony',
+      'County',
+      'Travel',
+    ],
+    warfare: [
+      'Warfare',
+      'Army',
+      'Knight',
+      'Hired forces',
+      'Casus belli',
+      'Alliance',
+      'Duel',
+    ],
+    cultureFaith: [
+      'Faith',
+      'Doctrines',
+      'Tenets',
+      'Holy sites',
+      'Culture',
+      'Traditions',
+      'Innovation',
+    ],
+    documentationMeta: [
+      'Modding',
+      'Jargon',
+      'Achievements',
+      'Developer diaries',
+      'Patches',
+      'Downloadable content',
+    ],
+  };
+  for (const [group, titles] of Object.entries(groups)) {
+    if (titles.includes(title)) return group;
+  }
+  return null;
 }
 
 class MediaWikiClient {

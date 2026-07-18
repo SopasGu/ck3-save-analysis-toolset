@@ -18,6 +18,7 @@ Options:
   --collections PATH    Candidate collection catalog from ck3-save-collections
   --references PATH     Identity/reference catalog from ck3-save-references
   --sources PATH        Source registry JSON
+  --mechanics PATH      Operator-curated mechanics_concept table (Task 11)
   --source-id ID        Source ID to attach as provenance
   --max-reference-candidates N
                        Maximum ranked reference candidates projected into graph (default: 250)
@@ -34,6 +35,7 @@ function parseArgs(argv) {
     collections: null,
     references: null,
     sources: null,
+    mechanics: null,
     sourceId: null,
     maxReferenceCandidates: 250,
     maxTargetDomainsPerCandidate: 3,
@@ -54,6 +56,9 @@ function parseArgs(argv) {
         break;
       case '--sources':
         args.sources = argv[++i];
+        break;
+      case '--mechanics':
+        args.mechanics = argv[++i];
         break;
       case '--source-id':
         args.sourceId = argv[++i];
@@ -97,18 +102,25 @@ function readJson(label, filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 
+function readOptionalJson(label, filePath) {
+  if (!filePath) return null;
+  return readJson(label, filePath);
+}
+
 function main() {
   const args = parseArgs(process.argv.slice(2));
   const sourceRegistry = readJson('sources', args.sources);
   const shapeCatalog = readJson('shape', args.shape);
   const collectionCatalog = readJson('collections', args.collections);
   const referenceCatalog = readJson('references', args.references);
+  const mechanicsCatalog = readOptionalJson('mechanics', args.mechanics);
 
   const graph = generateSchemaGraph({
     sourceRegistry,
     shapeCatalog,
     collectionCatalog,
     referenceCatalog,
+    mechanicsCatalog,
   }, {
     sourceId: args.sourceId,
     maxReferenceCandidates: args.maxReferenceCandidates,
@@ -126,8 +138,9 @@ function main() {
     fs.mkdirSync(path.dirname(path.resolve(args.out)), { recursive: true });
     fs.writeFileSync(args.out, json);
     if (!args.quiet) {
+      const mechanicsCount = (graph.nodes ?? []).filter((n) => n.kind === 'mechanics_concept').length;
       process.stderr.write(
-        `Wrote schema graph (${graph.nodes.length} nodes, ${graph.edges.length} edges) to ${args.out}\n`,
+        `Wrote schema graph (${graph.nodes.length} nodes, ${graph.edges.length} edges, mechanics_concept=${mechanicsCount}) to ${args.out}\n`,
       );
     }
   } else {

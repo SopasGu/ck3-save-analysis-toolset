@@ -85,7 +85,15 @@
           "items": { "type": "string" }
         },
         "semanticName": { "type": "string" },
-        "semanticKind": { "type": "string" },
+        "semanticKind": {
+          "enum": [
+            "collection_name",
+            "identity_domain_name",
+            "field_name",
+            "record_type_name",
+            "mechanics_concept"
+          ]
+        },
         "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
         "scope": { "$ref": "#/$defs/scope" },
         "supportingEvidence": {
@@ -114,6 +122,15 @@
             }
           }
         },
+        "supersededBy": {
+          "type": "array",
+          "default": [],
+          "items": { "type": "string" }
+        },
+        "lastReviewed": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
         "notes": {
           "type": "array",
           "items": { "type": "string" }
@@ -135,3 +152,4 @@
     }
   }
 }
+

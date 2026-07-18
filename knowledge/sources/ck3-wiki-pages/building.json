@@ -1,0 +1,637 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "sourceId": "source:ck3-paradoxwikis-com:building",
+    "kind": "mediawiki_page",
+    "site": {
+      "key": "ck3.paradoxwikis.com",
+      "sitename": "CK3 Wiki",
+      "generator": "MediaWiki 1.39.4",
+      "apiUrl": "https://ck3.paradoxwikis.com/api.php",
+      "server": "https://ck3.paradoxwikis.com",
+      "articlePath": "/$1",
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      }
+    },
+    "page": {
+      "title": "Building",
+      "pageId": 1743,
+      "canonicalUrl": "https://ck3.paradoxwikis.com/Building",
+      "revisionId": 34809,
+      "parentRevisionId": 34808,
+      "touched": "2026-06-27T19:57:02Z",
+      "revisionTimestamp": "2026-06-27T19:57:02Z",
+      "revisionSha1": "7e90c2be88e250449cf6c17e200280359767d3d1",
+      "oldidUrl": "https://ck3.paradoxwikis.com/Building?oldid=34809",
+      "length": 19609
+    },
+    "links": [
+      {
+        "title": "Achievement",
+        "url": "https://ck3.paradoxwikis.com/Achievement"
+      },
+      {
+        "title": "Activity",
+        "url": "https://ck3.paradoxwikis.com/Activity"
+      },
+      {
+        "title": "Adventurer",
+        "url": "https://ck3.paradoxwikis.com/Adventurer"
+      },
+      {
+        "title": "Alliance",
+        "url": "https://ck3.paradoxwikis.com/Alliance"
+      },
+      {
+        "title": "Army",
+        "url": "https://ck3.paradoxwikis.com/Army"
+      },
+      {
+        "title": "Artifacts",
+        "url": "https://ck3.paradoxwikis.com/Artifacts"
+      },
+      {
+        "title": "Attributes",
+        "url": "https://ck3.paradoxwikis.com/Attributes"
+      },
+      {
+        "title": "Bailiffs",
+        "url": "https://ck3.paradoxwikis.com/Bailiffs"
+      },
+      {
+        "title": "Barony",
+        "url": "https://ck3.paradoxwikis.com/Barony"
+      },
+      {
+        "title": "Bookmarks",
+        "url": "https://ck3.paradoxwikis.com/Bookmarks"
+      },
+      {
+        "title": "Buildings",
+        "url": "https://ck3.paradoxwikis.com/Buildings"
+      },
+      {
+        "title": "Castle buildings",
+        "url": "https://ck3.paradoxwikis.com/Castle_buildings"
+      },
+      {
+        "title": "Casus belli",
+        "url": "https://ck3.paradoxwikis.com/Casus_belli"
+      },
+      {
+        "title": "Character",
+        "url": "https://ck3.paradoxwikis.com/Character"
+      },
+      {
+        "title": "Coronations",
+        "url": "https://ck3.paradoxwikis.com/Coronations"
+      },
+      {
+        "title": "Council",
+        "url": "https://ck3.paradoxwikis.com/Council"
+      },
+      {
+        "title": "County",
+        "url": "https://ck3.paradoxwikis.com/County"
+      },
+      {
+        "title": "County buildings",
+        "url": "https://ck3.paradoxwikis.com/County_buildings"
+      },
+      {
+        "title": "Court",
+        "url": "https://ck3.paradoxwikis.com/Court"
+      },
+      {
+        "title": "Culture",
+        "url": "https://ck3.paradoxwikis.com/Culture"
+      },
+      {
+        "title": "Decisions",
+        "url": "https://ck3.paradoxwikis.com/Decisions"
+      },
+      {
+        "title": "Desert",
+        "url": "https://ck3.paradoxwikis.com/Desert"
+      },
+      {
+        "title": "Desert Mountains",
+        "url": "https://ck3.paradoxwikis.com/Desert_Mountains"
+      },
+      {
+        "title": "Developer diaries",
+        "url": "https://ck3.paradoxwikis.com/Developer_diaries"
+      },
+      {
+        "title": "Doctrines",
+        "url": "https://ck3.paradoxwikis.com/Doctrines"
+      },
+      {
+        "title": "Domicile",
+        "url": "https://ck3.paradoxwikis.com/Domicile"
+      },
+      {
+        "title": "Downloadable content",
+        "url": "https://ck3.paradoxwikis.com/Downloadable_content"
+      },
+      {
+        "title": "Drylands",
+        "url": "https://ck3.paradoxwikis.com/Drylands"
+      },
+      {
+        "title": "Duchy buildings",
+        "url": "https://ck3.paradoxwikis.com/Duchy_buildings"
+      },
+      {
+        "title": "Duel",
+        "url": "https://ck3.paradoxwikis.com/Duel"
+      },
+      {
+        "title": "Dynasty",
+        "url": "https://ck3.paradoxwikis.com/Dynasty"
+      },
+      {
+        "title": "Economic buildings",
+        "url": "https://ck3.paradoxwikis.com/Economic_buildings"
+      },
+      {
+        "title": "Faith",
+        "url": "https://ck3.paradoxwikis.com/Faith"
+      },
+      {
+        "title": "Family (relation)",
+        "url": "https://ck3.paradoxwikis.com/Family_(relation)"
+      },
+      {
+        "title": "Farmlands",
+        "url": "https://ck3.paradoxwikis.com/Farmlands"
+      },
+      {
+        "title": "Floodplains",
+        "url": "https://ck3.paradoxwikis.com/Floodplains"
+      },
+      {
+        "title": "Forest",
+        "url": "https://ck3.paradoxwikis.com/Forest"
+      },
+      {
+        "title": "Form of address",
+        "url": "https://ck3.paradoxwikis.com/Form_of_address"
+      },
+      {
+        "title": "Fortification buildings",
+        "url": "https://ck3.paradoxwikis.com/Fortification_buildings"
+      },
+      {
+        "title": "Game rules",
+        "url": "https://ck3.paradoxwikis.com/Game_rules"
+      },
+      {
+        "title": "Government",
+        "url": "https://ck3.paradoxwikis.com/Government"
+      },
+      {
+        "title": "Great projects",
+        "url": "https://ck3.paradoxwikis.com/Great_projects"
+      },
+      {
+        "title": "Guilds",
+        "url": "https://ck3.paradoxwikis.com/Guilds"
+      },
+      {
+        "title": "Hills",
+        "url": "https://ck3.paradoxwikis.com/Hills"
+      },
+      {
+        "title": "Hired forces",
+        "url": "https://ck3.paradoxwikis.com/Hired_forces"
+      },
+      {
+        "title": "Holy sites",
+        "url": "https://ck3.paradoxwikis.com/Holy_sites"
+      },
+      {
+        "title": "Hooks",
+        "url": "https://ck3.paradoxwikis.com/Hooks"
+      },
+      {
+        "title": "Innovation",
+        "url": "https://ck3.paradoxwikis.com/Innovation"
+      },
+      {
+        "title": "Interactions",
+        "url": "https://ck3.paradoxwikis.com/Interactions"
+      },
+      {
+        "title": "Interesting characters",
+        "url": "https://ck3.paradoxwikis.com/Interesting_characters"
+      },
+      {
+        "title": "Jargon",
+        "url": "https://ck3.paradoxwikis.com/Jargon"
+      },
+      {
+        "title": "Jungle",
+        "url": "https://ck3.paradoxwikis.com/Jungle"
+      },
+      {
+        "title": "Knight",
+        "url": "https://ck3.paradoxwikis.com/Knight"
+      },
+      {
+        "title": "Laws",
+        "url": "https://ck3.paradoxwikis.com/Laws"
+      },
+      {
+        "title": "Ledger",
+        "url": "https://ck3.paradoxwikis.com/Ledger"
+      },
+      {
+        "title": "Lifestyle",
+        "url": "https://ck3.paradoxwikis.com/Lifestyle"
+      },
+      {
+        "title": "Mechanics",
+        "url": "https://ck3.paradoxwikis.com/Mechanics"
+      },
+      {
+        "title": "Military buildings",
+        "url": "https://ck3.paradoxwikis.com/Military_buildings"
+      },
+      {
+        "title": "Modding",
+        "url": "https://ck3.paradoxwikis.com/Modding"
+      },
+      {
+        "title": "Modifiers",
+        "url": "https://ck3.paradoxwikis.com/Modifiers"
+      },
+      {
+        "title": "Mountains",
+        "url": "https://ck3.paradoxwikis.com/Mountains"
+      },
+      {
+        "title": "Oasis",
+        "url": "https://ck3.paradoxwikis.com/Oasis"
+      },
+      {
+        "title": "Patches",
+        "url": "https://ck3.paradoxwikis.com/Patches"
+      },
+      {
+        "title": "Plains",
+        "url": "https://ck3.paradoxwikis.com/Plains"
+      },
+      {
+        "title": "Power sharing",
+        "url": "https://ck3.paradoxwikis.com/Power_sharing"
+      },
+      {
+        "title": "Prisoner",
+        "url": "https://ck3.paradoxwikis.com/Prisoner"
+      },
+      {
+        "title": "Resources",
+        "url": "https://ck3.paradoxwikis.com/Resources"
+      },
+      {
+        "title": "Royal court",
+        "url": "https://ck3.paradoxwikis.com/Royal_court"
+      },
+      {
+        "title": "Ruler Designer",
+        "url": "https://ck3.paradoxwikis.com/Ruler_Designer"
+      },
+      {
+        "title": "Schemes",
+        "url": "https://ck3.paradoxwikis.com/Schemes"
+      },
+      {
+        "title": "Situation",
+        "url": "https://ck3.paradoxwikis.com/Situation"
+      },
+      {
+        "title": "Special buildings",
+        "url": "https://ck3.paradoxwikis.com/Special_buildings"
+      },
+      {
+        "title": "Steppe",
+        "url": "https://ck3.paradoxwikis.com/Steppe"
+      },
+      {
+        "title": "Subjects",
+        "url": "https://ck3.paradoxwikis.com/Subjects"
+      },
+      {
+        "title": "Succession",
+        "url": "https://ck3.paradoxwikis.com/Succession"
+      },
+      {
+        "title": "Taiga",
+        "url": "https://ck3.paradoxwikis.com/Taiga"
+      },
+      {
+        "title": "Temple buildings",
+        "url": "https://ck3.paradoxwikis.com/Temple_buildings"
+      },
+      {
+        "title": "Temple Citadel buildings",
+        "url": "https://ck3.paradoxwikis.com/Temple_Citadel_buildings"
+      },
+      {
+        "title": "Tenets",
+        "url": "https://ck3.paradoxwikis.com/Tenets"
+      },
+      {
+        "title": "Title",
+        "url": "https://ck3.paradoxwikis.com/Title"
+      },
+      {
+        "title": "Titles",
+        "url": "https://ck3.paradoxwikis.com/Titles"
+      },
+      {
+        "title": "Traditions",
+        "url": "https://ck3.paradoxwikis.com/Traditions"
+      },
+      {
+        "title": "Traits",
+        "url": "https://ck3.paradoxwikis.com/Traits"
+      },
+      {
+        "title": "Travel",
+        "url": "https://ck3.paradoxwikis.com/Travel"
+      },
+      {
+        "title": "Traveling",
+        "url": "https://ck3.paradoxwikis.com/Traveling"
+      },
+      {
+        "title": "Tribe buildings",
+        "url": "https://ck3.paradoxwikis.com/Tribe_buildings"
+      },
+      {
+        "title": "Warfare",
+        "url": "https://ck3.paradoxwikis.com/Warfare"
+      },
+      {
+        "title": "Wetlands",
+        "url": "https://ck3.paradoxwikis.com/Wetlands"
+      },
+      {
+        "title": "Windmills",
+        "url": "https://ck3.paradoxwikis.com/Windmills"
+      }
+    ],
+    "sectionAnchors": [
+      {
+        "index": "1",
+        "toplevel": 1,
+        "anchor": "Construction",
+        "line": "Construction"
+      },
+      {
+        "index": "2",
+        "toplevel": 1,
+        "anchor": "Types_of_buildings",
+        "line": "Types of buildings"
+      },
+      {
+        "index": "3",
+        "toplevel": 2,
+        "anchor": "Economic_buildings",
+        "line": "Economic buildings"
+      },
+      {
+        "index": "4",
+        "toplevel": 2,
+        "anchor": "Military_buildings",
+        "line": "Military buildings"
+      },
+      {
+        "index": "5",
+        "toplevel": 2,
+        "anchor": "Fortification_buildings",
+        "line": "Fortification buildings"
+      },
+      {
+        "index": "6",
+        "toplevel": 2,
+        "anchor": "Temple_buildings",
+        "line": "Temple buildings"
+      },
+      {
+        "index": "7",
+        "toplevel": 2,
+        "anchor": "Temple_Citadel_buildings",
+        "line": "Temple Citadel buildings"
+      },
+      {
+        "index": "8",
+        "toplevel": 2,
+        "anchor": "Tribe_buildings",
+        "line": "Tribe buildings"
+      },
+      {
+        "index": "9",
+        "toplevel": 2,
+        "anchor": "County_buildings",
+        "line": "County buildings"
+      },
+      {
+        "index": "10",
+        "toplevel": 2,
+        "anchor": "Duchy_buildings",
+        "line": "Duchy buildings"
+      },
+      {
+        "index": "11",
+        "toplevel": 2,
+        "anchor": "Special_buildings",
+        "line": "Special buildings"
+      },
+      {
+        "index": "12",
+        "toplevel": 2,
+        "anchor": "City_buildings",
+        "line": "City buildings"
+      },
+      {
+        "index": "13",
+        "toplevel": 2,
+        "anchor": "Oath_buildings",
+        "line": "Oath buildings"
+      },
+      {
+        "index": "14",
+        "toplevel": 1,
+        "anchor": "Terrain_chart",
+        "line": "Terrain chart"
+      },
+      {
+        "index": "15",
+        "toplevel": 1,
+        "anchor": "References",
+        "line": "References"
+      }
+    ],
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    }
+  },
+  "registryEntry": {
+    "sourceId": "source:ck3-paradoxwikis-com:building",
+    "kind": "documentation_mediawiki_page",
+    "label": "CK3 Wiki: Building",
+    "acquiredAt": "2026-07-18T05:33:08.495Z",
+    "publisher": "CK3 Wiki",
+    "documentType": "mediawiki_page",
+    "topic": "Building",
+    "canonicalUrl": "https://ck3.paradoxwikis.com/Building",
+    "oldidUrl": "https://ck3.paradoxwikis.com/Building?oldid=34809",
+    "revision": {
+      "pageId": 1743,
+      "revisionId": 34809,
+      "parentRevisionId": 34808,
+      "timestamp": "2026-06-27T19:57:02Z",
+      "sha1": "7e90c2be88e250449cf6c17e200280359767d3d1"
+    },
+    "content": {
+      "hashAlgorithm": "sha256",
+      "structuralSummarySha256": "4f6656e070669fa429f9e9ac57fc6453f64d6dfde981717da62b4d6313e38dbd",
+      "copiedContent": "metadata_and_section_anchors_only"
+    },
+    "scope": {
+      "gameVersions": [
+        "1.19.0.6"
+      ],
+      "dlc": [
+        "ALL_ACTIVE_ASSUMPTION"
+      ],
+      "mods": [],
+      "allDlcActive": true
+    },
+    "licensing": {
+      "rights": {
+        "url": "https://central.paradoxwikis.com/Central:Copyrights",
+        "text": "Attribution-ShareAlike 3.0"
+      },
+      "redistribution": "Do not copy whole wiki pages into this repository; store citations, page metadata, and short section anchor titles only."
+    },
+    "requestPolicy": {
+      "userAgent": "ck3-save-analysis-toolset/0.1 (local documentation research; https://github.com/SopasGu/ck3-save-analysis-toolset)",
+      "minDelayMs": 1200,
+      "concurrency": 1,
+      "cacheDir": "state/mediawiki-cache/ck3.paradoxwikis.com",
+      "retryAfterHonored": true
+    },
+    "extracted": {
+      "sectionAnchorCount": 15,
+      "sectionAnchors": [
+        {
+          "index": "1",
+          "toplevel": 1,
+          "anchor": "Construction",
+          "line": "Construction"
+        },
+        {
+          "index": "2",
+          "toplevel": 1,
+          "anchor": "Types_of_buildings",
+          "line": "Types of buildings"
+        },
+        {
+          "index": "3",
+          "toplevel": 2,
+          "anchor": "Economic_buildings",
+          "line": "Economic buildings"
+        },
+        {
+          "index": "4",
+          "toplevel": 2,
+          "anchor": "Military_buildings",
+          "line": "Military buildings"
+        },
+        {
+          "index": "5",
+          "toplevel": 2,
+          "anchor": "Fortification_buildings",
+          "line": "Fortification buildings"
+        },
+        {
+          "index": "6",
+          "toplevel": 2,
+          "anchor": "Temple_buildings",
+          "line": "Temple buildings"
+        },
+        {
+          "index": "7",
+          "toplevel": 2,
+          "anchor": "Temple_Citadel_buildings",
+          "line": "Temple Citadel buildings"
+        },
+        {
+          "index": "8",
+          "toplevel": 2,
+          "anchor": "Tribe_buildings",
+          "line": "Tribe buildings"
+        },
+        {
+          "index": "9",
+          "toplevel": 2,
+          "anchor": "County_buildings",
+          "line": "County buildings"
+        },
+        {
+          "index": "10",
+          "toplevel": 2,
+          "anchor": "Duchy_buildings",
+          "line": "Duchy buildings"
+        },
+        {
+          "index": "11",
+          "toplevel": 2,
+          "anchor": "Special_buildings",
+          "line": "Special buildings"
+        },
+        {
+          "index": "12",
+          "toplevel": 2,
+          "anchor": "City_buildings",
+          "line": "City buildings"
+        },
+        {
+          "index": "13",
+          "toplevel": 2,
+          "anchor": "Oath_buildings",
+          "line": "Oath buildings"
+        },
+        {
+          "index": "14",
+          "toplevel": 1,
+          "anchor": "Terrain_chart",
+          "line": "Terrain chart"
+        },
+        {
+          "index": "15",
+          "toplevel": 1,
+          "anchor": "References",
+          "line": "References"
+        }
+      ],
+      "pageLength": 19609
+    },
+    "visibility": {
+      "classification": "external",
+      "rawArtifactCommitted": false,
+      "rationale": "External CK3 wiki documentation source for the 'Building' mechanics topic. Durable knowledge should cite this page/revision; only metadata + section anchor titles are stored."
+    },
+    "notes": []
+  }
+}
